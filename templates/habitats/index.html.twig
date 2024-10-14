@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habitats{% endblock %}
+
+{% block body %}
+
+{# Code intro habitat #}
+<section class="titleServ">
+    <h3 class="h3Serv">Habitats</h3>
+    <div class="rectangle"></div>
+</section>
+
+    <img class="service" src={{asset('/images/jungle/perroquets-couple.jpg')}} alt="Entrée du zoo">
+    <div class="tranparent"></div>
+        <div class="habitincl">
+            <p>Chaque jour, plusieurs vétérinaires viennent afin  d’effectuer les contrôles
+            sur chaque animal avant l’ouverture du zoo afin de s’assurer que tout  se passe bien,
+            de même, toute la nourriture donnée est calculée afin d’avoir le bon grammage.
+        </div>
+
+{# Code jungle #}
+    <div class="banner">
+        <h4>La jungle</h4>
+        <img src={{asset('/images/vecteurs/bg_headerbis.png')}} alt="Bannière colorée verte">
+    </div>
+
+<container class="hab">
+    <img class="imgHab" src={{asset('/images/jungle/jungle.jpg')}} alt="Paysage de jungle">
+        <p>La jungle est une immense forêt où poussent de façon très serrée,
+        arbres, broussailles et plantes hautes..<br>
+        Pour vivre, cette végétation très dense a besoin de beaucoup d'eau.
+        C'est pourquoi elle se situe dans les régions proches de l'équateur
+        où  le climat est pluvieux.<br>
+        Nous avons essayé de reproduire cet habitat pour ses occupants :
+        </p>
+</container>
+
+    {# Card animals of jungle #}
+<container>
+    <section>
+        <div class="card" style="width: 12rem;">
+            <img src={{asset('/Images/savane/lion-card.jpg')}} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">A injecter</h5>
+                <p class="card-text">A injecter</p>
+                <a href="#" class="btn btn-primary">Détails</a>
+            </div>
+        </div>
+    </section>
+</container>
+
+{# Code marais #}
+    <div class="banner">
+        <h4>Le marais</h4>
+        <img src={{asset('/images/vecteurs/bg_headerbis.png')}} alt="Bannière colorée verte">
+    </div>
+
+<container class="hab">
+    <img class="imgHab" src={{asset('/images/marais/marais.jpg')}} alt="Paysage des Marais">
+
+    <p>La jungle est une immense forêt où poussent de façon très serrée,
+    arbres, broussailles et plantes hautes..<br>
+    Pour vivre, cette végétation très dense a besoin de beaucoup d'eau.
+    C'est pourquoi elle se situe dans les régions proches de l'équateur
+    où  le climat est pluvieux.<br>
+    Nous avons essayé de reproduire cet habitat pour ses occupants :
+    </p>
+</container>
+
+    {# Card animals of marais #}
+<container>
+    <section>
+        <div class="card" style="width: 12rem;">
+            <img src={{asset('/Images/savane/lion-card.jpg')}} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">A injecter</h5>
+                <p class="card-text">A injecter</p>
+                <a href="#" class="btn btn-primary">Détails</a>
+            </div>
+        </div>
+    </section>
+</container>
+
+{# Code savane #}
+    <div class="banner">
+        <h4>La savane</h4>
+        <img src={{asset('/images/vecteurs/bg_headerbis.png')}} alt="Bannière colorée verte">
+    </div>
+
+<container class="hab">
+    <img class="imgHab" src={{asset('/images/savane/savane.jpg')}} alt="Paysage de la savane">
+
+    <p>La jungle est une immense forêt où poussent de façon très serrée,
+    arbres, broussailles et plantes hautes..<br>
+    Pour vivre, cette végétation très dense a besoin de beaucoup d'eau.
+    C'est pourquoi elle se situe dans les régions proches de l'équateur
+    où  le climat est pluvieux.<br>
+    Nous avons essayé de reproduire cet habitat pour ses occupants :
+    </p>
+</container>
+
+{# Card animals of savane #}
+<container>
+    <section>
+        <div class="card" style="width: 12rem;">
+            <img src={{asset('/Images/savane/lion-card.jpg')}} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">A injecter</h5>
+                <p class="card-text">A injecter</p>
+                <a href="#" class="btn btn-primary">Détails</a>
+            </div>
+        </div>
+    </section>
+</container>
+
+{% endblock %}
