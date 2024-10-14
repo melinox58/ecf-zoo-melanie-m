@@ -1,20 +1,122 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <body>
+        <section class="discover">
+            <div class="rectangle"></div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <h3>Découvrez le Monde Merveilleux <br>
+            des animaux au Zoo Arcadia</h3>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Env/Workspace/ecf-zoo-melanie/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Env/Workspace/ecf-zoo-melanie/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+            <img class="accueil" src={{asset("/images/img1-accueil.jpg")}} alt="Entrée du zoo">
+
+            <div class="tranparent"></div>
+            <div class="welcome">
+                <p>Bienvenue à Arcadia, où chaque visite <br>
+                est une aventure inoubliable au cœur de la nature! <br>
+                Situé près de la fôrêt de Brocéliande, en Bretagne depuis 1960, <br>
+                notre zoo vous invite à explorer une incroyable diversité d'animaux <br>
+                venus des quatre coins du monde, dans un cadre familial et éducatif.</p>
+            </div>
+        </section>
+
+    <div class="banner">
+        <h4>Les habitats</h4>
+        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    </div>
+    
+    {# <section class="habitats">
+        <div>
+            <a href="{{path ('app_jungle')}}"><img src="../assets/Images/jungle/jungle.jpg" alt="Paysage de jungle"></a>
+            <legend>Jungle</legend>
+        </div>
+        <div>
+            <a href="{{path ('app_marais')}}"><img src="../assets/Images/marais/marais.jpg" alt="Paysage de marais"></a>
+            <legend>Marais</legend>
+        </div>
+        <div>
+            <a href="{{path ('app_savane')}}"><img src="../assets/Images/savane/savane.jpg" alt="Paysage de savane"></a>
+            <legend>Savane</legend>
+        </div>
+    </section> #}
+
+        <div class="banner">
+            <h4>Animaux favoris</h4>
+            <img src="/images/vecteurs/bg_headerbis.png" alt="Bannière colorée verte">
+        </div>
+        <section>
+            <div class="card">
+                <img class="card-img" src="../assets/Images/savane/lion-card.jpg"  alt="Lion">
+                <div class="card-body">
+                <h5 class="card-title">Lion</h5>
+                </div>
+            </div>
+        </section>
+
+        <div class="banner">
+            <h4>Avis</h4>
+            <img src="/images/vecteurs/bg_headerbis.png" alt="Bannière colorée verte">
+        </div>
+
+        <!-- ici sera injecté les avis -->
+
+        <!-- Button trigger modal opinion-->
+    <button type="button" class="btn btnAvis" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Laisser un avis
+    </button>
+
+    <!-- Modal opinion-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary">Envoyer</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="banner">
+        <h4>Horaires</h4>
+        <img src="/images/vecteurs/bg_headerbis.png" alt="Bannière colorée verte">
+    </div>
+
+    <div class="schedules">
+        <p>Lundi                   FERME<br>
+            Mardi                   9h00 - 20h30<br>
+            Mercredi                9h00 - 20h30<br>
+            Jeudi                    9h00 - 20h30<br>
+            Vendredi                9h00 - 20h30<br>
+            Samedi                  9h00 - 20h30<br>
+            Dimanche                9h00 - 20h30</p>
+    </div>
+
+        <!-- ATTENTION !! voir injection des horaires -->
+
+    <div class="banner">
+        <h4>Où nous trouver ?</h4>
+        <img src="/images/vecteurs/bg_headerbis.png" alt="Bannière colorée verte">
+    </div>
+    <div class="discover3">
+        <h3 class="search">Nous avons hâte de vous accueillir <br>
+            et de partager avec vous <br>
+            la magie de la vie sauvage!</h3>
+        <div class="rectangle2"></div>
+    </div>
+    <div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d170798.9910155111!2d-2.4251032!3d48.0188442!3m2!1i1024!2i768!4f13.1!2m1!1sbroceliande!5e0!3m2!1sfr!2sfr!4v1726814144091!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+</body>
 {% endblock %}
