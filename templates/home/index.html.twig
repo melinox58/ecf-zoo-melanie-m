@@ -28,20 +28,21 @@
         <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
     </div>
     
-    {# <section class="habitats">
-        <div>
+    <section class="habitats">
+        {# <div>
             <a href="{{path ('app_jungle')}}"><img src="../assets/Images/jungle/jungle.jpg" alt="Paysage de jungle"></a>
             <legend>Jungle</legend>
-        </div>
+        </div> #}
         <div>
-            <a href="{{path ('app_marais')}}"><img src="../assets/Images/marais/marais.jpg" alt="Paysage de marais"></a>
+            <a href={{path ('app_marais')}}><img src={{asset("/images/marais/marais.jpg")}} alt="Paysage de marais"></a>
+            
             <legend>Marais</legend>
         </div>
-        <div>
+        {# <div>
             <a href="{{path ('app_savane')}}"><img src="../assets/Images/savane/savane.jpg" alt="Paysage de savane"></a>
             <legend>Savane</legend>
-        </div>
-    </section> #}
+        </div> #}
+    </section>
 
         <div class="banner">
             <h4>Animaux favoris</h4>
@@ -49,7 +50,8 @@
         </div>
         <section>
             <div class="card">
-                <img class="card-img" src="../assets/Images/savane/lion-card.jpg"  alt="Lion">
+                <img class="card-img" src={{asset("/images/savane/lion-card.jpg")}} alt="Lion">
+                
                 <div class="card-body">
                 <h5 class="card-title">Lion</h5>
                 </div>
