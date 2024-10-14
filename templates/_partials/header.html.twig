@@ -1,0 +1,43 @@
+<header>
+
+    <nav class="navbar">
+        <div class="container-fluid-header">
+            <a class="navbar-brand" href="#">
+            <img src="{{ asset('assets/images/vecteurs/Logo.png') }}" alt="Logo lion">
+            <div class="hheader">Zoo Arcadia</div>
+            </a>
+            <div class="lien">
+                <a href="{{path ('app_accueil')}}"><i class="bi bi-house-fill"></i></a>
+                <a href="{{path ('app_services')}}">Services</a>
+                <a href="{{path ('app_habitats')}}">Habitats</a>
+
+                <!-- Button trigger modal -->
+    <button type="button" class="btn btnHeader" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Avis
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+                <a class="connexion" href="{{path ('app_login')}}">Connexion</a>
+            </div>
+        </div>
+    </nav>
+    
+</header>
