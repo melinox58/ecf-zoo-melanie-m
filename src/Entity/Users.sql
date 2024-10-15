@@ -1,9 +1,13 @@
-INSERT INTO Users (firstName, name, role, password, email, isVerified)
-    VALUE (
+INSERT INTO users (email, roles, password, first_name, name, is_verified)
+    VALUES (
+        "zoo.arcadia.martinon@gmail.com",
+        '["ROLE_ADMIN"]',
+        "$vU9o4JNRxksgclc7XltUduZInECHQFqGPnHkHELt7GXaYbyQisgaK",
         "José",
         "Martinon",
-        [\"ROLE_ADMIN\"],
-        "$vU9o4JNRxksgclc7XltUduZInECHQFqGPnHkHELt7GXaYbyQisgaK",
-        "zoo.arcadia.martinon@gmail.com",
         true
-    )
+    );
+
+    SHOW COLUMNS FROM users LIKE 'roles';
+
+    SHOW CREATE TABLE users;
