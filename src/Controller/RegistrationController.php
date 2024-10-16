@@ -16,29 +16,39 @@ use Symfony\Component\Routing\Attribute\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
+            // Encoder le mot de passe
+            $plaintextPassword = $form->get('plainPassword')->getData();
+            $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
+            $user->setPassword($hashedPassword);
 
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+            // Récupérer les rôles du formulaire
+            $roles = $form->get('roles')->getData();
+            $user->setRoles($roles);
 
+            // Sauvegarder l'utilisateur
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
-
-            return $security->login($user, LoginAuthenticator::class, 'main');
+            // Rediriger selon le rôle de l'utilisateur
+            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                return $this->redirectToRoute('app_admin'); // Route pour l'admin
+            } elseif (in_array('ROLE_EMPLOYEE', $user->getRoles())) {
+                return $this->redirectToRoute('app_employee'); // Route pour l'employé
+            } elseif (in_array('ROLE_VETERINARY', $user->getRoles())) {
+                return $this->redirectToRoute('app_veterinary'); // Route pour le vétérinaire
+            } else {
+                return $this->redirectToRoute('app_home'); // Route par défaut
+            }
         }
-
         return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
+            'registrationForm' => $form->createView(),
         ]);
     }
 }

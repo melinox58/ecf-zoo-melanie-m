@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -22,8 +22,6 @@ class RegistrationFormType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -32,12 +30,20 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
+                        'max' => 4096,
                     ]),
-                    // new PasswordStrength(minScore: PasswordStrength::STRENGTH_MEDIUM)
                 ],
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    // 'Administrateur' => 'ROLE_ADMIN',
+                    'Employee' => 'ROLE_EMPLOYEE',
+                    'Veterinary' => 'ROLE_VETERINARY',
+                ],
+                'multiple' => true,
+                'expanded' => true,  // Pour afficher des cases à cocher
+                'label' => 'Rôles',
             ])
         ;
     }
