@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class VerinarinaryController extends AbstractController
+class VeterinaryController extends AbstractController
 {
-    #[Route('/verinarinary', name: 'app_verinarinary')]
+    #[Route('/veterinary', name: 'app_veterinary')]
     public function index(): Response
     {
-        return $this->render('verinarinary/index.html.twig', [
-            'controller_name' => 'VerinarinaryController',
+        return $this->render('veterinary/index.html.twig', [
+            'controller_name' => 'VeterinaryController',
         ]);
     }
 }

@@ -28,15 +28,15 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->getPayload()->getString('email');
+        $email = $request->request->get('email');
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($request->getPayload()->getString('password')),
+            new PasswordCredentials($request->request->get('password')),
             [
-                new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),
+                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
                 new RememberMeBadge(),
             ]
         );
@@ -44,13 +44,21 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
+        // Vérification des rôles de l'utilisateur connecté
+        if (in_array('ROLE_ADMIN', $token->getRoleNames(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_admin'));
         }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_admin'));
-        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        if (in_array('ROLE_EMPLOYEE', $token->getRoleNames(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_employee'));
+        }
+
+        if (in_array('ROLE_VETERINARY', $token->getRoleNames(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_veterinary'));
+        }
+
+        // Si aucun rôle spécifique, redirection vers la page d'accueil
+        return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 
     protected function getLoginUrl(Request $request): string
