@@ -1,6 +1,8 @@
 /* Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
 
 /* .lemon-regular {
     font-family: "Lemon", serif;
@@ -176,7 +178,9 @@ h33{
     text-decoration: none;
 }
 
-/* css Home*/
+/* --------------------------------------------------------------------- */
+
+/*css global*/
 body{
     display: flex;
     flex-direction: column;
@@ -186,6 +190,34 @@ body{
     background-color:beige;
 }
 
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner img{
+    position: absolute;
+    z-index: 6;
+    width: 85vw;
+    height: 10%;
+    box-shadow: 0 4px 4px #4B543B;
+}
+
+h4{
+    font-family: "lemon", serif;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #4B543B;
+    position: relative;
+    z-index: 7;
+}
+
+/* -------------------------------------------------------------- */
+
+/* css page Home*/
+
+/*rectangle + txt*/
 .discover{
     display: flex;
     width: 90vw;
@@ -213,14 +245,17 @@ h3{
     margin-top: 2%;
 }
 
+/*image accueil*/
 .accueil{
     width: 85vw;
     height: 80vh;
     position: relative;
     z-index: 0;
     margin-top: 4%;
+    margin-bottom: 10%;
 }
 
+/*rectangle transparent + txt*/
 .tranparent{
     width: 50vw;
     height: 23vh;
@@ -229,25 +264,6 @@ h3{
     background-color: white;
     opacity: 70%;
     margin-top: 41%;
-}
-
-.discover2{
-    display: flex;
-    width: 90vw;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10%;
-}
-
-.h3Serv{
-    position: absolute;
-    z-index: 3;
-    font-family: "lemon", serif;
-    color: #B57F50;
-    font-size: 1.5rem;
-    margin-top: 3%;
 }
 
 .welcome{
@@ -260,58 +276,11 @@ h3{
     text-align: center;
 }
 
-.servincl{
-    margin-top: 6%;
-}
 
-.banner{
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 9%;
-}
-
-.banner img{
-    position: absolute;
-    z-index: 6;
-    width: 100vw;
-    height: 10%;
-}
-
-h4{
-    font-family: "lemon", serif;
-    font-size: 2rem;
-    text-align: center;
-    color: #4B543B;
-    position: relative;
-    z-index: 7;
-}
-
-.habitats img {
-    display: flex;
-    clip-path: ellipse(40% 50%);
-    width: 80%;
-    height: auto;
-}
-
-.habitats{
-    display: flex;
-    align-items: center;
-    padding-top: 5%;
-    width: 95vw;
-    height: auto;
-    margin: auto;
-}
-
-.habitats div{
-justify-content: center;
-}
-
-legend{
-    font-family: "Lemonada", cursive;
-    margin-top: 3%;
-    margin-left: 32%;
-    color: #4B543B;
+/*section animaux dard*/
+.animaux{
+    width: 85vw;
+    margin-bottom: 5%;
 }
 
 .card{
@@ -337,6 +306,58 @@ legend{
     color: #4B543B;
 }
 
+
+/*section habitats*/
+.habitats{
+    display: flex;
+    padding-top: 5%;
+    width: 85vw;
+    height: auto;
+    margin-bottom: 4%;
+    margin-left: 5%;
+}
+
+.habitats img {
+    display: flex;
+    clip-path: ellipse(40% 50%);
+    width: 80%;
+    height: auto;
+}
+
+legend{
+    font-family: "Lemonada", cursive;
+    margin-top: 3%;
+    margin-left: 32%;
+    color: #4B543B;
+    font-size: 1rem;
+}
+
+/*section nos services*/
+.nos-services{
+    display: flex;
+    width: 85vw;
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+.nos-services img{
+    size: cover;
+    width: 20%;
+    object-fit: cover;
+    transform: scale(0.7);
+}
+
+
+
+/*section avis*/
+.avis{
+    justify-content: center;
+    display: flex;
+    width: 85vw;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .btnAvis{
     font-family: "Lemon",serif;
     color: white;
@@ -352,6 +373,66 @@ legend{
     color: #4B543B;
     border: none;
 }
+
+/*Modal Avis*/
+.modal{
+    display: flex;
+    background-image: url(../temp/background_avis.jpg);
+    background-size: cover;
+    width: 57vw;
+    height: 67vh;
+}
+
+.modal-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#exampleModal{
+    justify-content: center;
+    align-content: center;
+}
+
+
+
+
+
+
+
+.discover2{
+    display: flex;
+    width: 90vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+.h3Serv{
+    position: absolute;
+    z-index: 3;
+    font-family: "lemon", serif;
+    color: #B57F50;
+    font-size: 1.5rem;
+    margin-top: 3%;
+}
+
+.servincl{
+    margin-top: 6%;
+}
+
+
+
+
+
+
 
 .schedules{
     font-family: "lemonada", cursive;
@@ -388,26 +469,14 @@ iframe{
 
 /*Style for registration*/
 
-/*Modal Avis*/
-.modal{
-    background-color: cornflowerblue;
-    background-image: url(../temp/background_avis.jpg);
-    background-size: cover;
-    width: 57vw;
-    height: 67vh;
 
-}
 
-.modal-header{
-    display: flex;
-    flex-direction: column;
-}
 
-.modal-conten{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+
+
+
+
 
 /*CSS services*/
 .service{

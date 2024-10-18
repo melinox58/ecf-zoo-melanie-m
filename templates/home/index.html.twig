@@ -24,6 +24,21 @@
         </section>
 
     <div class="banner">
+            <h4>Animaux favoris</h4>
+            <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+        </div>
+
+        <section class="animaux">
+            <div class="card">
+                <img class="card-img" src={{asset("/images/savane/lion-card.jpg")}} alt="Lion">
+                
+                <div class="card-body">
+                <h5 class="card-title">Lion</h5>
+                </div>
+            </div>
+        </section>
+
+    <div class="banner">
         <h4>Les habitats</h4>
         <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
     </div>
@@ -44,25 +59,32 @@
         </div>
     </section>
 
-        <div class="banner">
-            <h4>Animaux favoris</h4>
-            <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <div class="banner">
+        <h4>Nos services</h4>
+        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    </div>
+    
+    <section class="nos-services">
+        <div>
+            <a href={{path ('app_services')}}><img src={{asset("/images/cafe.jpg")}} alt="Terrasse de café"></a>
+            <legend>Restauration</legend>
         </div>
-        <section>
-            <div class="card">
-                <img class="card-img" src={{asset("/images/savane/lion-card.jpg")}} alt="Lion">
-                
-                <div class="card-body">
-                <h5 class="card-title">Lion</h5>
-                </div>
-            </div>
-        </section>
+        <div>
+            <a href={{path ('app_services')}}><img src={{asset("/images/img_visite.jpg")}} alt="Visite de la girafe"></a>
+            <legend>Visites guidées</legend>
+        </div>
+        <div>
+            <a href={{path ('app_services')}}><img src={{asset("/images/petit-train.jpg")}} alt="Petit train touristique"></a>
+            <legend>Le petit train</legend>
+        </div>
+    </section>
 
         <div class="banner">
             <h4>Avis</h4>
             <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
         </div>
 
+    <section class="avis">
         <!-- ici sera injecté les avis -->
 
         <!-- Button trigger modal opinion-->
@@ -75,11 +97,21 @@
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Votre avis</h1>
         </div>
         <div class="modal-body">
-            ...
+            <div>
+                <label>Votre e-mail</label>
+                <input type="email" name="email">
+            </div>
+            <div>
+                <label>Titre</label>
+                <input type="text" name="title">
+            </div>
+            <div>
+                <label>Votre avis</label>
+                <textarea type="text" name="description">
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -88,6 +120,7 @@
         </div>
     </div>
     </div>
+    </section>
 
     <div class="banner">
         <h4>Horaires</h4>
