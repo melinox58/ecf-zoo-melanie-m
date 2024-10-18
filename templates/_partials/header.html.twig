@@ -1,21 +1,20 @@
 <header>
 
-    <nav class="navbar">
-        <div class="container-fluid-header">
-            <a class="navbar-brand" href="#">
-            <img src={{ asset('/images/vecteurs/Logo.png')}} alt="Logo lion">
-            <div class="hheader">Zoo Arcadia</div>
-            </a>
-            <div class="lien">
-                <a href={{path ('app_home')}}><i class="bi bi-house-fill"></i></a>
-                <a href={{path('app_services')}}>Services</a>
-                <a href={{path('app_habitats')}}>Habitats</a>
-                <a href={{path('app_avis')}}>Avis</a>
-                <a href={{path('app_login')}}>Connexion</a>
-
-                
-
-                {# <a class="connexion" href="{{path ('app_login')}}">Connexion</a> #}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <img src={{ asset('/images/vecteurs/Logo.png')}} alt="Logo lion"></img>
+                <div class="hheader">Zoo Arcadia</div>
+            </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <a class="nav-link active" aria-current="page" href={{path ('app_home')}}><i class="fa-solid fa-house"></i></a>
+                <a class="nav-link" href={{path('app_services')}}>Services</a>
+                <a class="nav-link" href={{path('app_habitats')}}>Habitats</a>
+                <a class="nav-link" href={{path('app_avis')}}>Avis</a>
+                <a class="nav-link" href={{path('app_login')}}>Connexion</a>
             </div>
         </div>
     </nav>
