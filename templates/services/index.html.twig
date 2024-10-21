@@ -9,60 +9,64 @@
     <div class="rectangle"></div>
 </section>
 
-    <img class="service" src={{asset("/images/img_service.jpg")}} alt="Entrée du zoo">
-    <div class="tranparentserv"></div>
-        <div class="servincl">
-            <p>Pensé pour vous, nos services vous comblerons.<br>
-                Nos services incluent :
-        </div>
+<img class="service" src={{asset("/images/img_service.jpg")}} alt="Entrée du zoo">
+<div class="tranparentserv"></div>
+<div class="servincl">
+    <p>Pensé pour vous, nos services vous comblerons.<br>
+        Nos services incluent :
+</div>
 
 {# Code restauration #}
-    <div class="banner">
-        <h4 id="resto">Restauration</h4>
-        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
-    </div>
-    <div class="servRest">
-        <p>En toutes saisons, venez profiter de notre restaurant.<br>
-        En intérieur ou en terrasse.<br>
-        Pour les petites faims, nos points de restauration offrent une variété de repas et de collations pour tous les goûts.
-        </p>
-    </div>
+<div class="banner">
+    <h4 id="resto">Restauration</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+
+<div class="servRest">
+    <p>En toutes saisons, venez profiter de notre restaurant.<br>
+    En intérieur ou en terrasse.<br>
+    Pour les petites faims, nos points de restauration offrent une variété de repas et de collations pour tous les goûts.
+    </p>
+</div>
 
 {# Caroussel #}
-<container>
-
-  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active w-50 melanie">
-      <img src={{asset('/images/repas2.jpg')}} class="d-block w-100" alt="...">
+<div class="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-ride="carousel" data-bs-interval="2500">
+    <div class="carousel-inner">
+        <div class="carousel-item active w-60">
+            <img src={{asset('/images/repas2bis.png')}} class="d-block" alt="...">
+        </div>
+        <div class="carousel-item w-60">
+            <img src={{asset('/images/pizza2.png')}} class="d-block" alt="...">
+        </div>
+        <div class="carousel-item w-60">
+            <img src={{asset('/images/hamburger.png')}} class="d-block" alt="...">
+        </div>
+        <div class="carousel-item w-60">
+            <img src={{asset('/images/repasbis.png')}} class="d-block" alt="..."> 
+        </div>
     </div>
-    <div class="carousel-item w-50 melanie">
-    <img src={{asset('/images/pizza2.jpg')}} class="d-block w-100" alt="...">
-  </div>
-  <div class="carousel-item w-50 melanie">
-    <img src={{asset('/images/repas.png')}} class="d-block w-100" alt="..."> 
-  </div>
-</div>
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Next</span>
-</button>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
 </div>
 
 {# Code visite #}
-    <div class="banner">
-        <h4 id="visite">Visite des habitats</h4>
-        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+<div class="banner">
+    <h4 id="visite">Visite des habitats</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
 
-    </div>
-    <div class="servRest">
-        <p>Un voyage commenté du zoo, avec présentation des habitats et de leurs occupants.<br>
-        Seul ou en famille, un magnifique voyage à découvrir.</p>
-    </div>
+<div class="servRest">
+    <p>Un voyage commenté du zoo, avec présentation des habitats et de leurs occupants.<br>
+    Seul ou en famille, un magnifique voyage à découvrir.</p>
+</div>
 
 <section class="visited">
     <div class="visiteh">
@@ -88,26 +92,26 @@
         à travers les différents habitats du zoo.Ce moyen de transport ludique et relaxant
         est parfait pour les familles, les enfants, et tous ceux qui souhaitent
         profiter d'une vue panoramique du parc sans se fatiguer.</p>
-        <img src={{asset("/images/petit train.jpg")}} alt="Homme ayant un bébé crocodile en main">
+        <img src={{asset("/images/petit-train.jpg")}} alt="Petit train touristique">
     </div>
 </section>
 
 {# Code éxologie #}
-    <div class="banner">
-        <h4>Engagement écologique</h4>
-        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
-    </div>
+<div class="banner">
+    <h4>Engagement écologique</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
 
-    <div class="panels">
-        <img src={{asset("/images/vecteurs/solar-panels.png")}} alt="Dessin une maison avec panneaux solaire">
-        <p>Au Zoo Arcadia, nous sommes passionnés par la conservation des espèces et la protection de la biodiversité.<br>
-        En visitant notre zoo, vous soutenez nos efforts de préservation et contribuez directement à la protection
-        des animaux en voie de disparition. Le zoo est  entièrement indépendant au niveau des énergies.
-    </div>
+<div class="panels">
+    <img src={{asset("/images/vecteurs/solar-panels.png")}} alt="Dessin une maison avec panneaux solaire">
+    <p>Au Zoo Arcadia, nous sommes passionnés par la conservation des espèces et la protection de la biodiversité.<br>
+    En visitant notre zoo, vous soutenez nos efforts de préservation et contribuez directement à la protection
+    des animaux en voie de disparition. Le zoo est  entièrement indépendant au niveau des énergies.
+</div>
 
-    <div class="ecolo">
-        <img src={{asset("/images/vecteurs/ecolo.png")}} alt="Dessin représentant l'écologie">
-    </div>
+<div class="ecolo">
+    <img src={{asset("/images/vecteurs/ecolo.png")}} alt="Dessin représentant l'écologie">
+</div>
 
 {% endblock %}
 

@@ -468,42 +468,28 @@ iframe{
     padding-top: 2%;
 }
 
+/* ------------------------------------------------------------------------------- */
 
 
 
+/*Page services*/
 
-/*Style for registration*/
+.titleServ{
+    display: flex;
+    justify-content: center;
+}
 
+.h3Serv{
+    margin-top: 3%;
+}
 
-
-
-
-
-
-
-
-
-/*CSS services*/
 .service{
     width: 90vw;
     height: 80vh;
     position: relative;
     z-index: 0;
     margin-top: 4%;
-}
-
-.rectangle-serv{
-    width: 50vw;
-    height: 12vh;
-    position: absolute;
-    z-index: 2;
-    background-color: white;
-    margin-top: 0;
-}
-
-.titleServ{
-    display: flex;
-    justify-content: center;
+    margin-bottom: 5%;
 }
 
 .tranparentserv{
@@ -526,6 +512,35 @@ iframe{
     margin-top: 51%;
 }
 
+/*Section carousel*/
+.carousel{
+    margin-bottom: 5%;
+}
+
+.carouselExampleAutoplaying{
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-item img {
+    width: 100%; /* Ajuste la largeur de l'image à 100% du conteneur */
+    height: 300%; /* Garde les proportions de l'image*/
+    object-fit: cover; /* Recadre l'image si nécessaire pour couvrir le conteneur */
+}
+
+
+
+
+
+
+/*Section services*/
+
+.visite img{
+    width: 32%;
+    height: auto;
+    margin: 2%;
+}
+
 .servRest{
     font-family: "lemonada", cursive;
     color: #4B543B;
@@ -535,20 +550,16 @@ iframe{
     margin-top: 6%;
 }
 
-.carouselExampleAutoplaying{
-    display: flex;
-    justify-content: center;
-}
-
-.visite img{
-    width: 32%;
-    height: auto;
-    margin: 2%;
-}
-
 .visited{
+    width: 85vw;
     display: flex;
     flex-direction: column;
+    margin-bottom: 5%;
+}
+
+.visiteh{
+    display: flex;
+    align-items: center;
 }
 
 .visite{
@@ -557,15 +568,11 @@ iframe{
     align-items: center;
 }
 
-.visiteh{
-    display: flex;
-    align-items: center;
-}
-
 .visiteh img{
     width: 15%;
     height: auto;
 }
+
 .visiteh p{
     width: 60vw;
     font-family: "lemonada", cursive;
@@ -585,16 +592,7 @@ iframe{
     text-align: left;
 }
 
-.ecolo{
-    display: flex;
-    justify-content: center;
-}
-
-.ecolo img{
-    width: 15%;
-    margin-bottom: 2%;
-}
-
+/*Section ecolo*/
 .panels{
     display: flex;
     flex-direction: row;
@@ -607,6 +605,17 @@ iframe{
     margin-right: 8%;
     margin-left: 8%;
 }
+
+.ecolo{
+    display: flex;
+    justify-content: center;
+}
+
+.ecolo img{
+    width: 15%;
+    margin-bottom: 2%;
+}
+
 
 /*Css Login*/
 .mb-3{
