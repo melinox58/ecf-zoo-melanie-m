@@ -1,7 +1,7 @@
 /* Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap');
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import '~@fontawesome/fontawesome-free/css/all.min.css';
 
 
 /* .lemon-regular {
@@ -277,7 +277,7 @@ h3{
 }
 
 
-/*section animaux dard*/
+/*section animaux */
 .animaux{
     width: 85vw;
     margin-bottom: 5%;
@@ -350,7 +350,7 @@ legend{
 
 
 /*section avis*/
-.avis{
+.avis {
     justify-content: center;
     display: flex;
     width: 85vw;
@@ -358,8 +358,8 @@ legend{
     margin-bottom: 5%;
 }
 
-.btnAvis{
-    font-family: "Lemon",serif;
+.avis .btnAvis {
+    font-family: "Lemon", serif;
     color: white;
     background-color: #4B543B;
     font-size: 1rem;
@@ -368,64 +368,19 @@ legend{
     margin-top: 2%;
 }
 
-.btnAvis:hover {
+.avis .btnAvis:hover {
     background-color: #8ED081;
     color: #4B543B;
     border: none;
 }
 
 /*Modal Avis*/
-.modal{
+.modal {
     display: flex;
     background-image: url(../temp/background_avis.jpg);
     background-size: cover;
     width: 57vw;
     height: 67vh;
-}
-
-.modal-header{
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#exampleModal{
-    justify-content: center;
-    align-content: center;
-}
-
-
-
-
-
-
-
-.discover2{
-    display: flex;
-    width: 90vw;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10%;
-}
-
-.h3Serv{
-    position: absolute;
-    z-index: 3;
-    font-family: "lemon", serif;
-    color: #B57F50;
-    font-size: 1.5rem;
-    margin-top: 3%;
-}
-
-.servincl{
-    margin-top: 6%;
 }
 
 
