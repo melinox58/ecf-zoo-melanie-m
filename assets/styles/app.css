@@ -530,9 +530,6 @@ iframe{
 
 
 
-
-
-
 /*Section services*/
 
 .visite img{
@@ -616,6 +613,104 @@ iframe{
     margin-bottom: 2%;
 }
 
+/* -------------------------------------------------------- */
+
+/*Page habitats*/
+.transparent-hab{
+    width: 50vw;
+    height: 21vh;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    opacity: 70%;
+    margin-top: 48%;
+}
+
+.habitincl{
+    position: absolute;
+    z-index: 5;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    margin-top: 50%;
+    text-align: center;
+    width: 44vw;
+}
+
+.habitats {
+    width: 90vw;
+    height: 80vh;
+    position: relative;
+    z-index: 0;
+    margin-top: 4%;
+    margin-bottom: 9%;
+}
+
+/*section jungle*/
+.hab{
+    width: 85vw;
+    display: flex;
+    margin-top: 3%;
+}
+
+.imgHab{
+    width: 50%;
+    height: auto;
+    margin: 3%;
+}
+
+.hab p{
+    font-family: "Lemonada", cursive;
+    font-size: 1rem;
+    margin-top: 7%;
+}
+
+.card{
+    display: flex;
+    background-color:#8ED081;
+    margin-top: 5%;
+    align-items: center;
+    margin-bottom: 26%;
+}
+
+.card-img-top{
+    width: 78%;
+    display: flex;
+    margin-top: 9%;
+    border-radius: 4%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Css Login*/
 .mb-3{
@@ -663,47 +758,6 @@ i{
     width: 30%;
 }
 
-/*Css habitats*/
-.imgHab{
-    width: 50%;
-    height: auto;
-    margin: 3%;
-}
 
-.habitincl{
-    position: absolute;
-    z-index: 5;
-    font-family: "lemonada", cursive;
-    color: #4B543B;
-    font-size: 1rem;
-    margin-top: 50%;
-    text-align: center;
-    width: 50vw;
-}
-
-.hab{
-    display: flex;
-    margin-top: 3%;
-}
-
-.hab p{
-    font-family: "Lemonada", cursive;
-    font-size: 1rem;
-    margin-top: 7%;
-}
-
-.card{
-    display: flex;
-    background-color:#8ED081;
-    margin-top: 5%;
-    align-items: center;
-}
-
-.card-img-top{
-    width: 78%;
-    display: flex;
-    margin-top: 9%;
-    border-radius: 4%;
-}
 
 
