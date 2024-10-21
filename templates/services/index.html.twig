@@ -30,17 +30,20 @@
 </div>
 
 {# Caroussel #}
-<container class="carousel">
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+<div class="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-ride="carousel" data-bs-interval="2500">
     <div class="carousel-inner">
-        <div class="carousel-item active w-50 melanie">
-            <img src={{asset('/images/repas2.jpg')}} class="d-block w-100" alt="...">
+        <div class="carousel-item active w-60">
+            <img src={{asset('/images/repas2bis.png')}} class="d-block" alt="...">
         </div>
-        <div class="carousel-item w-50 melanie">
-            <img src={{asset('/images/pizza2.jpg')}} class="d-block w-100" alt="...">
+        <div class="carousel-item w-60">
+            <img src={{asset('/images/pizza2.png')}} class="d-block" alt="...">
         </div>
-        <div class="carousel-item w-50 melanie">
-            <img src={{asset('/images/repas.png')}} class="d-block w-100" alt="..."> 
+        <div class="carousel-item w-60">
+            <img src={{asset('/images/hamburger.png')}} class="d-block" alt="...">
+        </div>
+        <div class="carousel-item w-60">
+            <img src={{asset('/images/repasbis.png')}} class="d-block" alt="..."> 
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -52,7 +55,7 @@
         <span class="visually-hidden">Next</span>
     </button>
     </div>
-</container>
+</div>
 
 {# Code visite #}
 <div class="banner">

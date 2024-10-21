@@ -513,13 +513,20 @@ iframe{
 }
 
 /*Section carousel*/
+.carousel{
+    margin-bottom: 5%;
+}
 
 .carouselExampleAutoplaying{
     display: flex;
     justify-content: center;
 }
 
-
+.carousel-item img {
+    width: 100%; /* Ajuste la largeur de l'image à 100% du conteneur */
+    height: 300%; /* Garde les proportions de l'image*/
+    object-fit: cover; /* Recadre l'image si nécessaire pour couvrir le conteneur */
+}
 
 
 
