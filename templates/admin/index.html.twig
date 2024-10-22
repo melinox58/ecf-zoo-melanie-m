@@ -2,13 +2,24 @@
 
 {% block title %}Administrateur{% endblock %}
 
-{# <a href="{{path ('app_register')}}">Ajouter un collaborateur</a> #}
 
 {% block body %}
 
-<h1>Espace admin </h1>
 
-<button type="button" class="btn btnAvis"><a href={{path ('app_register')}}>Ajouter collaborateur</a></button>
+<section class="btn-admin">
+
+    <aside class="sidebar">
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_register')}}">Ajouter collaborateur</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Modifier les services</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Modifier les horaires</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Modifier les habitats</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Comptes rendus véto</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Statistiques</a></button>
+    </aside>
+    <main class="main-content">Contenu principal
+    </main>
+
+</section>
 
 
 {% endblock %}
