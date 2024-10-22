@@ -802,3 +802,26 @@ aside{
 .main-content{
     background-color: white;
 }
+
+/* ------------------------------------------------------------- */
+
+/* Page Registration */
+
+body > form:nth-child(3) {
+    background-color: #DCE2AA;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+  
+body > form:nth-child(2) {
+
+}
+
+form .btn {
+    width: 30%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+  
