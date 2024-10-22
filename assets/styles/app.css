@@ -765,3 +765,40 @@ label {
     border: none;
 }
 
+/* ---------------------------------------------------------------------- */
+
+/* Page Admin */
+body .btn-admin{
+    width: 95vw;
+    height: 65vh;
+}
+
+.btn-admin{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 5%;
+    justify-content: center;
+}
+
+.sidebar button a{
+    text-decoration: none;
+    color: white;
+    font-family: "Lemon", serif;
+}
+
+.sidebar button{
+    background-color: #B57F50;
+    width: 90%;
+}
+
+.main-content{
+    background-color: white;
+}
