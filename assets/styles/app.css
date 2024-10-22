@@ -95,8 +95,10 @@
 
 footer{
     display: flex;
+    flex-direction: column;
     bottom:0;
     justify-content: center;
+    justify-items: center;
     align-items: center;
     background-color: #4B543B;
     width: 100vw;
@@ -109,7 +111,7 @@ footer{
     width: 95vw;
     gap: 30%;
     justify-content: center;
-    justify-items: center;
+    align-items: center;
 }
 
 .gauche{
@@ -122,7 +124,7 @@ footer{
 h1{
     color: #DCE2AA;
     font-family: 'Piedra','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 .suivez{
@@ -152,24 +154,30 @@ h2{
     gap: 2rem;
 }
 
-h33{
+h7{
     font-family: 'lemonada',cursive;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    color: #DCE2AA;
 }
 
 .lien_footer a{
     display: flex;
     flex-direction: column;
     font-family: 'lemonada',cursive;
-    color: black;
+    color: #DCE2AA;
     text-decoration: none;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
 }
 
 .bi-instagram, .bi-twitter-x{
     font-size: 2rem;
     color: #4B543B;
     text-decoration: none;
+}
+
+.copy{
+    font-size: 0.4rem;
+    color: #DCE2AA;
 }
 
 /* --------------------------------GLOBAL-CSS------------------------------------- */
