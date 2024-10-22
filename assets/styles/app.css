@@ -253,6 +253,35 @@ h7{
     }
 }
 
+/* Gérer la disposition sur écrans moyens*/
+@media screen and (max-width: 1024px) and (min-width: 769px){
+    .gauche {
+        width: 26%;
+    }
+
+    h7 {
+        text-align: center;
+    }
+
+    .suivez {
+        width: 22%;
+    }
+
+    .bootstrap-icons {
+        margin-left: -110%;
+    }
+
+    .suivez > div:nth-child(1) {
+        width: 250%;
+    }
+
+    .lien_footer {
+        padding-top: 2%;
+    }
+      
+      
+}
+
 /* --------------------------------GLOBAL-CSS------------------------------------- */
 
 body{
