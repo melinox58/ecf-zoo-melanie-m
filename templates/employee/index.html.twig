@@ -3,5 +3,16 @@
 {% block title %}Dasboard{% endblock %}
 
 {% block body %}
-C'est le dashboard pour employé
+<section class="btn-admin">
+
+    <aside class="sidebar">
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_register')}}">Soigner un animal</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Modifier les services</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Mail</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Avis a traiter</a></button>
+    </aside>
+    <main class="main-content">Contenu principal
+    </main>
+
+</section>
 {% endblock %}
