@@ -637,16 +637,25 @@ iframe{
     width: 44vw;
 }
 
-.habitats {
-    width: 90vw;
-    height: 80vh;
-    position: relative;
-    z-index: 0;
+.habitat{
+    display: flex;
+    justify-content: space-around; /* Pour espacer les éléments uniformément */
+    width: 85vw;
+
     margin-top: 4%;
-    margin-bottom: 9%;
+    margin-bottom: 3%;
 }
 
-/*section jungle*/
+.habitat img {
+    text-align: center; /* Centre le contenu textuel, y compris les légendes */
+    display: flex; /* Utilisation de flexbox pour aligner le contenu */
+    flex-direction: column; /* Aligne les éléments en colonne */
+    align-items: center; 
+    clip-path: ellipse(40% 50%);
+    width: 80%;
+    height: 80vh;
+}
+
 .hab{
     width: 85vw;
     display: flex;
@@ -665,12 +674,31 @@ iframe{
     margin-top: 7%;
 }
 
-.card{
-    display: flex;
+.card-jungle{
     background-color:#8ED081;
+    width: 20%;
+    height: 80%;
+    border-radius: 5%;
     margin-top: 5%;
     align-items: center;
-    margin-bottom: 26%;
+}
+
+.card-marais{
+    background-color:#B57F50;
+    width: 20%;
+    height: 80%;
+    border-radius: 5%;
+    margin-top: 5%;
+    align-items: center;
+}
+
+.card-savane{
+    background-color:#DCE2AA;
+    width: 20%;
+    height: 80%;
+    border-radius: 5%;
+    margin-top: 5%;
+    align-items: center;
 }
 
 .card-img-top{
@@ -680,84 +708,65 @@ iframe{
     border-radius: 4%;
 }
 
+/* ---------------------------------------------------------------- */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Css Login*/
-.mb-3{
-    font-family: "Lemonada", cursive;
-    text-align: center;
-    margin-top: 2%;
+/*Page Login*/
+body > form:nth-child(2) {
+    width: 47vw;
+    height: 70vh;
+    background-color: #DCE2AA;
+    padding: 7%;
+    margin: 2%;
 }
 
-.icon{
-    width: 30%;
-    height: 30%;
-}
-
-.rectangle-log{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    width: 30vw;
-    height: 60vh;
-    background-color: white;
-    margin-top: 0;
-    border-radius: 5%;
+label {
+    width: 32%;
+    font-size: 0.7rem;
 }
 
 .rond{
-    color: rgb(244, 244, 8);
+    background-color: white;
     border-radius: 50%;
-    width: 50%;
-    height: auto;
-    position: absolute;
+    width: 37%;
+    height: 52%;
+    position: relative;
     z-index: 2;
+    top: -16%;
+    left: 31%;
 }
 
 i{
     color: #8ED081;
-    font-size: 2rem;
+    font-size: 5rem;
     position: relative;
     z-index: 3;
+    text-align: center;
+    margin-top: 2%;
 }
 
-.input{
-    width: 30%;
+.h3{
+    position: absolute;
+    z-index: 5;
+    top: 29%;
+    left: 47%;
 }
 
+.fa-sharp-duotone {
+    font-size: 4rem;
+}
+  
+.btn-connex{
+    font-family: "Lemon", serif;
+    color: white;
+    background-color: #4B543B;
+    font-size: 1rem;
+    margin-top: 2%;
+}
 
-
+.btn:hover {
+    background-color: #8ED081;
+    color: #4B543B;
+    border: none;
+}
 
