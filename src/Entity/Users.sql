@@ -1,8 +1,8 @@
-INSERT INTO users (email, roles, password, first_name, name, is_verified)
+INSERT INTO users (email, roles, password, first_name, name)
     VALUES (
         "zoo.arcadia.martinon@gmail.com",
         '["ROLE_ADMIN"]',
-        "$vU9o4JNRxksgclc7XltUduZInECHQFqGPnHkHELt7GXaYbyQisgaK",
+        "$2y$13$sDIPXa2YIgWCBeEhBJniXOgYDin2fIVQZOcoDwcA5Z5WLe7WHKbIW",
         "José",
         "Martinon",
         true
