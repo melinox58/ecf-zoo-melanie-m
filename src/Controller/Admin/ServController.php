@@ -18,5 +18,11 @@ class ServController extends AbstractController
         return $this->render('admin/services/index.html.twig', compact
         ('services'));
     }
+
+    #[Route('/edition/{id}', name: 'admin_services_edit')]
+    public function edit(): Response
+    {
+        return $this->render('admin/services/modif.html.twig');
+    }
 }
 

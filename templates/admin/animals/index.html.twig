@@ -17,7 +17,7 @@
                             <th>Race</th>
                             <th>Description</th>
                             <th>Habitat</th>
-                            <th>Image</th>
+                            {# <th>Image</th> #}
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -28,7 +28,13 @@
                                 <td>{{ animal.breed}}</td>
                                 <td>{{ animal.description}}</td>
                                 <td>{{ animal.idHabitats.name }}</td>
-                                {# <td>{{ animal.idHabitats.idImage}}</td> #}
+                                {# <td><img src="{{ asset('assets/uploads/animal/mini/300x300-'
+                                animal.images[0].name)}}" alt="{{ animal.nameAnimal }}"
+                                class="img-thumbnail"</td> #}
+                                <td>
+                                    <a href="{{ path('admin_animals_edit',
+                                    {id: animal.id}) }}" class="btn btn-success">Modifier</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

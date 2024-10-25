@@ -18,5 +18,11 @@ class HabController extends AbstractController
         return $this->render('admin/habitats/index.html.twig', compact
         ('habitats'));
     }
+
+    #[Route('/edition/{id}', name: 'admin_habitats_edit')]
+    public function edit(): Response
+    {
+        return $this->render('admin/habitats/modif.html.twig');
+    }
 }
 

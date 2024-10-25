@@ -15,8 +15,8 @@
                         <tr>
                             <th>Nom</th>
                             <th>Description</th>
-                            <th>Image</th>
                             <th>Actions</th>
+                            <th>Image</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,6 +24,13 @@
                             <tr>
                                 <td>{{ habitat.name}}</td>
                                 <td>{{ habitat.description}}</td>
+                                 <td>
+                                    {% if habitat.id is defined %}
+                                        <a href="{{ path('admin_habitats_edit', {id: habitat.id}) }}" class="btn btn-success">Modifier</a>
+                                    {% else %}
+                                        <span>Pas d'ID</span>
+                                    {% endif %}
+                                </td>
                                 {# <td>{{ habitat.image}}</td> #}
                             </tr>
                         {% endfor %}

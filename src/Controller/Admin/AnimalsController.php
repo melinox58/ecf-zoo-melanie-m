@@ -18,5 +18,11 @@ class AnimalsController extends AbstractController
         return $this->render('admin/animals/index.html.twig', compact
         ('animals'));
     }
+
+    #[Route('/edition/{id}', name: 'admin_animals_edit')]
+    public function edit(): Response
+    {
+        return $this->render('admin/animals/modif.html.twig');
+    }
 }
 

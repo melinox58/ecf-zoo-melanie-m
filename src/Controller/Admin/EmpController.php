@@ -18,5 +18,11 @@ class EmpController extends AbstractController
         return $this->render('admin/employe/index.html.twig', compact
         ('users'));
     }
+
+    #[Route('/edition/{id}', name: 'admin_employee_edit')]
+    public function edit(): Response
+    {
+        return $this->render('admin/employee/modif.html.twig');
+    }
 }
 
