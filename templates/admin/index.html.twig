@@ -5,19 +5,14 @@
 
 {% block body %}
 
-<section class="btn-admin">
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h1>Administrateur</h1>
+            </main>
+        </div>
+    </div>
 
-    <aside class="sidebar">
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_register')}}">Ajouter collaborateur</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Modifier les services</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Modifier les horaires</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Modifier les habitats</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Comptes rendus véto</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Statistiques</a></button>
-    </aside>
-    <main class="main-content">Contenu principal
-    </main>
-
-</section>
 
 {% endblock %}
