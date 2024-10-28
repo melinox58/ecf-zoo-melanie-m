@@ -19,9 +19,17 @@ class EmpController extends AbstractController
     #[Route('/admin/emp', name: 'app_admin_emp')]
     public function index(UsersRepository $usersRepository): Response
     {
-        $users = $usersRepository->findBy([], ['name' => 'asc']);
+        //je souhaite afficher tous les employés sauf l'admin
+        $users = $usersRepository->createQueryBuilder('u')
+        ->where('u.roles NOT LIKE :role')
+        ->setParameter('role', '%ROLE_ADMIN%')
+        ->orderBy('u.roles', 'ASC')
+        ->getQuery()
+        ->getResult();
+        
         return $this->render('admin/employe/index.html.twig', compact('users'));
     }
+
 
     #[Route('/admin/emp/modify/{id}', name: 'admin_employe_modify')]
     public function modify(Users $user, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response

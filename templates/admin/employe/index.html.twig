@@ -2,9 +2,7 @@
 
 {% block title %}Modifier un employé{% endblock %}
 
-
 {% block body %}
-
     <div class="containerAdmin">
         <div class="row">
             {% include "_partials/_adminnav.html.twig" %}
@@ -23,34 +21,37 @@
                     <tbody>
                         {% for user in users %}
                             <tr>
-                                <td>{{ user.name}}</td>
-                                <td>{{ user.firstName}}</td>
-                                <td>{{ user.email}}</td>
-                                <td>{% for role in user.roles %}
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    {% for role in user.roles %}
                                         {% if role == "ROLE_ADMIN" %}
                                             {% set name = "Administrateur" %}
-                                        {% elseif role == "ROLE_EMPLOYEE"%}
+                                        {% elseif role == "ROLE_EMPLOYEE" %}
                                             {% set name = "Employé(e)" %}
-                                        {% elseif role == "ROLE_VETERINARY"%}
+                                        {% elseif role == "ROLE_VETERINARY" %}
                                             {% set name = "Vétérinaire" %}
                                         {% else %}
-                                            {% set name = none %}
+                                            {% set name = null %}
                                         {% endif %}
                                         <span class="badge">{{ name }}</span>
-                                    {% endfor %}</td>
+                                    {% endfor %}
+                                </td>
                                 <td>
-                                    <a href="{{ path('admin_employe_modify', { id: user.id }) }}">Modifier</a>
-                                    <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');">
-                                        <button type="submit">Supprimer</button>
-                                    </form>
+                                    {% if "ROLE_ADMIN" not in user.roles %}
+                                        <a href="{{ path('admin_employe_modify', { id: user.id }) }}">Modifier</a>
+                                        <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');" style="display:inline;">
+                                            <button type="submit">Supprimer</button>
+                                        </form>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
-                    <a href="{{ path('app_register')}}" class="btn btn-success">Ajouter un employé</a>
-                </table>  
+                </table>
+                <a href="{{ path('app_register') }}" class="btn btn-success">Ajouter un employé</a>
             </main>
         </div>
     </div>
-
 {% endblock %}
