@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UsersRepository;
+use App\Entity\Users;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 class EmpController extends AbstractController
 {
@@ -24,5 +27,15 @@ class EmpController extends AbstractController
     {
         return $this->render('admin/employee/modif.html.twig');
     }
+
+    #[Route('/user/delete/{id}', name: 'user_delete', methods: ['POST'])]
+    public function delete(Users $user, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($user);
+        $entityManager->flush(); // Met à jour la "boîte" en enlevant l'utilisateur
+
+        return $this->redirectToRoute('app_admin_emp'); // Retour à la liste des utilisateurs
+    }
 }
+
 
