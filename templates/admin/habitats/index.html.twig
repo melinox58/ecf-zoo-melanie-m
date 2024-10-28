@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un habitat{% endblock %}
+
+
+{% block body %}
+
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Modifier un habitat</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for habitat in habitats %}
+                            <tr>
+                                <td>{{ habitat.name}}</td>
+                                <td>{{ habitat.description}}</td>
+                                 <td>
+                                    {% if habitat.id is defined %}
+                                        <a href="{{ path('admin_habitats_edit', {id: habitat.id}) }}" class="btn btn-success">Modifier</a>
+                                    {% else %}
+                                        <span>Pas d'ID</span>
+                                    {% endif %}
+                                </td>
+                                {# <td>{{ habitat.image}}</td> #}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>  
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

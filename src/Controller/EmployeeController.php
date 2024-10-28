@@ -10,7 +10,13 @@ class EmployeeController extends AbstractController
 {
     #[Route('/employee', name: 'app_employee')]
     public function index(): Response
-    {
+    { 
+        if (!$this->isGranted('ROLE_EMPLOYEE')) {
+            
+            return $this->redirectToRoute('app_home');
+        }
+
+        
         return $this->render('employee/index.html.twig', [
             'controller_name' => 'EmployeeController',
         ]);

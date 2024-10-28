@@ -1,4 +1,4 @@
-INSERT INTO Habitats (name, description)
+INSERT INTO habitats (name, description)
     VALUE (
         "La jungle",
         "La jungle est une immense forêt où poussent de façon très serrée,
