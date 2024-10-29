@@ -1,0 +1,47 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Horaire{% endblock %}
+
+{% block body %}
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+
+            <main class="col-9 border bg-white p-2">
+                <h4>Ajouter un Horaire</h4>
+
+                <form action="{{ path('add_schedule') }}" method="post">
+                    <label for="name">Nom :</label>
+                    <input type="text" name="name" required>
+
+                    <h5>Horaires par jour</h5>
+                    {% for day in ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'] %}
+                        <div>
+                            <label for="day_{{ day }}">Jour : {{ day }}</label>
+                            <input type="hidden" name="entries[{{ loop.index0 }}][day]" value="{{ day }}">
+                            
+                            <label for="open_{{ day }}">Ouverture :</label>
+                            <input type="time" name="entries[{{ loop.index0 }}][open]" required>
+
+                            <label for="close_{{ day }}">Fermeture :</label>
+                            <input type="time" name="entries[{{ loop.index0 }}][close]" required>
+                        </div>
+                    {% endfor %}
+
+                    <h5>Exceptions</h5>
+                    <div>
+                        <label for="exception_date">Date :</label>
+                        <input type="date" name="exceptions[0][date]" required>
+                        <label for="exception_open">Ouverture :</label>
+                        <input type="text" name="exceptions[0][open]" required>
+                    </div>
+
+                    <button type="submit">Ajouter</button>
+                </form>
+
+                <a href="{{ path('schedules_list') }}">Retour à la liste</a>
+            </main>
+        </div>
+    </div>
+{% endblock %}
