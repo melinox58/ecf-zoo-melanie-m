@@ -9,6 +9,13 @@
             <main class="col-9 border bg-white p-2">
                 <h4>Liste des horaires</h4>
 
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+
                 <table class="table">
                     <thead>
                         <tr>

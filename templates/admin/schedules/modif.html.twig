@@ -1,31 +1,57 @@
-<form action="{{ path('admin_schedule_modify', {id: schedule['_id']}) }}" method="post">
-    <label for="name">Nom :</label>
-    <input type="text" name="name" value="{{ schedule['name'] }}" required>
+{% extends 'base.html.twig' %}
 
-    <h5>Horaires par jour</h5>
-    {% for entry in schedule['entries'] %}
-        <div>
-            <label for="day_{{ loop.index }}">Jour :</label>
-            <input type="hidden" name="entries[{{ loop.index0 }}][day]" value="{{ entry['day'] }}">
-            
-            <label for="open_{{ loop.index }}">Ouverture :</label>
-            <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry['open'] }}" required>
+{% block title %}Modifier l'Horaire{% endblock %}
 
-            <label for="close_{{ loop.index }}">Fermeture :</label>
-            <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry['close'] }}" required>
+{% block body %}
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+
+            <main class="col-9 border bg-white p-2">
+                <h4>Modifier l'Horaire</h4>
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+
+                <form action="{{ path('admin_schedule_modify', {id: schedule['_id']}) }}" method="post">
+                    <label for="name">Nom :</label>
+                    <input type="text" name="name" value="{{ schedule['name'] }}" required>
+
+                    <h5>Horaires par jour</h5>
+                    {% for entry in schedule['entries'] %}
+                        <div>
+                            <label for="day_{{ loop.index }}">Jour :</label>
+                            <input type="hidden" name="entries[{{ loop.index0 }}][day]" value="{{ entry['day'] }}">
+                            
+                            <label for="open_{{ loop.index }}">Ouverture :</label>
+                            <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry['open'] }}" required>
+
+                            <label for="close_{{ loop.index }}">Fermeture :</label>
+                            <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry['close'] }}" required>
+                        </div>
+                    {% endfor %}
+
+
+                    <h5>Exceptions</h5>
+                    {% for exception in schedule['exceptions'] %}
+                        <div>
+                            <label for="exception_date_{{ loop.index }}">Date :</label>
+                            <input type="date" name="exceptions[{{ loop.index }}][date]" value="{{ exception['date'] }}" required>
+
+                            <label for="exception_open_{{ loop.index }}">Ouverture :</label>
+                            <input type="text" name="exceptions[{{ loop.index }}][open]" value="{{ exception['open'] }}" required>
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit">Mettre à jour</button>
+                </form>
+
+                <a href="{{ path('schedules_list') }}">Retour à la liste</a>
+            </main>
         </div>
-    {% endfor %}
-
-    <h5>Exceptions</h5>
-    {% for exception in schedule['exceptions'] %}
-        <div>
-            <label for="exception_date_{{ loop.index }}">Date :</label>
-            <input type="date" name="exceptions[{{ loop.index }}][date]" value="{{ exception['date'] }}" required>
-
-            <label for="exception_open_{{ loop.index }}">Ouverture :</label>
-            <input type="text" name="exceptions[{{ loop.index }}][open]" value="{{ exception['open'] }}" required>
-        </div>
-    {% endfor %}
-
-    <button type="submit">Mettre à jour</button>
-</form>
+    </div>
+{% endblock %}
