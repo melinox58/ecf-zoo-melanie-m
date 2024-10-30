@@ -19,14 +19,42 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class AnimalsController extends AbstractController
 {
     #[Route('/admin/anim', name: 'app_admin_anim')]
-    public function index(AnimalsRepository $animalsRepository): Response
-    {
-        $animals = $animalsRepository->findBy([], ['nameAnimal' =>
-        'asc']);
+public function index(Request $request, AnimalsRepository $animalsRepository): Response
+{
+    // Créer un queryBuilder pour les animaux
+    $queryBuilder = $animalsRepository->createQueryBuilder('a');
 
-        return $this->render('admin/animals/index.html.twig', compact
-        ('animals'));
+    // Récupérer les filtres depuis la requête
+    $breedFilter = $request->query->get('breed');
+    $nameFilter = $request->query->get('name');
+
+    // Appliquer les filtres
+    if ($breedFilter) {
+        $queryBuilder->andWhere('a.breed = :breed')
+                     ->setParameter('breed', $breedFilter);
     }
+
+    if ($nameFilter) {
+        $queryBuilder->andWhere('a.nameAnimal LIKE :name')
+                     ->setParameter('name', '%' . $nameFilter . '%');
+    }
+
+    // Exécuter la requête et obtenir les résultats
+    $animals = $queryBuilder->getQuery()->getResult();
+    
+    // Récupérer les races distinctes pour le filtre
+    $races = $animalsRepository->createQueryBuilder('a')
+        ->select('DISTINCT a.breed')
+        ->getQuery()
+        ->getResult();
+
+    return $this->render('admin/animals/index.html.twig', [
+        'animals' => $animals, // N'oubliez pas d'ajouter les animaux à la vue
+        'races' => $races,
+    ]);
+}
+
+
 
     #[Route('/admin/anim/modif/{id}', name: 'admin_anim_modif')]
     public function modify(Animals $animal, Request $request, EntityManagerInterface $entityManager,HabitatsRepository $habitatsRepository): Response
