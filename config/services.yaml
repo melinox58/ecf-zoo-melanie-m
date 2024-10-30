@@ -24,3 +24,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\MongoDBService:
+        arguments:
+            $mongoUrl: '%env(MONGODB_URL)%'
+            $databaseName: '%env(MONGODB_DB)%'
