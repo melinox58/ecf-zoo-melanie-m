@@ -24,18 +24,18 @@
                             <tr>
                                 <td>{{ habitat.name}}</td>
                                 <td>{{ habitat.description}}</td>
-                                 <td>
-                                    {% if habitat.id is defined %}
-                                        <a href="{{ path('admin_habitats_edit', {id: habitat.id}) }}" class="btn btn-success">Modifier</a>
-                                    {% else %}
-                                        <span>Pas d'ID</span>
-                                    {% endif %}
+                                <td>
+                                    <a href="{{ path('admin_habitat_modif', { id: habitat.id }) }}">Modifier</a>
+                                    <form action="{{ path('habitat_delete', { id: habitat.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet habitat?');" style="display:inline;">
+                                        <button type="submit">Supprimer</button>
+                                    </form>
                                 </td>
                                 {# <td>{{ habitat.image}}</td> #}
                             </tr>
                         {% endfor %}
                     </tbody>
-                </table>  
+                </table>
+                <a href="{{ path('admin_habitat_add') }}" class="btn btn-success">Ajouter un habitats</a>  
             </main>
         </div>
     </div>

@@ -24,11 +24,7 @@ class ServController extends AbstractController
         ('services'));
     }
 
-    #[Route('/edition/{id}', name: 'admin_services_edit')]
-    public function edit(): Response
-    {
-        return $this->render('admin/services/modif.html.twig');
-    }
+
 
     #[Route('/admin/services/modif/{id}', name: 'admin_services_modif')]
     public function modify(Services $serv, Request $request, EntityManagerInterface $entityManager): Response

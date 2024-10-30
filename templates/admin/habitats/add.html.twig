@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un habitat{% endblock %}
+{% block title %}Ajouter un habitat{% endblock %}
 
 
 {% block body %}
@@ -10,15 +10,13 @@
             {% include "_partials/_adminnav.html.twig" %}
 
             <main class="col-9 border bg-white p-2">
-                <h1>Modifier l'habitat</h1>
+                <h1>Ajouter un nouvel habitat</h1>
 
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    
-                {{ form_end(form) }}
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                    {{ form_end(form) }}
 
             </main>
         </div>
     </div>
-
 {% endblock %}
