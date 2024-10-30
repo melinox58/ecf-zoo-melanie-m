@@ -18,32 +18,38 @@
                 {% endfor %}
 
                 <form action="{{ path('admin_schedule_modify', {id: schedule['_id']}) }}" method="post">
-                    <label for="name">Nom :</label>
+                    <label>Nom :</label>
                     <input type="text" name="name" value="{{ schedule['name'] }}" required>
 
                     <h5>Horaires par jour</h5>
                     {% for entry in schedule['entries'] %}
                         <div>
-                            <label for="day_{{ loop.index }}">Jour :</label>
-                            <input type="hidden" name="entries[{{ loop.index0 }}][day]" value="{{ entry['day'] }}">
+                            <label>Jour :</label>
+                                <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry.open | default('') }}" required>
+                                <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry.close | default('') }}" required>
                             
-                            <label for="open_{{ loop.index }}">Ouverture :</label>
-                            <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry['open'] }}" required>
+                            <label>Ouverture :</label>
+                                <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry.open | default('') }}" required>
+                                <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry.close | default('') }}" required>
 
-                            <label for="close_{{ loop.index }}">Fermeture :</label>
-                            <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry['close'] }}" required>
+                            <label>Fermeture :</label>
+                                <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry.open | default('') }}" required>
+                                <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry.close | default('') }}" required>
+
+                            <label>
+                                <input type="checkbox" name="closed[{{ loop.index0 }}]" value="1" {% if entry.closed is defined and entry.closed == true %}checked{% endif %}>                                Jour de fermeture
+                            </label>
                         </div>
                     {% endfor %}
-
 
                     <h5>Exceptions</h5>
                     {% for exception in schedule['exceptions'] %}
                         <div>
-                            <label for="exception_date_{{ loop.index }}">Date :</label>
-                            <input type="date" name="exceptions[{{ loop.index }}][date]" value="{{ exception['date'] }}" required>
+                            <label>Date :</label>
+                            <input type="date" name="exceptions[{{ loop.index0 }}][date]" value="{{ exception['date'] }}">
 
-                            <label for="exception_open_{{ loop.index }}">Ouverture :</label>
-                            <input type="text" name="exceptions[{{ loop.index }}][open]" value="{{ exception['open'] }}" required>
+                            <label>Ouverture :</label>
+                            <input type="text" name="exceptions[{{ loop.index0 }}][open]" value="{{ exception['open'] }}">
                         </div>
                     {% endfor %}
 
@@ -54,4 +60,6 @@
             </main>
         </div>
     </div>
+
+
 {% endblock %}

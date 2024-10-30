@@ -1,5 +1,4 @@
 <?php
-// src/Controller/Admin/ScheduleController.php
 namespace App\Controller\Admin;
 
 use App\Service\MongoDBService;
@@ -8,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use MongoDB\BSON\ObjectId;
-use MongoDB\Driver\Exception\Exception;
 
 class ScheduleController extends AbstractController
 {
@@ -16,23 +14,17 @@ class ScheduleController extends AbstractController
     public function listSchedules(MongoDBService $mongoDBService): Response
     {
         $collection = $mongoDBService->getCollection('schedules');
-        $schedules = $collection->find()->toArray();
-
-        // Conversion des documents BSON en tableaux PHP
-        $schedulesArray = array_map(fn($schedule) => json_decode(json_encode($schedule), true), $schedules);
+        $schedules = $collection->find();
 
         return $this->render('admin/schedules/index.html.twig', [
-            'schedules' => $schedulesArray,
+            'schedules' => $schedules,
         ]);
     }
-
-
 
     #[Route('/admin/schedule/add', name: 'add_schedule', methods: ['GET', 'POST'])]
     public function addSchedule(Request $request, MongoDBService $mongoDBService): Response
     {
         if ($request->isMethod('POST')) {
-            // Récupérer les données du formulaire
             $data = $request->request->all();
 
             // Validation des données
@@ -41,11 +33,24 @@ class ScheduleController extends AbstractController
                 return $this->redirectToRoute('add_schedule');
             }
 
+            // Vérification des horaires
+            $entries = [];
+            foreach ($data['entries'] as $index => $entry) {
+                if (!empty($entry['open']) && !empty($entry['close'])) {
+                    $entries[] = [
+                        'day' => $entry['day'],
+                        'open' => $entry['open'],
+                        'close' => $entry['close'],
+                        'closed' => !empty($data['closed'][$index]), // Vérifie si la case de fermeture est cochée
+                    ];
+                }
+            }
+
             // Préparer les données pour l'insertion dans MongoDB
             $newSchedule = [
                 'name' => $data['name'],
-                'entries' => $data['entries'], // Les horaires par jour
-                'exceptions' => $data['exceptions'] ?? [], // Les exceptions
+                'entries' => $entries,
+                'exceptions' => $data['exceptions'] ?? [],
             ];
 
             // Insertion dans la collection MongoDB
@@ -63,27 +68,45 @@ class ScheduleController extends AbstractController
     public function editSchedule(Request $request, MongoDBService $mongoDBService, string $id): Response
     {
         $collection = $mongoDBService->getCollection('schedules');
-        $schedule = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        $schedule = $collection->findOne(['_id' => new ObjectId($id)]);
+
+        if (!$schedule) {
+            throw $this->createNotFoundException('Horaire non trouvé');
+        }
+
+        $data = []; // Initialiser $data pour éviter l'avertissement
 
         if ($request->isMethod('POST')) {
-            // Récupérer les données du formulaire
             $data = $request->request->all();
 
-            // Préparer les données pour la mise à jour dans MongoDB
-            $updatedData = [
-                'name' => $data['name'],
-                'entries' => $data['entries'],
-                'exceptions' => $data['exceptions'] ?? [],
-            ];
+            // Vérification des horaires
+            $entries = [];
+            foreach ($data['entries'] as $index => $entry) {
+                if (!empty($entry['open']) && !empty($entry['close'])) {
+                    $entries[] = [
+                        'day' => $entry['day'] ?? '', // Assurez-vous que "day" est défini pour éviter l'erreur
+                        'open' => $entry['open'],
+                        'close' => $entry['close'],
+                        'closed' => !empty($data['closed'][$index]), // Vérifie si la case de fermeture est cochée
+                    ];
+                }
+            }
 
             // Mise à jour du document dans la collection
-            $collection->updateOne(['_id' => new \MongoDB\BSON\ObjectId($id)], ['$set' => $updatedData]);
+            $updatedData = [
+                'name' => $data['name'],
+                'entries' => $entries,
+                'exceptions' => $data['exceptions'] ?? [],
+            ];
+            $collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $updatedData]);
 
+            $this->addFlash('success', 'L\'horaire a été mis à jour avec succès.');
             return $this->redirectToRoute('schedules_list');
         }
 
-        // Conversion du document BSON en tableau PHP
+        // Conversion du document BSON en tableau PHP et conversion de l'ID en chaîne
         $scheduleArray = json_decode(json_encode($schedule), true);
+        $scheduleArray['_id'] = (string) $schedule['_id']; // Convertir ObjectId en chaîne de caractères
 
         return $this->render('admin/schedules/modif.html.twig', [
             'schedule' => $scheduleArray,
@@ -92,7 +115,6 @@ class ScheduleController extends AbstractController
 
 
 
-    
     #[Route('/admin/schedule/delete/{id}', name: 'schedule_delete', methods: ['POST'])]
     public function deleteSchedule(MongoDBService $mongoDBService, string $id): Response
     {
