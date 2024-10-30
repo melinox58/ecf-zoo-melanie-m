@@ -31,7 +31,7 @@ class EmpController extends AbstractController
     }
 
 
-    #[Route('/admin/emp/modify/{id}', name: 'admin_employe_modify')]
+    #[Route('/admin/emp/modify/{id}', name: 'admin_emp_modify')]
     public function modify(Users $user, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createFormBuilder($user)

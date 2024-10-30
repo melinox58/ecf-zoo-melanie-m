@@ -12,7 +12,7 @@ security:
 
     # Hiérarchie des rôles (déplacée à l'extérieur de firewalls)
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_EMPLOYEE]
+        ROLE_ADMIN: [ROLE_ADMIN]
         ROLE_EMPLOYEE: [ROLE_EMPLOYEE]
         ROLE_VETERINARY: [ROLE_VETERINARY]
 
@@ -39,9 +39,10 @@ security:
 
     # Access control pour les différentes sections
     access_control:
-        - { path: ^/admin/index.html.twig, roles: ROLE_ADMIN }
-        - { path: ^/employee/index.html.twig, roles: ROLE_EMPLOYEE }
-        - { path: ^/veterinary/index.html.twig, roles: ROLE_VETERINARY }
+        - { path: ^/admin, roles: [ROLE_ADMIN] }
+        - { path: ^/employee, roles: [ROLE_EMPLOYEE] }
+        - { path: ^/veterinary, roles: [ROLE_VETERINARY] }
+        
 
 when@test:
     security:
