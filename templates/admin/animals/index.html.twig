@@ -32,13 +32,16 @@
                                 animal.images[0].name)}}" alt="{{ animal.nameAnimal }}"
                                 class="img-thumbnail"</td> #}
                                 <td>
-                                    <a href="{{ path('admin_animals_edit',
-                                    {id: animal.id}) }}" class="btn btn-success">Modifier</a>
+                                    <a href="{{ path('admin_anim_modif', { id: animal.id }) }}">Modifier</a>
+                                    <form action="{{ path('admin_anim_delete', { id: animal.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet animal?');" style="display:inline;">
+                                        <button type="submit">Supprimer</button>
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
-                </table>  
+                </table>
+                <a href="{{ path('admin_anim_add') }}" class="btn btn-success">Ajouter un animal</a>   
             </main>
         </div>
     </div>

@@ -139,3 +139,11 @@ INSERT INTO animals(name_animal, breed, description, counter,id_habitats_id)
         0,
         3
     );
+
+
+
+SELECT * FROM `animals`;
+
+-- Je souhaite que la colonne ait une valeur par défaut (par exemple, 0) si aucune valeur n'est fournie lors de l'insertion
+ALTER TABLE `animals`
+MODIFY COLUMN `counter` INT DEFAULT 0 NOT NULL;

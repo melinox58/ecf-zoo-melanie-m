@@ -83,6 +83,11 @@ class Animals
         return $this;
     }
 
+    public function __construct()
+    {
+        $this->counter = 0; // Initialiser à 0 par défaut
+    }
+
     public function getIdHabitats(): ?Habitats
     {
         return $this->idHabitats;

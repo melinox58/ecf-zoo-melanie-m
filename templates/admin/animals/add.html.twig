@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un animal{% endblock %}
+{% block title %}Ajouter un animal{% endblock %}
 
 
 {% block body %}
@@ -10,15 +10,13 @@
             {% include "_partials/_adminnav.html.twig" %}
 
             <main class="col-9 border bg-white p-2">
-                <h1>Modifier l'animal'</h1>
+                <h1>Ajouter un nouvel animal</h1>
 
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    
-                {{ form_end(form) }}
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                    {{ form_end(form) }}
 
             </main>
         </div>
     </div>
-
 {% endblock %}
