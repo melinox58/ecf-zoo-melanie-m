@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Reports;
+use App\Entity\Foods;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\FoodsRepository;
 
 /**
  * @extends ServiceEntityRepository<Reports>
@@ -16,28 +18,14 @@ class ReportsRepository extends ServiceEntityRepository
         parent::__construct($registry, Reports::class);
     }
 
-    //    /**
-    //     * @return Reports[] Returns an array of Reports objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+        
+    public function findReportsWithFoods()
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.foods', 'f') // Jointure avec l'entité Foods
+            ->addSelect('f') // Sélectionner aussi les données de Foods
+            ->getQuery()
+            ->getResult();
+    }
 
-    //    public function findOneBySomeField($value): ?Reports
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

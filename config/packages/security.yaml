@@ -39,7 +39,7 @@ security:
 
     # Access control pour les différentes sections
     access_control:
-        - { path: ^/admin, roles: [ROLE_ADMIN] }
+        - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_EMPLOYEE] }
         - { path: ^/employee, roles: [ROLE_EMPLOYEE] }
         - { path: ^/veterinary, roles: [ROLE_VETERINARY] }
         
