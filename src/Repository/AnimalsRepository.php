@@ -16,20 +16,20 @@ class AnimalsRepository extends ServiceEntityRepository
         parent::__construct($registry, Animals::class);
     }
 
-//    /**
-//     * @return Animals[] Returns an array of Animals objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Animals[] Returns an array of Animals objects
+    */
+   public function findid($id): array
+   {
+       return $this->createQueryBuilder('a')
+           ->andWhere('a.id = :val')
+           ->setParameter('val', $id)
+           ->orderBy('a.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Animals
 //    {

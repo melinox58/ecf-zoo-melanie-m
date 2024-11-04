@@ -6,9 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\AnimalsRepository;
-use App\Repository\HabitatsRepository;
-use App\Repository\FoodsRepository;
 use App\Repository\UsersRepository;
+use App\Entity\Users;
 use App\Entity\Reports;
 use App\Form\ReportsType as FormReportsType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +15,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReportsController extends AbstractController
 {
+    private $animalsRepository;
+
+    public function __construct(AnimalsRepository $animalsRepository)
+    {
+        $this->animalsRepository = $animalsRepository; // Injecter le AnimalsRepository
+    }
+    
     #[Route('/emp/report', name: 'app_emp_anim')]
     public function report(Request $request, AnimalsRepository $animalsRepository): Response
     {
@@ -52,19 +58,32 @@ class ReportsController extends AbstractController
         ]);
     }
 
-    #[Route('/emp/report/add', name: 'emp_report_add')]
-    public function add(Request $request, EntityManagerInterface $entityManager, 
-        HabitatsRepository $habitatsRepository, AnimalsRepository $animalsRepository,FoodsRepository $foodsRepository, 
-        UsersRepository $usersRepository, FormReportsType $report): Response
+    #[Route('/emp/report/add/{id}', name: 'emp_report_add')]
+    public function add(Request $request, EntityManagerInterface $entityManager, UsersRepository $usersRepository, $id): Response
     {
         $report = new Reports();
-        $animals = $animalsRepository->findAll();
-        $users = $usersRepository->findAll();
-        $foods = $foodsRepository->findAll();
 
-        // Création du formulaire
-        $form = $this->createForm(FormReportsType::class, $report);
+        // Récupérer l'animal par ID
+        $animal = $this->animalsRepository->find($id);
+        
+        if (!$animal) {
+            throw $this->createNotFoundException('Animal non trouvé');
+        }
 
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!$user) {
+            // Rediriger vers une page d'erreur ou de connexion
+            return $this->redirectToRoute('app_login'); // Remplacez 'app_login' par votre route de connexion
+        }
+
+        // Création du formulaire et passage de l'utilisateur
+        $form = $this->createForm(FormReportsType::class, $report, [
+            'user' => $user, // Passer l'utilisateur connecté ici
+            'animal' => $animal, // Passer l'animal récupéré ici
+        ]);
 
         // Traitement de la requête
         $form->handleRequest($request);
@@ -81,9 +100,9 @@ class ReportsController extends AbstractController
             }
 
             // Assurez-vous que vous récupérez correctement les autres valeurs
-            $report->setIdAnimals($data->getIdAnimals());
-            $report->setIdUsers($data->getIdUsers());
-            $report->setDate($data->getDate());
+            $report->setIdAnimals($animal);
+            $report->getIdUsers(); // Utiliser l'utilisateur connecté
+            $report->setDate(new \DateTime()); // Vous pouvez définir la date ici ou dans le formulaire
             $report->setComment($data->getComment());
 
             // Persister le rapport
@@ -97,6 +116,5 @@ class ReportsController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 
 }

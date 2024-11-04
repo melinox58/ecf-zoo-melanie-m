@@ -45,7 +45,7 @@
                                 animal.images[0].name)}}" alt="{{ animal.nameAnimal }}"
                                 class="img-thumbnail"</td> #}
                                 <td>
-                                    <a href="{{ path('emp_report_add') }}" class="btn btn-success">Faire un rapport</a>
+                                    <a href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">Créer un rapport</a>
                                 </td>
                             </tr>
                         {% endfor %}

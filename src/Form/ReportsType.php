@@ -2,13 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Animals;
-use App\Repository\AnimalsRepository;
-use App\Entity\Foods;
-use App\Repository\FoodsRepository;
-use App\Entity\Users;
-use App\Repository\UsersRepository;
 use App\Entity\Reports;
+use App\Repository\AnimalsRepository;
+use App\Repository\FoodsRepository;
+use App\Entity\Foods;
+use App\Entity\Animals;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,27 +15,36 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ReportsType extends AbstractType
 {
     private $animalsRepository;
-    private $usersRepository;
     private $foodsRepository;
 
-    public function __construct(AnimalsRepository $animalsRepository, UsersRepository $usersRepository, FoodsRepository $foodsRepository)
+    public function __construct(AnimalsRepository $animalsRepository, FoodsRepository $foodsRepository)
     {
         $this->animalsRepository = $animalsRepository;
-        $this->usersRepository = $usersRepository;
         $this->foodsRepository = $foodsRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $animals = $this->animalsRepository->findAll();
-        $foods = $this->foodsRepository->findAll();
-        $users = $this->usersRepository->findAll();
+        // Récupérer l'animal à pré-sélectionner si fourni
+        $animal = $options['animal'] ?? null;
 
-            // Récupérer les unités uniques des aliments
+        // Récupérer l'utilisateur passé en option
+        $user = $options['user'];
+
+        // Vérifiez si l'utilisateur est null
+        if (!$user) {
+            throw new \LogicException('User must be provided to the form.');
+        }
+
+        // Récupérer les aliments
+        $foods = $this->foodsRepository->findAll();
+
+        // Récupérer les unités uniques des aliments
         $uniqueUnits = array_unique(array_map(function ($food) {
             return $food->getUnit();
         }, $foods));
@@ -45,14 +52,7 @@ class ReportsType extends AbstractType
         // Créer un tableau associatif pour le choix des unités
         $unitChoices = array_combine($uniqueUnits, $uniqueUnits);
 
-        // Récupérer les poids uniques des aliments
-        $uniqueWeights = array_unique(array_map(function ($food) {
-            return $food->getWeight();
-        }, $foods));
-
-    // Créer un tableau associatif pour le choix des poids
-    $weightChoices = array_combine($uniqueWeights, $uniqueWeights);
-
+        // Créer le formulaire
         $builder
             ->add('date', DateTimeType::class, [
                 'data' => new \DateTime(),
@@ -60,7 +60,7 @@ class ReportsType extends AbstractType
                 'html5' => true,
                 'attr' => ['readonly' => true],
             ])
-            ->add('comment', TextType::class, [
+            ->add('comment', TextareaType::class, [
                 'mapped' => true,
             ])
             ->add('weight', TextType::class, [
@@ -75,13 +75,12 @@ class ReportsType extends AbstractType
                 'placeholder' => 'Unité',
                 'mapped' => true,
             ])
-            ->add('idAnimals', ChoiceType::class, [
-                'choices' => array_reduce($animals, function($result, $animal) {
-                    $result[$animal->getNameAnimal()] = $animal->getId();
-                    return $result;
-                }, []),
-                'placeholder' => 'Choisissez un animal',
+            ->add('idAnimals', EntityType::class, [
+                'class' => Animals::class,
                 'label' => 'Animal',
+                'data' => $animal, // Pré-sélectionner l'animal trouvé
+                'disabled' => true, // Désactiver le champ
+                'mapped' => true,
             ])
             ->add('idFoods', EntityType::class, [
                 'class' => Foods::class,
@@ -89,24 +88,20 @@ class ReportsType extends AbstractType
                 'placeholder' => 'Choisissez un aliment',
                 'mapped' => true,
             ])
-            ->add('idUsers', ChoiceType::class, [
-                'choices' => array_combine(
-                    array_map(fn($user) => $user->getId(), $users),
-                    array_map(fn($user) => $user->getName(), $users) 
-                ),
-                'placeholder' => 'Choisissez un utilisateur',
-                'label' => ''
+            ->add('idUsers', TextType::class, [
+                'data' => $user->getName() . ' ' . $user->getFirstName(), // Indiquer l'utilisateur connecté
+                'label' => 'Utilisateur',
+                'disabled' => true, // Désactiver le champ pour éviter la modification
             ])
-            ->add('save', SubmitType::class, ['label' => "Ajouter un rapport"])
-            ->getForm();
-        ;
+            ->add('save', SubmitType::class, ['label' => "Ajouter un rapport"]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Reports::class,
+            'user' => null, // Définir l'option par défaut pour l'utilisateur
+            'animal' => null, // Définir l'option par défaut pour l'animal
         ]);
     }
 }
-

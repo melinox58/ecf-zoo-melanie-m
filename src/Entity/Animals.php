@@ -47,6 +47,11 @@ class Animals
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->nameAnimal; // Assurez-vous que 'nameAnimal' est le nom de votre propriété
+    }
+
     public function getBreed(): ?string
     {
         return $this->breed;
