@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Veterinary;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +16,16 @@ class VeterinaryController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
         
+        // Récupérer le nom de l'utilisateur ou afficher "Invité" si l'utilisateur n'est pas connecté
+        $username = $user ? $user->getFirstName() . ' ' . $user->getName() : 'Invité';
+
+        // Rendre la vue pour l'administrateur
         return $this->render('veterinary/index.html.twig', [
-            'controller_name' => 'VeterinaryController',
+            'user' => $user,
+            'username' => $username,
         ]);
     }
 }

@@ -4,6 +4,7 @@
 
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
 
     <div class="containerAdmin">
         <div class="row">
@@ -20,4 +21,6 @@
         </div>
         <a href="{{ path('app_admin_serv') }}">Retour à la liste</a>
     </div>
+    {% endif %}
+
 {% endblock %}
