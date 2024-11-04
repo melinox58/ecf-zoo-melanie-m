@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+
+{% block body %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+
+            <main class="col-9 border bg-white p-2">
+                <h1>Faire un nouveau rapport</h1>
+
+                    {{ form_start(form) }}
+                        {{ form_row(form.date) }}
+                        {{ form_row(form.idUsers) }}
+                        {{ form_row(form.idAnimals) }}
+                        {{ form_row(form.idFoods) }}
+                        {{ form_row(form.weight) }}
+                        {{ form_row(form.unit) }}
+                        {{ form_row(form.comment) }}
+                    {{ form_end(form) }}
+
+            </main>
+        </div>
+        <a href="{{ path('app_emp_anim') }}">Retour à la liste</a>
+    </div>
+{% endblock %}

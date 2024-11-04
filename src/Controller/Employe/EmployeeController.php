@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Employe;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AdminController extends AbstractController
+class EmployeeController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
+    #[Route('/employee', name: 'app_employee')]
     public function index(): Response
     {
-        // Vérifier si l'utilisateur a le rôle d'administrateur
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            // Rediriger vers la page d'accueil si l'utilisateur n'est pas administrateur
+        // Vérifier si l'utilisateur est connecté et a le rôle d'employé
+        if (!$this->isGranted('ROLE_EMPLOYEE')) {
+            // Rediriger vers la page d'accueil si l'utilisateur n'est pas connecté ou n'a pas le rôle approprié
             return $this->redirectToRoute('app_home');
         }
 
@@ -23,8 +23,7 @@ class AdminController extends AbstractController
         // Récupérer le nom de l'utilisateur ou afficher "Invité" si l'utilisateur n'est pas connecté
         $username = $user ? $user->getFirstName() . ' ' . $user->getName() : 'Invité';
 
-        // Rendre la vue pour l'administrateur
-        return $this->render('admin/index.html.twig', [
+        return $this->render('employee/index.html.twig', [
             'user' => $user,
             'username' => $username,
         ]);

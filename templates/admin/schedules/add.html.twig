@@ -59,7 +59,7 @@
     </div>
 
     {% block javascripts %}
-        <script src="{{ asset('js/schedules.js') }}"></script>
+        <script src="{{ asset('js/schedules.js') }}?v={{ random() }}"></script>
     {% endblock %}
     
 {% endblock %}

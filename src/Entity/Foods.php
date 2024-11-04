@@ -22,6 +22,10 @@ class Foods
     #[ORM\Column(length: 4)]
     private ?string $unit = null;
 
+    // #[ORM\ManyToOne()]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?Reports $report = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +66,16 @@ class Foods
 
         return $this;
     }
+
+    // public function getReport(): ?Reports
+    // {
+    //     return $this->report;
+    // }
+
+    // public function setReport(?Reports $report): static
+    // {
+    //     $this->report = $report;
+
+    //     return $this;
+    // }
 }

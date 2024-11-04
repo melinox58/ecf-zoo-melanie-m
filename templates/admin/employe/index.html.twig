@@ -40,7 +40,7 @@
                                 </td>
                                 <td>
                                     {% if "ROLE_ADMIN" not in user.roles %}
-                                        <a href="{{ path('admin_employe_modify', { id: user.id }) }}">Modifier</a>
+                                        <a href="{{ path('admin_emp_modify', { id: user.id }) }}">Modifier</a>
                                         <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');" style="display:inline;">
                                             <button type="submit">Supprimer</button>
                                         </form>

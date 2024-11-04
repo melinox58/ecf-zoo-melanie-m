@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Paris'); // Définit le fuseau horaire
 
 use App\Kernel;
 

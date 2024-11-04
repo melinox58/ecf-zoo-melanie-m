@@ -32,6 +32,12 @@ class Reports
     #[ORM\Column(type: Types::TEXT)]
     private ?string $comment = null;
 
+    #[ORM\Column(type: 'float')]
+    private ?float $weight = null;
+
+    #[ORM\Column(type: 'string', length: 10)]
+    private ?string $unit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,12 +55,12 @@ class Reports
         return $this;
     }
 
-    public function getIdFoods(): ?Foods
+    public function getIdFoods(): ?Foods // Corrected the return type
     {
-        return $this->idFoods;
+        return $this->idFoods; // Return the actual value
     }
 
-    public function setIdFoods(?Foods $idFoods): static
+    public function setIdFoods(?Foods $idFoods): static // Added the setter
     {
         $this->idFoods = $idFoods;
 
@@ -93,6 +99,30 @@ class Reports
     public function setComment(string $comment): static
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getWeight(): ?float
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(float $weight): self
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getUnit(): ?string
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(string $unit): self
+    {
+        $this->unit = $unit;
 
         return $this;
     }

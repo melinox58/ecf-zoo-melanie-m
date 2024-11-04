@@ -1,18 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dasboard{% endblock %}
+{% block title %}Employé{% endblock %}
+
 
 {% block body %}
-<section class="btn-admin">
 
-    <aside class="sidebar">
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_register')}}">Soigner un animal</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Modifier les services</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Mail</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{path ('app_habitats')}}">Avis a traiter</a></button>
-    </aside>
-    <main class="main-content">Contenu principal
-    </main>
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_empnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h1>Employé</h1>
+                {% if username != 'Invité' %}
+                    <p>Bonjour, {{ username }} !</p>
+                {% else %}
+                    <p>Bonjour, Invité !</p>
+                {% endif %}
+            </main>
+        </div>
+    </div>
 
-</section>
+
 {% endblock %}
