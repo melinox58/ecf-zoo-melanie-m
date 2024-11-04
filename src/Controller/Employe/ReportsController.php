@@ -7,21 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\AnimalsRepository;
 use App\Repository\HabitatsRepository;
-use App\Repository\ReportsRepository;
 use App\Repository\FoodsRepository;
 use App\Repository\UsersRepository;
-use App\Entity\Animals;
-use App\Entity\Habitats;
 use App\Entity\Reports;
-use App\Entity\Foods;
-use App\Entity\Users;
+use App\Form\ReportsType as FormReportsType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ReportsController extends AbstractController
 {
@@ -61,55 +52,19 @@ class ReportsController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/anim/add', name: 'admin_anim_add')]
+    #[Route('/emp/report/add', name: 'emp_report_add')]
     public function add(Request $request, EntityManagerInterface $entityManager, 
-        HabitatsRepository $habitatsRepository, AnimalsRepository $animalsRepository, 
-        ReportsRepository $reportsRepository, FoodsRepository $foodsRepository, 
-        UsersRepository $usersRepository): Response
+        HabitatsRepository $habitatsRepository, AnimalsRepository $animalsRepository,FoodsRepository $foodsRepository, 
+        UsersRepository $usersRepository, FormReportsType $report): Response
     {
         $report = new Reports();
         $animals = $animalsRepository->findAll();
         $users = $usersRepository->findAll();
+        $foods = $foodsRepository->findAll();
 
         // Création du formulaire
-        $form = $this->createFormBuilder($report)
-            ->add('idAnimals', ChoiceType::class, [
-                'choices' => array_combine(
-                    array_map(fn($animal) => $animal->getNameAnimal(), $animals),
-                    $animals
-                ),
-                'choice_label' => function ($choice) {
-                    return $choice->getNameAnimal();
-                },
-                'placeholder' => 'Choisissez un animal',
-            ])
-            ->add('idUsers', ChoiceType::class, [
-                'choices' => array_combine(
-                    array_map(fn($user) => $user->getName(), $users),
-                    $users
-                ),
-                'choice_label' => function ($choice) {
-                    return $choice->getName();
-                },
-                'placeholder' => 'Choisissez un employé',
-            ])
-            ->add('idFoods', EntityType::class, [
-                'class' => Foods::class,
-                'choice_label' => 'name',
-                'placeholder' => 'Choisissez un aliment',
-                'mapped' => true,
-            ])
-            ->add('date', DateTimeType::class, [
-                'data' => new \DateTime(),
-                'widget' => 'single_text',
-                'html5' => true,
-                'attr' => ['readonly' => true],
-            ])
-            ->add('comment', TextType::class, [
-                'mapped' => true,
-            ])
-            ->add('save', SubmitType::class, ['label' => "Ajouter un rapport"])
-            ->getForm();
+        $form = $this->createForm(FormReportsType::class, $report);
+
 
         // Traitement de la requête
         $form->handleRequest($request);
