@@ -16,6 +16,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+
+
 
 class ReportsType extends AbstractType
 {
@@ -65,11 +69,16 @@ class ReportsType extends AbstractType
             ])
             ->add('weight', TextType::class, [
                 'label' => 'Poids (saisir ou choisir)',
-                'mapped' => true,
                 'attr' => [
                     'placeholder' => 'Entrez le poids ici...',
                 ],
+                'mapped' => true,
+                'constraints' => [
+                    new NotBlank(), // Assurez-vous que le champ n'est pas vide
+                    new Type(['type' => 'numeric']) // Vérifiez que c'est un nombre
+                ],
             ])
+            
             ->add('unit', ChoiceType::class, [
                 'choices' => $unitChoices,
                 'placeholder' => 'Unité',

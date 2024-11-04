@@ -75,46 +75,44 @@ class ReportsController extends AbstractController
 
         // Vérifier si l'utilisateur est connecté
         if (!$user) {
-            // Rediriger vers une page d'erreur ou de connexion
-            return $this->redirectToRoute('app_login'); // Remplacez 'app_login' par votre route de connexion
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion
         }
 
-        // Création du formulaire et passage de l'utilisateur
+        // Création du formulaire en passant l'utilisateur et l'animal
         $form = $this->createForm(FormReportsType::class, $report, [
-            'user' => $user, // Passer l'utilisateur connecté ici
-            'animal' => $animal, // Passer l'animal récupéré ici
+            'user' => $user,
+            'animal' => $animal,
         ]);
 
         // Traitement de la requête
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+    if ($form->isSubmitted() && $form->isValid()) {
+        $data = $form->getData();
+        
+        // Définir le poids et l'unité directement à partir du formulaire
+        $report->setWeight($data->getWeight());
+        $report->setUnit($data->getUnit());
+        
+        // Définir l'animal et l'utilisateur
+        $report->setIdAnimals($animal);
+        $report->setIdUsers($user);
+        $report->setDate(new \DateTime());
+        $report->setComment($data->getComment());
 
-            // Récupérer l'aliment sélectionné
-            $selectedFood = $data->getIdFoods();
-            if ($selectedFood) {
-                // Définir le poids et l'unité à partir de l'aliment sélectionné
-                $report->setWeight($selectedFood->getWeight());
-                $report->setUnit($selectedFood->getUnit());
-            }
+        // Persister le rapport
+        $entityManager->persist($report);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('app_emp_anim');
 
-            // Assurez-vous que vous récupérez correctement les autres valeurs
-            $report->setIdAnimals($animal);
-            $report->getIdUsers(); // Utiliser l'utilisateur connecté
-            $report->setDate(new \DateTime()); // Vous pouvez définir la date ici ou dans le formulaire
-            $report->setComment($data->getComment());
-
-            // Persister le rapport
-            $entityManager->persist($report);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_emp_anim');
+        //  // Ajouter un message flash
+        //  $this->addFlash('success', 'Rapport enregistré avec succès.');
         }
 
-        return $this->render('employee/reports/add.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 
+            return $this->render('employee/reports/add.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
 }
