@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnimalsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,6 +32,15 @@ class Animals
     #[ORM\JoinColumn(nullable: false)]
     private ?Habitats $idHabitats = null;
 
+    #[ORM\OneToMany(mappedBy: 'idAnimals', targetEntity: Reports::class, cascade: ['persist', 'remove'])]
+    private Collection $report;
+
+    public function __construct()
+    {
+        $this->counter = 0; // Initialiser à 0 par défaut
+        $this->report = new ArrayCollection(); // Initialiser la collection des rapports
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,7 +60,7 @@ class Animals
 
     public function __toString(): string
     {
-        return $this->nameAnimal; // Assurez-vous que 'nameAnimal' est le nom de votre propriété
+        return $this->nameAnimal;
     }
 
     public function getBreed(): ?string
@@ -88,11 +99,6 @@ class Animals
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->counter = 0; // Initialiser à 0 par défaut
-    }
-
     public function getIdHabitats(): ?Habitats
     {
         return $this->idHabitats;
@@ -101,6 +107,37 @@ class Animals
     public function setIdHabitats(?Habitats $idHabitats): static
     {
         $this->idHabitats = $idHabitats;
+
+        return $this;
+    }
+
+    // Getter pour la collection de rapports
+    public function getReports(): Collection
+    {
+        return $this->report;
+    }
+
+    // Ajouter un rapport à la collection
+    public function addReport(Reports $report): static
+    {
+        if (!$this->report->contains($report)) {
+            $this->report->add($report);
+            $report->setIdAnimals($this); // Associer l'animal au rapport
+        }
+
+        return $this;
+    }
+
+    // Supprimer un rapport de la collection
+    public function removeReport(Reports $report): static
+    {
+        if ($this->report->contains($report)) {
+            $this->report->removeElement($report);
+            // Supprimer l'association à l'animal si nécessaire
+            if ($report->getIdAnimals() === $this) {
+                $report->setIdAnimals(null);
+            }
+        }
 
         return $this;
     }

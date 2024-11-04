@@ -29,16 +29,21 @@
                                         {{ role }}{% if not loop.last %}, {% endif %}
                                     {% endfor %}</td> #}
                                 <td>
-                                    <a href="{{ path('admin_services_modif', { id: service.id }) }}">Modifier</a>
-                                    <form action="{{ path('services_delete', { id: service.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce service?');" style="display:inline;">
+                                    <a href="{{ path('admin_services_modif', { id: service.id }) }}" class="btn btn-success">Modifier</a>
+                                    {# <a href="{{ path('admin_services_modif', { id: service.id }) }}">Modifier</a> #}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <form action="{{ path('services_delete', { id: service.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce service?');" style="display:inline;">
                                         <button type="submit">Supprimer</button>
+                                    {% endif %}
                                     </form>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <a href="{{ path('admin_services_add') }}" class="btn btn-success">Ajouter un service</a>  
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin_services_add') }}" class="btn btn-success">Ajouter un service</a>
+                {% endif %}
             </main>
         </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Animals;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @extends ServiceEntityRepository<Animals>
@@ -30,6 +31,17 @@ class AnimalsRepository extends ServiceEntityRepository
            ->getResult()
        ;
    }
+
+   public function showReportsForAnimal(Animals $animal): Response
+    {
+        $report = $animal->getReports();
+
+        return $this->render('animal/reports.html.twig', [
+            'animal' => $animal,
+            'reports' => $report,
+        ]);
+    }
+
 
 //    public function findOneBySomeField($value): ?Animals
 //    {
