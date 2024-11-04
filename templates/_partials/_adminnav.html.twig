@@ -19,8 +19,7 @@
 
 {% elseif is_granted('ROLE_VETERINARY') %}
 
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_register')}}">Compte rendu</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Etat de l'animal</a></button>
+    <button type="button" class="btn btnRegister"><a href="{{path ('app_emp_anim')}}">Compte rendu</a></button>
     <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Commentaire habitat</a></button>
 
 {% endif %}

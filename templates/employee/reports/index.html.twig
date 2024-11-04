@@ -2,7 +2,6 @@
 
 {% block title %}Soigner un animal{% endblock %}
 
-
 {% block body %}
 
     <div class="containerAdmin">
@@ -31,7 +30,10 @@
                             <th>Nom</th>
                             <th>Race</th>
                             <th>Habitat</th>
-                            {# <th>Image</th> #}
+                            {% if is_granted('ROLE_VETERINARY') %}
+                                <th>Rapport employé</th>
+                                <th>Repas</th>
+                            {% endif %}
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -39,11 +41,33 @@
                         {% for animal in animals %}
                             <tr>
                                 <td>{{ animal.nameAnimal }}</td>
-                                <td>{{ animal.breed}}</td>
+                                <td>{{ animal.breed }}</td>
                                 <td>{{ animal.idHabitats.name }}</td>
-                                {# <td><img src="{{ asset('assets/uploads/animal/mini/300x300-'
-                                animal.images[0].name)}}" alt="{{ animal.nameAnimal }}"
-                                class="img-thumbnail"</td> #}
+                                {% if is_granted('ROLE_VETERINARY') %}
+                                    <td>
+                                        {% if animal.reports is empty %}
+                                            <p>Aucun rapport</p>
+                                        {% else %}
+                                            {% for report in animal.reports %}
+                                                <p>
+                                                    {{ report.date|date('d/m/Y') }} - {{ report.comment }}<br>
+                                                    Aliments : {{ report.idFoods.name }} - Quantité : {{ report.weight }} {{ report.unit }}
+                                                </p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if animal.reports is not empty %}
+                                            {% for report in animal.reports %}
+                                                <p>
+                                                    {{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}
+                                                </p>
+                                            {% endfor %}
+                                        {% else %}
+                                            <p>Aucun repas enregistré</p>
+                                        {% endif %}
+                                    </td>
+                                {% endif %}
                                 <td>
                                     <a href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">Créer un rapport</a>
                                 </td>
@@ -54,7 +78,6 @@
                    
             </main>
         </div>
-
     </div>
 
 {% endblock %}
