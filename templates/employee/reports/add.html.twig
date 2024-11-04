@@ -13,12 +13,12 @@
                 <h1>Faire un nouveau rapport</h1>
 
                     {{ form_start(form) }}
-                        {{ form_row(form.idAnimals) }}
-                        {{ form_row(form.idUsers) }}
-                        {{ form_row(form.idFoods) }}
-                            {# {{ form_row(form.idFoods.weight) }}
-                            {{ form_row(form.idFoods.unit) }} #}
                         {{ form_row(form.date) }}
+                        {{ form_row(form.idUsers) }}
+                        {{ form_row(form.idAnimals) }}
+                        {{ form_row(form.idFoods) }}
+                        {{ form_row(form.weight) }}
+                        {{ form_row(form.unit) }}
                         {{ form_row(form.comment) }}
                     {{ form_end(form) }}
 

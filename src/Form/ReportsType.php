@@ -37,6 +37,22 @@ class ReportsType extends AbstractType
         $foods = $this->foodsRepository->findAll();
         $users = $this->usersRepository->findAll();
 
+            // Récupérer les unités uniques des aliments
+        $uniqueUnits = array_unique(array_map(function ($food) {
+            return $food->getUnit();
+        }, $foods));
+
+        // Créer un tableau associatif pour le choix des unités
+        $unitChoices = array_combine($uniqueUnits, $uniqueUnits);
+
+        // Récupérer les poids uniques des aliments
+        $uniqueWeights = array_unique(array_map(function ($food) {
+            return $food->getWeight();
+        }, $foods));
+
+    // Créer un tableau associatif pour le choix des poids
+    $weightChoices = array_combine($uniqueWeights, $uniqueWeights);
+
         $builder
             ->add('date', DateTimeType::class, [
                 'data' => new \DateTime(),
@@ -47,8 +63,18 @@ class ReportsType extends AbstractType
             ->add('comment', TextType::class, [
                 'mapped' => true,
             ])
-            ->add('weight')
-            ->add('unit')
+            ->add('weight', TextType::class, [
+                'label' => 'Poids (saisir ou choisir)',
+                'mapped' => true,
+                'attr' => [
+                    'placeholder' => 'Entrez le poids ici...',
+                ],
+            ])
+            ->add('unit', ChoiceType::class, [
+                'choices' => $unitChoices,
+                'placeholder' => 'Unité',
+                'mapped' => true,
+            ])
             ->add('idAnimals', ChoiceType::class, [
                 'choices' => array_reduce($animals, function($result, $animal) {
                     $result[$animal->getNameAnimal()] = $animal->getId();
