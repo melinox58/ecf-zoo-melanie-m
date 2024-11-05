@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Employe;
 
 use App\Service\MongoDBService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,18 +11,23 @@ use MongoDB\BSON\ObjectId;
 
 class OpinionController extends AbstractController
 {
-    #[Route('/opinion', name: 'opinion_list', methods: ['GET'])]
+    #[Route('employee/opinion', name: 'opinion_list', methods: ['GET'])]
     public function listOpinion(MongoDBService $mongoDBService): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
         $opinions = $collection->find();
 
-        return $this->render('opinion/list.html.twig', [
+        return $this->render('employee/opinion/list.html.twig', [
             'opinions' => $opinions,
         ]);
     }
 
-    #[Route('/opinion/add', name: 'add_opinion', methods: ['GET', 'POST'])]
+
+
+
+
+
+    #[Route('employee/opinion/add', name: 'add_opinion', methods: ['GET', 'POST'])]
     public function addOpinion(Request $request, MongoDBService $mongoDBService): Response
     {
         if ($request->isMethod('POST')) {
@@ -41,6 +46,7 @@ class OpinionController extends AbstractController
                     'pseudo' => $data['pseudo'],
                     'title' => $data['title'],
                     'comment' => $data['comment'],
+                    'date' => $data[new \DateTime()],
                 ];
         
                 // Insertion dans la collection MongoDB
@@ -52,10 +58,14 @@ class OpinionController extends AbstractController
             }
         }
 
-        return $this->render('opinion/add.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
+        return $this->render('employee/opinion/add.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
     }
 
-    #[Route('/opinion/edit/{id}', name: 'opinion_edit', methods: ['GET', 'POST'])]
+
+
+
+
+    #[Route('employee/opinion/edit/{id}', name: 'opinion_edit', methods: ['GET', 'POST'])]
     public function editOpinion(Request $request, MongoDBService $mongoDBService, string $id): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
@@ -77,19 +87,24 @@ class OpinionController extends AbstractController
             $collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $updatedData]);
 
             $this->addFlash('success', 'L\'avis a été modifié avec succès.');
-            return $this->redirectToRoute('opinion_list');
+            return $this->redirectToRoute('opinion_edit');
         }
 
         // Conversion du document BSON en tableau PHP pour Twig
         $opinionArray = json_decode(json_encode($opinion), true);
         $opinionArray['_id'] = (string) $opinion['_id']; // Convertir ObjectId en chaîne de caractères
 
-        return $this->render('opinion/edit.html.twig', [
+        return $this->render('employee/opinion/list.html.twig', [
             'opinion' => $opinionArray,
         ]);
     }
 
-    #[Route('/opinion/delete/{id}', name: 'opinion_delete', methods: ['POST'])]
+
+
+
+
+
+    #[Route('employee/opinion/delete/{id}', name: 'opinion_delete', methods: ['POST'])]
     public function deleteOpinion(MongoDBService $mongoDBService, string $id): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
