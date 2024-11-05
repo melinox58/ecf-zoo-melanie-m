@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Horaires{% endblock %}
+{% block title %}Liste des Avis{% endblock %}
 
 {% block body %}
     <div class="containerAdmin">
         <div class="row">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
-                <h4>Liste des horaires</h4>
+                <h4>Liste des avis</h4>
 
                 {% for message in app.flashes('success') %}
                     <div class="alert alert-success">{{ message }}</div>
@@ -22,6 +22,7 @@
                             <th>Pseudo</th>
                             <th>Titre</th>
                             <th>Commentaire</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -31,17 +32,17 @@
                             <td>{{ opinion.pseudo }}</td>
                             <td>{{ opinion.title }}</td>
                             <td>{{ opinion.comment }}</td>
+                            <td>{{ opinion.date}}</td>
                             <td>
-                                <a href="{{ path('opinion_edit', {id: opinion._id}) }}">Modifier</a>
-                                <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
-                                    <button type="submit">Supprimer</button>
+                                <a href="{{ path('emp_opinion_edit', {id: opinion._id}) }}" class="btn btn-primary btn-sm">Éditer</a>
+                                <form action="{{ path('emp_opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                 </form>
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <a href="{{ path('add_opinion') }}" class="btn btn-success">Ajouter un avis</a>
             </main>
         </div>
     </div>

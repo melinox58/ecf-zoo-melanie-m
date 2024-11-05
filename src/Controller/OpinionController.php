@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use MongoDB\BSON\ObjectId;
+use MongoDB\BSON\DateTime;
+
 
 class OpinionController extends AbstractController
 {
@@ -37,10 +38,12 @@ class OpinionController extends AbstractController
                 $this->addFlash('error', 'Un commentaire est requis.');
             } else {
                 // Préparer les données pour l'insertion dans MongoDB
+                $dateString = (new \DateTime())->format('d-m-Y H:i:s'); // Format de la date souhaité
                 $newOpinion = [
                     'pseudo' => $data['pseudo'],
                     'title' => $data['title'],
                     'comment' => $data['comment'],
+                    'date' => (new \DateTime())->format('d-m-Y'), // Enregistrement de la date sous forme de chaîne
                 ];
         
                 // Insertion dans la collection MongoDB
@@ -48,54 +51,11 @@ class OpinionController extends AbstractController
                 $collection->insertOne($newOpinion);
         
                 $this->addFlash('success', 'L\'avis a été déposé avec succès.');
-                return $this->redirectToRoute('app_home', [], 302, '#avis'); // Redirection avec fragment
+                return $this->redirectToRoute('app_home', ['_fragment' => 'avis']);
             }
         }
 
         return $this->render('opinion/add.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
     }
 
-    #[Route('/opinion/edit/{id}', name: 'opinion_edit', methods: ['GET', 'POST'])]
-    public function editOpinion(Request $request, MongoDBService $mongoDBService, string $id): Response
-    {
-        $collection = $mongoDBService->getCollection('opinions');
-        $opinion = $collection->findOne(['_id' => new ObjectId($id)]);
-
-        if (!$opinion) {
-            throw $this->createNotFoundException('Avis non trouvé');
-        }
-
-        if ($request->isMethod('POST')) {
-            $data = $request->request->all();
-
-            // Mise à jour du document dans la collection
-            $updatedData = [
-                'pseudo' => $data['pseudo'],
-                'title' => $data['title'],
-                'comment' => $data['comment'],
-            ];
-            $collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $updatedData]);
-
-            $this->addFlash('success', 'L\'avis a été modifié avec succès.');
-            return $this->redirectToRoute('opinion_list');
-        }
-
-        // Conversion du document BSON en tableau PHP pour Twig
-        $opinionArray = json_decode(json_encode($opinion), true);
-        $opinionArray['_id'] = (string) $opinion['_id']; // Convertir ObjectId en chaîne de caractères
-
-        return $this->render('opinion/edit.html.twig', [
-            'opinion' => $opinionArray,
-        ]);
-    }
-
-    #[Route('/opinion/delete/{id}', name: 'opinion_delete', methods: ['POST'])]
-    public function deleteOpinion(MongoDBService $mongoDBService, string $id): Response
-    {
-        $collection = $mongoDBService->getCollection('opinions');
-        $collection->deleteOne(['_id' => new ObjectId($id)]);
-
-        $this->addFlash('success', 'L\'avis a été supprimé avec succès.');
-        return $this->redirectToRoute('opinion_list');
-    }
 }
