@@ -1,0 +1,31 @@
+<!-- Modal opinion-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="POST" action="{{ path('add_opinion') }}">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Votre avis</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label>Votre pseudo</label>
+                        <input type="text" name="pseudo" required>
+                    </div>
+                    <div>
+                        <label>Titre</label>
+                        <input type="text" name="title" required>
+                    </div>
+                    <div>
+                        <label>Votre avis</label>
+                        <textarea name="comment" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

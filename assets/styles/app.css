@@ -490,6 +490,8 @@ legend{
     background-size: cover;
     width: 57vw;
     height: 67vh;
+    margin-top: 8%;
+    margin-left: 22%;
 }
 
 .modal-header {

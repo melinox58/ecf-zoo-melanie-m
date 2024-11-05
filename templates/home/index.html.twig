@@ -4,6 +4,14 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+
+    {% for message in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
     
     <section class="discover">
         <div class="rectangle"></div>
@@ -83,7 +91,7 @@
             <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
         </div>
 
-    <section class="avis">
+    <section id="avis" class="avis">
 
         <!-- ici sera injecté les avis -->
 
@@ -93,37 +101,8 @@
         </button>
     </section>
 
-            <!-- Modal opinion-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Votre avis</h1>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <label>Votre e-mail</label>
-                        <input type="email" name="email">
-                    </div>
-                    <div>
-                        <label>Titre</label>
-                        <input type="text" name="title">
-                    </div>
-                    <div>
-                        <label>Votre avis</label>
-                        <textarea type="text" name="description"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary">Envoyer</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include "opinion/index.html.twig" %}
     
-    
-
     <div class="banner" id="schedules">
         <h4>Horaires</h4>
         <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
