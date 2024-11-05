@@ -23,6 +23,7 @@
                             <th>Titre</th>
                             <th>Commentaire</th>
                             <th>Date</th>
+                            <th>Validé</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -32,9 +33,23 @@
                             <td>{{ opinion.pseudo }}</td>
                             <td>{{ opinion.title }}</td>
                             <td>{{ opinion.comment }}</td>
-                            <td>{{ opinion.date}}</td>
+                            <td>{{ opinion.date }}</td>
                             <td>
-                                <a href="{{ path('emp_opinion_edit', {id: opinion._id}) }}" class="btn btn-primary btn-sm">Éditer</a>
+                                {% if opinion.isValidated %}
+                                    <span class="text-success">Oui</span>
+                                {% else %}
+                                    <span class="text-danger">Non</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if not opinion.isValidated %}
+                                        <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-primary btn-sm">Valider</button>
+                                    </form>
+                                {% else %}
+                                    <a href="{{ path('emp_opinion_edit', {id: opinion._id}) }}" class="btn btn-secondary btn-sm">Éditer</a>
+                                {% endif %}
+                                
                                 <form action="{{ path('emp_opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
                                     <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                 </form>

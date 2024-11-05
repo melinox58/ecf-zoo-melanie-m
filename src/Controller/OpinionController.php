@@ -1,14 +1,12 @@
 <?php
-
 namespace App\Controller;
 
 use App\Service\MongoDBService;
+use MongoDB\BSON\ObjectId; // Ajout de l'importation
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use MongoDB\BSON\DateTime;
-
 
 class OpinionController extends AbstractController
 {
@@ -18,8 +16,15 @@ class OpinionController extends AbstractController
         $collection = $mongoDBService->getCollection('opinions');
         $opinions = $collection->find();
 
+        $opinionsArray = [];
+        foreach ($opinions as $opinion) {
+            $opinionArray = (array)$opinion;
+            $opinionArray['_id'] = (string) $opinionArray['_id']; // Assurez-vous que l'ID est une chaîne
+            $opinionsArray[] = $opinionArray;
+        }
+
         return $this->render('opinion/list.html.twig', [
-            'opinions' => $opinions,
+            'opinions' => $opinionsArray, // Utiliser le tableau transformé
         ]);
     }
 
@@ -38,12 +43,13 @@ class OpinionController extends AbstractController
                 $this->addFlash('error', 'Un commentaire est requis.');
             } else {
                 // Préparer les données pour l'insertion dans MongoDB
-                $dateString = (new \DateTime())->format('d-m-Y H:i:s'); // Format de la date souhaité
                 $newOpinion = [
                     'pseudo' => $data['pseudo'],
                     'title' => $data['title'],
                     'comment' => $data['comment'],
                     'date' => (new \DateTime())->format('d-m-Y'), // Enregistrement de la date sous forme de chaîne
+                    'isValidated' => false, // Avis en attente de validation
+                    '_id' => new ObjectId(), // Utilisation de ObjectId
                 ];
         
                 // Insertion dans la collection MongoDB
@@ -57,5 +63,4 @@ class OpinionController extends AbstractController
 
         return $this->render('opinion/add.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
     }
-
 }
