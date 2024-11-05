@@ -14,7 +14,7 @@ class EmpOpinionsController extends AbstractController
     public function listOpinion(MongoDBService $mongoDBService): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
-        $opinions = $collection->find()->toArray(); // Convertir en tableau
+        $opinions = $collection->find(); // Convertir en tableau
 
         return $this->render('employee/opinions/index.html.twig', [
             'opinions' => $opinions,

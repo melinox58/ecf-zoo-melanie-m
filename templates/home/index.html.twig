@@ -94,6 +94,16 @@
     <section id="avis" class="avis">
 
         <!-- ici sera injecté les avis -->
+        <ul>
+            {% for opinion in opinions %}
+                <li>
+                    <strong>{{ opinion.pseudo }}</strong>: {{ opinion.comment }} <br>
+                    <em>{{ opinion.title }}</em> - {{ opinion.date }}
+                </li>
+            {% else %}
+                <li>Aucun avis disponible.</li>
+            {% endfor %}
+        </ul>
 
             <!-- Button trigger modal opinion-->
         <button type="button" class="btn btnAvis" data-bs-toggle="modal" data-bs-target="#exampleModal">
