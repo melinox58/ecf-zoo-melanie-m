@@ -7,25 +7,27 @@
 
     <div class="containerAdmin">
         <div class="row">
+
             {% include "_partials/_adminnav.html.twig" %}
+
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier un animal</h4>
                 <table class="table">
-                <a href="{{ path('admin_anim_add') }}" class="btn btn-success">Ajouter un animal</a>
+                    <a href="{{ path('admin_anim_add') }}" class="btn btn-success">Ajouter un animal</a>
 
-                <!-- Formulaire de filtrage -->
-                <form method="get" class="mb-3">
-                    <div class="form-group">
-                        <label for="breed">Filtrer par race</label>
-                        <select id="breed" name="breed" class="form-control">
-                            <option value="">Sélectionner une race</option>
-                            {% for race in races %}
-                                <option value="{{ race.breed }}">{{ race.breed }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Filtrer</button>
-                </form>
+                    <!-- Formulaire de filtrage -->
+                    <form method="get" class="mb-3">
+                        <div class="form-group">
+                            <label for="breed">Filtrer par race</label>
+                            <select id="breed" name="breed" class="form-control">
+                                <option value="">Sélectionner une race</option>
+                                {% for race in races %}
+                                    <option value="{{ race.breed }}">{{ race.breed }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </form>
 
                     <thead>
                         <tr>
@@ -56,11 +58,9 @@
                             </tr>
                         {% endfor %}
                     </tbody>
-                </table>
-                   
+                </table>   
             </main>
         </div>
-        
     </div>
 
 {% endblock %}

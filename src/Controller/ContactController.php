@@ -18,10 +18,10 @@ class ContactController extends AbstractController
     {
         $data = new ContactDTO();
 
-        // TODO : à supprimer
-        $data->name = 'John Doe';
-        $data->email = 'john@doe.fr';
-        $data->message = 'Super site !!';
+        // // TODO : à supprimer
+        // $data->name = 'John Doe';
+        // $data->email = 'john@doe.fr';
+        // $data->message = 'Super site !!';
 
         $form = $this->createForm(ContactType::class, $data);
         $form->handleRequest($request);

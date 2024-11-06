@@ -1,30 +1,29 @@
 <aside class="col-2 border border-light p-2">
-{# Bouttons pour l'espace admin #}
-{% if is_granted('ROLE_ADMIN') %} 
+    {# Boutons pour l'espace admin #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_emp') }}">Employés</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_serv') }}">Services</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('schedules_list') }}">Horaires</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_hab') }}">Habitats</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_anim') }}">Animaux</a></button>
+        <button type="button" class="btn btnRegister"><a href="#">Comptes rendus</a></button>
+        <button type="button" class="btn btnRegister"><a href="#">Statistiques</a></button>
 
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_admin_emp')}}">Employés</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_admin_serv')}}">Services</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('schedules_list')}}">Horaires</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_admin_hab')}}">Habitats</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_admin_anim')}}">Animaux</a></button>
-    <button type="button" class="btn btnRegister"><a href="#">Comptes rendus</a></button>
-    <button type="button" class="btn btnRegister"><a href="#">Statistiques</a></button>
+        {# Boutons pour l'espace employé visibles également pour l'admin #}
+        <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
+        <button type="button" class="btn btnRegister"><a href="{{ path('emp_opinion_list') }}">Avis à traiter</a></button>
+        
+    {% elseif is_granted('ROLE_EMPLOYEE') %}
+        {# Affichage pour les employés uniquement #}
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_emp_anim') }}">Soigner un animal</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_serv') }}">Modifier les services</a></button>
+        <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
+        <button type="button" class="btn btnRegister"><a href="{{ path('emp_opinion_list') }}">Avis à traiter</a></button>
 
-{# Bouttons pour l'espace employé #}
-{% elseif is_granted('ROLE_EMPLOYEE') %}
-
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_emp_anim')}}">Soigner un animal</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_admin_serv')}}">Modifier les services</a></button>
-    <a class="btn btnRegister" href="http://localhost:8025" class="btn btnRegister" target="_blank">Mail</a>
-    <button type="button" class="btn btnRegister"><a href="{{path ('emp_opinion_list')}}">Avis a traiter</a></button>
-
-{# Bouttons pour l'espace vétérinaire #}
-{% elseif is_granted('ROLE_VETERINARY') %}
-
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_emp_anim')}}">Compte rendu</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Commentaire habitat</a></button>
-    <button type="button" class="btn btnRegister"><a href="{{path ('app_services')}}">Etat animal</a></button>
-
-{% endif %}
-
+    {% elseif is_granted('ROLE_VETERINARY') %}
+        {# Affichage pour les vétérinaires uniquement #}
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_emp_anim') }}">Compte rendu</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_services') }}">Commentaire habitat</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_services') }}">Etat animal</a></button>
+    {% endif %}
 </aside>

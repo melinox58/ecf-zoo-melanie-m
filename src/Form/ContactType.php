@@ -22,14 +22,16 @@ class ContactType extends AbstractType
             ->add('email', EmailType::class,[
                 'empty_data'=> ''
             ])
+            ->add('title', TextType::class,[
+                'empty_data'=> ''
+            ])
             ->add('message', 
             TextareaType::class,[
                 'empty_data'=> ''
             ])
             ->add('save', SubmitType::class, [
                 'label'=> 'Envoyer'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
