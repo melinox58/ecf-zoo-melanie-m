@@ -1,0 +1,37 @@
+[
+    {
+        "pseudo": "LilyVoyage",
+        "title": "Super journée en famille",
+        "comment": "Nous avons passé une magnifique journée au zoo Arcadia ! Les animaux semblent bien traités, et les enfants ont adoré les animations et les aires de jeux. On reviendra sans hésiter.",
+        "date": "05-11-2024",
+        "isValidated": false
+    },
+    {
+        "pseudo": "AnimalLover23",
+        "title": "Belle diversité d'espèces",
+        "comment": "Quel plaisir de voir des animaux du monde entier ! Le parc est bien organisé et les enclos sont spacieux. Mention spéciale pour les girafes, magnifiques !",
+        "date": "05-11-2024",
+        "isValidated": false
+    },
+    {
+        "pseudo": "PierreAventurier",
+        "title": "Une visite enrichissante",
+        "comment": "Le zoo Arcadia offre une belle expérience. Les panneaux explicatifs et les guides sont bien renseignés, on apprend beaucoup. Parfait pour les petits et les grands !",
+        "date": "05-11-2024",
+        "isValidated": false
+    },
+    {
+        "pseudo": "Marie_FamilyTrip",
+        "title": "Un incontournable",
+        "comment": "Un lieu incontournable pour passer du bon temps en famille. Nous avons été impressionnés par le soin apporté aux habitats des animaux. À refaire !",
+        "date": "05-11-2024",
+        "isValidated": false
+    },
+    {
+        "pseudo": "ZoéNature",
+        "title": "Jardin zoologique soigné",
+        "comment": "Les allées sont propres, et on sent que le bien-être animal est une priorité. Les bénévoles sont très accueillants. Bravo au zoo Arcadia pour ce bel endroit !",
+        "date": "05-11-2024",
+        "isValidated": false
+    }
+]

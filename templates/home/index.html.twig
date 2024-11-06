@@ -94,6 +94,16 @@
     <section id="avis" class="avis">
 
         <!-- ici sera injecté les avis -->
+        <ul>
+            {% for opinion in opinions %}
+                <li>
+                    <strong>{{ opinion.pseudo }}</strong>: {{ opinion.comment }} <br>
+                    <em>{{ opinion.title }}</em> - {{ opinion.date }}
+                </li>
+            {% else %}
+                <li>Aucun avis disponible.</li>
+            {% endfor %}
+        </ul>
 
             <!-- Button trigger modal opinion-->
         <button type="button" class="btn btnAvis" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -109,14 +119,30 @@
     </div>
 
     <div class="schedules">
-        <p>Lundi                   FERME<br>
-            Mardi                   9h00 - 20h30<br>
-            Mercredi                9h00 - 20h30<br>
-            Jeudi                    9h00 - 20h30<br>
-            Vendredi                9h00 - 20h30<br>
-            Samedi                  9h00 - 20h30<br>
-            Dimanche                9h00 - 20h30</p>
+        <ul>
+            {% for schedule in schedules %}
+                <li>
+                    <strong>{{ schedule['name'] }}</strong>
+                    <ul>
+                        {% for entry in schedule['entries'] %}
+                            <li>
+                                {{ entry['day'] }}<br>
+                                {% if entry['closed'] %}
+                                    <strong>Fermé</strong>
+                                {% else %}
+                                    {{ entry['open'] }}<br>
+                                    {{ entry['close'] }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% else %}
+                <li>Aucun horaire disponible.</li>
+            {% endfor %}
+        </ul>
     </div>
+
 
         <!-- ATTENTION !! voir injection des horaires -->
 
