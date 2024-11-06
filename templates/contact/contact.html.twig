@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block body %}
+    <h4>Nous contacter</h4>
+
+    {{ form_start(form, {'attr': {'data-turbo': 'false'}}) }}
+
+    <div class="col">
+        <div class="col-sm">{{ form_row(form.name) }}</div>
+        <div class="col-sm">{{ form_row(form.email) }}</div>
+        <div class="col-sm">{{ form_row(form.message) }}</div>
+    </div>
+    
+    {% if form.vars.errors is not empty %}
+        <div class="alert alert-danger">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    {{ form_end(form) }}
+
+{% endblock %}

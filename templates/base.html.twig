@@ -21,6 +21,13 @@
     {% include "_partials/header.html.twig" %}
         {% block body %}
 
+
+        {% if app.session.flashbag.has('succes') %}
+            <div class="alert alert-success">
+                {{ app.session.flashbag.get('succes') | first }}
+            </div>
+        {% endif %}
+
         
         
     
