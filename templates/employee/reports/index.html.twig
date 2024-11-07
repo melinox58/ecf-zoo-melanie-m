@@ -11,20 +11,19 @@
                 <h4>Soigner un animal</h4>
                 <table class="table">
 
-                <!-- Formulaire de filtrage -->
-                <form method="get" class="mb-3">
-                    <div class="form-group">
-                        <label for="breed">Filtrer par race</label>
-                        <select id="breed" name="breed" class="form-control">
-                            <option value="">Sélectionner une race</option>
-                            {% for race in races %}
-                                <option value="{{ race.breed }}">{{ race.breed }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Filtrer</button>
-                </form>
-
+                    <!-- Formulaire de filtrage -->
+                    <form method="get" class="mb-3">
+                        <div class="form-group">
+                            <label for="breed">Filtrer par race</label>
+                            <select id="breed" name="breed" class="form-control">
+                                <option value="">Sélectionner une race</option>
+                                {% for race in races %}
+                                    <option value="{{ race.breed }}">{{ race.breed }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </form>
                     <thead>
                         <tr>
                             <th>Nom</th>
@@ -74,8 +73,7 @@
                             </tr>
                         {% endfor %}
                     </tbody>
-                </table>
-                   
+                </table>   
             </main>
         </div>
     </div>
