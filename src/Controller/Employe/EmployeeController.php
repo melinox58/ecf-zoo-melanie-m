@@ -4,20 +4,16 @@ namespace App\Controller\Employe;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Users; // Assure-toi que cette ligne est présente
 
 class EmployeeController extends AbstractController
 {
     #[Route('/employee', name: 'app_employee')]
     public function index(): Response
     {
-        // Vérifier si l'utilisateur est connecté et a le rôle d'employé
-        if (!$this->isGranted('ROLE_EMPLOYEE')) {
-            // Rediriger vers la page d'accueil si l'utilisateur n'est pas connecté ou n'a pas le rôle approprié
-            return $this->redirectToRoute('app_home');
-        }
-
         // Récupérer l'utilisateur connecté
+        /** @var Users|null $user */
         $user = $this->getUser();
         
         // Récupérer le nom de l'utilisateur ou afficher "Invité" si l'utilisateur n'est pas connecté

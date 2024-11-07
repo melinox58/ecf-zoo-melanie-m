@@ -78,7 +78,6 @@ class ReportsType extends AbstractType
                     new Type(['type' => 'numeric']) // Vérifiez que c'est un nombre
                 ],
             ])
-            
             ->add('unit', ChoiceType::class, [
                 'choices' => $unitChoices,
                 'placeholder' => 'Unité',

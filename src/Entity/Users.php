@@ -62,8 +62,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        
-        if (!in_array('ROLE_USER', $roles)) {
+
+        // Assure que chaque utilisateur ait au moins le rôle ROLE_USER
+        if (!in_array('ROLE_USER', $roles, true)) {
             $roles[] = 'ROLE_USER';
         }
 
@@ -75,6 +76,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * Vérifie si l'utilisateur a le rôle ROLE_ADMIN
+     */
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->roles, true);
     }
 
     public function getPassword(): ?string

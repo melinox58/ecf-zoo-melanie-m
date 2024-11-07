@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapports{% endblock %}
+
+{% block body %}
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Comptes rendus employé</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Rapport pour</th>
+                            <th>Commentaire</th>
+                            <th>Aliment</th>
+                            <th>Quantité</th>
+                            <th>Date et Heure</th>
+                            <th>Employé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if reports is empty %}
+                            <p>Aucun rapport</p>
+                        {% else %}
+                            {% for report in reports %}
+                            <tr>
+                                <td>{{ report.idAnimals.nameAnimal }}</td>
+                                <td>{{ report.comment }}</td>
+                                <td>{{ report.idFoods.name }}</td>
+                                <td>{{ report.weight }} {{ report.unit }}</td>
+                                <td>{{ report.date|date('d/m/Y H:i') }}</td>
+                                <td>{{ report.idUsers.firstName }} {{ report.idUsers.name }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>    
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

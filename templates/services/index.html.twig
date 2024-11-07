@@ -3,6 +3,7 @@
 {% block title %}Services{% endblock %}
 
 {% block body %}
+
 {# Code intro service #}
 <section class="titleServ">
     <h3 class="h3Serv">Nos Services</h3>
@@ -31,29 +32,29 @@
 
 {# Caroussel #}
 <div class="carousel">
-    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-ride="carousel" data-bs-interval="2500">
-    <div class="carousel-inner">
-        <div class="carousel-item active w-60">
-            <img src={{asset('/images/repas2bis.png')}} class="d-block" alt="...">
+    < id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-ride="carousel" data-bs-interval="2500">
+        <div class="carousel-inner">
+            <div class="carousel-item active w-60">
+                <img src={{asset('/images/repas2bis.png')}} class="d-block" alt="...">
+            </div>
+            <div class="carousel-item w-60">
+                <img src={{asset('/images/pizza2.png')}} class="d-block" alt="...">
+            </div>
+            <div class="carousel-item w-60">
+                <img src={{asset('/images/hamburger.png')}} class="d-block" alt="...">
+            </div>
+            <div class="carousel-item w-60">
+                <img src={{asset('/images/repasbis.png')}} class="d-block" alt="..."> 
+            </div>
         </div>
-        <div class="carousel-item w-60">
-            <img src={{asset('/images/pizza2.png')}} class="d-block" alt="...">
-        </div>
-        <div class="carousel-item w-60">
-            <img src={{asset('/images/hamburger.png')}} class="d-block" alt="...">
-        </div>
-        <div class="carousel-item w-60">
-            <img src={{asset('/images/repasbis.png')}} class="d-block" alt="..."> 
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
 
@@ -96,7 +97,7 @@
     </div>
 </section>
 
-{# Code éxologie #}
+{# Code écologie #}
 <div class="banner">
     <h4>Engagement écologique</h4>
     <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
