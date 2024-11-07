@@ -10,6 +10,7 @@ use App\Repository\UsersRepository;
 use App\Entity\Users;
 use App\Entity\Reports;
 use App\Form\ReportsType as FormReportsType;
+use App\Repository\ReportsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -113,6 +114,25 @@ class ReportsController extends AbstractController
 
             return $this->render('employee/reports/add.html.twig', [
                 'form' => $form->createView(),
+            ]);
+        }
+
+        #[Route('/employee/reports/list', name: 'app_employee_reports_list')]
+        public function reports(ReportsRepository $reportsRepository): Response
+        {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!$user) {
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion
+        }
+
+            // Récupérer les rapports avec les détails associés
+            $reports = $reportsRepository->findReportsWithDetails();
+
+            return $this->render('employee/reports/list.html.twig', [
+                'reports' => $reports,
             ]);
         }
 }

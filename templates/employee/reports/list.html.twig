@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapports{% endblock %}
+
+{% block body %}
+    <h1>Liste des rapports</h1>
+
+    {% for report in reports %}
+        <div>
+            <h3>Rapport pour {{ report.idAnimals.nameAnimal }}</h3> <!-- Utilisation de idAnimals -->
+            <p>Commentaire: {{ report.comment }}</p>
+            <p>Poids: {{ report.weight }} {{ report.unit }}</p>
+            <p>Utilisateur: {{ report.idUsers.firstName }} {{ report.idUsers.name }}</p> <!-- Utilisation de idUsers -->
+            <p>Aliment: {{ report.idFoods.name }}</p> <!-- Utilisation de idFoods -->
+        </div>
+    {% else %}
+        <p>Aucun rapport trouvé.</p>
+    {% endfor %}
+{% endblock %}
