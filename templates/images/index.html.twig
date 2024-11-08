@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire d'upload{% endblock %}
+
+{% block body %}
+
+    <div class="containerAdmin">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Liste des images</h4>
+                <div>
+                    <a href="#" class="btn btn-success mb-3">Ajouter une image</a>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Service</th>
+                                <th>Animal</th>
+                                <th>Habitat</th>
+                                <th>Image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if images is empty %}
+                                <tr><td colspan="6">Aucune image disponible.</td></tr>
+                            {% else %}
+                                {% for image in images %}
+                                    <tr>
+                                        <td>{{ image.name }}</td>
+                                        <td>{{ image.idServices.name }}</td>
+                                        <td>{{ image.idAnimals.nameAnimal }}</td>
+                                        <td>{{ image.idHabitats.name }}</td>
+                                        <td>
+                                            <img src="{{ asset('uploads/images/' ~ image.fileName) }}" alt="Image de l'animal" style="max-width: 300px;">
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('image_edit', { id: image.id }) }}">Modifier</a>
+                                            <form action="{{ path('image_delete', { id: image.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cette image?');" style="display:inline;">
+                                                <button type="submit">Supprimer</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
