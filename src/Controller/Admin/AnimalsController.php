@@ -72,10 +72,10 @@ public function modify(Animals $animal, Request $request, EntityManagerInterface
             'attr' => ['accept' => 'image/png, image/jpeg, image/webp'], 
             'constraints' => [
                 new Image(
-                    minWidth: 200, 
-                    maxWidth: 4000, 
-                    minHeight: 200, 
-                    maxHeight: 4000, 
+                    minWidth: 100, 
+                    maxWidth: 7000, 
+                    minHeight: 100, 
+                    maxHeight: 7000, 
                     allowPortrait: false, 
                     mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
                 ) 
@@ -151,10 +151,10 @@ public function add(Request $request, EntityManagerInterface $entityManager, Hab
             'attr' => ['accept' => 'image/png, image/jpeg, image/webp'], 
             'constraints' => [
                 new Image(
-                    minWidth: 200, 
-                    maxWidth: 4000, 
-                    minHeight: 200, 
-                    maxHeight: 4000, 
+                    minWidth: 100, 
+                    maxWidth: 7000, 
+                    minHeight: 100, 
+                    maxHeight: 7000, 
                     allowPortrait: false, 
                     mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
                 ) 
