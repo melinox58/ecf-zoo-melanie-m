@@ -2,7 +2,6 @@
 
 {% block title %}Modifier un habitat{% endblock %}
 
-
 {% block body %}
 
     <div class="containerAdmin">
@@ -35,28 +34,34 @@
                             <th>Race</th>
                             <th>Description</th>
                             <th>Habitat</th>
-                            {# <th>Image</th> #}
+                            <th>Image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for animal in animals %}
-                            <tr>
-                                <td>{{ animal.nameAnimal }}</td>
-                                <td>{{ animal.breed}}</td>
-                                <td>{{ animal.description}}</td>
-                                <td>{{ animal.idHabitats.name }}</td>
-                                {# <td><img src="{{ asset('assets/uploads/animal/mini/300x300-'
-                                animal.images[0].name)}}" alt="{{ animal.nameAnimal }}"
-                                class="img-thumbnail"</td> #}
-                                <td>
-                                    <a href="{{ path('admin_anim_modif', { id: animal.id }) }}">Modifier</a>
-                                    <form action="{{ path('admin_anim_delete', { id: animal.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet animal?');" style="display:inline;">
-                                        <button type="submit">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
+                        <tr>
+                            <td>{{ animal.nameAnimal }}</td>
+                            <td>{{ animal.breed }}</td>
+                            <td>{{ animal.description }}</td>
+                            <td>{{ animal.idHabitats.name }}</td>
+                            <td>
+                                {% if animal.images|length > 0 %}
+                                    {# <p>{{ animal.images[0].getFilePath }}</p> <!-- Affiche le chemin de l'image pour vérifier --> #}
+                                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                                {% else %}
+                                    <p>Aucune image disponible</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_anim_modif', { id: animal.id }) }}" class="btn btn-warning">Modifier</a>
+                                <form action="{{ path('admin_anim_delete', { id: animal.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet animal?');" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
                     </tbody>
                 </table>   
             </main>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use App\Repository\ImagesRepository;
@@ -14,19 +15,17 @@ class Images
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Services $idServices = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Animals $idAnimals = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Habitats $idHabitats = null;
 
-    #[ORM\Column(length: 40)]
-    private ?string $name = null;
 
     // Remplacement du champ src (BLOB) par filePath pour stocker le chemin du fichier
     #[ORM\Column(type: "string", length: 255)]
@@ -69,17 +68,6 @@ class Images
     public function setIdHabitats(?Habitats $idHabitats): static
     {
         $this->idHabitats = $idHabitats;
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
         return $this;
     }
 

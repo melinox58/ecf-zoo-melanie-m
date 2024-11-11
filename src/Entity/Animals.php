@@ -6,6 +6,7 @@ use App\Repository\AnimalsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use App\Entity\Images;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnimalsRepository::class)]
@@ -25,9 +26,6 @@ class Animals
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $counter = null;
-
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Habitats $idHabitats = null;
@@ -35,9 +33,13 @@ class Animals
     #[ORM\OneToMany(mappedBy: 'idAnimals', targetEntity: Reports::class, cascade: ['persist', 'remove'])]
     private Collection $report;
 
+    // Relation OneToMany avec Images
+    #[ORM\OneToMany(mappedBy: 'idAnimals', targetEntity: Images::class, cascade: ['persist', 'remove'])]
+    private $images;
+
     public function __construct()
     {
-        $this->counter = 0; // Initialiser à 0 par défaut
+        $this->images = new ArrayCollection();
         $this->report = new ArrayCollection(); // Initialiser la collection des rapports
     }
 
@@ -54,7 +56,6 @@ class Animals
     public function setNameAnimal(string $nameAnimal): static
     {
         $this->nameAnimal = $nameAnimal;
-
         return $this;
     }
 
@@ -71,7 +72,6 @@ class Animals
     public function setBreed(string $breed): static
     {
         $this->breed = $breed;
-
         return $this;
     }
 
@@ -83,19 +83,6 @@ class Animals
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCounter(): ?int
-    {
-        return $this->counter;
-    }
-
-    public function setCounter(int $counter): static
-    {
-        $this->counter = $counter;
-
         return $this;
     }
 
@@ -107,7 +94,6 @@ class Animals
     public function setIdHabitats(?Habitats $idHabitats): static
     {
         $this->idHabitats = $idHabitats;
-
         return $this;
     }
 
@@ -136,6 +122,37 @@ class Animals
             // Supprimer l'association à l'animal si nécessaire
             if ($report->getIdAnimals() === $this) {
                 $report->setIdAnimals(null);
+            }
+        }
+
+        return $this;
+    }
+
+    // Getter et setter pour la collection d'images
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    // Ajouter une image à la collection
+    public function addImage(Images $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setIdAnimals($this); // Associer l'animal à l'image
+        }
+
+        return $this;
+    }
+
+    // Supprimer une image de la collection
+    public function removeImage(Images $image): static
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // Supprimer l'association à l'animal si nécessaire
+            if ($image->getIdAnimals() === $this) {
+                $image->setIdAnimals(null);
             }
         }
 

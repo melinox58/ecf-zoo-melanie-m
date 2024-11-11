@@ -15,19 +15,18 @@ class ImagesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Images::class);
     }
-        // Méthode pour récupérer les images avec les détails associés
-      
+    
     public function findImagesWithDetails()
     {
         return $this->createQueryBuilder('i')
-            ->join('i.idServices', 's')
+            // Utilisation de leftJoin pour éviter les erreurs si des relations manquent
+            ->leftJoin('i.idServices', 's')
             ->addSelect('s')
-            ->join('i.idAnimals', 'a')
+            ->leftJoin('i.idAnimals', 'a')
             ->addSelect('a')
-            ->join('i.idHabitats', 'h')
+            ->leftJoin('i.idHabitats', 'h')
             ->addSelect('h')
             ->getQuery()
             ->getResult();
     }
-
 }
