@@ -97,8 +97,9 @@
     <ul>
         {% for opinion in opinions %}
             <li>
-                <strong>{{ opinion.pseudo }}</strong>: {{ opinion.comment }} <br>
-                <em>{{ opinion.title }}</em> - {{ opinion.date }}
+                <strong>{{ opinion.pseudo }}</strong>: <em>{{ opinion.title }}</em>- {{ opinion.date }} <br>
+                {{ opinion.comment }}
+                 
             </li>
         {% else %}
             <li>Aucun avis disponible.</li>
