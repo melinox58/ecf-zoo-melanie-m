@@ -34,7 +34,7 @@
                             <td>{{ opinion.comment }}</td>
                             <td>
                                 <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
-                                    <button type="submit">Supprimer</button>
+                                    <button class="btn btn-danger" type="submit">Supprimer</button>
                                 </form>
                                 {# <button type="button" class="btn btnRegister">
                                     <a href="{{ path('opinion_edit', {id: opinion._id}) }}">Avis à traiter</a> #}

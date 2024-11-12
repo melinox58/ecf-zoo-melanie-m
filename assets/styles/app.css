@@ -1068,6 +1068,18 @@ a.btnRegister{
     background-color: #B57F50;
 }
 
+th{
+    font-family: 'Lemon', serif;
+}
+
+td.action{
+    width: 14%;
+  }  
+
+.col-9 > h4:nth-child(1) {
+    margin-bottom: 4%;
+  }
+
 
 /* ---------------------------------REGISTRATION-PAGE---------------------------- */
 
@@ -1095,22 +1107,18 @@ button.btn.btn-danger{
     font-family: 'Lemon', serif;
     font-size: 0.7rem;
     text-align: center;
-    width: 35%;;
+    width: 80%;;
+    margin-top: 2%;
 }
 
 a.btn.btn-success{
     font-family: 'Lemon', serif;
     font-size: 0.7rem;
     text-align: center;
+    margin-bottom: 2%;
 }
 
-th{
-    font-family: 'Lemon', serif;
-}
 
-.col-9 > h4:nth-child(1) {
-    margin-bottom: 4%;
-  }
   
 
 /* ---------------------------------RGPD-PAGE---------------------------- */

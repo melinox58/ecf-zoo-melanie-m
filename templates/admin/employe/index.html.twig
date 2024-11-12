@@ -39,7 +39,7 @@
                                         <span class="badge">{{ name }}</span>
                                     {% endfor %}
                                 </td>
-                                <td>
+                                <td class='action'>
                                     {% if "ROLE_ADMIN" not in user.roles %}
                                         <button type="button" class="btn btn-primary" href="{{ path('admin_emp_modify', { id: user.id }) }}">Modifier</button>
                                         <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');" style="display:inline;">

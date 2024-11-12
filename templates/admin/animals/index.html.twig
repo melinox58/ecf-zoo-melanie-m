@@ -53,14 +53,13 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="{{ path('admin_anim_modif', { id: animal.id }) }}" class="btn btn-warning">Modifier</a>
+                                <button type="button" class="btn btn-primary" href="{{ path('admin_anim_modif', { id: animal.id }) }}">Modifier</a>
                                 <form action="{{ path('admin_anim_delete', { id: animal.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet animal?');" style="display:inline;">
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
                             </td>
                         </tr>
                     {% endfor %}
-
                     </tbody>
                 </table>   
             </main>
