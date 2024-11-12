@@ -1034,7 +1034,9 @@ aside {
     align-items: center;
   }
   
-  
+button.btn.btnRegister{
+    font-family: 'Lemonada', serif;
+}
   
 .btnRegister {
     background-color:#4B543B;
@@ -1049,6 +1051,7 @@ aside {
 
 a.btnRegister{
     color: white;
+    font-family: 'Lemonada', serif;
 }
 
 .containerAdmin{
@@ -1082,6 +1085,33 @@ form .btn {
     align-items: center;
 }
 
+button.btn.btn-primary{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+button.btn.btn-danger{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 35%;;
+}
+
+a.btn.btn-success{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+th{
+    font-family: 'Lemon', serif;
+}
+
+.col-9 > h4:nth-child(1) {
+    margin-bottom: 4%;
+  }
+  
 
 /* ---------------------------------RGPD-PAGE---------------------------- */
 
