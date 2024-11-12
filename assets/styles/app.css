@@ -464,11 +464,15 @@ legend{
     margin-bottom: 5%;
 }
 
+li {
+    margin-bottom: 4%;
+  }  
+
 dl, ol, ul {
-  margin-top:0;
   margin-bottom:1rem;
   text-align: center;
   width: 60%;
+  list-style-type: none;
 }
 
 .avis .btnAvis {
@@ -1082,6 +1086,7 @@ a.btn.btn-success{
 
 button.report.btn.btn-success{
     width: 30%;
+    text-align: center;
 }
 
 button.filter.btn.btn-primary {

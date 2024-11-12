@@ -27,6 +27,7 @@
                     <thead>
                         <tr>
                             <th>Nom</th>
+                            <th>Image</th>
                             <th>Race</th>
                             <th>Habitat</th>
                             {% if is_granted('ROLE_VETERINARY') %}
@@ -40,6 +41,13 @@
                         {% for animal in animals %}
                             <tr>
                                 <td>{{ animal.nameAnimal }}</td>
+                                <td>
+                                    {% if animal.images|length > 0 %}
+                                        <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-report" width="100">
+                                    {% else %}
+                                        <p>Aucune image disponible</p>
+                                    {% endif %}
+                                </td>
                                 <td>{{ animal.breed }}</td>
                                 <td>{{ animal.idHabitats.name }}</td>
                                 {% if is_granted('ROLE_VETERINARY') %}
@@ -68,7 +76,7 @@
                                     </td>
                                 {% endif %}
                                 <td>
-                                    <button type="button" class="report btn btn-success" href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">Créer un rapport</a>
+                                    <button type="button" class="report btn btn-success" href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">+</a>
                                 </td>
                             </tr>
                         {% endfor %}
