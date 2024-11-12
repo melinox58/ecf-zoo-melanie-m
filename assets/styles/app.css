@@ -1101,13 +1101,14 @@ button.btn.btn-primary{
     font-family: 'Lemon', serif;
     font-size: 0.7rem;
     text-align: center;
+    width: 80%;
 }
 
 button.btn.btn-danger{
     font-family: 'Lemon', serif;
     font-size: 0.7rem;
     text-align: center;
-    width: 80%;;
+    width: 80%;
     margin-top: 2%;
 }
 
