@@ -22,7 +22,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                        <button type="submit" class="filter btn btn-primary">Filtrer</button>
                     </form>
                     <thead>
                         <tr>
@@ -68,7 +68,7 @@
                                     </td>
                                 {% endif %}
                                 <td>
-                                    <button type="button" class="btn btn-primary" href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">Créer un rapport</a>
+                                    <button type="button" class="report btn btn-success" href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">Créer un rapport</a>
                                 </td>
                             </tr>
                         {% endfor %}

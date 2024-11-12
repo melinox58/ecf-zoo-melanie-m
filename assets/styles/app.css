@@ -382,15 +382,15 @@ h3{
 .animaux{
     width: 85vw;
     margin-bottom: 5%;
+    display: flex;
 }
 
 .card{
     background-color:#DCE2AA;
     width: 20%;
-    height: 80%;
-    border-radius: 5%;
-    margin-top: 5%;
     align-items: center;
+    margin-top: 5%;
+    height: 65vh;
 }
 
 .card-img{
@@ -398,13 +398,7 @@ h3{
     display: flex;
     margin-top: 9%;
     border-radius: 4%;
-}
-
-.card-title{
-    text-align: center;
-    font-family: "Lemonada", cursive;
-    font-size: 0.9rem;
-    color: #4B543B;
+    border: 4px solid white;
 }
 
 
@@ -778,107 +772,39 @@ iframe{
     color: #4B543B;
 }
 
-.container{
-    display: flex;
-}
-
-.card-jungle{
-    display: flex;
-    flex-direction: column;
+.card.jungle{
     background-color:#8ED081;
-    width: 20%;
-    height: 43%;
-    border-radius: 5%;
-    margin-top: 5%;
-    align-items: center;
-    box-shadow: 0 4px 4px #4B543B;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
 }
-
-.jungle.col-md-3 {
-    flex:0 0 auto;
-    width:25%;
-    display: flex;
-    justify-content: center;
-}
-
-.jungle .btn{
-    justify-content: center;
-    display: flex;
-}
-
-.card-marais{
-    display: flex;
-    flex-direction: column;
+.card.marais{
     background-color:#B57F50;
-    width: 20%;
-    height: 43%;
-    border-radius: 5%;
-    margin-top: 5%;
-    align-items: center;
-    box-shadow: 0 4px 4px #4B543B;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
 }
-
-.marais.col-md-3 {
-    flex:0 0 auto;
-    width:25%;
-    display: flex;
-    justify-content: center;
-}
-
-.marais .btn{
-    justify-content: center;
-    display: flex;
-}
-
-.card-savane{
-    display: flex;
-    flex-direction: column;
+.card.savane{
     background-color:#DCE2AA;
-    width: 20%;
-    height: 43%;
-    border-radius: 5%;
-    margin-top: 5%;
-    align-items: center;
-    box-shadow: 0 4px 4px #4B543B;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
+}
+  
+a.jungle.btn.btn-primary,
+a.marais.btn.btn-primary,
+a.savane.btn.btn-primary{
+    width: 6vw;
+    font-family: lemon;
+    font-size: 0.7rem;
+    margin-top: 8%;
 }
 
-.savane .col-md-3 {
-    flex:0 0 auto;
-    width:25%;
-    display: flex;
-    justify-content: center;
-}
-
-.savane .btn{
-    justify-content: center;
-    display: flex;
-}
-
-.card-img-top{
-    width: 78%;
-    display: flex;
-    margin-top: 11%;
-    border-radius: 4%;
-}
-
-.card-body {
-    flex:1 1 auto;
-    padding:var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color:var(--bs-card-color);
-    padding: 13%;
-}
-
-.card-body p {
-    margin-top: 9%;
-    margin-bottom:1rem;
+p.card-text {
     text-align: justify;
     color: #4B543B;
     font-family: lemonada;
     font-size: 0.7rem;
-    width: 100%;
-    height: 15%;
     overflow: auto;
     text-overflow: ellipsis;
+    height: 20vh;
 }
 
 .img-thumbnail {
@@ -888,11 +814,23 @@ iframe{
     border-radius:var(--bs-border-radius);
     max-width:100%;
     height:auto;
-    width: 76%;
+    width: 64%;
     margin-top: 8%;
 }
   
+.card-title {
+    padding-top: 3%;
+    text-align: center;
+    font-family: "Lemonada", cursive;
+    font-size: 0.9rem;
+    color: #4B543B;
+}
 
+.row{
+    gap: 2%;
+    justify-content: center;
+    height: 67vh;
+}
 
 
 /* ---------------------------------NOUS CONTACTER------------------------------- */
@@ -1135,3 +1073,19 @@ a.btn.btn-success{
     margin-top: 3%;
     margin-bottom: 3%;
 }
+
+/* ----------------------------------VETERINARY-PAGE------------------------------------ */
+
+.form-group label{
+    width: 43%;
+}
+
+button.report.btn.btn-success{
+    width: 30%;
+}
+
+button.filter.btn.btn-primary {
+    width: 15%;
+    margin-top: 2%;
+  }
+  

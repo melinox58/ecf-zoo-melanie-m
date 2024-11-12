@@ -27,22 +27,20 @@
 </div>
 
 {# Cards d'animaux de la jungle #}
-<div class="container">
+<section class="animaux">
     <div class="row">
         {% for animal in jungleAnimals %}
-            <div class="jungle col-md-3">
-                <div class="card-jungle" style="width: 18rem;">
-                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                <div class="card jungle">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
                     <div class="card-body">
                         <h5 class="card-title">{{ animal.nameAnimal }}</h5>
                         <p class="card-text">{{ animal.description }}</p>
                         <a href="#" class="jungle btn btn-primary">Détails</a>
                     </div>
                 </div>
-            </div>
         {% endfor %}
     </div>
-</div>
+</section>
 
 {# Code marais #}
 <div class="banner" id="marais">
@@ -56,22 +54,20 @@
 </div>
 
 {# Cards d'animaux des marais #}
-<div class="container">
+<section class="animaux">
     <div class="row">
         {% for animal in maraisAnimals %}
-            <div class="col-md-3">
-                <div class="card-marais" style="width: 18rem;">
-                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                <div class="card marais">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
                     <div class="card-body">
                         <h5 class="card-title">{{ animal.nameAnimal }}</h5>
                         <p class="card-text">{{ animal.description }}</p>
                         <a href="#" class="marais btn btn-primary">Détails</a>
                     </div>
                 </div>
-            </div>
         {% endfor %}
     </div>
-</div>
+</section>
 
 {# Code savane #}
 <div class="banner" id="savane">
@@ -85,21 +81,19 @@
 </div>
 
 {# Cards d'animaux de la savane #}
-<div class="container">
+<section class="animaux">
     <div class="row">
         {% for animal in savaneAnimals %}
-            <div class="col-md-3">
-                <div class="card-savane" style="width: 18rem;">
-                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                <div class="card savane">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
                     <div class="card-body">
                         <h5 class="card-title">{{ animal.nameAnimal }}</h5>
                         <p class="card-text">{{ animal.description }}</p>
-                        <a href="#" class="savane btn btn-primary">Détails</a>
+                        <button type="button" class="btn btn-primary" href="#">Détails</a>
                     </div>
                 </div>
-            </div>
         {% endfor %}
     </div>
-</div>
+</section>
 
 {% endblock %}
