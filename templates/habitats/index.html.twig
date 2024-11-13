@@ -3,113 +3,97 @@
 {% block title %}Habitats{% endblock %}
 
 {% block body %}
-
 {# Code intro habitat #}
 <section class="titleServ">
     <h3 class="h3Serv">Habitats</h3>
     <div class="rectangle"></div>
 </section>
 
-<img class="habitat" src={{asset('/images/jungle/perroquets-couple.jpg')}} alt="Entrée du zoo">
+<img class="habitat" src="{{ asset('/images/jungle/perroquets-couple.jpg') }}" alt="Entrée du zoo">
 <div class="transparent-hab"></div>
 <div class="habitincl">
-    <p>Chaque jour, plusieurs vétérinaires viennent afin  d’effectuer les contrôles
-    sur chaque animal avant l’ouverture du zoo afin de s’assurer que tout  se passe bien,
-    de même, toute la nourriture donnée est calculée afin d’avoir le bon grammage.
+    <p>Chaque jour, plusieurs vétérinaires viennent afin d’effectuer les contrôles sur chaque animal avant l’ouverture du zoo afin de s’assurer que tout se passe bien. De même, toute la nourriture donnée est calculée afin d’avoir le bon grammage.</p>
 </div>
 
 {# Code jungle #}
-<div class="banner" id="jungle">
+<div class="banner">
     <h4>La jungle</h4>
-    <img src={{asset('/images/vecteurs/bg_headerbis.png')}} alt="Bannière colorée verte">
+    <img src="{{ asset('/images/vecteurs/bg_headerbis.png') }}" alt="Bannière colorée verte">
 </div>
 
-<container class="hab">
-    <img class="imgHab" src={{asset('/images/jungle/jungle.jpg')}} alt="Paysage de jungle">
-    <p>La jungle est une immense forêt où poussent de façon très serrée,
-    arbres, broussailles et plantes hautes..<br>
-    Pour vivre, cette végétation très dense a besoin de beaucoup d'eau.
-    C'est pourquoi elle se situe dans les régions proches de l'équateur
-    où  le climat est pluvieux.<br>
-    Nous avons essayé de reproduire cet habitat pour ses occupants :
-    </p>
-</container>
+<div class="hab" id="jungle">
+    <img class="imgHab" src="{{ asset('/images/jungle/jungle.jpg') }}" alt="Paysage de jungle">
+    <p>La jungle est une immense forêt où poussent de façon très serrée, arbres, broussailles et plantes hautes. Pour vivre, cette végétation très dense a besoin de beaucoup d'eau. C'est pourquoi elle se situe dans les régions proches de l'équateur où le climat est pluvieux. Nous avons essayé de reproduire cet habitat pour ses occupants :</p>
+</div>
 
-{# Card animals of jungle #}
-<container>
-    <section>
-        <div class="card-savane" style="width: 12rem;">
-            <img src={{asset('/images/savane/lion-card.jpg')}} class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">A injecter</h5>
-                <p class="card-text">A injecter</p>
-                <a href="#" class="btn btn-primary">Détails</a>
-            </div>
-        </div>
-    </section>
-</container>
+{# Cards d'animaux de la jungle #}
+<section class="animaux">
+    <div class="row">
+        {% for animal in jungleAnimals %}
+                <div class="card jungle">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.nameAnimal }}</h5>
+                        <p class="card-text">{{ animal.description }}</p>
+                        <a href="#" class="jungle btn btn-primary">Détails</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</section>
 
 {# Code marais #}
-<div class="banner"  id="marais">
+<div class="banner">
     <h4>Le marais</h4>
-    <img src={{asset('/images/vecteurs/bg_headerbis.png')}} alt="Bannière colorée verte">
+    <img src="{{ asset('/images/vecteurs/bg_headerbis.png') }}" alt="Bannière colorée verte">
 </div>
 
-<container class="hab">
-    <img class="imgHab" src={{asset('/images/marais/marais.jpg')}} alt="Paysage des Marais">
+<div class="hab" id="marais">
+    <img class="imgHab" src="{{ asset('/images/marais/marais.jpg') }}" alt="Paysage des Marais">
+    <p>Les marais sont des écosystèmes humides où l'eau stagne. Les plantes et les animaux qui y vivent doivent être adaptés à cette humidité constante. Nous avons créé un espace qui imite cet habitat pour ses occupants :</p>
+</div>
 
-    <p>La jungle est une immense forêt où poussent de façon très serrée,
-    arbres, broussailles et plantes hautes..<br>
-    Pour vivre, cette végétation très dense a besoin de beaucoup d'eau.
-    C'est pourquoi elle se situe dans les régions proches de l'équateur
-    où  le climat est pluvieux.<br>
-    Nous avons essayé de reproduire cet habitat pour ses occupants :
-    </p>
-</container>
-
-    {# Card animals of marais #}
-<container>
-    <section>
-        <div class="card-marais" style="width: 12rem;">
-            <img src={{asset('/images/savane/lion-card.jpg')}} class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">A injecter</h5>
-                <p class="card-text">A injecter</p>
-                <a href="#" class="btn btn-primary">Détails</a>
-            </div>
-        </div>
-    </section>
-</container>
+{# Cards d'animaux des marais #}
+<section class="animaux">
+    <div class="row">
+        {% for animal in maraisAnimals %}
+                <div class="card marais">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.nameAnimal }}</h5>
+                        <p class="card-text">{{ animal.description }}</p>
+                        <a href="#" class="marais btn btn-primary">Détails</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</section>
 
 {# Code savane #}
-<div class="banner"  id="savane">
+<div class="banner">
     <h4>La savane</h4>
-    <img src={{asset('/images/vecteurs/bg_headerbis.png')}} alt="Bannière colorée verte">
+    <img src="{{ asset('/images/vecteurs/bg_headerbis.png') }}" alt="Bannière colorée verte">
 </div>
 
-<container class="hab">
-    <img class="imgHab" src={{asset('/images/savane/savane.jpg')}} alt="Paysage de la savane">
-    <p>La jungle est une immense forêt où poussent de façon très serrée,
-    arbres, broussailles et plantes hautes..<br>
-    Pour vivre, cette végétation très dense a besoin de beaucoup d'eau.
-    C'est pourquoi elle se situe dans les régions proches de l'équateur
-    où  le climat est pluvieux.<br>
-    Nous avons essayé de reproduire cet habitat pour ses occupants :
-    </p>
-</container>
+<div class="hab" id="savane">
+    <img class="imgHab" src="{{ asset('/images/savane/savane.jpg') }}" alt="Paysage de la savane">
+    <p>La savane est une étendue herbeuse avec quelques arbres, caractéristique des régions chaudes et sèches. C'est un habitat propice aux grands herbivores et leurs prédateurs. Nous avons recréé cet environnement pour ses habitants :</p>
+</div>
 
-{# Card animals of savane #}
-<container>
-    <section>
-        <div class="card-savane" style="width: 12rem;">
-            <img src={{asset('/images/savane/lion-card.jpg')}} class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">A injecter</h5>
-                <p class="card-text">A injecter</p>
-                <a href="#" class="btn btn-primary">Détails</a>
-            </div>
-        </div>
-    </section>
-</container>
+{# Cards d'animaux de la savane #}
+<section class="animaux">
+    <div class="row">
+        {% for animal in savaneAnimals %}
+                <div class="card savane">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.nameAnimal }}</h5>
+                        <p class="card-text">{{ animal.description }}</p>
+                        <button type="button" class="btn btn-primary" href="#">Détails</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock %}

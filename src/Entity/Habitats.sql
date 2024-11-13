@@ -26,3 +26,6 @@ INSERT INTO habitats (name, description)
         de «savane arborée», de  «savane boisée», puis de forêt claire,
         la transition se faisant en général de manière progressive. "
     )
+
+    SELECT * FROM habitats;
+    

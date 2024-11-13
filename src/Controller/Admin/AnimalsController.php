@@ -4,65 +4,57 @@ namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\AnimalsRepository;
 use App\Repository\HabitatsRepository;
 use App\Entity\Animals;
-use App\Entity\Habitats;
+use App\Entity\Images;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\Image;
+use App\Service\PictureService;
 
 class AnimalsController extends AbstractController
 {
     #[Route('/admin/anim', name: 'app_admin_anim')]
-public function index(Request $request, AnimalsRepository $animalsRepository): Response
-{
-    // Créer un queryBuilder pour les animaux
-    $queryBuilder = $animalsRepository->createQueryBuilder('a');
+    public function index(Request $request, AnimalsRepository $animalsRepository): Response
+    {
+        $queryBuilder = $animalsRepository->createQueryBuilder('a');
+        $breedFilter = $request->query->get('breed');
+        $nameFilter = $request->query->get('name');
 
-    // Récupérer les filtres depuis la requête
-    $breedFilter = $request->query->get('breed');
-    $nameFilter = $request->query->get('name');
+        if ($breedFilter) {
+            $queryBuilder->andWhere('a.breed = :breed')
+                        ->setParameter('breed', $breedFilter);
+        }
 
-    // Appliquer les filtres
-    if ($breedFilter) {
-        $queryBuilder->andWhere('a.breed = :breed')
-                     ->setParameter('breed', $breedFilter);
+        if ($nameFilter) {
+            $queryBuilder->andWhere('a.nameAnimal LIKE :name')
+                        ->setParameter('name', '%' . $nameFilter . '%');
+        }
+
+        $animals = $queryBuilder->getQuery()->getResult();
+        $races = $animalsRepository->createQueryBuilder('a')
+            ->select('DISTINCT a.breed')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('admin/animals/index.html.twig', [
+            'animals' => $animals,
+            'races' => $races,
+        ]);
     }
-
-    if ($nameFilter) {
-        $queryBuilder->andWhere('a.nameAnimal LIKE :name')
-                     ->setParameter('name', '%' . $nameFilter . '%');
-    }
-
-    // Exécuter la requête et obtenir les résultats
-    $animals = $queryBuilder->getQuery()->getResult();
-    
-    // Récupérer les races distinctes pour le filtre
-    $races = $animalsRepository->createQueryBuilder('a')
-        ->select('DISTINCT a.breed')
-        ->getQuery()
-        ->getResult();
-
-    return $this->render('admin/animals/index.html.twig', [
-        'animals' => $animals, // N'oubliez pas d'ajouter les animaux à la vue
-        'races' => $races,
-    ]);
-}
-
-
 
     #[Route('/admin/anim/modif/{id}', name: 'admin_anim_modif')]
-    public function modify(Animals $animal, Request $request, EntityManagerInterface $entityManager,HabitatsRepository $habitatsRepository): Response
-    {
-        // Récupération des habitats depuis la base de données
-        $habitats = $habitatsRepository->findAll();
+public function modify(Animals $animal, Request $request, EntityManagerInterface $entityManager, HabitatsRepository $habitatsRepository, PictureService $pictureService): Response
+{
+    $habitats = $habitatsRepository->findAll();
 
-        $form = $this->createFormBuilder($animal)
+    $form = $this->createFormBuilder($animal)
         ->add('nameAnimal', TextType::class)
         ->add('breed', TextType::class)
         ->add('description', TextType::class)
@@ -71,78 +63,129 @@ public function index(Request $request, AnimalsRepository $animalsRepository): R
                 array_map(fn($h) => $h->getName(), $habitats),
                 $habitats
             ),
-            'choice_label' => function ($choice) {
-                return $choice->getName(); // Afficher le nom de l'habitat
-            },
+            'choice_label' => fn($choice) => $choice->getName(),
             'placeholder' => 'Choisissez un habitat',
         ])
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer les modifications'])
-            ->getForm();
+        ->add('image', FileType::class, [ 
+            'label' => 'Image de l\'animal', 
+            'mapped' => false, 
+            'attr' => ['accept' => 'image/png, image/jpeg, image/webp'], 
+            'constraints' => [
+                new Image(
+                    minWidth: 100, 
+                    maxWidth: 7000, 
+                    minHeight: 100, 
+                    maxHeight: 7000, 
+                    allowPortrait: false, 
+                    mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
+                ) 
+            ]
+        ])
+        ->add('save', SubmitType::class, ['label' => 'Enregistrer les modifications'])
+        ->getForm();
 
-        $form->handleRequest($request);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $entityManager->flush();
-            return $this->redirectToRoute('app_admin_anim');
+    if ($form->isSubmitted() && $form->isValid()) {
+        $imageFile = $form->get('image')->getData();
+        
+        if ($imageFile) {
+            $newFilename = $pictureService->square($imageFile, 'animals');
+
+            $image = new Images();
+            $image->setFilePath($newFilename);
+            $entityManager->persist($image);
+            $animal->addImage($image);
         }
 
-        return $this->render('admin/animals/modif.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    #[Route('/animals/delete/{id}', name: 'admin_anim_delete', methods: ['POST'])]
-    public function delete(Animals $animal, EntityManagerInterface $entityManager): Response
-    {
-        $entityManager->remove($animal);
         $entityManager->flush();
         return $this->redirectToRoute('app_admin_anim');
     }
 
-    #[Route('/admin/anim/add', name: 'admin_anim_add')]
-    public function add(Request $request, EntityManagerInterface $entityManager, HabitatsRepository $habitatsRepository): Response
-    {
-        // Création d'une nouvelle instance de l'entité Animal
-        $animal = new Animals();
-
-        // Récupération des habitats depuis la base de données
-        $habitats = $habitatsRepository->findAll();
-
-        // Création du formulaire avec les sélecteurs
-        $form = $this->createFormBuilder($animal)
-            ->add('nameAnimal', TextType::class)
-            ->add('breed', TextType::class)
-            ->add('description', TextType::class)
-            ->add('idHabitats', ChoiceType::class, [
-                'choices' => array_combine(
-                    array_map(fn($h) => $h->getName(), $habitats),
-                    $habitats
-                ),
-                'choice_label' => function ($choice) {
-                    return $choice->getName(); // Afficher le nom de l'habitat
-                },
-                'placeholder' => 'Choisissez un habitat',
-            ])
-            ->add('save', SubmitType::class, ['label' => "Ajouter un animal"])
-            ->getForm();
-
-        // Traitement de la requête
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Sauvegarde du nouvel animal dans la base de données
-            $entityManager->persist($animal);
-            $entityManager->flush();
-
-            // Redirection après ajout
-            return $this->redirectToRoute('app_admin_anim');
-        }
-
-        // Affichage du formulaire d'ajout
-        return $this->render('admin/animals/add.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
+    return $this->render('admin/animals/modif.html.twig', [
+        'form' => $form->createView(),
+    ]);
 }
 
+
+    #[Route('/admin/anim/delete/{id}', name: 'admin_anim_delete', methods: ['POST'])]
+    public function delete(Animals $animal, EntityManagerInterface $entityManager): Response
+    {
+        foreach ($animal->getImages() as $image) {
+            $imagePath = $this->getParameter('uploads_directory') . '/animals/' . $image->getFilePath();
+            if ($imagePath && file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+            $entityManager->remove($image);
+        }
+
+        $entityManager->remove($animal);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'L\'animal a été supprimé avec succès.');
+
+        return $this->redirectToRoute('app_admin_anim');
+    }
+
+    #[Route('/admin/anim/add', name: 'admin_anim_add')]
+public function add(Request $request, EntityManagerInterface $entityManager, HabitatsRepository $habitatsRepository, PictureService $pictureService): Response
+{
+    $animal = new Animals();
+    $habitats = $habitatsRepository->findAll();
+
+    $form = $this->createFormBuilder($animal)
+        ->add('nameAnimal', TextType::class)
+        ->add('breed', TextType::class)
+        ->add('description', TextType::class)
+        ->add('idHabitats', ChoiceType::class, [
+            'choices' => array_combine(
+                array_map(fn($h) => $h->getName(), $habitats),
+                $habitats
+            ),
+            'choice_label' => fn($choice) => $choice->getName(),
+            'placeholder' => 'Choisissez un habitat',
+        ])
+        ->add('image', FileType::class, [ 
+            'label' => 'Image de l\'animal', 
+            'mapped' => false, 
+            'attr' => ['accept' => 'image/png, image/jpeg, image/webp'], 
+            'constraints' => [
+                new Image(
+                    minWidth: 100, 
+                    maxWidth: 7000, 
+                    minHeight: 100, 
+                    maxHeight: 7000, 
+                    allowPortrait: false, 
+                    mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
+                ) 
+            ]
+        ])
+        ->add('save', SubmitType::class, ['label' => "Ajouter un animal"])
+        ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $imageFile = $form->get('image')->getData(); 
+        
+        if ($imageFile) {
+            $newFilename = $pictureService->square($imageFile, 'animals');
+            
+            $image = new Images();
+            $image->setFilePath($newFilename);
+            $entityManager->persist($image);
+            $animal->addImage($image);
+        }
+
+        $entityManager->persist($animal);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_admin_anim');
+    }
+
+    return $this->render('admin/animals/add.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+
+}

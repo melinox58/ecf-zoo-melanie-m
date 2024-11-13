@@ -46,8 +46,6 @@
                                         <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
                                         <button type="submit" class="btn btn-primary btn-sm">Valider</button>
                                     </form>
-                                {% else %}
-                                    <a href="{{ path('emp_opinion_edit', {id: opinion._id}) }}" class="btn btn-secondary btn-sm">Éditer</a>
                                 {% endif %}
                                 
                                 <form action="{{ path('emp_opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">

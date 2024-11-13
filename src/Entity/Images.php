@@ -15,22 +15,23 @@ class Images
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Services $idServices = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Animals $idAnimals = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Habitats $idHabitats = null;
 
-    #[ORM\Column(length: 40)]
-    private ?string $name = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $src;
+    // Remplacement du champ src (BLOB) par filePath pour stocker le chemin du fichier
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $filePath = null;
+
+    // Getters et setters
 
     public function getId(): ?int
     {
@@ -45,7 +46,6 @@ class Images
     public function setIdServices(?Services $idServices): static
     {
         $this->idServices = $idServices;
-
         return $this;
     }
 
@@ -57,7 +57,6 @@ class Images
     public function setIdAnimals(?Animals $idAnimals): static
     {
         $this->idAnimals = $idAnimals;
-
         return $this;
     }
 
@@ -69,31 +68,18 @@ class Images
     public function setIdHabitats(?Habitats $idHabitats): static
     {
         $this->idHabitats = $idHabitats;
-
         return $this;
     }
 
-    public function getName(): ?string
+    // Getter et setter pour le champ filePath (chemin du fichier)
+    public function getFilePath(): ?string
     {
-        return $this->name;
+        return $this->filePath;
     }
 
-    public function setName(string $name): static
+    public function setFilePath(string $filePath): static
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSrc()
-    {
-        return $this->src;
-    }
-
-    public function setSrc($src): static
-    {
-        $this->src = $src;
-
+        $this->filePath = $filePath;
         return $this;
     }
 }

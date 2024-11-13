@@ -97,8 +97,9 @@
     <ul>
         {% for opinion in opinions %}
             <li>
-                <strong>{{ opinion.pseudo }}</strong>: {{ opinion.comment }} <br>
-                <em>{{ opinion.title }}</em> - {{ opinion.date }}
+                <strong>{{ opinion.pseudo }}</strong>: <em>{{ opinion.title }}</em>- {{ opinion.date }} <br>
+                {{ opinion.comment }}
+                 
             </li>
         {% else %}
             <li>Aucun avis disponible.</li>
@@ -118,29 +119,32 @@
 </div>
 
 <div class="schedules">
-    <ul>
+    <table>
+    <tbody>
         {% for schedule in schedules %}
-            <li>
-                <strong>{{ schedule['name'] }}</strong>
-                <ul>
-                    {% for entry in schedule['entries'] %}
-                        <li>
-                            {{ entry['day'] }}<br>
-                            {% if entry['closed'] %}
-                                <strong>Fermé</strong>
-                            {% else %}
-                                {{ entry['open'] }}<br>
-                                {{ entry['close'] }}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
+            <tr>
+                <td colspan="4"><strong>{{ schedule['name'] }}</strong></td>
+            </tr>
+            {% for entry in schedule['entries'] %}
+                <tr>
+                    <td>{{ entry['day'] }}</td>
+                    {% if entry['closed'] %}
+                        <td colspan="2"><strong>Fermé</strong></td>
+                    {% else %}
+                        <td>{{ entry['open'] }}</td>
+                        <td>{{ entry['close'] }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
         {% else %}
-            <li>Aucun horaire disponible.</li>
+            <tr>
+                <td colspan="4">Aucun horaire disponible.</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </tbody>
+</table>
 </div>
+
 
 <div class="banner" id="search">
     <h4>Où nous trouver ?</h4>

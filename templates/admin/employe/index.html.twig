@@ -8,6 +8,7 @@
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier un(e) employé(e)</h4>
+                <a href="{{ path('app_register') }}" class="btn btn-success">Ajouter un employé</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -38,11 +39,11 @@
                                         <span class="badge">{{ name }}</span>
                                     {% endfor %}
                                 </td>
-                                <td>
+                                <td class='action'>
                                     {% if "ROLE_ADMIN" not in user.roles %}
-                                        <a href="{{ path('admin_emp_modify', { id: user.id }) }}">Modifier</a>
+                                        <button type="button" class="btn btn-primary" href="{{ path('admin_emp_modify', { id: user.id }) }}">Modifier</button>
                                         <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');" style="display:inline;">
-                                            <button type="submit">Supprimer</button>
+                                            <button class="btn btn-danger" type="submit">Supprimer</button>
                                         </form>
                                     {% endif %}
                                 </td>
@@ -50,7 +51,6 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <a href="{{ path('app_register') }}" class="btn btn-success">Ajouter un employé</a>
             </main>
         </div>
     </div>

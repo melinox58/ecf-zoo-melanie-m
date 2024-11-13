@@ -68,4 +68,6 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+    # Serve static files (like images) directly from the /public/uploads/ directory
+    RewriteRule ^uploads/ - [L]
 

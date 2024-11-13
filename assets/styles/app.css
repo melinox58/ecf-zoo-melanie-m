@@ -58,6 +58,12 @@
     height: auto;
 }
 
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+}
+
 /*text under the logo*/
 .hheader{
     font-family: "Piedra", serif;
@@ -382,15 +388,15 @@ h3{
 .animaux{
     width: 85vw;
     margin-bottom: 5%;
+    display: flex;
 }
 
 .card{
     background-color:#DCE2AA;
     width: 20%;
-    height: 80%;
-    border-radius: 5%;
-    margin-top: 5%;
     align-items: center;
+    margin-top: 5%;
+    height: 65vh;
 }
 
 .card-img{
@@ -398,13 +404,7 @@ h3{
     display: flex;
     margin-top: 9%;
     border-radius: 4%;
-}
-
-.card-title{
-    text-align: center;
-    font-family: "Lemonada", cursive;
-    font-size: 1rem;
-    color: #4B543B;
+    border: 4px solid white;
 }
 
 
@@ -461,11 +461,24 @@ legend{
 
 /*section avis*/
 .avis {
-    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
     display: flex;
     width: 85vw;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+li {
+    margin-bottom: 4%;
+  }  
+
+dl, ol, ul {
+  margin-bottom:1rem;
+  text-align: center;
+  width: 60%;
+  list-style-type: none;
 }
 
 .avis .btnAvis {
@@ -533,7 +546,13 @@ label{
     margin-top: 5%;
     margin-bottom: 5%;
     text-align: center;
+    gap: 5%;
 }
+
+.schedules table{
+    width: 50vw;
+}
+
 
 /*section nous trouver*/
 .discover3{
@@ -621,7 +640,6 @@ iframe{
     height: 300%; /* Garde les proportions de l'image*/
     object-fit: cover; /* Recadre l'image si nécessaire pour couvrir le conteneur */
 }
-
 
 
 /*Section services*/
@@ -734,9 +752,10 @@ iframe{
     display: flex;
     justify-content: space-around; /* Pour espacer les éléments uniformément */
     width: 85vw;
-
     margin-top: 4%;
-    margin-bottom: 3%;
+    margin-bottom: 8%;
+    height: 80vh;
+    width: 85vw;
 }
 
 .habitat img {
@@ -749,6 +768,7 @@ iframe{
     height: 80vh;
 }
 
+
 .hab{
     width: 85vw;
     display: flex;
@@ -756,50 +776,131 @@ iframe{
 }
 
 .imgHab{
-    width: 50%;
+    width: 80%;
     height: auto;
     margin: 3%;
 }
 
 .hab p{
     font-family: "Lemonada", cursive;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 7%;
+    color: #4B543B;
 }
 
-.card-jungle{
+.card.jungle{
     background-color:#8ED081;
-    width: 20%;
-    height: 80%;
-    border-radius: 5%;
-    margin-top: 5%;
-    align-items: center;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
 }
-
-.card-marais{
+.card.marais{
     background-color:#B57F50;
-    width: 20%;
-    height: 80%;
-    border-radius: 5%;
-    margin-top: 5%;
-    align-items: center;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
 }
-
-.card-savane{
+.card.savane{
     background-color:#DCE2AA;
-    width: 20%;
-    height: 80%;
-    border-radius: 5%;
-    margin-top: 5%;
-    align-items: center;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
+}
+  
+a.jungle.btn.btn-primary,
+a.marais.btn.btn-primary,
+a.savane.btn.btn-primary{
+    width: 6vw;
+    font-family: lemon;
+    font-size: 0.7rem;
+    margin-top: 8%;
 }
 
-.card-img-top{
-    width: 78%;
-    display: flex;
-    margin-top: 9%;
-    border-radius: 4%;
+p.card-text {
+    text-align: justify;
+    color: #4B543B;
+    font-family: lemonada;
+    font-size: 0.7rem;
+    overflow: auto;
+    text-overflow: ellipsis;
+    height: 20vh;
 }
+
+.img-thumbnail {
+    padding:0.2rem;
+    background-color:var(--bs-body-bg);
+    border:var(--bs-border-width) solid var(--bs-border-color);
+    border-radius:var(--bs-border-radius);
+    max-width:100%;
+    height:auto;
+    width: 64%;
+    margin-top: 8%;
+}
+  
+.card-title {
+    padding-top: 3%;
+    text-align: center;
+    font-family: "Lemonada", cursive;
+    font-size: 0.9rem;
+    color: #4B543B;
+}
+
+.row{
+    gap: 2%;
+    justify-content: center;
+    height: 67vh;
+}
+
+
+/* ---------------------------------NOUS CONTACTER------------------------------- */
+
+body > h4:nth-child(2) {
+    margin-top: 2%;
+}
+  
+.mb-3 {
+    margin-bottom:1rem!important;
+    display: flex;
+    align-items: center;
+}
+  
+.form-label {
+    margin-bottom:.5rem;
+    justify-content: right;
+    display: flex;
+    margin-right: 2%;
+    width: 50%;
+}
+  
+body > form:nth-child(3) {
+    background-color: #DCE2AA;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding-right: 6%;
+}
+
+#contact_save {
+    width: 100%;
+    background-color: #8ED081;
+    border: none;
+    font-family: "Lemon", serif;
+}
+
+.col {
+    flex:1 0 0%;
+    margin-right: 20%;
+    width: 80%;
+}
+
+  
+
+
+
+
+
 
 /* ---------------------------------LOGIN-PAGE------------------------------- */
 
@@ -867,6 +968,30 @@ aside {
     height: 60%;
     
 }
+
+.col-9 > h1:nth-child(1) {
+    text-align: center;
+}
+
+.col-9 > p:nth-child(2) {
+    text-align: center;
+}
+
+.col-9 > img:nth-child(3) {
+    width: 50%;
+    height: auto;
+}
+  
+.col-9 {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+  
+button.btn.btnRegister{
+    font-family: 'Lemonada', serif;
+}
   
 .btnRegister {
     background-color:#4B543B;
@@ -877,6 +1002,11 @@ aside {
 .btnRegister a{
     text-decoration: none;
     color: white;
+}
+
+a.btnRegister{
+    color: white;
+    font-family: 'Lemonada', serif;
 }
 
 .containerAdmin{
@@ -892,6 +1022,18 @@ aside {
 .badge{
     background-color: #B57F50;
 }
+
+th{
+    font-family: 'Lemon', serif;
+}
+
+td.action{
+    width: 14%;
+  }  
+
+.col-9 > h4:nth-child(1) {
+    margin-bottom: 4%;
+  }
 
 
 /* ---------------------------------REGISTRATION-PAGE---------------------------- */
@@ -910,6 +1052,30 @@ form .btn {
     align-items: center;
 }
 
+a.btn.btn-primary{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 80%;
+}
+
+button.btn.btn-danger{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 80%;
+    margin-top: 2%;
+}
+
+a.btn.btn-success{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+
+  
 
 /* ---------------------------------RGPD-PAGE---------------------------- */
 
@@ -924,3 +1090,32 @@ form .btn {
     margin-top: 3%;
     margin-bottom: 3%;
 }
+
+/* ----------------------------------VETERINARY-PAGE------------------------------------ */
+
+.form-group label{
+    width: 43%;
+}
+
+button.report.btn.btn-success{
+    width: 30%;
+    text-align: center;
+}
+
+button.filter.btn.btn-primary {
+    width: 15%;
+    margin-top: 2%;
+  }
+  
+/* ----------------------------------EMPLOYEE-PAGE------------------------------------ */
+
+.col-9 > form:nth-child(2) {
+    width: 60%;
+    margin-right: 10%;
+  }
+
+#reports_save {
+    width: 30%;
+    margin-left: 50%;
+}
+  

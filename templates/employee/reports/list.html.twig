@@ -12,6 +12,7 @@
                     <thead>
                         <tr>
                             <th>Rapport pour</th>
+                            <th>Image</th>
                             <th>Commentaire</th>
                             <th>Aliment</th>
                             <th>Quantité</th>
@@ -26,6 +27,13 @@
                             {% for report in reports %}
                             <tr>
                                 <td>{{ report.idAnimals.nameAnimal }}</td>
+                                <td>
+                                {% if report.idAnimals.images is defined and report.idAnimals.images|length > 0 %}
+                                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ report.idAnimals.images[0].getFilePath) }}" alt="{{ report.idAnimals.nameAnimal }}" class="img-report" width="100">
+                                {% else %}
+                                    <p>Aucune image disponible</p>
+                                {% endif %}
+                                </td>
                                 <td>{{ report.comment }}</td>
                                 <td>{{ report.idFoods.name }}</td>
                                 <td>{{ report.weight }} {{ report.unit }}</td>

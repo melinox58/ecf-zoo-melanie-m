@@ -126,4 +126,15 @@ class Reports
 
         return $this;
     }
+
+    public function getIdHabitats()
+    {
+        return $this->idAnimals ? $this->idAnimals->getIdHabitats() : null;
+    }
+    public function setIdHabitats(string $unit): self
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
 }

@@ -10,6 +10,7 @@
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier un habitat</h4>
+                <a href="{{ path('admin_habitat_add') }}" class="btn btn-success">Ajouter un habitat</a>  
                 <table class="table">
                     <thead>
                         <tr>
@@ -25,9 +26,9 @@
                                 <td>{{ habitat.name}}</td>
                                 <td>{{ habitat.description}}</td>
                                 <td>
-                                    <a href="{{ path('admin_habitat_modif', { id: habitat.id }) }}">Modifier</a>
+                                    <button type="button" class="btn btn-primary" href="{{ path('admin_habitat_modif', { id: habitat.id }) }}">Modifier</a>
                                     <form action="{{ path('habitat_delete', { id: habitat.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet habitat?');" style="display:inline;">
-                                        <button type="submit">Supprimer</button>
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
                                     </form>
                                 </td>
                                 {# <td>{{ habitat.image}}</td> #}
@@ -35,7 +36,6 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <a href="{{ path('admin_habitat_add') }}" class="btn btn-success">Ajouter un habitats</a>  
             </main>
         </div>
     </div>
