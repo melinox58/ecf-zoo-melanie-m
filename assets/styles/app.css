@@ -58,6 +58,12 @@
     height: auto;
 }
 
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+}
+
 /*text under the logo*/
 .hheader{
     font-family: "Piedra", serif;
@@ -540,7 +546,13 @@ label{
     margin-top: 5%;
     margin-bottom: 5%;
     text-align: center;
+    gap: 5%;
 }
+
+.schedules table{
+    width: 50vw;
+}
+
 
 /*section nous trouver*/
 .discover3{
@@ -854,6 +866,7 @@ body > h4:nth-child(2) {
     justify-content: right;
     display: flex;
     margin-right: 2%;
+    width: 50%;
 }
   
 body > form:nth-child(3) {
@@ -1039,7 +1052,7 @@ form .btn {
     align-items: center;
 }
 
-button.btn.btn-primary{
+a.btn.btn-primary{
     font-family: 'Lemon', serif;
     font-size: 0.7rem;
     text-align: center;
@@ -1093,4 +1106,16 @@ button.filter.btn.btn-primary {
     width: 15%;
     margin-top: 2%;
   }
+  
+/* ----------------------------------EMPLOYEE-PAGE------------------------------------ */
+
+.col-9 > form:nth-child(2) {
+    width: 60%;
+    margin-right: 10%;
+  }
+
+#reports_save {
+    width: 30%;
+    margin-left: 50%;
+}
   

@@ -76,8 +76,7 @@
                                     </td>
                                 {% endif %}
                                 <td>
-                                    <button type="button" class="report btn btn-success" href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-primary">+</a>
-                                </td>
+                                <a href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-success">+</a>                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
