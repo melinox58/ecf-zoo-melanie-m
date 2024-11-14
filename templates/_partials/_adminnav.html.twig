@@ -1,4 +1,6 @@
 <aside class="col-2 border border-light p-2">
+    
+    
     {# Boutons pour l'espace admin #}
     {% if is_granted('ROLE_ADMIN') %}
         <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_emp') }}">Employés</a></button>

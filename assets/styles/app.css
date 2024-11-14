@@ -31,7 +31,7 @@
 /* --------------------------------HEADER---------------------------------------- */
 
 .navbar{
-    background-image: url(../temp/bg_header.png);
+    background-image: url(../temp/bg_header.png) ;
     width: 100vw;
     height: 12vh;
     align-content: center;
@@ -62,7 +62,7 @@
 /*text under the logo*/
 .hheader{
     font-family: "Piedra", serif;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     color: #4B543B;
 }
 
@@ -85,9 +85,16 @@
 
 /*icon home menu*/
 .fa-solid{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #4B543B;
 }
+
+/*connexion*/
+a.nav-link:nth-child(5) {
+    font-size: 1rem;
+    margin-left: 15%;
+  }
+  
 
 /* ----------------------------------------FOOTER-------------------------------------------------------- */
 
@@ -185,101 +192,6 @@ h7{
     margin-top: 2%;
 }
 
-/*responsive*/
-/* Gérer la disposition sur petits écrans */
-@media screen and (max-width: 768px) {
-    footer{
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        height: auto;
-    }
-    
-    .container-fluid-foot{
-        display: flex;
-        gap: 10%;
-    }
-    
-    .gauche{
-    width: 49%;
-    }
-    
-    h1{
-        font-size: 1.2rem;
-        margin-top: 15%;
-    }
-    
-    .suivez{
-        align-items: center;
-        text-align: center;
-        width: 40%;
-    }
-
-    .bootstrap-icons {
-        display: flex;
-        gap: 51%;
-        width: 40%;
-        text-align: center;
-        margin-left: -75%;
-        font-size: 0.8rem;
-    }
-    
-    h2 {
-    display: flex;
-    font-size: 1rem;
-    width: 154%;
-    margin-left: -24%;
-    }
-    
-    h7{
-        font-size: 0.6rem;
-        text-align: center;
-    }
-    
-    .lien_footer{
-    margin-top: 4%;
-    width: 40%;
-    }
-
-    .lien_footer a {
-        display: flex;
-        flex-direction: column;
-        font-family: 'lemonada',cursive;
-        color: #DCE2AA;
-        text-decoration: none;
-        font-size: 0.6rem;
-    }
-}
-
-/* Gérer la disposition sur écrans moyens*/
-@media screen and (max-width: 1024px) and (min-width: 769px){
-    .gauche {
-        width: 26%;
-    }
-
-    h7 {
-        text-align: center;
-    }
-
-    .suivez {
-        width: 22%;
-    }
-
-    .bootstrap-icons {
-        margin-left: -110%;
-    }
-
-    .suivez > div:nth-child(1) {
-        width: 250%;
-    }
-
-    .lien_footer {
-        padding-top: 2%;
-    }
-      
-      
-}
-
 /* --------------------------------GLOBAL-CSS------------------------------------- */
 
 body{
@@ -356,7 +268,7 @@ h3{
 
 /*rectangle transparent + txt*/
 .tranparent{
-    width: 50vw;
+    width: 59vw;
     height: 23vh;
     position: absolute;
     z-index: 4;
@@ -419,12 +331,13 @@ h3{
     height: auto;
 }
 
-legend{
+.habitats legend{
     font-family: "Lemonada", cursive;
-    margin-top: 3%;
+    margin-top: 2%;
     text-align: center;
     color: #4B543B;
     font-size: 1rem;
+    padding-right: 19%;
 }
 
 /*section nos services*/
@@ -446,8 +359,17 @@ legend{
 .nos-services img {
     width: 100%; /* Adapte l'image à la largeur de son conteneur */
     object-fit: cover;
-    max-width: 200px; /* Limite la largeur de l'image */
+    max-width: 800px; /* Limite la largeur de l'image */
+    max-height: 800px;
     transform: scale(0.7);
+}
+
+.nos-services legend{
+    font-family: "Lemonada", cursive;
+    margin-top: -4%;
+    text-align: center;
+    color: #4B543B;
+    font-size: 1rem;
 }
 
 
@@ -573,7 +495,7 @@ iframe{
     font-family: "Lemon", serif;
     font-size: 1rem;
     text-align: center;
-    padding-left: 10%;
+    padding-left: 6%;
     padding-top: 2%;
 }
 
@@ -1112,9 +1034,12 @@ button.filter.btn.btn-primary {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 650px) {
+
+    /* -----------header------------- */
     .navbar {
         height: 8vh;
+        background-size: cover;
     }
 
     .banner img{
@@ -1127,7 +1052,30 @@ button.filter.btn.btn-primary {
 
     .navbar-brand img {
         width: 2rem;
-      }
+    }
+
+    a.nav-link:nth-child(5) {
+    font-size: 0.7rem;
+    }
+    
+    .collapse a {
+        font-size: 0.8rem;
+    }
+
+    .fa-solid {
+        font-size: 1.1rem;
+    }
+
+    .navbar-collapse {
+        margin-left: 64%;
+        text-align: right;
+        z-index: 99;
+        background: linear-gradient( #aee199 ,white);
+        padding: 2%;
+    }
+
+    /* -----------home------------- */
+
 
     h3{
         font-size: 0.8rem;
@@ -1192,6 +1140,7 @@ button.filter.btn.btn-primary {
 
     .habitats legend{
         font-size: 0.8rem;
+        padding-left: 20%;
     }
 
     li {
@@ -1221,23 +1170,6 @@ button.filter.btn.btn-primary {
     .nos-services img{
         max-width: 265px;
     }
-
-    .collapse a {
-        font-size: 0.8rem;
-    }
-
-    .fa-solid {
-        font-size: 1.1rem;
-    }
-
-    .navbar-collapse {
-        left: 10rem;
-        margin-left: 17rem;
-        text-align: right;
-        z-index: 99;
-        background: linear-gradient( #aee199 ,white);
-        padding: 2%;
-      }
 
     .nos-services > div:nth-child(1) > legend:nth-child(2) {
         margin-top: -15%;
@@ -1302,4 +1234,299 @@ button.filter.btn.btn-primary {
         left: 53px;
         top: 69px;
     }
+
+    .maps{
+        width: 85vw;
+        height: auto;
+    }
+
+    .maps > iframe:nth-child(1) {
+        border:0;
+        width: 100%;
+      }
+    
+      footer{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: auto;
+    }
+    
+    .container-fluid-foot{
+        display: flex;
+        gap: 10%;
+    }
+    
+    .gauche{
+    width: 49%;
+    }
+    
+    h1{
+        font-size: 1.2rem;
+        margin-top: 15%;
+    }
+    
+    .suivez{
+        align-items: center;
+        text-align: center;
+        width: 40%;
+    }
+
+    .bootstrap-icons {
+        display: flex;
+        gap: 51%;
+        width: 40%;
+        text-align: center;
+        margin-left: -75%;
+        font-size: 0.8rem;
+    }
+    
+    h2 {
+    display: flex;
+    font-size: 1rem;
+    width: 154%;
+    margin-left: -24%;
+    }
+    
+    h7{
+        font-size: 0.6rem;
+        text-align: center;
+    }
+    
+    .lien_footer{
+    margin-top: 4%;
+    width: 40%;
+    }
+
+    .lien_footer a {
+        display: flex;
+        flex-direction: column;
+        font-family: 'lemonada',cursive;
+        color: #DCE2AA;
+        text-decoration: none;
+        font-size: 0.6rem;
+    }
+
+    /* -----------Service------------- */
+
+    .h3Serv {
+        margin-top: 6%;
+    }
+
+    .service {
+        width: 85vw;
+        height: auto;
+    }
+
+    .service {
+        width: 85vw;
+        height: auto;
+        margin-bottom: 8%;
+    }
+
+    .tranparentserv {
+        height: 6%;
+        margin-top: 70%;
+    }
+
+    .servincl {
+        margin-top: 69%;
+    }
+
+    .servincl p{
+        margin-top: 8%;
+    }
+
+    .servRest p{
+        margin-top: 2%;
+        width: 85vw;
+        font-size: 0.5rem;
+    }
+
+    .visiteh p {
+        font-size: 0.5rem;
+    }
+
+    .visiteh img {
+        width: 43%;
+    }
+
+    .visite p {
+        font-size: 0.5rem;
+    }
+
+    .visite img {
+        width: 94%;
+        padding: 5%;
+        margin-top: 6%;
+    }
+
+    .panels p {
+        font-size: 0.5rem;
+        margin-top: 5%;
+        font-family: lemonada;
+        color: #4B543B;
+    }
+
+    .panels {
+        flex-direction: column;
+        width: 85vw;
+    }
+
+    .panels img {
+        width: 45%;
+    }
+
+    .ecolo img {
+        width: 25%;
+    }
+
+    /* -----------Habitat------------- */
+
+    .habitat {
+        height: auto;
+    }
+
+    .titleServ .rectangle {
+        height: 5vh;
+    }
+
+    .h3Serv {
+        margin-top: 4%;
+    }
+
+    .habitincl {
+        width: 71vw;
+    }
+
+    .transparent-hab {
+        width: 73vw;
+        height: 7vh;
+        margin-top: 67%;
+    }
+
+    .habitincl p {
+        font-size: 0.4rem;
+        margin-top: 26%;
+      }
+
+    .hab p {
+        font-size: 0.5rem;
+    }
+
+    .hab {
+        margin-top: 9%;
+        margin-bottom: 9%;
+    }
+
+    .imgHab {
+        width: 268%;
+    }
+
+    .animaux {
+        /* flex-direction: row; */
+        display: flex;
+    }
+
+    .animaux .card {
+        width: 49%;
+        height: 54vh;
+    }
+
+    .card.jungle,
+    .card.marais,
+    .card.savane {
+        margin-top: 2%;
+    }
+
+    .jungle .card-title {
+        padding-top: 0;
+    }
+
+    p.card-text {
+        font-size: 0.5rem;
+    }
+
+    a.jungle.btn.btn-primary,
+    a.marais.btn.btn-primary,
+    a.savane.btn.btn-primary {
+        width: 46%;
+        font-size: 0.4rem;
+        margin-top: -9%;
+    }
+
+    /* -----------Contact------------- */
+
+    body > form:nth-child(3) {
+        width: 80%;
+        margin-bottom: 20%;
+    }
+
+    #contact_save {
+        width: 99%;
+        font-size: 0.5rem;
+    }
+
+    .col {
+        margin-top: 15%;
+    }
+      
+    body > h4:nth-child(2) {
+        margin-top: 12%;
+    }
+
+    /* -----------login------------- */
+
+    body > form:nth-child(2) {
+        width: 80vw;
+    }
+
+    .rond {
+        width: 52%;
+        height: 30%;
+        top: -1%;
+        left: 25%;
+    }
+
+    .h3 {
+        position: absolute;
+        z-index: 5;
+        top: 16%;
+        left: 40%;
+    }
+
+    .fa-sharp-duotone {
+        font-size: 5rem;
+    }
+
+    .checkbox label {
+        width: 39%;
+        margin-top: 4%;
+    }
+
+    .btn-connex {
+        font-size: 0.7rem;
+        width: 40%;
+        margin-left: 30%;
+        margin-top: 10%;
+    }
+
+    .form-control {
+        font-size:0.8rem;
+      }
+      
+    /* -----------Admin------------- */
+
+    .containerAdmin{
+        font-size: -0.6rem;
+    }
+
+    .col-9 > img:nth-child(3) {
+        width: 90%;
+        margin-top: 20%;
+    }
+
+
+
+
 }
