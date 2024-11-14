@@ -58,11 +58,6 @@
     height: auto;
 }
 
-@media (min-width: 1024px) {
-    body {
-        font-size: 18px;
-    }
-}
 
 /*text under the logo*/
 .hheader{
@@ -92,9 +87,6 @@
 .fa-solid{
     font-size: 2rem;
     color: #4B543B;
-}
-@media screen and (max-width: 1200px) {
-/* Insérez vos propriétés CSS ici, avec vos sélecteurs*/
 }
 
 /* ----------------------------------------FOOTER-------------------------------------------------------- */
@@ -1118,4 +1110,196 @@ button.filter.btn.btn-primary {
     width: 30%;
     margin-left: 50%;
 }
-  
+
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 8vh;
+    }
+
+    .banner img{
+        height: auto;
+    }
+
+    .hheader{
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand img {
+        width: 2rem;
+      }
+
+    h3{
+        font-size: 0.8rem;
+        margin-top: 4%;
+    }
+
+    .accueil{
+        height: 100%;
+        margin-top: 10%;
+    }
+
+    .rectangle{
+        width: 73vw;
+        height: 7vh;
+        margin-top: 2%;
+    }
+
+    p {
+        font-size: 0.4rem;
+        margin-top: 10%;
+      }
+
+    .tranparent{
+        width: 73vw;
+        height: 9vh;
+        margin-top: 48%;
+    }
+
+    h4{
+        font-size: 0.9rem;
+    }
+
+    .card{
+        width: 53%;
+        height: 35vh;
+    }
+      
+    .card-title{
+        font-size: 0.5rem;
+    }
+
+    .animaux{
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .card-img{
+        width: 84%;
+    }
+
+    .habitats{
+        flex-direction: column;
+    }
+
+    .habitats a{
+        display: flex;
+        justify-content: center;
+      }
+
+    .habitats legend{
+        font-size: 0.8rem;
+    }
+
+    li {
+        margin-bottom: 20%;
+        font-size: 0.8rem;
+        width: 85vw;
+        display: flex;
+        flex-direction: column;
+      }
+
+    .avis{
+        font-size: 1rem;
+        padding: 2%;
+    }
+      
+    ol,ul {
+        margin-left: -13rem;
+    }
+
+    .nos-services legend{
+        font-size: 0.7rem;
+    }
+
+    .nos-services{
+        flex-direction: column;
+    }
+    .nos-services img{
+        max-width: 265px;
+    }
+
+    .collapse a {
+        font-size: 0.8rem;
+    }
+
+    .fa-solid {
+        font-size: 1.1rem;
+    }
+
+    .navbar-collapse {
+        left: 10rem;
+        margin-left: 17rem;
+        text-align: right;
+        z-index: 99;
+        background: linear-gradient( #aee199 ,white);
+        padding: 2%;
+      }
+
+    .nos-services > div:nth-child(1) > legend:nth-child(2) {
+        margin-top: -15%;
+        }
+      
+    .nos-services > div:nth-child(2) > legend:nth-child(2) {
+        margin-top: -5%;
+      }
+    .nos-services > div:nth-child(3) > legend:nth-child(2) {
+        margin-top: -15%;
+        }
+    .nos-services > div:nth-child(3) > a:nth-child(1) > img:nth-child(1) {
+        margin-top: -10%;
+      }
+
+    .avis .btnAvis {
+        margin-right: -5%;
+        width: 8rem;
+        font-size: 0.7rem;
+    }
+
+    .modal {
+        background-image: none;
+        width: 67vw;
+        margin-top: 39vh;
+        margin-left: 13%;
+    }
+
+    .modal-body label{
+        width: 34%;
+    }
+
+    form .btn {
+        width: 40%;
+    }
+
+    #exampleModalLabel {
+        text-align: center;
+        width: 1000%;
+      }
+
+    .schedules {
+        font-size: 0.8rem;
+        margin-top: 12%;
+        margin-bottom: 13%;
+    }
+
+    .search{
+        font-size: 0.7rem;
+        width: 50vw;
+        right: 0.5rem;
+        top: -0.1rem;
+    }
+
+    .rectangle2{
+        width: 56vw;
+        top: -17%;
+        left: 5%;
+    }
+
+    .discover3{
+        left: 53px;
+        top: 69px;
+    }
+}
