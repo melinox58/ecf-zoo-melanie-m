@@ -269,7 +269,7 @@ h3{
 /*rectangle transparent + txt*/
 .tranparent{
     width: 59vw;
-    height: 23vh;
+    height: 20vh;
     position: absolute;
     z-index: 4;
     background-color: white;
@@ -521,7 +521,7 @@ iframe{
 
 .tranparentserv{
     width: 50vw;
-    height: 13vh;
+    height: 12vh;
     position: absolute;
     z-index: 4;
     background-color: white;
@@ -621,6 +621,12 @@ iframe{
     flex-direction: row;
     align-items: center;
     margin-top: 5%;
+    width: 85vw;
+}
+
+.panels p{
+    font-family: lemonada;
+    color: #4B543B;
 }
 
 .panels img{
@@ -1100,7 +1106,7 @@ button.filter.btn.btn-primary {
 
     .tranparent{
         width: 73vw;
-        height: 9vh;
+        height: 8.5vh;
         margin-top: 48%;
     }
 
@@ -1186,7 +1192,6 @@ button.filter.btn.btn-primary {
       }
 
     .avis .btnAvis {
-        margin-right: -5%;
         width: 8rem;
         font-size: 0.7rem;
     }
