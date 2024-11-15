@@ -974,6 +974,12 @@ td.action{
     margin-bottom: 4%;
   }
 
+.mb-3 {
+    justify-content: center;
+    margin-top: 5%;
+    font-family: 'Lemonada', serif;
+}
+
 
 /* ---------------------------------REGISTRATION-PAGE---------------------------- */
 
@@ -1012,8 +1018,6 @@ a.btn.btn-success{
     text-align: center;
     margin-bottom: 2%;
 }
-
-
   
 
 /* ---------------------------------RGPD-PAGE---------------------------- */
@@ -1588,6 +1592,26 @@ button.filter.btn.btn-primary {
     .containerAdmin main{
         width: 90vw;
     }
-      
+    
+    .table-responsive {
+        width: 85vw;
+        font-size: 0.5rem;
+    }
+    
+    .table a.btn.btn-success {
+        font-size: 0.5rem;
+    }
+
+    .table a.btn.btn-primary {
+        font-size: 0.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table button.btn.btn-danger {
+        font-size: 0.5rem;
+        display: flex;
+        justify-content: center;
+    }
 
 }

@@ -38,11 +38,11 @@
                                 </ul>
                             </td>
                             <td class='action'>
-                                <button type="button" class="btn btn-primary" href="{{ path('admin_schedule_modify', {id: schedule._id}) }}">Modifier</a>
+                                <a href="{{ path('admin_schedule_modify', { id: schedule._id }) }}" class="btn btn-primary">Modifier</a>
                                 <form action="{{ path('schedule_delete', {id: schedule._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet horaire ?');" style="display:inline;">
                                     <button class="btn btn-danger" type="submit">Supprimer</button>
                                 </form>
-                            </td>
+                            </td> 
                         </tr>
                         {% endfor %}
                     </tbody>

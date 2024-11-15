@@ -13,37 +13,39 @@
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('admin_services_add') }}" class="btn btn-success">Ajouter un service</a>
                 {% endif %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for service in services %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ service.name}}</td>
-                                <td>{{ service.description}}</td>
-                                {# <td>{{ service.image}}</td> #}
-                                {# <td>{% for role in user.roles %}
-                                        {{ role }}{% if not loop.last %}, {% endif %}
-                                    {% endfor %}</td> #}
-                                <td class='action'>
-                                    <a href="{{ path('admin_services_modif', { id: service.id }) }}" class="btn btn-primary">Modifier</a>
-                                    {# <a href="{{ path('admin_services_modif', { id: service.id }) }}">Modifier</a> #}
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <form action="{{ path('services_delete', { id: service.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce service?');" style="display:inline;">
-                                        <button class="btn btn-danger" type="submit">Supprimer</button>
-                                    {% endif %}
-                                    </form>
-                                </td>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Actions</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for service in services %}
+                                <tr>
+                                    <td>{{ service.name}}</td>
+                                    <td>{{ service.description}}</td>
+                                    {# <td>{{ service.image}}</td> #}
+                                    {# <td>{% for role in user.roles %}
+                                            {{ role }}{% if not loop.last %}, {% endif %}
+                                        {% endfor %}</td> #}
+                                    <td class='action'>
+                                        <a href="{{ path('admin_services_modif', { id: service.id }) }}" class="btn btn-primary">Modifier</a>
+                                        {# <a href="{{ path('admin_services_modif', { id: service.id }) }}">Modifier</a> #}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <form action="{{ path('services_delete', { id: service.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce service?');" style="display:inline;">
+                                            <button class="btn btn-danger" type="submit">Supprimer</button>
+                                        {% endif %}
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>
