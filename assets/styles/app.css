@@ -649,12 +649,20 @@ iframe{
 
 .transparent-hab{
     width: 50vw;
-    height: 21vh;
+    height: 18vh;
     position: absolute;
     z-index: 4;
     background-color: white;
     opacity: 70%;
     margin-top: 48%;
+}
+
+.h3Hab{
+    margin-top: 2.5%;
+}
+
+.titleServ .rectangle{
+    height: 10vh;
 }
 
 .habitincl{
