@@ -10,60 +10,60 @@
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier l'Horaire</h4>
 
-                {% for message in app.flashes('success') %}
+                                {% for message in app.flashes('success') %}
                     <div class="alert alert-success">{{ message }}</div>
                 {% endfor %}
                 {% for message in app.flashes('error') %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endfor %}
 
-                <form action="{{ path('admin_schedule_modify', {id: schedule['_id']}) }}" method="post">
-                    <label>Nom :</label>
-                    <input type="text" name="name" value="{{ schedule['name'] }}" required>
+                
+
+                <form action="{{ path('add_schedule') }}" method="post">
+                    <label for="name">Titre :</label>
+                    <input type="text" name="name" required>
+
+                    
 
                     <h5>Horaires par jour</h5>
-                    {% for entry in schedule['entries'] %}
+                    {% for day in ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'] %}
                         <div>
-                            <label>Jour :</label>
-                                <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry.open | default('') }}" required>
-                                <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry.close | default('') }}" required>
+                            <label> {{ day }}</label>
+                            <input type="hidden" name="entries[{{ loop.index0 }}][day]" value="{{ day }}">
                             
-                            <label>Ouverture :</label>
-                                <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry.open | default('') }}" required>
-                                <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry.close | default('') }}" required>
+                            <input type="time" name="entries[{{ loop.index0 }}][open]" required>
 
-                            <label>Fermeture :</label>
-                                <input type="time" name="entries[{{ loop.index0 }}][open]" value="{{ entry.open | default('') }}" required>
-                                <input type="time" name="entries[{{ loop.index0 }}][close]" value="{{ entry.close | default('') }}" required>
+                            <input type="time" name="entries[{{ loop.index0 }}][close]" required>
 
                             <label>
-                                <input type="checkbox" name="closed[{{ loop.index0 }}]" value="1" {% if entry.closed is defined and entry.closed == true %}checked{% endif %}>                                Jour de fermeture
+                                <input type="checkbox" name="closed[{{ loop.index0 }}]" value="1">
+                                Fermé
                             </label>
                         </div>
                     {% endfor %}
 
                     <h5>Exceptions</h5>
-                    {% for exception in schedule['exceptions'] %}
-                        <div>
-                            <label>Date :</label>
-                            <input type="date" name="exceptions[{{ loop.index0 }}][date]" value="{{ exception['date'] }}">
+                    <div>
+                        <label>Date :</label>
+                        <input type="date" name="exceptions[0][date]" value="{{ exception.date | default('') }}">
+                    </div>
+                    <div>
+                        <label>Titre de l'exeption :</label>
+                        <input type="text" name="exceptions[0][open]" value="{{ exception.open | default('') }}">
+                    </div>
 
-                            <label>Ouverture :</label>
-                            <input type="text" name="exceptions[{{ loop.index0 }}][open]" value="{{ exception['open'] }}">
-                        </div>
-                    {% endfor %}
-
-                    <button type="submit">Mettre à jour</button>
+                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
                 </form>
 
-                <a href="{{ path('schedules_list') }}">Retour à la liste</a>
+                
             </main>
+            
         </div>
+        <a class="btn btn-secondary mt-3" href="{{ path('schedules_list') }}">Retour à la liste</a>
     </div>
 
     {% block javascripts %}
         <script src="{{ asset('js/schedules.js') }}?v={{ random() }}"></script>
-
     {% endblock %}
 
 {% endblock %}

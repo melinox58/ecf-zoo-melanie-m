@@ -980,6 +980,61 @@ td.action{
     font-family: 'Lemonada', serif;
 }
 
+.col-9 > form:nth-child(2) {
+    justify-content: center;
+}
+  
+main form label {
+    text-align: right;
+    margin-right: 2%;
+    font-family: 'Lemonada', serif;
+    font-size: 1rem;
+}
+
+.h5, h5 {
+  font-size:1.25rem;
+  font-family: 'Lemonada', serif;
+  text-align: center;
+  margin-top: 2%;
+}
+
+button.btn.btn-success {
+    margin-top: 4%;
+    margin-left: 35%;
+    font-family: 'Lemonada', serif;
+  }
+  
+button.btn.btn-primary {
+    margin-top: 4%;
+    margin-left: 35%;
+    font-family: 'Lemonada', serif;
+  }
+
+.action button.btn.btn-danger {
+    width: 95%;
+}
+
+.col-form-label {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Lemonada', serif;
+}
+  
+.form-check {
+    display:block;
+    min-height:1.5rem;
+    padding-left:16.5em;
+    margin-bottom:.125rem;
+}
+  
+.mt-3 {
+    margin-top:1rem!important;
+    width: 10%;
+}
+  
+
+
+
 
 /* ---------------------------------REGISTRATION-PAGE---------------------------- */
 
@@ -1614,4 +1669,33 @@ button.filter.btn.btn-primary {
         justify-content: center;
     }
 
+    .h5, h5 {
+        font-size:0.9rem;
+        font-family: 'Lemonada', serif;
+        text-align: center;
+        margin-top: 2%;
+      }
+
+      main form label {
+        text-align: right;
+        margin-right: 2%;
+        font-family: 'Lemonada', serif;
+        font-size: 0.5rem;
+        /*! margin-left: 5%; */
+    }
+
+    .col-9 > form:nth-child(2) > div:nth-child(n+4) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2%;
+      }
+    button.btn.btn-success {
+        font-size: 0.7rem;
+      }
+    
+      a.btn:nth-child(2) {
+        width: 25%;
+      }
+      
 }
