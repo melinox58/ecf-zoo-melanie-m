@@ -1690,12 +1690,22 @@ button.filter.btn.btn-primary {
         align-items: center;
         margin-top: 2%;
       }
-    button.btn.btn-success {
+    .btn.btn-success {
         font-size: 0.7rem;
       }
     
-      a.btn:nth-child(2) {
+    a.btn:nth-child(2) {
         width: 25%;
+    }
+
+    .containerAdmin .btn.btn-success{
+        width: 35%;
+        font-size: 0.5rem;
+    }
+
+    .containerAdmin button.btn.btn-primary {
+        font-size: 0.5rem;
+        width: 58%;
       }
       
 }
