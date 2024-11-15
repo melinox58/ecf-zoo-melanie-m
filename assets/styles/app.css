@@ -31,7 +31,8 @@
 /* --------------------------------HEADER---------------------------------------- */
 
 .navbar{
-    background-image: url(../temp/bg_header.png) ;
+    background-image: url(../temp/bg_header.png);
+    background-size: cover;
     width: 100vw;
     height: 12vh;
     align-content: center;
@@ -93,7 +94,12 @@
 a.nav-link:nth-child(5) {
     font-size: 1rem;
     margin-left: 15%;
-  }
+}
+
+a.nav-link:nth-child(6) {
+font-size: 1rem;
+}
+  
   
 
 /* ----------------------------------------FOOTER-------------------------------------------------------- */
@@ -117,7 +123,7 @@ footer{
     gap: 30%;
     justify-content: center;
     align-items: center;
-    margin-top: 3%;
+    margin-top: 4%;
 }
 
 .gauche{
@@ -170,6 +176,11 @@ h7{
     color: #DCE2AA;
 }
 
+.lien_footer {
+    padding-top: 2%;
+}
+
+  
 .lien_footer a{
     display: flex;
     flex-direction: column;
@@ -861,8 +872,8 @@ label {
 .h3{
     position: absolute;
     z-index: 5;
-    top: 25%;
-    left: 49%;
+    top: 26%;
+    left: 49.5%;
 }
 
 .fa-sharp-duotone {
@@ -1071,6 +1082,11 @@ button.filter.btn.btn-primary {
     a.nav-link:nth-child(5) {
     font-size: 0.7rem;
     }
+
+    a.nav-link:nth-child(6) {
+        font-size: 0.7rem;
+      }
+      
     
     .collapse a {
         font-size: 0.8rem;
@@ -1437,7 +1453,6 @@ button.filter.btn.btn-primary {
     }
 
     .animaux {
-        /* flex-direction: row; */
         display: flex;
     }
 
@@ -1505,11 +1520,11 @@ button.filter.btn.btn-primary {
         position: absolute;
         z-index: 5;
         top: 16%;
-        left: 40%;
+        left: 42%;
     }
 
     .fa-sharp-duotone {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     .checkbox label {
@@ -1539,7 +1554,40 @@ button.filter.btn.btn-primary {
         margin-top: 20%;
     }
 
+    .containerAdmin .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .containerAdmin a {
+        font-size: 0.5rem;
+        display: flex;
+        text-decoration: none;
+        color: white;
+        font-size: 0.5rem;
+        height: 5%;
+      }
+      
 
+    .containerAdmin aside {
+        flex-direction: row;
+        width: 85vh;
+        height: 5%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1%;
+        align-content: center;
+        align-items: center;
+      }
+
+    .containerAdmin .btnRegister {
+        display: flex;
+    }
+
+    .containerAdmin main{
+        width: 90vw;
+    }
+      
 
 }
