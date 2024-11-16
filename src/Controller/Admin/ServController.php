@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ServController extends AbstractController
 {
@@ -37,8 +38,8 @@ class ServController extends AbstractController
 
         $form = $this->createFormBuilder($serv)
             ->add('name', TextType::class)
-            ->add('description', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer les modifications'])
+            ->add('description', TextareaType::class)
+            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
             ->getForm();
 
         $form->handleRequest($request);

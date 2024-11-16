@@ -43,7 +43,7 @@
                                 <td>{{ report.date|date('d-m-Y H:i') }}</td>
                                 <td>{{ report.idUsers.name }}</td>
                                 <td>
-                                    <a href="{{ path('vet_com_edit', {'id': report.id}) }}" class="btn btn-warning">Éditer</a>
+                                    <a class="btn btn-primary" class="btn btn-primary" href="{{ path('vet_com_edit', {'id': report.id}) }}" class="btn btn-warning">Éditer</a>
                                 </td>
                             </tr>
                         {% endfor %}
