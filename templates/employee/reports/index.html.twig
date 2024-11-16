@@ -9,78 +9,80 @@
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Soigner un animal</h4>
-                <table class="table">
+                <div class="table-responsive">
+                    <table class="table">
 
-                    <!-- Formulaire de filtrage -->
-                    <form method="get" class="mb-3">
-                        <div class="form-group">
-                            <label for="breed">Filtrer par race</label>
-                            <select id="breed" name="breed" class="form-control">
-                                <option value="">Sélectionner une race</option>
-                                {% for race in races %}
-                                    <option value="{{ race.breed }}">{{ race.breed }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <button type="submit" class="filter btn btn-primary">Filtrer</button>
-                    </form>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Image</th>
-                            <th>Race</th>
-                            <th>Habitat</th>
-                            {% if is_granted('ROLE_VETERINARY') %}
-                                <th>Rapport employé</th>
-                                <th>Repas</th>
-                            {% endif %}
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for animal in animals %}
+                        <!-- Formulaire de filtrage -->
+                        <form method="get" class="mb-3">
+                            <div class="form-group">
+                                <label for="breed">Filtrer par race</label>
+                                <select id="breed" name="breed" class="form-control">
+                                    <option value="">Sélectionner une race</option>
+                                    {% for race in races %}
+                                        <option value="{{ race.breed }}">{{ race.breed }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="filter btn btn-primary">Filtrer</button>
+                        </form>
+                        <thead>
                             <tr>
-                                <td>{{ animal.nameAnimal }}</td>
-                                <td>
-                                    {% if animal.images|length > 0 %}
-                                        <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-report" width="100">
-                                    {% else %}
-                                        <p>Aucune image disponible</p>
-                                    {% endif %}
-                                </td>
-                                <td>{{ animal.breed }}</td>
-                                <td>{{ animal.idHabitats.name }}</td>
+                                <th>Nom</th>
+                                <th>Image</th>
+                                <th>Race</th>
+                                <th>Habitat</th>
                                 {% if is_granted('ROLE_VETERINARY') %}
-                                    <td>
-                                        {% if animal.reports is empty %}
-                                            <p>Aucun rapport</p>
-                                        {% else %}
-                                            {% for report in animal.reports %}
-                                                <p>
-                                                    {{ report.date|date('d/m/Y') }} - {{ report.comment }}<br>
-                                                    Aliments : {{ report.idFoods.name }} - Quantité : {{ report.weight }} {{ report.unit }}
-                                                </p>
-                                            {% endfor %}
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if animal.reports is not empty %}
-                                            {% for report in animal.reports %}
-                                                <p>
-                                                    {{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}
-                                                </p>
-                                            {% endfor %}
-                                        {% else %}
-                                            <p>Aucun repas enregistré</p>
-                                        {% endif %}
-                                    </td>
+                                    <th>Rapport employé</th>
+                                    <th>Repas</th>
                                 {% endif %}
-                                <td>
-                                <a href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-success">+</a>                                </td>
+                                <th>Actions</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>   
+                        </thead>
+                        <tbody>
+                            {% for animal in animals %}
+                                <tr>
+                                    <td>{{ animal.nameAnimal }}</td>
+                                    <td>
+                                        {% if animal.images|length > 0 %}
+                                            <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-report" width="100">
+                                        {% else %}
+                                            <p>Aucune image disponible</p>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ animal.breed }}</td>
+                                    <td>{{ animal.idHabitats.name }}</td>
+                                    {% if is_granted('ROLE_VETERINARY') %}
+                                        <td>
+                                            {% if animal.reports is empty %}
+                                                <p>Aucun rapport</p>
+                                            {% else %}
+                                                {% for report in animal.reports %}
+                                                    <p>
+                                                        {{ report.date|date('d/m/Y') }} - {{ report.comment }}<br>
+                                                        Aliments : {{ report.idFoods.name }} - Quantité : {{ report.weight }} {{ report.unit }}
+                                                    </p>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if animal.reports is not empty %}
+                                                {% for report in animal.reports %}
+                                                    <p>
+                                                        {{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}
+                                                    </p>
+                                                {% endfor %}
+                                            {% else %}
+                                                <p>Aucun repas enregistré</p>
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+                                    <td>
+                                    <a href="{{ path('emp_report_add', { id: animal.id }) }}" class="btn btn-success">+</a>                                </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>   
             </main>
         </div>
     </div>

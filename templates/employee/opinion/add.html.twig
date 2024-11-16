@@ -15,32 +15,33 @@
                 {% for message in app.flashes('error') %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endfor %}
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Pseudo</th>
-                            <th>Titre</th>
-                            <th>Commentaire</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for opinion in opinions %}
-                        <tr>
-                            <td>{{ opinion.pseudo }}</td>
-                            <td>{{ opinion.title }}</td>
-                            <td>{{ opinion.comment }}</td>
-                            <td>
-                                <a href="{{ path('opinion_edit', {id: opinion._id}) }}">Modifier</a>
-                                <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
-                                    <button type="submit">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Pseudo</th>
+                                <th>Titre</th>
+                                <th>Commentaire</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for opinion in opinions %}
+                            <tr>
+                                <td>{{ opinion.pseudo }}</td>
+                                <td>{{ opinion.title }}</td>
+                                <td>{{ opinion.comment }}</td>
+                                <td>
+                                    <a href="{{ path('opinion_edit', {id: opinion._id}) }}">Modifier</a>
+                                    <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
+                                        <button type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>

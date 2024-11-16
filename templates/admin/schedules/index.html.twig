@@ -15,38 +15,39 @@
                 {% for message in app.flashes('error') %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endfor %}
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Horaires</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for schedule in schedules %}
-                        <tr>
-                            <td>{{ schedule.name }}</td>
-                            <td>
-                                <ul>
-                                    {% for entry in schedule.entries %}
-                                        <li>
-                                            {{ entry.day }} : {{ entry.open }} - {{ entry.close }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                            <td class='action'>
-                                <a href="{{ path('admin_schedule_modify', { id: schedule._id }) }}" class="btn btn-primary">Modifier</a>
-                                <form action="{{ path('schedule_delete', {id: schedule._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet horaire ?');" style="display:inline;">
-                                    <button class="btn btn-danger" type="submit">Supprimer</button>
-                                </form>
-                            </td> 
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Horaires</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for schedule in schedules %}
+                            <tr>
+                                <td>{{ schedule.name }}</td>
+                                <td>
+                                    <ul>
+                                        {% for entry in schedule.entries %}
+                                            <li>
+                                                {{ entry.day }} : {{ entry.open }} - {{ entry.close }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td class='action'>
+                                    <a href="{{ path('admin_schedule_modify', { id: schedule._id }) }}" class="btn btn-primary">Modifier</a>
+                                    <form action="{{ path('schedule_delete', {id: schedule._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet horaire ?');" style="display:inline;">
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td> 
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>

@@ -506,7 +506,7 @@ iframe{
     font-family: "Lemon", serif;
     font-size: 1rem;
     text-align: center;
-    padding-left: 6%;
+    padding-left: 16%;
     padding-top: 2%;
 }
 
@@ -878,6 +878,7 @@ label {
 
 .fa-sharp-duotone {
     font-size: 4rem;
+    margin-top: -120%;
 }
   
 .btn-connex{
@@ -1008,10 +1009,14 @@ button.btn.btn-primary {
     margin-top: 4%;
     margin-left: 35%;
     font-family: 'Lemonada', serif;
-  }
+}
 
 .action button.btn.btn-danger {
-    width: 95%;
+    width: 81%;
+}
+
+button.btn.btn-danger {
+    display: flex;
 }
 
 .col-form-label {
@@ -1031,7 +1036,42 @@ button.btn.btn-primary {
     margin-top:1rem!important;
     width: 10%;
 }
+
+.col-9 h4{
+    margin-bottom: 4%;
+    margin-top: 3%;
+  }
+
+.button.filter.btn.btn-primary{
+    font-size: 0.7rem;
+    margin-top: -35%;
+    margin-left: 0;
+    font-family: 'Lemonada', serif;
+}
+
+.form-group {
+    width: 40%;
+    display: flex;
+    margin-left: 25%;
+    align-items: center;
+  }
   
+  a.btn.btn-success {
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    margin-bottom: 2%;
+    width: 20%;
+    margin-left: 40%;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -1057,6 +1097,8 @@ a.btn.btn-primary{
     font-size: 0.7rem;
     text-align: center;
     width: 80%;
+    display: flex;
+    justify-content: center;
 }
 
 button.btn.btn-danger{
@@ -1073,6 +1115,10 @@ a.btn.btn-success{
     text-align: center;
     margin-bottom: 2%;
 }
+
+.table > tbody:nth-child(3) > tr:nth-child(n+1) > td:nth-child(5) > img:nth-child(1) {
+    width: 100%;
+  }
   
 
 /* ---------------------------------RGPD-PAGE---------------------------- */
@@ -1707,5 +1753,11 @@ button.filter.btn.btn-primary {
         font-size: 0.5rem;
         width: 58%;
       }
+
+      a.btn:nth-child(3) {
+        width: 23%;
+        text-align: center;
+      }
+      
       
 }

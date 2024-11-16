@@ -10,7 +10,7 @@
             {% include "_partials/_adminnav.html.twig" %}
 
             <main class="col-9 border bg-white p-2">
-                <h1>Ajouter un nouvel animal</h1>
+                <h4>Ajouter un nouvel animal</h4>
 
                     {{ form_start(form) }}
                         {{ form_widget(form) }}
@@ -18,6 +18,6 @@
 
             </main>
         </div>
-        <a href="{{ path('app_admin_anim') }}">Retour à la liste</a>
+        <a class="btn btn-secondary mt-3" href="{{ path('app_admin_hab') }}">Retour à la liste</a>
     </div>
 {% endblock %}
