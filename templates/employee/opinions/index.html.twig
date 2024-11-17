@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Liste des Avis{% endblock %}
 
 {% block body %}
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Liste des avis</h4>
@@ -41,7 +41,7 @@
                                         <span class="text-danger">Non</span>
                                     {% endif %}
                                 </td>
-                                <td>
+                                <td class="action">
                                     {% if not opinion.isValidated %}
                                             <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
                                             <a type="submit" class="btn btn-primary btn-sm">Valider</a>

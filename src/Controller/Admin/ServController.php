@@ -81,8 +81,8 @@ class ServController extends AbstractController
         // Création du formulaire
         $form = $this->createFormBuilder($service)
             ->add('name', TextType::class)
-            ->add('description', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Ajouter le service'])
+            ->add('description', TextareaType::class)
+            ->add('save', SubmitType::class, ['label' => 'Ajouter'])
             ->getForm();
 
         // Traitement de la requête

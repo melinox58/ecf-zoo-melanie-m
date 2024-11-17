@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Modifier un employé{% endblock %}
 
@@ -13,11 +13,11 @@
             {% endfor %}
             
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier un(e) employé(e)</h4>
-                <a href="{{ path('app_register') }}" class="btn btn-success">Ajouter un employé</a>
+                <a href="{{ path('app_register') }}" class="btn btn-success">Ajouter</a>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -49,7 +49,7 @@
                                             <span class="badge">{{ name }}</span>
                                         {% endfor %}
                                     </td>
-                                    <td class='action'>
+                                    <td class="action">
                                         {% if "ROLE_ADMIN" not in user.roles %}
                                             <a href="{{ path('admin_emp_modify', { id: user.id }) }}" class="btn btn-primary">Modifier</a>
                                             <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');" style="display:inline;">

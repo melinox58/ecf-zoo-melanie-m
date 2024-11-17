@@ -67,7 +67,7 @@ class HabController extends AbstractController
         $form = $this->createFormBuilder($habitat)
             ->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('save', SubmitType::class, ['label' => "Ajouter l'habitat"])
+            ->add('save', SubmitType::class, ['label' => "Ajouter"])
             ->getForm();
 
         // Traitement de la requête

@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Liste des Horaires{% endblock %}
 
 {% block body %}
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Liste des avis</h4>
@@ -32,7 +32,7 @@
                                 <td>{{ opinion.pseudo }}</td>
                                 <td>{{ opinion.title }}</td>
                                 <td>{{ opinion.comment }}</td>
-                                <td>
+                                <td class="action">
                                     <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
                                         <button class="btn btn-danger" type="submit">Supprimer</button>
                                     </form>

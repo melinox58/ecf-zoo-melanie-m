@@ -15,11 +15,11 @@
 {% endfor %}
 
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier un habitat</h4>
-                <a href="{{ path('admin_habitat_add') }}" class="btn btn-success">Ajouter un habitat</a>
+                <a href="{{ path('admin_habitat_add') }}" class="btn btn-success">Ajouter</a>
                 <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -35,13 +35,14 @@
                             <tr>
                                 <td>{{ habitat.name}}</td>
                                 <td>{{ habitat.description}}</td>
-                                <td>
+                                <td class="action">
                                     <a class="btn btn-primary" href="{{ path('admin_habitat_modif', { id: habitat.id }) }}">Modifier</a>
                                     <form action="{{ path('habitat_delete', { id: habitat.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet habitat?');" style="display:inline;">
                                         <button class="btn btn-danger" type="submit">Supprimer</button>
                                     </form>
                                 </td>
-                                {# <td>{{ habitat.image}}</td> #}
+                                <td class="image">...
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

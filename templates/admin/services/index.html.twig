@@ -6,12 +6,12 @@
 {% block body %}
 
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Modifier un service</h4>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('admin_services_add') }}" class="btn btn-success">Ajouter un service</a>
+                    <a href="{{ path('admin_services_add') }}" class="btn btn-success">Ajouter</a>
                 {% endif %}
                 <div class="table-responsive">
                     <table class="table">
@@ -28,11 +28,9 @@
                                 <tr>
                                     <td>{{ service.name}}</td>
                                     <td>{{ service.description}}</td>
-                                    {# <td>{{ service.image}}</td> #}
-                                    {# <td>{% for role in user.roles %}
-                                            {{ role }}{% if not loop.last %}, {% endif %}
-                                        {% endfor %}</td> #}
-                                    <td class='action'>
+                                    <td class="image">...
+                                    </td>
+                                    <td class="action">
                                         <a href="{{ path('admin_services_modif', { id: service.id }) }}" class="btn btn-primary">Modifier</a>
                                         {# <a href="{{ path('admin_services_modif', { id: service.id }) }}">Modifier</a> #}
                                         {% if is_granted('ROLE_ADMIN') %}

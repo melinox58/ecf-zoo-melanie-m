@@ -3,5 +3,42 @@
 {% block title %}Marais{% endblock %}
 
 {% block body %}
-C'est le marais
+
+<section class="titleServ">
+    <h3 class="h3Hab">Marais</h3>
+    <div class="rectangle"></div>
+</section>
+
+<img class="habitat" src="{{ asset('/images/marais/marais.jpg') }}" alt="Entrée du zoo">
+<div class="habitmar">
+    <p>Les marais, zones humides situées entre terre et eau, offrent un habitat riche et
+    diversifié qui joue un rôle essentiel dans les écosystèmes.<br>
+    La végétation des marais est adaptée à un environnement gorgé d'eau. On y trouve des plantes
+    aquatiques comme les roseaux, les joncs et les nénuphars, ainsi que des arbres comme les cyprès
+    chauves et les saules, dont les racines plongent dans l'eau stagnante. Les herbes hautes et les mousses
+    prolifèrent, formant des abris pour de nombreuses espèces.<br>
+    Les marais abritent une faune variée, adaptée à ces zones humides. Les oiseaux aquatiques tels que les hérons,
+    cigognes et canards y sont fréquents. Les mammifères comme les castors, loutres, ou encore les ratons laveurs
+    y trouvent refuge. Les eaux stagnantes sont le domaine des grenouilles, serpents d'eau, et tortues, tandis
+    que des poissons comme les brochets et les perches prospèrent dans les zones immergées. Les insectes,
+    notamment les libellules et les moustiques, y jouent un rôle important dans l'écosystème.<br>
+    Les marais, véritables réservoirs de biodiversité, servent également de filtres naturels pour l'eau et de zones
+    tampons contre les inondations, bien qu'ils soient menacés par le drainage et l'urbanisation.</p>
+</div>
+
+{# Cards d'animaux des marais #}
+<section class="animaux">
+    <div class="row">
+        {% for animal in maraisAnimals %}
+                <div class="card marais">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.nameAnimal }}</h5>
+                        <p class="card-text">{{ animal.description }}</p>
+                        <a href="#" class="marais btn btn-primary">Détails</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

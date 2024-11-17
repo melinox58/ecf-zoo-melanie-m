@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Rapports{% endblock %}
 
 {% block body %}
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Comptes rendus employé</h4>
@@ -28,7 +28,7 @@
                                 {% for report in reports %}
                                 <tr>
                                     <td>{{ report.idAnimals.nameAnimal }}</td>
-                                    <td>
+                                    <td class="image">
                                     {% if report.idAnimals.images is defined and report.idAnimals.images|length > 0 %}
                                         <img src="{{ asset('uploads/animals/mini/250x250-' ~ report.idAnimals.images[0].getFilePath) }}" alt="{{ report.idAnimals.nameAnimal }}" class="img-report" width="100">
                                     {% else %}

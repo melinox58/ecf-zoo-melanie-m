@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap');
 /* @import 'fontawesome/fontawesome-free/css/all.css'; */
 
+/* memo */
 
 /* .lemon-regular {
     font-family: "Lemon", serif;
@@ -99,8 +100,50 @@ a.nav-link:nth-child(5) {
 a.nav-link:nth-child(6) {
 font-size: 1rem;
 }
-  
-  
+
+@media screen and (max-width: 650px) {
+
+    .navbar {
+        height: 8vh;
+        background-size: cover;
+    }
+
+    .banner img{
+        height: auto;
+    }
+
+    .hheader{
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand img {
+        width: 2rem;
+    }
+
+    a.nav-link:nth-child(5) {
+    font-size: 0.7rem;
+    }
+
+    a.nav-link:nth-child(6) {
+        font-size: 0.7rem;
+    }
+      
+    .collapse a {
+        font-size: 0.8rem;
+    }
+
+    .fa-solid {
+        font-size: 1.1rem;
+    }
+
+    .navbar-collapse {
+        margin-left: 64%;
+        text-align: right;
+        z-index: 99;
+        background: linear-gradient( #aee199 ,white);
+        padding: 2%;
+    }
+}
 
 /* ----------------------------------------FOOTER-------------------------------------------------------- */
 
@@ -203,6 +246,43 @@ h7{
     margin-top: 2%;
 }
 
+@media screen and (max-width: 650px) {
+
+    footer {
+        height: 14vh;
+    }
+
+    h2{
+        font-size: 1.2rem;
+        width: 44vw;
+    }
+
+    .bootstrap-icons {
+        gap: 22%;
+    }
+
+    .lien_footer a{
+        font-size: 0.4rem;
+    }
+    
+    .container-fluid-foot {
+        gap: 10%;
+      }
+    
+    h1 {
+        font-size: 0.9rem;
+        width: 20vw;
+    }
+    
+    h7 {
+        font-size: 0.4rem;
+    }
+    
+    .copy {
+        font-size: 0.3rem;
+    }
+}
+
 /* --------------------------------GLOBAL-CSS------------------------------------- */
 
 body{
@@ -212,6 +292,8 @@ body{
     margin-left: auto;
     margin-right: auto;
     background-color:beige;
+    width: 100vw;
+    height: 100vh;
 }
 
 .banner{
@@ -236,6 +318,161 @@ h4{
     position: relative;
     z-index: 7;
 }
+
+@media screen and (max-width: 650px){
+    .banner img {
+        height: 5%;
+    }
+
+    div.rectangle2 {
+        width: 64vw;
+        height: 10vh;
+    }
+
+    h3.search {
+        width: 60vw;
+        top: -1.3rem;
+    }
+
+    .discover3 {
+        top: 31px;
+    }
+
+}
+
+
+/* ----------------------------BUTTON---------------------------------- */
+
+/*navbar Dashboard button*/
+button.btn.btnRegister{
+    font-family: 'Lemonada', serif;
+}
+  
+.btnRegister {
+    background-color:#4B543B;
+    text-decoration: none;
+    margin-bottom: 2%;
+}
+
+.btnRegister a{
+    text-decoration: none;
+    color: white;
+}
+
+a.btnRegister{
+    color: white;
+    font-family: 'Lemonada', serif;
+}
+
+/*button add*/
+
+button.btn.btn-success {
+    margin-top: 4%;
+    margin-left: 35%;
+    font-family: 'Lemonada', serif;
+    text-align: center;
+}
+
+a.btn.btn-success {
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    margin-bottom: 2%;
+    width: 10%;
+    margin-left: 40%;
+}
+
+button#form_save.btn-primary.btn{
+    width: 10%;
+}
+
+/*button modify*/
+
+button.btn.btn-primary {
+    margin-top: 4%;
+    margin-left: 35%;
+    font-family: 'Lemonada', serif;
+}
+
+a.btn.btn-primary{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/*button filter*/
+
+.btn.btn-primary.filter{
+    font-size: 0.7rem;
+    margin-top: 1%;
+    margin-left: 46%;
+    font-family: 'Lemon', serif;
+    width: 10%;
+}
+
+/*button delete*/
+
+button.btn.btn-danger{
+    font-family: 'Lemon', serif;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 80%;
+    margin-top: 2%;
+    display: flex;
+}
+
+@media screen and (max-width: 650px){
+    .btnAvis {
+        font-size: 0.7rem;
+    }
+
+    button.btn.btnRegister {
+        font-family: 'Lemonada', serif;
+        font-size: 0.5rem;
+        width: 20vw;
+    }
+
+    a.btnRegister {
+        color: white;
+        font-family: 'Lemonada', serif;
+        font-size: 0.5rem;
+        width: 20vw;
+    }
+
+    a.btn.btn-primary {
+        font-size: 0.4rem;
+        width: 70%;
+    }
+
+    button.btn.btn-danger {
+        font-size: 0.4rem;
+        width: 70%;
+    }
+
+    a.btn.btn-success {
+        font-size: 0.4rem;
+        width: 15vw;
+    }
+
+    .btn.btn-primary.filter {
+        font-size: 0.4rem;
+        width: 15vw;
+    }
+
+    button.btn.btn-primary {
+        font-size: 0.5rem;
+    }
+
+    a.btn.btn-secondary{
+        font-size: 0.5rem;
+        height: 10vh;
+    }
+}
+
 
 /* ----------------------------HOME-PAGE---------------------------------- */
 
@@ -300,6 +537,7 @@ h3{
 
 
 /*section animaux */
+
 .animaux{
     width: 85vw;
     margin-bottom: 5%;
@@ -324,12 +562,14 @@ h3{
 
 
 /*section habitats*/
+
 .habitats{
     display: flex;
     justify-content: space-around; /* Pour espacer les éléments uniformément */
     width: 85vw;
     margin-top: 4%;
     margin-bottom: 3%;
+    align-items: center;
 }
 
 .habitats img {
@@ -397,7 +637,7 @@ h3{
 
 li {
     margin-bottom: 4%;
-  }  
+}  
 
 dl, ol, ul {
   margin-bottom:1rem;
@@ -422,7 +662,9 @@ dl, ol, ul {
     border: none;
 }
 
+
 /*Modal Avis*/
+
 .modal {
     background-image: url(../temp/background_avis.jpg);
     background-size: cover;
@@ -463,7 +705,9 @@ label{
     width: 25%;
 }
 
+
 /*section horaires*/
+
 .schedules{
     font-family: "lemonada", cursive;
     color: #4B543B;
@@ -480,6 +724,7 @@ label{
 
 
 /*section nous trouver*/
+
 .discover3{
     display: flex;
     transform: rotate(10deg);
@@ -508,6 +753,256 @@ iframe{
     text-align: center;
     padding-left: 16%;
     padding-top: 2%;
+}
+
+
+@media screen and (max-width: 650px) {
+    h3{
+        font-size: 0.8rem;
+        margin-top: 4%;
+    }
+
+    .titleServ h3 {
+        margin-top: 4%;
+    }
+
+    .accueil{
+        height: 100%;
+        margin-top: 10%;
+    }
+
+    .rectangle{
+        width: 73vw;
+        height: 7vh;
+        margin-top: 2%;
+    }
+
+    p {
+        font-size: 0.4rem;
+        margin-top: 10%;
+      }
+
+    .tranparent{
+        width: 73vw;
+        height: 8.5vh;
+        margin-top: 48%;
+    }
+
+    h4{
+        margin-top: 10%;
+        font-size: 0.9rem;
+    }
+
+    .card{
+        width: 53%;
+        height: 35vh;
+    }
+      
+    .card-title{
+        font-size: 0.5rem;
+    }
+
+    .animaux{
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .card-img{
+        width: 84%;
+    }
+
+    .habitats{
+        flex-direction: column;
+    }
+
+    .habitats a{
+        display: flex;
+        justify-content: center;
+      }
+
+    .habitats legend{
+        font-size: 0.5rem;
+        padding-left: 20%;
+    }
+
+    li {
+        margin-bottom: 20%;
+        font-size: 0.8rem;
+        width: 85vw;
+        display: flex;
+        flex-direction: column;
+      }
+
+    .avis{
+        font-size: 1rem;
+        padding: 2%;
+    }
+      
+    ol,ul {
+        margin-left: -13rem;
+    }
+
+    .nos-services legend{
+        font-size: 0.7rem;
+    }
+
+    .nos-services{
+        flex-direction: column;
+    }
+    .nos-services img{
+        max-width: 265px;
+    }
+
+    .nos-services > div:nth-child(1) > legend:nth-child(2) {
+        margin-top: -15%;
+        }
+      
+    .nos-services > div:nth-child(2) > legend:nth-child(2) {
+        margin-top: -5%;
+      }
+    .nos-services > div:nth-child(3) > legend:nth-child(2) {
+        margin-top: -15%;
+        }
+    .nos-services > div:nth-child(3) > a:nth-child(1) > img:nth-child(1) {
+        margin-top: -10%;
+      }
+
+    .avis .btnAvis {
+        width: 8rem;
+        font-size: 0.7rem;
+    }
+
+    .modal {
+        background-image: none;
+        width: 67vw;
+        margin-top: 39vh;
+        margin-left: 13%;
+    }
+
+    .modal-body label{
+        width: 34%;
+    }
+
+    form .btn {
+        width: 40%;
+    }
+
+    #exampleModalLabel {
+        text-align: center;
+        width: 1000%;
+      }
+
+    .schedules {
+        font-size: 0.8rem;
+        margin-top: 12%;
+        margin-bottom: 13%;
+    }
+
+    .search{
+        font-size: 0.7rem;
+        width: 50vw;
+        right: 0.5rem;
+        top: -0.1rem;
+    }
+
+    .rectangle2{
+        width: 56vw;
+        top: -17%;
+        left: 5%;
+    }
+
+    .discover3{
+        left: 53px;
+        top: 69px;
+    }
+
+    .maps{
+        width: 85vw;
+        height: auto;
+    }
+
+    .maps > iframe:nth-child(1) {
+        border:0;
+        width: 100%;
+      }
+    
+      footer{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: auto;
+    }
+    
+    .container-fluid-foot{
+        display: flex;
+        gap: 10%;
+    }
+
+    .containerAdmin{
+        display: flex;
+        flex-direction: row;
+        width: 90vw;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .hello{
+            font-size: 1rem;
+            margin-top: 10%;
+    }
+    
+    .gauche{
+    width: 49%;
+    }
+    
+    h1{
+        font-size: 1.2rem;
+        margin-top: 15%;
+    }
+    
+    .suivez{
+        align-items: center;
+        text-align: center;
+        width: 40%;
+    }
+
+    .bootstrap-icons {
+        display: flex;
+        gap: 51%;
+        width: 40%;
+        text-align: center;
+        margin-left: -75%;
+        font-size: 0.8rem;
+    }
+    
+    h2 {
+    display: flex;
+    font-size: 1rem;
+    width: 154%;
+    margin-left: -24%;
+    }
+    
+    h7{
+        font-size: 0.6rem;
+        text-align: center;
+    }
+    
+    .lien_footer{
+    margin-top: 4%;
+    width: 40%;
+    }
+
+    .lien_footer a {
+        display: flex;
+        flex-direction: column;
+        font-family: 'lemonada',cursive;
+        color: #DCE2AA;
+        text-decoration: none;
+        font-size: 0.6rem;
+    }
 }
 
 /* -----------------------------------SERVICES-PAGE-------------------------------------------- */
@@ -656,862 +1151,7 @@ iframe{
     margin-bottom: 2%;
 }
 
-/* -----------------------------HABITATS-PAGE--------------------------- */
-
-.transparent-hab{
-    width: 50vw;
-    height: 18vh;
-    position: absolute;
-    z-index: 4;
-    background-color: white;
-    opacity: 70%;
-    margin-top: 48%;
-}
-
-.h3Hab{
-    margin-top: 2.5%;
-}
-
-.titleServ .rectangle{
-    height: 10vh;
-}
-
-.habitincl{
-    position: absolute;
-    z-index: 5;
-    font-family: "lemonada", cursive;
-    color: #4B543B;
-    font-size: 1rem;
-    margin-top: 50%;
-    text-align: center;
-    width: 44vw;
-}
-
-.habitat{
-    display: flex;
-    justify-content: space-around; /* Pour espacer les éléments uniformément */
-    width: 85vw;
-    margin-top: 4%;
-    margin-bottom: 8%;
-    height: 80vh;
-    width: 85vw;
-}
-
-.habitat img {
-    text-align: center; /* Centre le contenu textuel, y compris les légendes */
-    display: flex; /* Utilisation de flexbox pour aligner le contenu */
-    flex-direction: column; /* Aligne les éléments en colonne */
-    align-items: center; 
-    clip-path: ellipse(40% 50%);
-    width: 80%;
-    height: 80vh;
-}
-
-
-.hab{
-    width: 85vw;
-    display: flex;
-    margin-top: 3%;
-}
-
-.imgHab{
-    width: 80%;
-    height: auto;
-    margin: 3%;
-}
-
-.hab p{
-    font-family: "Lemonada", cursive;
-    font-size: 0.9rem;
-    margin-top: 7%;
-    color: #4B543B;
-}
-
-.card.jungle{
-    background-color:#8ED081;
-    box-shadow: 0 4px 4px lightgrey;
-    margin-top: 0;
-}
-.card.marais{
-    background-color:#B57F50;
-    box-shadow: 0 4px 4px lightgrey;
-    margin-top: 0;
-}
-.card.savane{
-    background-color:#DCE2AA;
-    box-shadow: 0 4px 4px lightgrey;
-    margin-top: 0;
-}
-  
-a.jungle.btn.btn-primary,
-a.marais.btn.btn-primary,
-a.savane.btn.btn-primary{
-    width: 6vw;
-    font-family: lemon;
-    font-size: 0.7rem;
-    margin-top: 8%;
-}
-
-p.card-text {
-    text-align: justify;
-    color: #4B543B;
-    font-family: lemonada;
-    font-size: 0.7rem;
-    overflow: auto;
-    text-overflow: ellipsis;
-    height: 20vh;
-}
-
-.img-thumbnail {
-    padding:0.2rem;
-    background-color:var(--bs-body-bg);
-    border:var(--bs-border-width) solid var(--bs-border-color);
-    border-radius:var(--bs-border-radius);
-    max-width:100%;
-    height:auto;
-    width: 64%;
-    margin-top: 8%;
-}
-  
-.card-title {
-    padding-top: 3%;
-    text-align: center;
-    font-family: "Lemonada", cursive;
-    font-size: 0.9rem;
-    color: #4B543B;
-}
-
-.row{
-    gap: 2%;
-    justify-content: center;
-    height: 67vh;
-}
-
-
-/* ---------------------------------NOUS CONTACTER------------------------------- */
-
-body > h4:nth-child(2) {
-    margin-top: 2%;
-}
-  
-.mb-3 {
-    margin-bottom:1rem!important;
-    display: flex;
-    align-items: center;
-}
-  
-.form-label {
-    margin-bottom:.5rem;
-    justify-content: right;
-    display: flex;
-    margin-right: 2%;
-    width: 50%;
-}
-  
-body > form:nth-child(3) {
-    background-color: #DCE2AA;
-    padding: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    padding-right: 6%;
-}
-
-#contact_save {
-    width: 100%;
-    background-color: #8ED081;
-    border: none;
-    font-family: "Lemon", serif;
-}
-
-.col {
-    flex:1 0 0%;
-    margin-right: 20%;
-    width: 80%;
-}
-
-  
-
-
-
-
-
-
-/* ---------------------------------LOGIN-PAGE------------------------------- */
-
-body > form:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-    width: 47vw;
-    height: 70vh;
-    background-color: #DCE2AA;
-    padding: 7%;
-    margin: 2%;
-}
-
-label {
-    width: 32%;
-    font-size: 0.7rem;
-}
-
-.rond{
-    background-color: white;
-    border-radius: 50%;
-    width: 29%;
-    height: 39%;
-    position: relative;
-    z-index: 2;
-    top: -16%;
-    left: 40%;
-}
-
-.h3{
-    position: absolute;
-    z-index: 5;
-    top: 26%;
-    left: 49.5%;
-}
-
-.fa-sharp-duotone {
-    font-size: 4rem;
-    margin-top: -120%;
-}
-  
-.btn-connex{
-    font-family: "Lemon", serif;
-    color: white;
-    background-color: #4B543B;
-    font-size: 1rem;
-    margin-top: 2%;
-    width: 30%;
-    margin-left: 39%;
-}
-
-.btn:hover {
-    background-color: #8ED081;
-    color: #4B543B;
-    border: none;
-}
-
-/* ----------------------------------ADMIN-PAGE------------------------------------ */
-aside {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-items: center;
-    text-align: center;
-    gap: 2%;
-    height: 60%;
-    
-}
-
-.col-9 > h1:nth-child(1) {
-    text-align: center;
-}
-
-.col-9 > p:nth-child(2) {
-    text-align: center;
-}
-
-.col-9 > img:nth-child(3) {
-    width: 50%;
-    height: auto;
-}
-  
-.col-9 {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    height: 60vh;
-  }
-  
-button.btn.btnRegister{
-    font-family: 'Lemonada', serif;
-}
-  
-.btnRegister {
-    background-color:#4B543B;
-    text-decoration: none;
-    margin-bottom: 2%;
-}
-
-.btnRegister a{
-    text-decoration: none;
-    color: white;
-}
-
-a.btnRegister{
-    color: white;
-    font-family: 'Lemonada', serif;
-}
-
-.containerAdmin{
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-
-.row{
-    width: 95vw;
-    height: auto;
-}
-
-.badge{
-    background-color: #B57F50;
-}
-
-th{
-    font-family: 'Lemon', serif;
-}
-
-td.action{
-    width: 14%;
-  }  
-
-.col-9 > h4:nth-child(1) {
-    margin-bottom: 4%;
-  }
-
-.mb-3 {
-    justify-content: center;
-    margin-top: 5%;
-    font-family: 'Lemonada', serif;
-}
-
-.col-9 > form:nth-child(2) {
-    justify-content: center;
-}
-  
-main form label {
-    text-align: right;
-    margin-right: 2%;
-    font-family: 'Lemonada', serif;
-    font-size: 1rem;
-}
-
-main {
-    flex: 1; /* Pousse le footer vers le bas si le contenu est insuffisant */
-}
-
-.h5, h5 {
-  font-size:1.25rem;
-  font-family: 'Lemonada', serif;
-  text-align: center;
-  margin-top: 2%;
-}
-
-button.btn.btn-success {
-    margin-top: 4%;
-    margin-left: 35%;
-    font-family: 'Lemonada', serif;
-  }
-  
-button.btn.btn-primary {
-    margin-top: 4%;
-    margin-left: 35%;
-    font-family: 'Lemonada', serif;
-}
-
-.action button.btn.btn-danger {
-    width: 81%;
-}
-
-button.btn.btn-danger {
-    display: flex;
-}
-
-.col-form-label {
-    text-align: center;
-    font-size: 1.3rem;
-    font-family: 'Lemonada', serif;
-}
-  
-.form-check {
-    display:block;
-    min-height:1.5rem;
-    padding-left:16.5em;
-    margin-bottom:.125rem;
-}
-  
-.mt-3 {
-    margin-top:1rem!important;
-    width: 10%;
-}
-
-.col-9 h4{
-    margin-bottom: 4%;
-    margin-top: 3%;
-  }
-
-.button.filter.btn.btn-primary{
-    font-size: 0.7rem;
-    margin-top: -35%;
-    margin-left: 0;
-    font-family: 'Lemonada', serif;
-    width: 19%;
-}
-
-.form-group {
-    width: 65%;
-    display: flex;
-    margin-left: 25%;
-    align-items: center;
-  }
-  
-a.btn.btn-success {
-    font-family: 'Lemon', serif;
-    font-size: 0.7rem;
-    text-align: center;
-    margin-bottom: 2%;
-    width: 30%;
-    margin-left: 40%;
-}
-
-.form-group label {
-    width: 47%;
-}
-
-.table-responsive {
-
-    width: 70vw;
-  }
-  
-/* ----------------------------------EMPLOYEE-PAGE------------------------------------ */
-
-
-/* .col-9 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .reportEmp {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 50vh;
-  }
-  
-  .animal-image {
-    width: 15%;
-  }
-  
-  .table-responsive > form:nth-child(1) {
-    display: flex;
-  }
-  
-  .img-report {
-    width: 112%;
-    padding-left: 10%;
-  }
-
-.reportEmp{
-    width: 75%;
-}
-
-.reportEmp input,
-.reportEmp label,
-.reportEmp select {
-    margin-bottom: -8%;
-  }
-
-.animals img{
-    width: 50%;
-}
-
-.animals td{
-    width: 20%;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ---------------------------------REGISTRATION-PAGE---------------------------- */
-
-body > form:nth-child(3) {
-    background-color: #DCE2AA;
-    padding: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-form .btn {
-    width: 30%;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-}
-
-a.btn.btn-primary{
-    font-family: 'Lemon', serif;
-    font-size: 0.7rem;
-    text-align: center;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-}
-
-button.btn.btn-danger{
-    font-family: 'Lemon', serif;
-    font-size: 0.7rem;
-    text-align: center;
-    width: 80%;
-    margin-top: 2%;
-}
-
-a.btn.btn-success{
-    font-family: 'Lemon', serif;
-    font-size: 0.7rem;
-    text-align: center;
-    margin-bottom: 2%;
-}
-
-.table > tbody:nth-child(3) > tr:nth-child(n+1) > td:nth-child(5) > img:nth-child(1) {
-    width: 100%;
-  }
-  
-
-/* ---------------------------------RGPD-PAGE---------------------------- */
-
-.espace{
-    margin-bottom: 3%;
-}
-
-.text{
-    width: 85vw;
-    font-family: "Lemonada", cursive;
-    font-size: 0.7rem;
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-
-/* ----------------------------------VETERINARY-PAGE------------------------------------ */
-
-.form-group label{
-    width: 43%;
-}
-
-button.report.btn.btn-success{
-    width: 30%;
-    text-align: center;
-}
-
-button.filter.btn.btn-primary {
-    width: 15%;
-    margin-top: 2%;
-  }
-  
-/* ----------------------------------EMPLOYEE-PAGE------------------------------------ */
-
-.col-9 > form:nth-child(2) {
-    width: 60%;
-    margin-right: 10%;
-  }
-
-#reports_save {
-    width: 30%;
-    margin-left: 50%;
-}
-
-
-@media screen and (max-width: 650px) {
-
-    /* -----------header------------- */
-    .navbar {
-        height: 8vh;
-        background-size: cover;
-    }
-
-    .banner img{
-        height: auto;
-    }
-
-    .hheader{
-        font-size: 0.9rem;
-    }
-
-    .navbar-brand img {
-        width: 2rem;
-    }
-
-    a.nav-link:nth-child(5) {
-    font-size: 0.7rem;
-    }
-
-    a.nav-link:nth-child(6) {
-        font-size: 0.7rem;
-      }
-      
-    
-    .collapse a {
-        font-size: 0.8rem;
-    }
-
-    .fa-solid {
-        font-size: 1.1rem;
-    }
-
-    .navbar-collapse {
-        margin-left: 64%;
-        text-align: right;
-        z-index: 99;
-        background: linear-gradient( #aee199 ,white);
-        padding: 2%;
-    }
-
-    /* -----------home------------- */
-
-
-    h3{
-        font-size: 0.8rem;
-        margin-top: 4%;
-    }
-
-    .accueil{
-        height: 100%;
-        margin-top: 10%;
-    }
-
-    .rectangle{
-        width: 73vw;
-        height: 7vh;
-        margin-top: 2%;
-    }
-
-    p {
-        font-size: 0.4rem;
-        margin-top: 10%;
-      }
-
-    .tranparent{
-        width: 73vw;
-        height: 8.5vh;
-        margin-top: 48%;
-    }
-
-    h4{
-        font-size: 0.9rem;
-    }
-
-    .card{
-        width: 53%;
-        height: 35vh;
-    }
-      
-    .card-title{
-        font-size: 0.5rem;
-    }
-
-    .animaux{
-        flex-direction: column;
-        justify-content: center;
-        justify-items: center;
-        align-content: center;
-        align-items: center;
-    }
-
-    .card-img{
-        width: 84%;
-    }
-
-    .habitats{
-        flex-direction: column;
-    }
-
-    .habitats a{
-        display: flex;
-        justify-content: center;
-      }
-
-    .habitats legend{
-        font-size: 0.8rem;
-        padding-left: 20%;
-    }
-
-    li {
-        margin-bottom: 20%;
-        font-size: 0.8rem;
-        width: 85vw;
-        display: flex;
-        flex-direction: column;
-      }
-
-    .avis{
-        font-size: 1rem;
-        padding: 2%;
-    }
-      
-    ol,ul {
-        margin-left: -13rem;
-    }
-
-    .nos-services legend{
-        font-size: 0.7rem;
-    }
-
-    .nos-services{
-        flex-direction: column;
-    }
-    .nos-services img{
-        max-width: 265px;
-    }
-
-    .nos-services > div:nth-child(1) > legend:nth-child(2) {
-        margin-top: -15%;
-        }
-      
-    .nos-services > div:nth-child(2) > legend:nth-child(2) {
-        margin-top: -5%;
-      }
-    .nos-services > div:nth-child(3) > legend:nth-child(2) {
-        margin-top: -15%;
-        }
-    .nos-services > div:nth-child(3) > a:nth-child(1) > img:nth-child(1) {
-        margin-top: -10%;
-      }
-
-    .avis .btnAvis {
-        width: 8rem;
-        font-size: 0.7rem;
-    }
-
-    .modal {
-        background-image: none;
-        width: 67vw;
-        margin-top: 39vh;
-        margin-left: 13%;
-    }
-
-    .modal-body label{
-        width: 34%;
-    }
-
-    form .btn {
-        width: 40%;
-    }
-
-    #exampleModalLabel {
-        text-align: center;
-        width: 1000%;
-      }
-
-    .schedules {
-        font-size: 0.8rem;
-        margin-top: 12%;
-        margin-bottom: 13%;
-    }
-
-    .search{
-        font-size: 0.7rem;
-        width: 50vw;
-        right: 0.5rem;
-        top: -0.1rem;
-    }
-
-    .rectangle2{
-        width: 56vw;
-        top: -17%;
-        left: 5%;
-    }
-
-    .discover3{
-        left: 53px;
-        top: 69px;
-    }
-
-    .maps{
-        width: 85vw;
-        height: auto;
-    }
-
-    .maps > iframe:nth-child(1) {
-        border:0;
-        width: 100%;
-      }
-    
-      footer{
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        height: auto;
-    }
-    
-    .container-fluid-foot{
-        display: flex;
-        gap: 10%;
-    }
-    
-    .gauche{
-    width: 49%;
-    }
-    
-    h1{
-        font-size: 1.2rem;
-        margin-top: 15%;
-    }
-    
-    .suivez{
-        align-items: center;
-        text-align: center;
-        width: 40%;
-    }
-
-    .bootstrap-icons {
-        display: flex;
-        gap: 51%;
-        width: 40%;
-        text-align: center;
-        margin-left: -75%;
-        font-size: 0.8rem;
-    }
-    
-    h2 {
-    display: flex;
-    font-size: 1rem;
-    width: 154%;
-    margin-left: -24%;
-    }
-    
-    h7{
-        font-size: 0.6rem;
-        text-align: center;
-    }
-    
-    .lien_footer{
-    margin-top: 4%;
-    width: 40%;
-    }
-
-    .lien_footer a {
-        display: flex;
-        flex-direction: column;
-        font-family: 'lemonada',cursive;
-        color: #DCE2AA;
-        text-decoration: none;
-        font-size: 0.6rem;
-    }
-
-    /* -----------Service------------- */
+@media screen and (max-width: 650px){
 
     .h3Serv {
         margin-top: 6%;
@@ -1584,9 +1224,171 @@ button.filter.btn.btn-primary {
     .ecolo img {
         width: 25%;
     }
+}
 
-    /* -----------Habitat------------- */
+/* -----------------------------HABITATS-PAGE--------------------------- */
 
+.transparent-hab{
+    width: 50vw;
+    height: 18vh;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    opacity: 70%;
+    margin-top: 48%;
+}
+
+.transparent-jungle,
+.transparent-marais,
+.transparent-savane{
+    width: 84vw;
+    height: 35vh;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    opacity: 70%;
+    margin-top: 43%;
+}
+
+.h3Hab{
+    margin-top: 2.5%;
+}
+
+.titleServ .rectangle{
+    height: 10vh;
+}
+
+.habitincl{
+    position: absolute;
+    z-index: 5;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    margin-top: 50%;
+    text-align: center;
+    width: 44vw;
+}
+
+.habitmar,
+.habitjung,
+.habitsav{
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: center;
+    width: 85vw;
+    margin-top: -5%;
+    margin-bottom: 2%;
+}
+
+.habitat{
+    display: flex;
+    justify-content: space-around; /* Pour espacer les éléments uniformément */
+    width: 85vw;
+    margin-top: 4%;
+    margin-bottom: 8%;
+    height: 80vh;
+    width: 85vw;
+}
+
+.habitat img {
+    text-align: center; /* Centre le contenu textuel, y compris les légendes */
+    display: flex; /* Utilisation de flexbox pour aligner le contenu */
+    flex-direction: column; /* Aligne les éléments en colonne */
+    align-items: center; 
+    clip-path: ellipse(40% 50%);
+    width: 80%;
+    height: 80vh;
+}
+
+.hab{
+    width: 85vw;
+    display: flex;
+    margin-top: 3%;
+}
+
+.imgHab{
+    width: 80%;
+    height: auto;
+    margin: 3%;
+}
+
+.hab p{
+    font-family: "Lemonada", cursive;
+    font-size: 0.9rem;
+    margin-top: 7%;
+    color: #4B543B;
+}
+
+.card.jungle{
+    background-color:#8ED081;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 3%;
+}
+
+.card.marais{
+    background-color:#B57F50;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
+}
+
+.card.savane{
+    background-color:#DCE2AA;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
+}
+  
+a.jungle.btn.btn-primary,
+a.marais.btn.btn-primary,
+a.savane.btn.btn-primary{
+    width: 6vw;
+    font-family: lemon;
+    font-size: 0.7rem;
+    margin-top: 8%;
+}
+
+p.card-text {
+    text-align: justify;
+    color: #4B543B;
+    font-family: lemonada;
+    font-size: 0.7rem;
+    overflow: auto;
+    text-overflow: ellipsis;
+    height: 20vh;
+}
+
+.img-thumbnail {
+    padding:0.2rem;
+    background-color:var(--bs-body-bg);
+    border:var(--bs-border-width) solid var(--bs-border-color);
+    border-radius:var(--bs-border-radius);
+    max-width:100%;
+    height:auto;
+    width: 64%;
+    margin-top: 8%;
+}
+  
+.card-title {
+    padding-top: 3%;
+    text-align: center;
+    font-family: "Lemonada", cursive;
+    font-size: 0.9rem;
+    color: #4B543B;
+}
+
+.animaux .row{
+    gap: 2%;
+    justify-content: center;
+    height: 67vh;
+    flex: 1;
+}
+
+.row{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 650px){
     .habitat {
         height: auto;
     }
@@ -1636,6 +1438,12 @@ button.filter.btn.btn-primary {
         height: 54vh;
     }
 
+    .animaux .row{
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+
     .card.jungle,
     .card.marais,
     .card.savane {
@@ -1657,10 +1465,56 @@ button.filter.btn.btn-primary {
         font-size: 0.4rem;
         margin-top: -9%;
     }
+}
 
-    /* -----------Contact------------- */
 
-    body > form:nth-child(3) {
+/* ---------------------------------NOUS CONTACTER------------------------------- */
+
+body > h4:nth-child(2) {
+    margin-top: 2%;
+}
+  
+.mb-3 {
+    margin-bottom:1rem!important;
+    display: flex;
+    align-items: center;
+}
+  
+.form-label {
+    margin-bottom:.5rem;
+    justify-content: right;
+    display: flex;
+    margin-right: 2%;
+    width: 50%;
+}
+  
+body > form:nth-child(3) {
+    background-color: #DCE2AA;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding-right: 6%;
+}
+
+#contact_save {
+    width: 100%;
+    background-color: #8ED081;
+    border: none;
+    font-family: "Lemon", serif;
+}
+
+.col {
+    flex:1 0 0%;
+    margin-right: 20%;
+    width: 80%;
+}
+
+body > form:nth-child(3) {
         width: 80%;
         margin-bottom: 20%;
     }
@@ -1678,24 +1532,118 @@ button.filter.btn.btn-primary {
         margin-top: 12%;
     }
 
-    /* -----------login------------- */
 
-    body > form:nth-child(2) {
-        width: 80vw;
+
+@media screen and (max-width: 650px){
+
+    body > form:nth-child(3) {
+        width: 80%;
+        margin-bottom: 20%;
     }
 
+    #contact_save {
+        width: 30%;
+        margin-bottom: 10%;
+        font-size: 0.5rem;
+    }
+
+    .col {
+        margin-top: 15%;
+    }
+      
+    body > h4:nth-child(2) {
+        margin-top: 12%;
+    }
+}
+
+/* ---------------------------------RGPD-PAGE---------------------------- */
+
+.espace{
+    margin-bottom: 3%;
+}
+
+.text{
+    width: 85vw;
+    font-family: "Lemonada", cursive;
+    font-size: 0.7rem;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+
+/* ---------------------------------LOGIN-PAGE------------------------------- */
+
+body > form:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    width: 47vw;
+    height: 70vh;
+    background-color: #DCE2AA;
+    padding: 7%;
+    margin: 2%;
+}
+
+label {
+    width: 32%;
+    font-size: 0.7rem;
+}
+
+.rond{
+    background-color: white;
+    border-radius: 50%;
+    width: 29%;
+    height: 39%;
+    position: relative;
+    z-index: 2;
+    top: -16%;
+    left: 40%;
+}
+
+.h3{
+    position: absolute;
+    z-index: 5;
+    top: 26%;
+    left: 49.5%;
+}
+
+.fa-sharp-duotone {
+    font-size: 4rem;
+    margin-top: 10%;
+}
+  
+.btn-connex{
+    font-family: "Lemon", serif;
+    color: white;
+    background-color: #4B543B;
+    font-size: 1rem;
+    margin-top: 2%;
+    width: 30%;
+    margin-left: 39%;
+}
+
+.btn:hover {
+    background-color: #8ED081;
+    color: #4B543B;
+    border: none;
+}
+
+
+
+
+@media screen and (max-width: 650px){
     .rond {
-        width: 52%;
-        height: 30%;
-        top: -1%;
-        left: 25%;
+        width: 30vw;
+        height: 30vw;
+        top: 3vw;
+        left: 2vw;
+        margin-bottom: 8%;
     }
 
     .h3 {
         position: absolute;
         z-index: 5;
-        top: 16%;
-        left: 42%;
+        top: 14%;
+        left: 44%;
     }
 
     .fa-sharp-duotone {
@@ -1708,790 +1656,208 @@ button.filter.btn.btn-primary {
     }
 
     .btn-connex {
-        font-size: 0.7rem;
-        width: 40%;
+        font-size: 0.5rem;
+        width: 35vw;
+        height: auto;
         margin-left: 30%;
         margin-top: 10%;
     }
 
     .form-control {
         font-size:0.8rem;
+    }
+
+    body > form:nth-child(2) {
+        width: 78vw;
+    }
+
+    form .login {
+        margin-top: 10%;
+        margin-bottom: 15%;
       }
       
-    /* -----------Admin------------- */
 
-    .containerAdmin{
-        font-size: -0.6rem;
-    }
+      
+}
 
-    .col-9 > img:nth-child(3) {
-        width: 90%;
-        margin-top: 20%;
-    }
+/* ---------------------------------REGISTRATION-PAGE---------------------------- */
 
-    .containerAdmin .row {
+body > form:nth-child(3) {
+    background-color: #DCE2AA;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+form .btn {
+    width: 30%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+
+/* ----------------------------------ADMIN-PAGE------------------------------------ */
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+    gap: 2%;
+    height: 60%;
+}
+
+.col-9 img{
+    width: 50%;
+    height: auto;
+}
+  
+.col-9 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75vw;
+    height: 69vh;
+}
+
+.col-9 h1{
+    margin-bottom: 5%;
+}
+  
+.containerAdmin{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.table-responsive{
+    width: 70vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+main form label {
+    text-align: right;
+    margin-right: 2%;
+    font-family: 'Lemonada', serif;
+    font-size: 1rem;
+}
+
+.col-form-label {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Lemonada', serif;
+}
+
+.badge{
+    background-color: #B57F50;
+}
+
+.h5, h5 {
+  font-size:1.25rem;
+  font-family: 'Lemonada', serif;
+  text-align: center;
+  margin-top: 2%;
+}
+  
+.form-check {
+    display:block;
+    min-height:1.5rem;
+    padding-left:16.5em;
+    margin-bottom:.125rem;
+}
+
+.col-9 h4{
+    margin-bottom: 4%;
+    margin-top: 3%;
+}
+
+.form-group {
+    width: 65%;
+    display: flex;
+    margin-left: 25%;
+    align-items: center;
+}
+
+.form-group label {
+    width: 47%;
+}
+
+td.action{
+    width: 8vw;
+}
+
+td.image{
+    width: 12vw;
+}
+
+
+@media screen and (max-width: 650px){
+
+    .dash{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .containerAdmin a {
-        font-size: 0.5rem;
+    main.col-9{
+        width: 90vw;
         display: flex;
-        text-decoration: none;
-        color: white;
-        font-size: 0.5rem;
-        height: 5%;
-      }
-      
-
-    .containerAdmin aside {
-        flex-direction: row;
-        width: 85vh;
-        height: 5%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1%;
         align-content: center;
         align-items: center;
-      }
-
-    .containerAdmin .btnRegister {
-        display: flex;
     }
 
-    .containerAdmin main{
-        width: 90vw;
+    .col-9 img {
+        width: 7vw;
+    }
+
+    .col-2 {
+        width: 85vw;
+        display: flex;
+        flex-wrap: wrap;
+        height: 18vh;
     }
     
     .table-responsive {
         width: 85vw;
         font-size: 0.5rem;
     }
-    
-    .table a.btn.btn-success {
-        font-size: 0.5rem;
-    }
 
-    .table a.btn.btn-primary {
-        font-size: 0.5rem;
-        display: flex;
-        justify-content: center;
-    }
+    img.mainDash {
+        width: 85vw;
+    }      
 
-    .table button.btn.btn-danger {
-        font-size: 0.5rem;
-        display: flex;
-        justify-content: center;
-    }
-
-    .h5, h5 {
-        font-size:0.9rem;
-        font-family: 'Lemonada', serif;
+    .col-9 h1{
+        margin-top: -28%;
+        width: 85vw;
         text-align: center;
-        margin-top: 2%;
-      }
+    }
 
-      main form label {
-        text-align: right;
-        margin-right: 2%;
-        font-family: 'Lemonada', serif;
+}
+  
+/* ----------------------------------EMPLOYEE-PAGE------------------------------------ */
+
+
+main form{
+    width: 60vw;
+}
+
+@media screen and (max-width: 650px){
+
+    main form {
+        width: 97vw;
         font-size: 0.5rem;
     }
 
-    .col-9 > form:nth-child(2) > div:nth-child(n+4) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 2%;
-      }
-    .btn.btn-success {
-        font-size: 0.7rem;
-      }
-    
-    a.btn:nth-child(2) {
-        width: 25%;
-    }
-
-    .containerAdmin .btn.btn-success{
-        width: 35%;
+    main form label {
         font-size: 0.5rem;
-    }
-
-    .containerAdmin button.btn.btn-primary {
-        font-size: 0.5rem;
-        width: 58%;
-      }
-
-      a.btn:nth-child(3) {
-        width: 23%;
-        text-align: center;
-      }
-      
-       /* -----------Employee------------- */
-
-    .reportEmp input,
-    .reportEmp label,
-    .reportEmp select {
-        margin-bottom: -8%;
-        font-size: 0.5rem;
-        }
-
-    #reports_save {
-        margin-top: -4%;
-        width: 50%;
-    }
-
-    .img-report {
-        width: 145%;
-      }
-    
-      .form-control {
-        font-size:0.5rem;
-      }
-
-      .col-9 > form:nth-child(2) {
-        width: 100%;
-      }
-    
-      .col-9 > h1:nth-child(1) {
-        text-align: center;
-        margin-top: -21%;
-    }
-    
-    .col-9 > form:nth-child(2) {
-        margin-top: -50%;
-      }
-    
-      @media screen and (max-width: 650px) {
-
-        /* -----------header------------- */
-        .navbar {
-            height: 8vh;
-            background-size: cover;
-        }
-    
-        .banner img{
-            height: auto;
-        }
-    
-        .hheader{
-            font-size: 0.9rem;
-        }
-    
-        .navbar-brand img {
-            width: 2rem;
-        }
-    
-        a.nav-link:nth-child(5) {
-        font-size: 0.7rem;
-        }
-    
-        a.nav-link:nth-child(6) {
-            font-size: 0.7rem;
-          }
-          
-        
-        .collapse a {
-            font-size: 0.8rem;
-        }
-    
-        .fa-solid {
-            font-size: 1.1rem;
-        }
-    
-        .navbar-collapse {
-            margin-left: 64%;
-            text-align: right;
-            z-index: 99;
-            background: linear-gradient( #aee199 ,white);
-            padding: 2%;
-        }
-    
-        /* -----------home------------- */
-    
-    
-        h3{
-            font-size: 0.8rem;
-            margin-top: 4%;
-        }
-    
-        .accueil{
-            height: 100%;
-            margin-top: 10%;
-        }
-    
-        .rectangle{
-            width: 73vw;
-            height: 7vh;
-            margin-top: 2%;
-        }
-    
-        p {
-            font-size: 0.4rem;
-            margin-top: 10%;
-          }
-    
-        .tranparent{
-            width: 73vw;
-            height: 8.5vh;
-            margin-top: 48%;
-        }
-    
-        h4{
-            font-size: 0.9rem;
-        }
-    
-        .card{
-            width: 53%;
-            height: 35vh;
-        }
-          
-        .card-title{
-            font-size: 0.5rem;
-        }
-    
-        .animaux{
-            flex-direction: column;
-            justify-content: center;
-            justify-items: center;
-            align-content: center;
-            align-items: center;
-        }
-    
-        .card-img{
-            width: 84%;
-        }
-    
-        .habitats{
-            flex-direction: column;
-        }
-    
-        .habitats a{
-            display: flex;
-            justify-content: center;
-          }
-    
-        .habitats legend{
-            font-size: 0.8rem;
-            padding-left: 20%;
-        }
-    
-        li {
-            margin-bottom: 20%;
-            font-size: 0.8rem;
-            width: 85vw;
-            display: flex;
-            flex-direction: column;
-          }
-    
-        .avis{
-            font-size: 1rem;
-            padding: 2%;
-        }
-          
-        ol,ul {
-            margin-left: -13rem;
-        }
-    
-        .nos-services legend{
-            font-size: 0.7rem;
-        }
-    
-        .nos-services{
-            flex-direction: column;
-        }
-        .nos-services img{
-            max-width: 265px;
-        }
-    
-        .nos-services > div:nth-child(1) > legend:nth-child(2) {
-            margin-top: -15%;
-            }
-          
-        .nos-services > div:nth-child(2) > legend:nth-child(2) {
-            margin-top: -5%;
-          }
-        .nos-services > div:nth-child(3) > legend:nth-child(2) {
-            margin-top: -15%;
-            }
-        .nos-services > div:nth-child(3) > a:nth-child(1) > img:nth-child(1) {
-            margin-top: -10%;
-          }
-    
-        .avis .btnAvis {
-            width: 8rem;
-            font-size: 0.7rem;
-        }
-    
-        .modal {
-            background-image: none;
-            width: 67vw;
-            margin-top: 39vh;
-            margin-left: 13%;
-        }
-    
-        .modal-body label{
-            width: 34%;
-        }
-    
-        form .btn {
-            width: 40%;
-        }
-    
-        #exampleModalLabel {
-            text-align: center;
-            width: 1000%;
-          }
-    
-        .schedules {
-            font-size: 0.8rem;
-            margin-top: 12%;
-            margin-bottom: 13%;
-        }
-    
-        .search{
-            font-size: 0.7rem;
-            width: 50vw;
-            right: 0.5rem;
-            top: -0.1rem;
-        }
-    
-        .rectangle2{
-            width: 56vw;
-            top: -17%;
-            left: 5%;
-        }
-    
-        .discover3{
-            left: 53px;
-            top: 69px;
-        }
-    
-        .maps{
-            width: 85vw;
-            height: auto;
-        }
-    
-        .maps > iframe:nth-child(1) {
-            border:0;
-            width: 100%;
-          }
-        
-          footer{
-            display: flex;
-            flex-direction: column;
-            width: 100vw;
-            height: auto;
-        }
-        
-        .container-fluid-foot{
-            display: flex;
-            gap: 10%;
-        }
-        
-        .gauche{
-        width: 49%;
-        }
-        
-        h1{
-            font-size: 1.2rem;
-            margin-top: 15%;
-        }
-        
-        .suivez{
-            align-items: center;
-            text-align: center;
-            width: 40%;
-        }
-    
-        .bootstrap-icons {
-            display: flex;
-            gap: 51%;
-            width: 40%;
-            text-align: center;
-            margin-left: -75%;
-            font-size: 0.8rem;
-        }
-        
-        h2 {
-        display: flex;
-        font-size: 1rem;
-        width: 154%;
-        margin-left: -24%;
-        }
-        
-        h7{
-            font-size: 0.6rem;
-            text-align: center;
-        }
-        
-        .lien_footer{
-        margin-top: 4%;
-        width: 40%;
-        }
-    
-        .lien_footer a {
-            display: flex;
-            flex-direction: column;
-            font-family: 'lemonada',cursive;
-            color: #DCE2AA;
-            text-decoration: none;
-            font-size: 0.6rem;
-        }
-    
-        /* -----------Service------------- */
-    
-        .h3Serv {
-            margin-top: 6%;
-        }
-    
-        .service {
-            width: 85vw;
-            height: auto;
-        }
-    
-        .service {
-            width: 85vw;
-            height: auto;
-            margin-bottom: 8%;
-        }
-    
-        .tranparentserv {
-            height: 6%;
-            margin-top: 70%;
-        }
-    
-        .servincl {
-            margin-top: 69%;
-        }
-    
-        .servincl p{
-            margin-top: 8%;
-        }
-    
-        .servRest p{
-            margin-top: 2%;
-            width: 85vw;
-            font-size: 0.5rem;
-        }
-    
-        .visiteh p {
-            font-size: 0.5rem;
-        }
-    
-        .visiteh img {
-            width: 43%;
-        }
-    
-        .visite p {
-            font-size: 0.5rem;
-        }
-    
-        .visite img {
-            width: 94%;
-            padding: 5%;
-            margin-top: 6%;
-        }
-    
-        .panels p {
-            font-size: 0.5rem;
-            margin-top: 5%;
-            font-family: lemonada;
-            color: #4B543B;
-        }
-    
-        .panels {
-            flex-direction: column;
-            width: 85vw;
-        }
-    
-        .panels img {
-            width: 45%;
-        }
-    
-        .ecolo img {
-            width: 25%;
-        }
-    
-        /* -----------Habitat------------- */
-    
-        .habitat {
-            height: auto;
-        }
-    
-        .titleServ .rectangle {
-            height: 5vh;
-        }
-    
-        .h3Serv {
-            margin-top: 4%;
-        }
-    
-        .habitincl {
-            width: 71vw;
-        }
-    
-        .transparent-hab {
-            width: 73vw;
-            height: 7vh;
-            margin-top: 67%;
-        }
-    
-        .habitincl p {
-            font-size: 0.4rem;
-            margin-top: 26%;
-          }
-    
-        .hab p {
-            font-size: 0.5rem;
-        }
-    
-        .hab {
-            margin-top: 9%;
-            margin-bottom: 9%;
-        }
-    
-        .imgHab {
-            width: 268%;
-        }
-    
-        .animaux {
-            display: flex;
-        }
-    
-        .animaux .card {
-            width: 49%;
-            height: 54vh;
-        }
-    
-        .card.jungle,
-        .card.marais,
-        .card.savane {
-            margin-top: 2%;
-        }
-    
-        .jungle .card-title {
-            padding-top: 0;
-        }
-    
-        p.card-text {
-            font-size: 0.5rem;
-        }
-    
-        a.jungle.btn.btn-primary,
-        a.marais.btn.btn-primary,
-        a.savane.btn.btn-primary {
-            width: 46%;
-            font-size: 0.4rem;
-            margin-top: -9%;
-        }
-    
-        /* -----------Contact------------- */
-    
-        body > form:nth-child(3) {
-            width: 80%;
-            margin-bottom: 20%;
-        }
-    
-        #contact_save {
-            width: 99%;
-            font-size: 0.5rem;
-        }
-    
-        .col {
-            margin-top: 15%;
-        }
-          
-        body > h4:nth-child(2) {
-            margin-top: 12%;
-        }
-    
-        /* -----------login------------- */
-    
-        body > form:nth-child(2) {
-            width: 80vw;
-        }
-    
-        .rond {
-            width: 52%;
-            height: 30%;
-            top: -1%;
-            left: 25%;
-        }
-    
-        .h3 {
-            position: absolute;
-            z-index: 5;
-            top: 16%;
-            left: 42%;
-        }
-    
-        .fa-sharp-duotone {
-            font-size: 4rem;
-        }
-    
-        .checkbox label {
-            width: 39%;
-            margin-top: 4%;
-        }
-    
-        .btn-connex {
-            font-size: 0.7rem;
-            width: 40%;
-            margin-left: 30%;
-            margin-top: 10%;
-        }
-    
-        .form-control {
-            font-size:0.8rem;
-          }
-          
-        /* -----------Admin------------- */
-    
-        .containerAdmin{
-            font-size: -0.6rem;
-        }
-    
-        .col-9 > img:nth-child(3) {
-            width: 90%;
-            margin-top: 20%;
-        }
-    
-        .containerAdmin .row {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    
-        .containerAdmin a {
-            font-size: 0.5rem;
-            display: flex;
-            text-decoration: none;
-            color: white;
-            font-size: 0.5rem;
-            height: 5%;
-          }
-          
-    
-        .containerAdmin aside {
-            flex-direction: row;
-            width: 85vh;
-            height: 5%;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1%;
-            align-content: center;
-            align-items: center;
-          }
-    
-        .containerAdmin .btnRegister {
-            display: flex;
-        }
-    
-        .containerAdmin main{
-            width: 90vw;
-            height: 50vh;
-        }
-        
-        .table-responsive {
-            width: 85vw;
-            font-size: 0.5rem;
-        }
-        
-        .table a.btn.btn-success {
-            font-size: 0.5rem;
-        }
-    
-        .table a.btn.btn-primary {
-            font-size: 0.5rem;
-            display: flex;
-            justify-content: center;
-        }
-    
-        .table button.btn.btn-danger {
-            font-size: 0.5rem;
-            display: flex;
-            justify-content: center;
-        }
-    
-        .h5, h5 {
-            font-size:0.9rem;
-            font-family: 'Lemonada', serif;
-            text-align: center;
-            margin-top: 2%;
-          }
-    
-          main form label {
-            text-align: right;
-            margin-right: 2%;
-            font-family: 'Lemonada', serif;
-            font-size: 0.5rem;
-        }
-    
-        .col-9 > form:nth-child(2) > div:nth-child(n+4) {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 2%;
-          }
-        .btn.btn-success {
-            font-size: 0.7rem;
-          }
-        
-        a.btn:nth-child(2) {
-            width: 25%;
-        }
-    
-        .containerAdmin .btn.btn-success{
-            width: 35%;
-            font-size: 0.5rem;
-        }
-    
-        .containerAdmin button.btn.btn-primary {
-            font-size: 0.5rem;
-            width: 58%;
-          }
-    
-          a.btn:nth-child(3) {
-            width: 23%;
-            text-align: center;
-          }
-          
-           /* -----------Employee------------- */
-    
-        .reportEmp input,
-        .reportEmp label,
-        .reportEmp select {
-            margin-bottom: -8%;
-            font-size: 0.5rem;
-            }
-    
-        #reports_save {
-            margin-top: -4%;
-            width: 50%;
-        }
-    
-        .img-report {
-            width: 145%;
-          }
-        
-          .form-control {
-            font-size:0.5rem;
-          }
-    
-          .col-9 > form:nth-child(2) {
-            width: 100%;
-          }
-        
-          .col-9 > h1:nth-child(1) {
-            text-align: center;
-            margin-top: -21%;
-        }
-        
-        .col-9 > form:nth-child(2) {
-            margin-top: -50%;
-          }
-          
     }
 }
+
+/* ----------------------------------VETERINARY-PAGE------------------------------------ */
+
+
+
+    

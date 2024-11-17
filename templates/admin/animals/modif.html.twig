@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Modifier un animal{% endblock %}
 
 {% block body %}
 
 <div class="containerAdmin">
-    <div class="row">
+    <div class="row dash">
 
         {% include "_partials/_adminnav.html.twig" %}
 
@@ -23,7 +23,7 @@
             {% if animal.images|length > 0 %}
                 <div class="mb-3">
                     <label>Image actuelle :</label><br>
-                    <img src="{{ asset('uploads/animals/' ~ animal.images[0].filePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" style="max-width: 200px;">
+                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].filePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" style="max-width: 200px;">
                 </div>
             {% endif %}
 

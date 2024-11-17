@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Modifier un animal{% endblock %}
 
@@ -13,7 +13,7 @@
 {% endfor %}
 
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
 
             {% include "_partials/_adminnav.html.twig" %}
 
@@ -21,7 +21,7 @@
                 <h4>Liste des animaux</h4>
                 <div class="table-responsive">
                     <table class="table">
-                        <a href="{{ path('admin_anim_add') }}" class="btn btn-success mb-3">Ajouter un animal</a>
+                        <a href="{{ path('admin_anim_add') }}" class="btn btn-success">Ajouter</a>
                         <!-- Formulaire de filtrage -->
                         <form method="get" class="mb-3">
                             <div class="form-group">
@@ -53,14 +53,14 @@
                                 <td>{{ animal.breed }}</td>
                                 <td>{{ animal.description }}</td>
                                 <td>{{ animal.idHabitats.name }}</td>
-                                <td>
+                                <td class="image">
                                     {% if animal.images|length > 0 %}
                                         <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
                                     {% else %}
                                         <p>Aucune image disponible</p>
                                     {% endif %}
                                 </td>
-                                <td>
+                                <td class="action">
                                     <a class="btn btn-primary" class="btn btn-primary" href="{{ path('admin_anim_modif', { id: animal.id }) }}">Modifier</a>
                                     <form action="{{ path('admin_anim_delete', { id: animal.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet animal?');" style="display:inline;">
                                         <button class="btn btn-danger" type="submit">Supprimer</button>
