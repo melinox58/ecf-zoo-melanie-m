@@ -42,7 +42,7 @@ class EmpController extends AbstractController
                 'required' => false,
                 'label' => 'Nouveau mot de passe'
             ])
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer les modifications'])
+            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
             ->getForm();
 
         $form->handleRequest($request);
@@ -67,6 +67,8 @@ class EmpController extends AbstractController
     {
         $entityManager->remove($user);
         $entityManager->flush();
-        return $this->redirectToRoute('app_admin_emp');
+        $this->addFlash('success', 'L\'utilisateur a été supprimé avec succès.');
+
+        return $this->redirectToRoute('app_admin_emp'); 
     }
 }

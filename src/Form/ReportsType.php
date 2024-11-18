@@ -101,7 +101,7 @@ class ReportsType extends AbstractType
                 'label' => 'Utilisateur',
                 'disabled' => true, // Désactiver le champ pour éviter la modification
             ])
-            ->add('save', SubmitType::class, ['label' => "Ajouter un rapport"]);
+            ->add('save', SubmitType::class, ['label' => "Ajouter"]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

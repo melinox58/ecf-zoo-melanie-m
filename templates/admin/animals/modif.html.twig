@@ -1,25 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Modifier un animal{% endblock %}
 
-
 {% block body %}
 
-    <div class="containerAdmin">
-        <div class="row">
+<div class="containerAdmin">
+    <div class="row dash">
 
-            {% include "_partials/_adminnav.html.twig" %}
+        {% include "_partials/_adminnav.html.twig" %}
 
-            <main class="col-9 border bg-white p-2">
-                <h1>Modifier l'animal'</h1>
+        <main class="col-9 border bg-white p-2">
+            <h4>Modifier l'animal</h4>
 
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                {{ form_end(form) }}
+            {# Messages flash #}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
 
-            </main>
-        </div>
-        <a href="{{ path('app_admin_anim') }}">Retour à la liste</a>
+            {# Image actuelle #}
+            {% if animal.images|length > 0 %}
+                <div class="mb-3">
+                    <label>Image actuelle :</label><br>
+                    <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].filePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" style="max-width: 200px;">
+                </div>
+            {% endif %}
+
+            {# Formulaire de modification #}
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+            
+        </main>
+        <a href="{{ path('app_admin_anim') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
     </div>
+</div>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Ajouter un habitat{% endblock %}
 
@@ -6,7 +6,7 @@
 {% block body %}
 
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
 
             <main class="col-9 border bg-white p-2">
@@ -18,6 +18,6 @@
 
             </main>
         </div>
-        <a href="{{ path('app_admin_hab') }}">Retour à la liste</a>
+        <a class="btn btn-secondary mt-3" href="{{ path('app_admin_hab') }}">Retour à la liste</a>
     </div>
 {% endblock %}

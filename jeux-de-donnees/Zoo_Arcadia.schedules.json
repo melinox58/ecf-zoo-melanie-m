@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "67220f4f62d4a326ec064d68"
+  },
+  "name": "OUVERTURE ETE",
+  "entries": [
+    {
+      "day": "lundi",
+      "open": "08:00",
+      "close": "22:00",
+      "closed": false
+    },
+    {
+      "day": "mardi",
+      "open": "08:00",
+      "close": "22:00",
+      "closed": false
+    },
+    {
+      "day": "mercredi",
+      "open": "08:00",
+      "close": "22:00",
+      "closed": false
+    },
+    {
+      "day": "jeudi",
+      "open": "00:00",
+      "close": "00:00",
+      "closed": true
+    },
+    {
+      "day": "vendredi",
+      "open": "08:00",
+      "close": "22:00",
+      "closed": false
+    },
+    {
+      "day": "samedi",
+      "open": "08:00",
+      "close": "22:00",
+      "closed": false
+    },
+    {
+      "day": "dimanche",
+      "open": "08:00",
+      "close": "22:00",
+      "closed": false
+    }
+  ],
+  "exceptions": [
+    {
+      "date": "",
+      "open": ""
+    }
+  ]
+}]

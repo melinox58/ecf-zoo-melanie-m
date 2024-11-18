@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "673733148353b3327703a3a4"
+  },
+  "pseudo": "Léo",
+  "title": "Une expérience inoubliable !",
+  "comment": "Le zoo est magnifique, les animaux sont bien traités et l'ambiance est calme. Un vrai plaisir de voir les lions et les éléphants de si près. À refaire !",
+  "date": "15-11-2024",
+  "isValidated": true
+},
+{
+  "_id": {
+    "$oid": "6737333d8353b3327703a3a5"
+  },
+  "pseudo": "Emma",
+  "title": "Très bien, mais…",
+  "comment": "Le zoo est superbe, mais j’aurais aimé voir plus d’espèces d’oiseaux. La visite est agréable, cependant certains enclos semblent un peu petits pour les animaux.",
+  "date": "15-11-2024",
+  "isValidated": false
+},
+{
+  "_id": {
+    "$oid": "6737336b8353b3327703a3a6"
+  },
+  "pseudo": "LilyVoyage",
+  "title": "Super journée en famille",
+  "comment": "Nous avons passé une magnifique journée au zoo Arcadia ! Les animaux semblent bien traités, et les enfants ont adoré les animations et les aires de jeux. On reviendra sans hésiter.",
+  "date": "15-11-2024",
+  "isValidated": true
+},
+{
+  "_id": {
+    "$oid": "6737338c8353b3327703a3a7"
+  },
+  "pseudo": "AnimalLover23",
+  "title": "Belle diversité d'espèces",
+  "comment": "Quel plaisir de voir des animaux du monde entier ! Le parc est bien organisé et les enclos sont spacieux. Mention spéciale pour les girafes, magnifiques !",
+  "date": "15-11-2024",
+  "isValidated": false
+}]

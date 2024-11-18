@@ -1,52 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Liste des Horaires{% endblock %}
 
 {% block body %}
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Liste des horaires</h4>
-                <a href="{{ path('add_schedule') }}" class="btn btn-success">Ajouter un horaire</a>
+                <a href="{{ path('add_schedule') }}" class="btn btn-success">Ajouter</a>
                 {% for message in app.flashes('success') %}
                     <div class="alert alert-success">{{ message }}</div>
                 {% endfor %}
                 {% for message in app.flashes('error') %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endfor %}
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Horaires</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for schedule in schedules %}
-                        <tr>
-                            <td>{{ schedule.name }}</td>
-                            <td>
-                                <ul>
-                                    {% for entry in schedule.entries %}
-                                        <li>
-                                            {{ entry.day }} : {{ entry.open }} - {{ entry.close }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                            <td class='action'>
-                                <button type="button" class="btn btn-primary" href="{{ path('admin_schedule_modify', {id: schedule._id}) }}">Modifier</a>
-                                <form action="{{ path('schedule_delete', {id: schedule._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet horaire ?');" style="display:inline;">
-                                    <button class="btn btn-danger" type="submit">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Horaires</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for schedule in schedules %}
+                            <tr>
+                                <td>{{ schedule.name }}</td>
+                                <td>
+                                    <ul>
+                                        {% for entry in schedule.entries %}
+                                            <li>
+                                                {{ entry.day }} : {{ entry.open }} - {{ entry.close }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td class="action">
+                                    <a href="{{ path('admin_schedule_modify', { id: schedule._id }) }}" class="btn btn-primary">Modifier</a>
+                                    <form action="{{ path('schedule_delete', {id: schedule._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet horaire ?');" style="display:inline;">
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td> 
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>

@@ -20,8 +20,19 @@
                 {% else %}
                     <a class="nav-link" href={{path('app_login')}}>Connexion</a>
                 {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link" href={{path('app_admin')}}>Mon espace</a>
+                {% elseif is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
+                    <a class="nav-link" href={{path('app_employee')}}>Mon espace</a>
+                {% elseif is_granted('ROLE_VETERINARY') %}
+                    <a class="nav-link" href={{path('app_veterinary')}}>Mon espace</a>
+                {% endif %}
+
             </div>
         </div>
     </nav>
     
 </header>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

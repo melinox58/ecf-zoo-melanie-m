@@ -8,8 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -28,21 +26,16 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Merci de saisir un mot de passe',
                     ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
-                        'max' => 4096,
-                    ]),
                 ],
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    // 'Administrateur' => 'ROLE_ADMIN',
-                    'Employee' => 'ROLE_EMPLOYEE',
-                    'Veterinary' => 'ROLE_VETERINARY',
+                    'Employé' => 'ROLE_EMPLOYEE',
+                    'Vétérinaire' => 'ROLE_VETERINARY',
                 ],
-                'multiple' => true,
-                'expanded' => true,  // Pour afficher des cases à cocher
+                'multiple' => true, // Permet de sélectionner plusieurs rôles
+                'expanded' => true,  // Crée des cases à cocher
+                'required' => true,
                 'label' => 'Rôles',
             ])
         ;

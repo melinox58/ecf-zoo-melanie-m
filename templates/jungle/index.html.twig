@@ -3,5 +3,43 @@
 {% block title %}Jungle{% endblock %}
 
 {% block body %}
-C'est la jungle ici !!
+
+<section class="titleServ">
+    <h3 class="h3Hab">Jungle</h3>
+    <div class="rectangle"></div>
+</section>
+
+<img class="habitat" src="{{ asset('/images/jungle/jungle.jpg') }}" alt="Entrée du zoo">
+<div class="habitjung">
+    <p>La jungle, caractérisée par un climat chaud et humide, abrite une faune et une flore
+    incroyablement riches et variées.<br>
+    La végétation y est luxuriante, avec des arbres imposants qui forment une canopée dense,
+    empêchant parfois la lumière du soleil d'atteindre le sol. Parmi les espèces typiques,
+    on trouve des arbres à feuilles persistantes, des palmiers, des lianes enchevêtrées,
+    et des épiphytes comme les orchidées. Le sol est tapissé de fougères, mousses et champignons
+    qui prospèrent dans l'humidité constante.<br>
+    Les jungles abritent une biodiversité exceptionnelle, incluant des mammifères comme les tigres,
+    jaguars, singes et tapirs. Les reptiles y sont omniprésents, avec des serpents, iguanes, et crocodiles.
+    La canopée regorge d'oiseaux colorés comme les toucans, aras et colibris, tandis que les insectes,
+    tels que les papillons, fourmis et cigales, pullulent dans l'ensemble de l'écosystème. Les rivières
+    et mares sont peuplées d'espèces aquatiques comme les poissons, grenouilles et tortues.<br>
+    Cette diversité unique fait de la jungle un écosystème vital pour l'équilibre de la planète,
+    mais aussi un milieu fragile menacé par les activités humaines.</p>
+</div>
+
+{# Cards d'animaux de la jungle #}
+<section class="animaux">
+    <div class="row">
+        {% for animal in jungleAnimals %}
+                <div class="card jungle">
+                    <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.nameAnimal }}</h5>
+                        <p class="card-text">{{ animal.description }}</p>
+                        <a href="#" class="jungle btn btn-primary">Détails</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

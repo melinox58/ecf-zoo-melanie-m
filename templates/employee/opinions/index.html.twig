@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDash.html.twig' %}
 
 {% block title %}Liste des Avis{% endblock %}
 
 {% block body %}
     <div class="containerAdmin">
-        <div class="row">
+        <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Liste des avis</h4>
@@ -15,47 +15,48 @@
                 {% for message in app.flashes('error') %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endfor %}
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Pseudo</th>
-                            <th>Titre</th>
-                            <th>Commentaire</th>
-                            <th>Date</th>
-                            <th>Validé</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for opinion in opinions %}
-                        <tr>
-                            <td>{{ opinion.pseudo }}</td>
-                            <td>{{ opinion.title }}</td>
-                            <td>{{ opinion.comment }}</td>
-                            <td>{{ opinion.date }}</td>
-                            <td>
-                                {% if opinion.isValidated %}
-                                    <span class="text-success">Oui</span>
-                                {% else %}
-                                    <span class="text-danger">Non</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if not opinion.isValidated %}
-                                        <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
-                                        <button type="submit" class="btn btn-primary btn-sm">Valider</button>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Pseudo</th>
+                                <th>Titre</th>
+                                <th>Commentaire</th>
+                                <th>Date</th>
+                                <th>Validé</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for opinion in opinions %}
+                            <tr>
+                                <td>{{ opinion.pseudo }}</td>
+                                <td>{{ opinion.title }}</td>
+                                <td>{{ opinion.comment }}</td>
+                                <td>{{ opinion.date }}</td>
+                                <td>
+                                    {% if opinion.isValidated %}
+                                        <span class="text-success">Oui</span>
+                                    {% else %}
+                                        <span class="text-danger">Non</span>
+                                    {% endif %}
+                                </td>
+                                <td class="action">
+                                    {% if not opinion.isValidated %}
+                                            <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
+                                            <a type="submit" class="btn btn-primary btn-sm">Valider</a>
+                                        </form>
+                                    {% endif %}
+                                    
+                                    <form action="{{ path('emp_opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>
-                                {% endif %}
-                                
-                                <form action="{{ path('emp_opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>

@@ -31,14 +31,15 @@ class HabController extends AbstractController
             ->add('name', TextType::class)
             ->add('description', TextType::class)
             
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer les modifications'])
+            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $entityManager->flush();
+            $this->addFlash('success', 'Les modifications ont été enregistrées avec succès.');
+        
             return $this->redirectToRoute('app_admin_hab');
         }
 
@@ -52,6 +53,7 @@ class HabController extends AbstractController
     {
         $entityManager->remove($hab);
         $entityManager->flush();
+        $this->addFlash('success', 'L\'habitat a été supprimé avec succès.');
         return $this->redirectToRoute('app_admin_hab');
     }
 
@@ -65,7 +67,7 @@ class HabController extends AbstractController
         $form = $this->createFormBuilder($habitat)
             ->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('save', SubmitType::class, ['label' => "Ajouter l'habitat"])
+            ->add('save', SubmitType::class, ['label' => "Ajouter"])
             ->getForm();
 
         // Traitement de la requête
@@ -75,6 +77,7 @@ class HabController extends AbstractController
             // Sauvegarde du nouvel habitat dans la base de données
             $entityManager->persist($habitat);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'habitat a été ajouté avec succès.');
 
             // Redirection après ajout
             return $this->redirectToRoute('app_admin_hab');
