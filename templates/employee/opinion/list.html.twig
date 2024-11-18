@@ -1,0 +1,48 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Liste des Horaires{% endblock %}
+
+{% block body %}
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Liste des avis</h4>
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Pseudo</th>
+                                <th>Titre</th>
+                                <th>Commentaire</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for opinion in opinions %}
+                            <tr>
+                                <td>{{ opinion.pseudo }}</td>
+                                <td>{{ opinion.title }}</td>
+                                <td>{{ opinion.comment }}</td>
+                                <td class="action">
+                                    <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}

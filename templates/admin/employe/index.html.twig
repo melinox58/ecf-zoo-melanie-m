@@ -1,0 +1,68 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Modifier un employé{% endblock %}
+
+{% block body %}
+
+            {% for label, messages in app.flashes %}
+                <div class="alert alert-{{ label }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Modifier un(e) employé(e)</h4>
+                <a href="{{ path('app_register') }}" class="btn btn-success">Ajouter</a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>E-mail</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.firstName }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        {% for role in user.roles %}
+                                            {% if role == "ROLE_ADMIN" %}
+                                                {% set name = "Administrateur" %}
+                                            {% elseif role == "ROLE_EMPLOYEE" %}
+                                                {% set name = "Employé(e)" %}
+                                            {% elseif role == "ROLE_VETERINARY" %}
+                                                {% set name = "Vétérinaire" %}
+                                            {% else %}
+                                                {% set name = null %}
+                                            {% endif %}
+                                            <span class="badge">{{ name }}</span>
+                                        {% endfor %}
+                                    </td>
+                                    <td class="action">
+                                        {% if "ROLE_ADMIN" not in user.roles %}
+                                            <a href="{{ path('admin_emp_modify', { id: user.id }) }}" class="btn btn-primary">Modifier</a>
+                                            <form action="{{ path('user_delete', { id: user.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet utilisateur ?');" style="display:inline;">
+                                                <button class="btn btn-danger" type="submit">Supprimer</button>
+                                            </form>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}

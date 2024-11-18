@@ -1,0 +1,77 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Modifier un animal{% endblock %}
+
+{% block body %}
+
+{% for label, messages in app.flashes %}
+    <div class="alert alert-{{ label }}">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endfor %}
+
+    <div class="containerAdmin">
+        <div class="row dash">
+
+            {% include "_partials/_adminnav.html.twig" %}
+
+            <main class="col-9 border bg-white p-2">
+                <h4>Liste des animaux</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <a href="{{ path('admin_anim_add') }}" class="btn btn-success">Ajouter</a>
+                        <!-- Formulaire de filtrage -->
+                        <form method="get" class="mb-3">
+                            <div class="form-group">
+                                <select id="breed" name="breed" class="form-control">
+                                    <option value="">Sélectionner une race</option>
+                                    {% for race in races %}
+                                        <option value="{{ race.breed }}">{{ race.breed }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary filter">Filtrer</button>
+                        </form>
+
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Race</th>
+                                <th>Description</th>
+                                <th>Habitat</th>
+                                <th>Image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for animal in animals %}
+                            <tr>
+                                <td>{{ animal.nameAnimal }}</td>
+                                <td>{{ animal.breed }}</td>
+                                <td>{{ animal.description }}</td>
+                                <td>{{ animal.idHabitats.name }}</td>
+                                <td class="image">
+                                    {% if animal.images|length > 0 %}
+                                        <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                                    {% else %}
+                                        <p>Aucune image disponible</p>
+                                    {% endif %}
+                                </td>
+                                <td class="action">
+                                    <a class="btn btn-primary" class="btn btn-primary" href="{{ path('admin_anim_modif', { id: animal.id }) }}">Modifier</a>
+                                    <form action="{{ path('admin_anim_delete', { id: animal.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet animal?');" style="display:inline;">
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div> 
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

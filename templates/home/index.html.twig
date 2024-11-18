@@ -1,0 +1,166 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    {% for message in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    
+<section class="discover">
+    <div class="rectangle"></div>
+
+    <h3>Découvrez le Monde Merveilleux <br>
+    des animaux au Zoo Arcadia</h3>
+
+    <img class="accueil" src={{asset("/images/img1-accueil.jpg")}} alt="Entrée du zoo">
+
+    <div class="tranparent"></div>
+    <div class="welcome">
+        <p>Bienvenue à Arcadia, où chaque visite <br>
+        est une aventure inoubliable au cœur de la nature! <br>
+        Situé près de la fôrêt de Brocéliande, en Bretagne depuis 1960, <br>
+        notre zoo vous invite à explorer une incroyable diversité d'animaux <br>
+        venus des quatre coins du monde, dans un cadre familial et éducatif.</p>
+    </div>
+</section>
+
+<div class="banner">
+    <h4>Animaux favoris</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+
+<section class="animaux">
+    <div class="card">
+        <img class="card-img" src={{asset("/images/savane/lion-card.jpg")}} alt="Lion">
+        <div class="card-body">
+            <h5 class="card-title">Lion</h5>
+        </div>
+    </div>
+</section>
+
+<div class="banner">
+    <h4>Les habitats</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+    
+<section class="habitats">
+    <div>
+        <a href="{{path ('app_jungle')}}"><img src={{asset("/images/jungle/jungle.jpg")}} alt="Paysage de jungle"></a>
+        <legend>Jungle</legend>
+    </div>
+    <div>
+        <a href="{{path ('app_marais')}}"><img src={{asset("/images/marais/marais.jpg")}} alt="Paysage de marais"></a>
+        <legend>Marais</legend>
+    </div>
+    <div>
+        <a href="{{path ('app_savane')}}"><img src={{asset("/images/savane/savane.jpg")}} alt="Paysage de savane"></a>
+        <legend>Savane</legend>
+    </div>
+</section>
+
+<div class="banner">
+    <h4>Nos services</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+    
+<section class="nos-services">
+    <div>
+        <a href="{{path ('app_services')}}#resto"><img src={{asset("/images/cafe.jpg")}} alt="Terrasse de café"></a>
+        <legend>Restauration</legend>
+    </div>
+    <div>
+        <a href="{{path ('app_services')}}#visite"><img src={{asset("/images/rencontre.jpg")}} alt="Visite de la girafe"></a>
+        <legend>Visites guidées</legend>
+    </div>
+    <div>
+        <a href="{{path ('app_services')}}#train"><img src={{asset("/images/petit-train.jpg")}} alt="Petit train touristique"></a>
+        <legend>Le petit train</legend>
+    </div>
+</section>
+
+<div class="banner">
+    <h4>Avis</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+
+<section id="avis" class="avis">
+
+    <!-- ici sera injecté les avis -->
+
+    <ul>
+        {% for opinion in opinions %}
+            <li>
+                <strong>{{ opinion.pseudo }}</strong>: <em>{{ opinion.title }}</em>- {{ opinion.date }} <br>
+                {{ opinion.comment }}
+                 
+            </li>
+        {% else %}
+            <li>Aucun avis disponible.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Button modal avis-->
+    <button type="button" class="btn btnAvis" data-bs-toggle="modal" data-bs-target="#exampleModal">Laisser un avis</button>
+</section>
+
+{# Ouverture du modal avis #}
+{% include "employee/opinion/index.html.twig" %}
+
+<div class="banner" id="schedules">
+    <h4>Horaires</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+
+<div class="schedules">
+    <table>
+    <tbody>
+        {% for schedule in schedules %}
+            <tr>
+                <td colspan="4"><strong>{{ schedule['name'] }}</strong></td>
+            </tr>
+            {% for entry in schedule['entries'] %}
+                <tr>
+                    <td>{{ entry['day'] }}</td>
+                    {% if entry['closed'] %}
+                        <td colspan="2"><strong>Fermé</strong></td>
+                    {% else %}
+                        <td>{{ entry['open'] }}</td>
+                        <td>{{ entry['close'] }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun horaire disponible.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+<div class="banner" id="search">
+    <h4>Où nous trouver ?</h4>
+    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+</div>
+
+<div class="discover3">
+    <h3 class="search">Nous avons hâte de vous accueillir <br>
+        et de partager avec vous <br>
+        la magie de la vie sauvage!</h3>
+    <div class="rectangle2"></div>
+</div>
+
+{# Maps #}
+<div class="maps">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d170798.9910155111!2d-2.4251032!3d48.0188442!3m2!1i1024!2i768!4f13.1!2m1!1sbroceliande!5e0!3m2!1sfr!2sfr!4v1726814144091!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+{% endblock %}

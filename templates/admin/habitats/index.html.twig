@@ -1,0 +1,54 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Modifier un habitat{% endblock %}
+
+
+{% block body %}
+
+{% for label, messages in app.flashes %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Modifier un habitat</h4>
+                <a href="{{ path('admin_habitat_add') }}" class="btn btn-success">Ajouter</a>
+                <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                            <th>Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for habitat in habitats %}
+                            <tr>
+                                <td>{{ habitat.name}}</td>
+                                <td>{{ habitat.description}}</td>
+                                <td class="action">
+                                    <a class="btn btn-primary" href="{{ path('admin_habitat_modif', { id: habitat.id }) }}">Modifier</a>
+                                    <form action="{{ path('habitat_delete', { id: habitat.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet habitat?');" style="display:inline;">
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                                <td class="image">...
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

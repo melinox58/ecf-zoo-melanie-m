@@ -1,0 +1,38 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <img src={{ asset('/images/vecteurs/Logo.png')}} alt="Logo lion">
+                <div class="hheader">Zoo Arcadia</div>
+            </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <a class="nav-link active" aria-current="page" href={{path ('app_home')}}><i class="fa-solid fa-house"></i></a>
+                <a class="nav-link" href={{path('app_services')}}>Services</a>
+                <a class="nav-link" href={{path('app_habitats')}}>Habitats</a>
+                <a class="nav-link" href={{path('contact')}}>Contact</a>
+
+                {% if app.user %}
+                    <a class="nav-link" href={{path('app_logout')}}>Déconnexion</a>
+                {% else %}
+                    <a class="nav-link" href={{path('app_login')}}>Connexion</a>
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link" href={{path('app_admin')}}>Mon espace</a>
+                {% elseif is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
+                    <a class="nav-link" href={{path('app_employee')}}>Mon espace</a>
+                {% elseif is_granted('ROLE_VETERINARY') %}
+                    <a class="nav-link" href={{path('app_veterinary')}}>Mon espace</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+    
+</header>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

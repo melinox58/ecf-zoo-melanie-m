@@ -1,0 +1,69 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Modifier l'Horaire{% endblock %}
+
+{% block body %}
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+
+            <main class="col-9 border bg-white p-2">
+                <h4>Modifier l'Horaire</h4>
+
+                                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+
+                
+
+                <form action="{{ path('add_schedule') }}" method="post">
+                    <label for="name">Titre :</label>
+                    <input type="text" name="name" required>
+
+                    
+
+                    <h5>Horaires par jour</h5>
+                    {% for day in ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'] %}
+                        <div>
+                            <label> {{ day }}</label>
+                            <input type="hidden" name="entries[{{ loop.index0 }}][day]" value="{{ day }}">
+                            
+                            <input type="time" name="entries[{{ loop.index0 }}][open]" required>
+
+                            <input type="time" name="entries[{{ loop.index0 }}][close]" required>
+
+                            <label>
+                                <input type="checkbox" name="closed[{{ loop.index0 }}]" value="1">
+                                Fermé
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                    <h5>Exceptions</h5>
+                    <div>
+                        <label>Date :</label>
+                        <input type="date" name="exceptions[0][date]" value="{{ exception.date | default('') }}">
+                    </div>
+                    <div>
+                        <label>Titre de l'exeption :</label>
+                        <input type="text" name="exceptions[0][open]" value="{{ exception.open | default('') }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                </form>
+
+                
+            </main>
+            
+        </div>
+        <a class="btn btn-secondary mt-3" href="{{ path('schedules_list') }}">Retour à la liste</a>
+    </div>
+
+    {% block javascripts %}
+        <script src="{{ asset('js/schedules.js') }}?v={{ random() }}"></script>
+    {% endblock %}
+
+{% endblock %}

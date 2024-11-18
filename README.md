@@ -4,7 +4,11 @@ J'ai construit ce projet dans le cadre de mon évaluation en cours de formation 
 ## Prérequis nécessaire :
 - VSCode
 - Symfony 7.0.*
+<<<<<<< HEAD
 - PHP 8.2
+=======
+- PHP 8.3.6
+>>>>>>> dev
 - Composer
 - MongoDB
     - Atlas

@@ -1,0 +1,24 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Vétérinaire{% endblock %}
+
+
+{% block body %}
+
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h1>Espace vétérinaire</h1>
+                {% if username != 'Invité' %}
+                    <p class="hello">Bonjour, {{ username }} !</p>
+                {% else %}
+                    <p class="hello">Bonjour, Invité !</p>
+                {% endif %}
+                <img class="mainDash" src={{ asset('images/veterinaire.jpg')}} alt="Bureau">
+            </main>
+        </div>
+    </div>
+
+
+{% endblock %}
