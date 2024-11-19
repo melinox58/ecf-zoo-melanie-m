@@ -672,7 +672,7 @@ dl, ol, ul {
 /*Modal Avis*/
 
 .modal {
-    background-image: url('/assets/images/temps/bg_header.png');
+    background-image: url('/assets/images/bg_header.png');
     background-size: cover;
     width: 57vw;
     height: 67vh;
