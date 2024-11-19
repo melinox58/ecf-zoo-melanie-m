@@ -32,7 +32,7 @@
 /* --------------------------------HEADER---------------------------------------- */
 
 .navbar{
-    background-image: url(bg_header.png);
+    background-image: url(assets\images\bg_header.png);
     background-size: cover;
     width: 100vw;
     height: 12vh;
