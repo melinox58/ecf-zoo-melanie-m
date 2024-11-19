@@ -3,3 +3,8 @@ framework:
         # The paths to make available to the asset mapper.
         paths:
             - assets/
+    assets:
+        packages:
+            images:
+                version: 'v1'
+                base_path: '/assets/images'
