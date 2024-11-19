@@ -3,7 +3,7 @@
 namespace App\Controller\Employe;
 
 use App\Service\MongoDBService;
-use Doctrine\ODM\MongoDB\Types\ObjectIdType;
+use MongoDB\BSON\ObjectId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ class EmpOpinionsController extends AbstractController
     public function editOpinion(Request $request, MongoDBService $mongoDBService, string $id): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
-        $opinion = $collection->findOne(['_id' => new ObjectIdType($id)]); // Recherche avec ObjectId
+        $opinion = $collection->findOne(['_id' => new ObjectId($id)]); // Recherche avec ObjectId
 
         if (!$opinion) {
             throw $this->createNotFoundException('Avis non trouvé');
@@ -42,7 +42,7 @@ class EmpOpinionsController extends AbstractController
                 'date' => (new \DateTime())->format('d-m-Y'),
                 'isValidated' => false,
             ];
-            $collection->updateOne(['_id' => new ObjectIdType($id)], ['$set' => $updatedData]); // Utilisation de ObjectId
+            $collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $updatedData]); // Utilisation de ObjectId
 
             $this->addFlash('success', 'L\'avis a été modifié avec succès.');
             return $this->redirectToRoute('emp_opinion_list');
@@ -70,7 +70,7 @@ class EmpOpinionsController extends AbstractController
     public function approveOpinion(string $id, MongoDBService $mongoDBService): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
-        $result = $collection->updateOne(['_id' => new ObjectIdType($id)], ['$set' => ['isValidated' => true]]); // Marquer l'avis comme validé
+        $result = $collection->updateOne(['_id' => new ObjectId($id)], ['$set' => ['isValidated' => true]]); // Marquer l'avis comme validé
 
         if ($result->getModifiedCount() > 0) {
             $this->addFlash('success', 'L\'avis a été approuvé avec succès.');
@@ -85,7 +85,7 @@ class EmpOpinionsController extends AbstractController
     public function deleteOpinion(MongoDBService $mongoDBService, string $id): Response
     {
         $collection = $mongoDBService->getCollection('opinions');
-        $collection->deleteOne(['_id' => new ObjectIdType($id)]); // Utilisation de ObjectId
+        $collection->deleteOne(['_id' => new ObjectId($id)]); // Utilisation de ObjectId
 
         $this->addFlash('success', 'L\'avis a été supprimé avec succès.');
         return $this->redirectToRoute('emp_opinion_list');

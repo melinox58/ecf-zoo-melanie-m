@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Service\MongoDBService;
 use Doctrine\ODM\MongoDB\Types\ObjectIdType;
-use MongoDB\BSON\ObjectId; // Ajout de l'importation
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
