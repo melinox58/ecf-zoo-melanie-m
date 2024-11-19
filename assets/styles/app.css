@@ -380,7 +380,7 @@ a.btn.btn-success {
     text-align: center;
     margin-bottom: 2%;
     width: 10%;
-    margin-left: 40%;
+    margin-left: 2%;
 }
 
 button#form_save.btn-primary.btn{
@@ -398,7 +398,7 @@ a.btn.btn-primary{
     justify-content: center;
 }
 
-button.btn.btn-primary {
+button.btn.btn-primary.validate {
     margin-top: 2%;
     /*! margin-left: 35%; */
     font-family: 'Lemon', serif;
@@ -414,9 +414,10 @@ button.btn.btn-primary {
 .btn.btn-primary.filter{
     font-size: 0.7rem;
     margin-top: 1%;
-    margin-left: 46%;
+    margin-left: 3%;
     font-family: 'Lemon', serif;
-    width: 10%;
+    width: 6%;
+    display: flex;
 }
 
 /*button delete*/
@@ -768,6 +769,7 @@ iframe{
 
 #breed {
     width: 20vw;
+    margin-left: -16vw;
   }
   
 
@@ -1751,6 +1753,8 @@ aside {
     height: auto;
     display: flex;
     flex-direction: column;
+    align-content: center;
+    align-items: center;
 }
 
 main form label {
