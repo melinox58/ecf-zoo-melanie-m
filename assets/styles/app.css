@@ -32,7 +32,7 @@
 /* --------------------------------HEADER---------------------------------------- */
 
 .navbar{
-    background-image: url(../temp/bg_header.png);
+    background-image: url(assets\images\bg_header.png);
     background-size: cover;
     width: 100vw;
     height: 12vh;
@@ -672,7 +672,7 @@ dl, ol, ul {
 /*Modal Avis*/
 
 .modal {
-    background-image: url(../temp/background_avis.jpg);
+    background-image: url(assets\images\background_avis.jpg);
     background-size: cover;
     width: 57vw;
     height: 67vh;
@@ -760,6 +760,11 @@ iframe{
     padding-left: 16%;
     padding-top: 2%;
 }
+
+#breed {
+    width: 20vw;
+  }
+  
 
 
 @media screen and (max-width: 650px) {
