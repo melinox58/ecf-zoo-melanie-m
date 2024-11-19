@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Service\MongoDBService;
+use Doctrine\ODM\MongoDB\Types\ObjectIdType;
 use MongoDB\BSON\ObjectId; // Ajout de l'importation
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +30,6 @@ class OpinionController extends AbstractController
     }
 
 
-
-
-
-
     #[Route('employee/opinion/add', name: 'add_opinion', methods: ['GET', 'POST'])]
     public function addOpinion(Request $request, MongoDBService $mongoDBService): Response
     {
@@ -54,7 +51,7 @@ class OpinionController extends AbstractController
                     'comment' => $data['comment'],
                     'date' => (new \DateTime())->format('d-m-Y'), // Enregistrement de la date sous forme de chaîne
                     'isValidated' => false, // Avis en attente de validation
-                    '_id' => new ObjectId(), // Utilisation de ObjectId
+                    '_id' => new ObjectIdType(), // Utilisation de ObjectId
                 ];
         
                 // Insertion dans la collection MongoDB
