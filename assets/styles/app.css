@@ -657,7 +657,7 @@ dl, ol, ul {
     color: white;
     background-color: #4B543B;
     font-size: 1rem;
-    margin-right: 5%;
+    margin-right: -1%;
     align-content: center;
     margin-top: 2%;
 }
