@@ -761,6 +761,11 @@ iframe{
     padding-top: 2%;
 }
 
+#breed {
+    width: 20vw;
+  }
+  
+
 
 @media screen and (max-width: 650px) {
     h3{
