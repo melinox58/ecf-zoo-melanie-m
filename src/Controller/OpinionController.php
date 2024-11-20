@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Service\MongoDBService;
-use MongoDB\BSON\ObjectId; // Ajout de l'importation
+use MongoDB\BSON\ObjectId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,10 +27,6 @@ class OpinionController extends AbstractController
             'opinions' => $opinionsArray, // Utiliser le tableau transformé
         ]);
     }
-
-
-
-
 
 
     #[Route('employee/opinion/add', name: 'add_opinion', methods: ['GET', 'POST'])]
