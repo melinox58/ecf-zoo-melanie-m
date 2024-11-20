@@ -26,8 +26,6 @@ class Images
     #[ORM\JoinColumn(nullable: true)]
     private ?Habitats $idHabitats = null;
 
-
-    // Remplacement du champ src (BLOB) par filePath pour stocker le chemin du fichier
     #[ORM\Column(type: "string", length: 255)]
     private ?string $filePath = null;
 
