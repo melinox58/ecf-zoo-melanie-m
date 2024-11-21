@@ -26,7 +26,6 @@ J'ai construit ce projet dans le cadre de mon évaluation en cours de formation 
 - Composer
 - MongoDB
     - Atlas
-    - (sous) Docker
 - SQL
     - environnement always data MariaDB
     - Wampp
