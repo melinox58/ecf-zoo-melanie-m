@@ -10,15 +10,24 @@
                 <div class="modal-body">
                     <div>
                         <label>Votre pseudo</label>
-                        <input type="text" name="pseudo" required>
+                        <input type="text" name="pseudo" class="form-control" required>
                     </div>
+                    <div class="star-rating">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <!-- Champ caché pour la note -->
+                    <input type="hidden" id="rating-value" name="etoiles" value="" required>
                     <div>
                         <label>Titre</label>
-                        <input type="text" name="title" required>
+                        <input type="text" name="title" class="form-control" required>
                     </div>
                     <div>
                         <label>Votre avis</label>
-                        <textarea name="comment" required></textarea>
+                        <textarea name="comment" class="form-control" rows="4" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -29,3 +38,7 @@
         </div>
     </div>
 </div>
+
+{% block javascripts %}
+    <script src="{{ asset('script/stars.js') }}"></script>
+{% endblock %}

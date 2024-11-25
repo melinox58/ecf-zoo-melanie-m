@@ -717,6 +717,24 @@ label{
     width: 25%;
 }
 
+.star-rating {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ccc; /* Couleur des étoiles non cochées */
+    transition: color 0.3s;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: #E84C1B; /* Couleur des étoiles sélectionnées ou au survol */
+}
+
 
 /*section horaires*/
 

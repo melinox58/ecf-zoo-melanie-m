@@ -32,7 +32,7 @@
 /* --------------------------------HEADER---------------------------------------- */
 
 .navbar{
-    background-image: url("../public/background/bg_header.png");
+    background-image: url("../images/bg_header-d269c2ffae1a15d221588dd007641ad7.png");
     background-size: cover;
     width: 100vw;
     height: 12vh;
@@ -678,7 +678,7 @@ dl, ol, ul {
 /*Modal Avis*/
 
 .modal {
-    background-image: url('/assets/images/temps/background_avis.jpg');
+    background-image: url("../images/background_avis-58aefd290e1962f481c5b065b43de46d.jpg");
     background-size: cover;
     width: 57vw;
     height: 67vh;
@@ -715,6 +715,24 @@ dl, ol, ul {
 
 label{
     width: 25%;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ccc; /* Couleur des étoiles non cochées */
+    transition: color 0.3s;
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: #E84C1B; /* Couleur des étoiles sélectionnées ou au survol */
 }
 
 
