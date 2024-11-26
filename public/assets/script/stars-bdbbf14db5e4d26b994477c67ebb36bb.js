@@ -43,24 +43,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Réinitialisation du formulaire et des étoiles après soumission
+    // Soumission du formulaire avec AJAX
     form.addEventListener('submit', function (event) {
         event.preventDefault();  // Empêche la soumission classique du formulaire
 
-        // Envoyer le formulaire via fetch ou AJAX ici si nécessaire
+        const formData = new FormData(form);
 
-        // Réinitialisation des étoiles et du formulaire
-        setTimeout(function () {
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Si la soumission réussit, réinitialisez les étoiles et fermez le modal
             stars.forEach(s => s.classList.remove('selected'));
             ratingInput.value = '';  // Réinitialiser la valeur cachée
             currentRating = 0;
+            modal.hide();  // Fermer le modal
 
-            // Optionnel : Fermer le modal après l'envoi
-            modal.hide();
-            form.reset();  // Réinitialise tous les champs du formulaire
+            // Afficher un message flash (par exemple : succès)
+            const flashMessage = document.createElement('div');
+            flashMessage.className = 'alert alert-success';
+            flashMessage.innerText = 'Avis envoyé avec succès !';
+            document.body.appendChild(flashMessage);  // Ajouter le message flash à la page
 
-            // Rechargement automatique de la page pour réinitialiser le JavaScript
-            location.reload();  // Rechargement de la page
-        }, 500);  // Délai de 500ms avant réinitialisation (si vous avez une animation)
+            // Faire disparaître le message flash après 3 secondes
+            setTimeout(function () {
+                flashMessage.style.display = 'none';  // Masquer le message flash
+                // Recharger la page après le délai pour réinitialiser le JS
+                location.reload();  // Rechargement de la page
+            }, 3000);  // Délai de 3 secondes
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue.');
+        });
     });
 });

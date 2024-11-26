@@ -3,14 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const ratingInput = document.getElementById('rating-value');
     const form = document.querySelector('form');
     const modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Modal Bootstrap
-    let currentRating = 0;  // Pour garder la note actuelle
 
-    // Mettre à jour l'affichage des étoiles et la valeur cachée lors du clic
     stars.forEach(star => {
         star.addEventListener('click', function () {
-            currentRating = this.getAttribute('data-value');
-            ratingInput.value = currentRating;
+            const rating = this.getAttribute('data-value');
+            
+            // Mettre à jour la valeur du champ caché
+            ratingInput.value = rating;
 
+            // Mettre à jour l'affichage des étoiles
             stars.forEach(s => s.classList.remove('selected'));
             this.classList.add('selected');
             let prev = this.previousElementSibling;
@@ -20,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Affichage temporaire lors du survol
         star.addEventListener('mouseover', function () {
+            // Survol pour montrer les étoiles temporairement
             stars.forEach(s => s.classList.remove('selected'));
             let prev = this;
             while (prev) {
@@ -30,8 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Restauration de l'état actuel après la sortie du survol
         star.addEventListener('mouseout', function () {
+            // Remettre l'état à celui enregistré dans l'input
+            const currentRating = ratingInput.value;
             stars.forEach(s => s.classList.remove('selected'));
             if (currentRating) {
                 stars.forEach(s => {
@@ -43,24 +45,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Réinitialisation du formulaire et des étoiles après soumission
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();  // Empêche la soumission classique du formulaire
+    // Utilisation de AJAX pour envoyer le formulaire sans recharger la page
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();  // Empêcher la soumission classique
 
-        // Envoyer le formulaire via fetch ou AJAX ici si nécessaire
+        const formData = new FormData(form);
 
-        // Réinitialisation des étoiles et du formulaire
-        setTimeout(function () {
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())  // Assume response is in JSON format
+        .then(data => {
+            // Réinitialiser la sélection des étoiles et fermer le modal
             stars.forEach(s => s.classList.remove('selected'));
-            ratingInput.value = '';  // Réinitialiser la valeur cachée
-            currentRating = 0;
+            ratingInput.value = '';  // Effacer la valeur cachée
 
-            // Optionnel : Fermer le modal après l'envoi
-            modal.hide();
-            form.reset();  // Réinitialise tous les champs du formulaire
-
-            // Rechargement automatique de la page pour réinitialiser le JavaScript
-            location.reload();  // Rechargement de la page
-        }, 500);  // Délai de 500ms avant réinitialisation (si vous avez une animation)
+            // Vous pouvez traiter ici la réponse du serveur si nécessaire
+            if (data.success) {
+                modal.hide();  // Fermer le modal après l'envoi
+                alert('Merci pour votre avis !');
+            } else {
+                alert('Une erreur est survenue, essayez à nouveau.');
+            }
+        })
+        .catch(error => {
+            alert('Une erreur est survenue lors de l\'envoi.');
+            console.error(error);
+        });
     });
 });
