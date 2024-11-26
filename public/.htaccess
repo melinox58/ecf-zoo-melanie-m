@@ -3,3 +3,9 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
+
+<IfModule mod_headers.c>
+    # Définir la politique Content-Security-Policy
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'nonce-<RANDOM_NONCE>' 'strict-dynamic'; object-src 'none'; style-src 'self' 'unsafe-inline';"
+</IfModule>
+
