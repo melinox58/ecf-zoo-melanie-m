@@ -96,21 +96,18 @@
 
     <ul>
         {% for opinion in opinions %}
-            <li>
-                <strong>{{ opinion.pseudo }}</strong>: <em>{{ opinion.title }}</em>- {{ opinion.date }} <br>
-                <td>
-                    <div class="star-rating">
-                        {% for i in 1..5 %}
-                            <span class="star {% if i <= opinion.star %}selected{% endif %}">★</span>
-                        {% endfor %}
-                    </div>
-                </td><br>
-                {{ opinion.comment }}
-                 
-            </li>
-        {% else %}
-            <li>Aucun avis disponible.</li>
-        {% endfor %}
+        <li>
+            <strong>{{ opinion.pseudo }}</strong>: <em>{{ opinion.title }}</em> - {{ opinion.date }} <br>
+            <div class="star-rating">
+                {% for i in 1..5 %}
+                    <span class="star {% if i <= opinion.star %}selected{% endif %}">★</span>
+                {% endfor %}
+            </div><br>
+            {{ opinion.comment }}
+        </li>
+    {% else %}
+        <li>Aucun avis disponible.</li>
+    {% endfor %}
     </ul>
 
     <!-- Button modal avis-->
