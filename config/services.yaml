@@ -7,7 +7,7 @@ parameters:
     mongo_url: 'mongodb+srv://mel:rootmel@bootcamp.yrsi3.mongodb.net/' # Changez cette valeur selon votre configuration
     mongo_db: 'Zoo_Arcadia'
     app.jwtsecret : '%env(JWT_SECRET)%' 
-    uploads_directory: '%kernel.project_dir%/public/uploads/' 
+    images_directory: '%kernel.project_dir%/public/uploads/images' 
 
 services:
     # default configuration for services in *this* file

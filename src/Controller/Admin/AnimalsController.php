@@ -50,88 +50,88 @@ class AnimalsController extends AbstractController
     }
 
     #[Route('/admin/anim/modif/{id}', name: 'admin_anim_modif')]
-public function modify(
-    Animals $animal,
-    Request $request,
-    EntityManagerInterface $entityManager,
-    HabitatsRepository $habitatsRepository,
-    PictureService $pictureService
-): Response {
-    $habitats = $habitatsRepository->findAll();
+    public function modify(
+        Animals $animal,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        HabitatsRepository $habitatsRepository,
+        PictureService $pictureService
+    ): Response {
+        $habitats = $habitatsRepository->findAll();
 
-    $form = $this->createFormBuilder($animal)
-    ->add('nameAnimal', TextType::class, [
-        'label' => 'Nom de l\'animal',
-    ])
-    ->add('breed', TextType::class, [
-        'label' => 'Race',
-    ])
-    ->add('description', TextType::class)
-    ->add('idHabitats', ChoiceType::class, [
-        'label' => 'Habitat',
-        'choices' => array_combine(
-            array_map(fn($h) => $h->getName(), $habitats),
-            $habitats
-        ),
-        'choice_label' => fn($choice) => $choice->getName(),
-        'placeholder' => 'Choisissez un habitat',
-    ])
-    ->add('image', FileType::class, [
-        'label' => 'Image de l\'animal',
-        'mapped' => false,
-        'required' => false, // L'image n'est pas obligatoire
-        'attr' => ['accept' => 'image/png, image/jpeg, image/webp'],
-        'constraints' => [
-            new Image(
-                minWidth: 100,
-                maxWidth: 7000,
-                minHeight: 100,
-                maxHeight: 7000,
-                allowPortrait: false,
-                mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
-            )
-        ],
-    ])
-    ->add('save', SubmitType::class, [
-        'label' => 'Enregistrer'
-    ])
-    ->getForm();
+        $form = $this->createFormBuilder($animal)
+        ->add('nameAnimal', TextType::class, [
+            'label' => 'Nom de l\'animal',
+        ])
+        ->add('breed', TextType::class, [
+            'label' => 'Race',
+        ])
+        ->add('description', TextType::class)
+        ->add('idHabitats', ChoiceType::class, [
+            'label' => 'Habitat',
+            'choices' => array_combine(
+                array_map(fn($h) => $h->getName(), $habitats),
+                $habitats
+            ),
+            'choice_label' => fn($choice) => $choice->getName(),
+            'placeholder' => 'Choisissez un habitat',
+        ])
+        ->add('image', FileType::class, [
+            'label' => 'Image de l\'animal',
+            'mapped' => false,
+            'required' => false, // L'image n'est pas obligatoire
+            'attr' => ['accept' => 'image/png, image/jpeg, image/webp'],
+            'constraints' => [
+                new Image(
+                    minWidth: 100,
+                    maxWidth: 7000,
+                    minHeight: 100,
+                    maxHeight: 7000,
+                    allowPortrait: false,
+                    mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
+                )
+            ],
+        ])
+        ->add('save', SubmitType::class, [
+            'label' => 'Enregistrer'
+        ])
+        ->getForm();
 
 
-    $form->handleRequest($request);
+        $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        $imageFile = $form->get('image')->getData();
-        
-        if ($imageFile) {
-            // Supprime l'ancienne image si elle existe
-            foreach ($animal->getImages() as $existingImage) {
-                $imagePath = $this->getParameter('uploads_directory') . '/animals/' . $existingImage->getFilePath();
-                if (file_exists($imagePath)) {
-                    unlink($imagePath);
-                }
-                $entityManager->remove($existingImage);
-            }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
             
-            $newFilename = $pictureService->square($imageFile, 'animals');
+            if ($imageFile) {
+                // Supprime l'ancienne image si elle existe
+                foreach ($animal->getImages() as $existingImage) {
+                    $imagePath = $this->getParameter('uploads_directory') . '/animals/' . $existingImage->getFilePath();
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                    $entityManager->remove($existingImage);
+                }
+                
+                $newFilename = $pictureService->square($imageFile, 'animals');
 
-            $newImage = new Images();
-            $newImage->setFilePath($newFilename);
-            $entityManager->persist($newImage);
-            $animal->addImage($newImage);
+                $newImage = new Images();
+                $newImage->setFilePath($newFilename);
+                $entityManager->persist($newImage);
+                $animal->addImage($newImage);
+            }
+
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Les modifications ont été enregistrées avec succès.');
+            return $this->redirectToRoute('app_admin_anim');
         }
 
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Les modifications ont été enregistrées avec succès.');
-        return $this->redirectToRoute('app_admin_anim');
+        return $this->render('admin/animals/modif.html.twig', [
+            'form' => $form->createView(),
+            'animal' => $animal,
+        ]);
     }
-
-    return $this->render('admin/animals/modif.html.twig', [
-        'form' => $form->createView(),
-        'animal' => $animal,
-    ]);
-}
 
 
 
