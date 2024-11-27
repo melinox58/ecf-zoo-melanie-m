@@ -1,13 +1,12 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\HabitatsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\MongoDBService;
 
-
-use function Symfony\Component\DependencyInjection\Loader\Configurator\iterator;
 
 class HomeController extends AbstractController
 {
@@ -19,19 +18,22 @@ class HomeController extends AbstractController
     }
     
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(HabitatsRepository $habitatsRepository): Response
     {
-        // Récupération des avis validés, triés par date décroissante
+        // Récupérer les habitats
+        $habitats = $habitatsRepository->findAllById();
+
+        // Récupérer les avis et horaires comme avant
         $opinionsCollection = $this->mongoDBService->getCollection('opinions');
         $opinions = iterator_to_array($opinionsCollection->find(['isValidated' => true], ['sort' => ['date' => -1]]));
-
-        // Récupération des horaires (ajustez le filtre si besoin)
+        
         $schedulesCollection = $this->mongoDBService->getCollection('schedules');
         $schedules = iterator_to_array($schedulesCollection->find());
 
         return $this->render('home/index.html.twig', [
             'opinions' => $opinions,
             'schedules' => $schedules,
+            'habitats' => $habitats,  // Passez aussi les habitats à la vue
         ]);
     }
 }

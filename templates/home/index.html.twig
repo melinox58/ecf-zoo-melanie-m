@@ -51,18 +51,26 @@
 </div>
     
 <section class="habitats">
-    <div>
-        <a href="{{path ('app_jungle')}}"><img src={{asset("/images/jungle/jungle.jpg")}} alt="Paysage de jungle"></a>
-        <legend>Jungle</legend>
-    </div>
-    <div>
-        <a href="{{path ('app_marais')}}"><img src={{asset("/images/marais/marais.jpg")}} alt="Paysage de marais"></a>
-        <legend>Marais</legend>
-    </div>
-    <div>
-        <a href="{{path ('app_savane')}}"><img src={{asset("/images/savane/savane.jpg")}} alt="Paysage de savane"></a>
-        <legend>Savane</legend>
-    </div>
+    {% if habitats is not empty %}
+        {% for habitat in habitats %}
+        <div>
+            <div class='imgHab'>
+            {% if habitat.images|length > 0 %}
+                {% for image in habitat.images %}
+                    <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid" style="max-width: 100px; max-height: 100px;">
+                {% endfor %}
+                {% else %}
+                    <span>Pas d'image</span>
+                {% endif %}
+                </div>
+                <div class='legend'>
+                    {{ habitat.name }}
+                </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Aucun habitat trouvé.</p>
+    {% endif %}
 </section>
 
 <div class="banner">
