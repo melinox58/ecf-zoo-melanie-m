@@ -1,0 +1,147 @@
+/* ----------------------------------ADMIN-PAGE------------------------------------ */
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+    gap: 2%;
+    height: 60%;
+}
+
+.col-9 img{
+    width: 50%;
+    height: auto;
+}
+  
+.col-9 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75vw;
+    height: 69vh;
+    align-items: center;
+}
+
+.col-9 h1{
+    margin-bottom: 5%;
+}
+  
+.containerAdmin{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.table-responsive{
+    width: 70vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+main form label {
+    text-align: right;
+    margin-right: 2%;
+    font-family: 'Lemonada', serif;
+    font-size: 1rem;
+}
+
+.col-form-label {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Lemonada', serif;
+}
+
+.badge{
+    background-color: #B57F50;
+}
+
+.h5, h5 {
+  font-size:1.25rem;
+  font-family: 'Lemonada', serif;
+  text-align: center;
+  margin-top: 2%;
+}
+  
+.form-check {
+    display:block;
+    min-height:1.5rem;
+    padding-left:16.5em;
+    margin-bottom:.125rem;
+}
+
+.col-9 h4{
+    margin-bottom: 4%;
+    margin-top: 3%;
+}
+
+.form-group {
+    width: 0;
+    display: flex;
+    margin-left: 25%;
+    align-items: center;
+}
+
+.form-group label {
+    width: 47%;
+}
+
+td.action{
+    width: 8vw;
+}
+
+td.image{
+    width: 12vw;
+}
+
+
+@media screen and (max-width: 650px){
+
+    .dash{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+    }
+
+    main.col-9{
+        width: 90vw;
+        display: flex;
+        align-content: center;
+        align-items: center;
+    }
+
+    .col-9 img {
+        width: 7vw;
+    }
+
+    .col-9 h4 {
+        margin-bottom: 15%;
+    }
+
+    .col-2 {
+        width: 85vw;
+        display: flex;
+        flex-wrap: wrap;
+        height: 18vh;
+    }
+    
+    .table-responsive {
+        width: 85vw;
+        font-size: 0.5rem;
+    }
+
+    img.mainDash {
+        width: 85vw;
+    }      
+
+    .col-9 h1{
+        margin-top: -28%;
+        width: 85vw;
+        text-align: center;
+    }
+
+}

@@ -10,11 +10,5 @@ import './styles/fontawesome-free/css/all.css';
 import './styles/header.css';
 import './styles/footer.css';
 import './styles/home.css';
-import './styles/services.css';
-import './styles/habitats.css';
-import './styles/contact.css';
-import './styles/login.css';
-import './styles/admin.css';
-import './styles/button.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
