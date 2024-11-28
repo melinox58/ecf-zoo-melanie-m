@@ -73,37 +73,6 @@
     height: auto;
 }
 
-/*section habitats*/
-
-.habitats{
-    display: flex;
-    justify-content: space-around;
-    width: 85vw;
-    margin-top: 4%;
-    margin-bottom: 3%;
-    align-items: center;
-}
-
-
-.habitats .legend{
-    font-family: "Lemonada", cursive;
-    margin-top: 2%;
-    text-align: center;
-    color: #4B543B;
-    font-size: 1rem;
-    margin-left: 24%;
-}
-
-.img-fluid {
-    max-width:20vw;
-    height:auto
-}
-
-.imgHab img{
-    width: 20vw;
-    height: auto;
-}
-
 legend {
     float:left;
     width:100%;
@@ -129,6 +98,12 @@ legend {
     width: 85vw;
     display: flex;
     margin-top: 3%;
+}
+
+.imgHab{
+    width: 80%;
+    height: auto;
+    margin: 3%;
 }
 
 .hab p{

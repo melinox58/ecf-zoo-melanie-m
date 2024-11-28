@@ -91,7 +91,7 @@
     text-align: center;
     color: #4B543B;
     font-size: 1rem;
-    margin-left: 24%;
+    padding-right: 19%;
 }
 
 .img-fluid {
@@ -99,10 +99,11 @@
     height:auto
 }
 
-.imgHab img{
-    width: 20vw;
-    height: auto;
-}
+img.img-fluid {
+    max-width: 0;
+    max-height: 0;
+  }
+  
 
 legend {
     float:left;

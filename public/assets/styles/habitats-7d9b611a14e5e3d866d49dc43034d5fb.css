@@ -91,7 +91,7 @@
     text-align: center;
     color: #4B543B;
     font-size: 1rem;
-    margin-left: 24%;
+    padding-right: 19%;
 }
 
 .img-fluid {
@@ -99,10 +99,12 @@
     height:auto
 }
 
-.imgHab img{
-    width: 20vw;
-    height: auto;
-}
+.habitats > div:nth-child(2) > div:nth-child(1) > img:nth-child(1) {
+    max-width: 0px;
+    max-height: 0px;
+  }
+  
+  
 
 legend {
     float:left;
