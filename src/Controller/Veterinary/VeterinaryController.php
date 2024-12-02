@@ -65,27 +65,38 @@ class VeterinaryController extends AbstractController
 
     #[Route('/report/vet/new', name: 'app_report_vet_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $reportVet = new ReportsVet();
+{
+    $reportVet = new ReportsVet();
 
-        $form = $this->createForm(ReportsVetType::class, $reportVet, [
-            'user' => $this->getUser(),
-            'habitats' => $this->habitatsRepository->findAll(),
-        ]);
+    $user = $this->getUser(); // Assurez-vous d'obtenir l'utilisateur connecté
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($reportVet);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_vet_reports_list');
-        }
-
-        return $this->render('veterinary/comHab/add.html.twig', [
-            'form' => $form->createView(),
-        ]);
+    if (!$user) {
+        // Rediriger ou gérer le cas où il n'y a pas d'utilisateur connecté
+        return $this->redirectToRoute('app_login');
     }
+
+    // Associer l'utilisateur au rapport
+    $reportVet->setIdUsers($user);
+
+    // Créer et traiter le formulaire
+    $form = $this->createForm(ReportsVetType::class, $reportVet, [
+        'user' => $user,
+        'habitats' => $this->habitatsRepository->findAll(),
+    ]);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->persist($reportVet);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_vet_reports_list');
+    }
+
+    return $this->render('veterinary/comHab/add.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
 
     #[Route('/veterinary/comHab', name: 'app_vet_reports_list')]
     public function listReportsByUser(Request $request): Response

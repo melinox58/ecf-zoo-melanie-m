@@ -15,7 +15,7 @@ class ReportsVet
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'idReportsVet')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Animals $idAnimals = null;
 
     #[ORM\ManyToOne(inversedBy: 'idReportsVet')]

@@ -11,7 +11,9 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                        
+                        <td class="action">
+                            <a class="btn btn-primary" href="{{ path('app_report_vet_new') }}">Créer</a>
+                        </td>
                             <tr>
                                 <th>Nom de l'habitat</th>
                                 <th>Commentaire</th>
@@ -26,7 +28,7 @@
                                     <td>{{ report.idHabitats.name }}</td>
                                     <td>{{ report.comment }}</td>
                                     <td>{{ report.date|date('d/m/Y') }}</td>
-                                    <td>{{ report.employee.firstName }} {{ report.employee.lastName }}
+                                    <td>{{ report.idUsers.firstName }} {{ report.idUsers.Name }}
                                     </td>
                                 </tr>
                             {% endfor %}

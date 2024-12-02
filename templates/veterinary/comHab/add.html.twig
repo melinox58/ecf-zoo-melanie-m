@@ -1,0 +1,40 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Rapport habitats{% endblock %}
+
+{% block body %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<div class="containerAdmin">
+    <div class="row dash">
+        {% include "_partials/_adminnav.html.twig" %}
+
+        <main class="col-9 border bg-white p-2">
+        <div>
+            <h4>Nouveau commentaire</h4>
+        </div>
+
+            <div class="table-responsive">
+
+            {{ form_start(form) }}
+                <container class="reportEmp">
+                    {{ form_row(form.idHabitats) }}
+                    {{ form_row(form.date) }}
+                    {{ form_row(form.idUsers) }}
+                    {{ form_row(form.comment, { 'label': 'Commentaire' }) }}
+                    {{ form_end(form) }}
+                </container>
+            </main>
+        </div>
+        <a class="btn btn-secondary mt-3" href="{{ path('app_admin_hab') }}">Retour à la liste</a>
+    </div>
+</div>
+
+{% endblock %}
