@@ -51,22 +51,40 @@ class HabController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('image')->getData();
+            
+            // Supprimer l'ancienne image associée à l'habitat
+            if ($hab->getImages()->count() > 0) {
+                // Supposons que chaque habitat n'a qu'une seule image (si vous avez plusieurs images par habitat, vous devrez adapter ceci)
+                $existingImage = $hab->getImages()->first();
+                $oldImagePath = $this->getParameter('images_directory') . '/' . $existingImage->getFilePath();
+
+                // Supprimer l'ancienne image du serveur
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+
+                // Supprimer l'ancienne entité Image
+                $entityManager->remove($existingImage);
+            }
+
+            // Ajouter la nouvelle image, si elle a été téléchargée
             if ($imageFile) {
                 $newFilename = uniqid() . '.' . $imageFile->guessExtension();
 
-                // Déplacez le fichier dans le répertoire défini
+                // Déplacer l'image dans le répertoire défini
                 $imageFile->move(
                     $this->getParameter('images_directory'),
                     $newFilename
                 );
 
-                // Créez une nouvelle entité Image
+                // Créer une nouvelle entité Image et l'associer à l'habitat
                 $image = new Images();
                 $image->setFilePath($newFilename);
                 $image->setIdHabitats($hab);
                 $entityManager->persist($image);
             }
 
+            // Enregistrer les modifications de l'habitat et de l'image
             $entityManager->flush();
             $this->addFlash('success', 'Les modifications ont été enregistrées avec succès.');
 
@@ -77,6 +95,7 @@ class HabController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/habitats/delete/{id}', name: 'habitat_delete', methods: ['POST'])]
     public function delete(Habitats $hab, EntityManagerInterface $entityManager): Response
