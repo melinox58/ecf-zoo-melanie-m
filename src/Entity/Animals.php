@@ -37,10 +37,20 @@ class Animals
     #[ORM\OneToMany(mappedBy: 'idAnimals', targetEntity: Images::class, cascade: ['persist', 'remove'])]
     private $images;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $state = null;
+
+    /**
+     * @var Collection<int, ReportsVet>
+     */
+    #[ORM\OneToMany(targetEntity: ReportsVet::class, mappedBy: 'idAnimals')]
+    private Collection $idReportsVet;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->report = new ArrayCollection(); // Initialiser la collection des rapports
+        $this->idReportsVet = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +163,48 @@ class Animals
             // Supprimer l'association à l'animal si nécessaire
             if ($image->getIdAnimals() === $this) {
                 $image->setIdAnimals(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReportsVet>
+     */
+    public function getIdReportsVet(): Collection
+    {
+        return $this->idReportsVet;
+    }
+
+    public function addIdReportsVet(ReportsVet $idReportsVet): static
+    {
+        if (!$this->idReportsVet->contains($idReportsVet)) {
+            $this->idReportsVet->add($idReportsVet);
+            $idReportsVet->setIdAnimals($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdReportsVet(ReportsVet $idReportsVet): static
+    {
+        if ($this->idReportsVet->removeElement($idReportsVet)) {
+            // set the owning side to null (unless already changed)
+            if ($idReportsVet->getIdAnimals() === $this) {
+                $idReportsVet->setIdAnimals(null);
             }
         }
 

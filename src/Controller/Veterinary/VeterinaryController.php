@@ -2,14 +2,11 @@
 
 namespace App\Controller\Veterinary;
 
-use App\Entity\Reports;
-use App\Repository\UsersRepository;
+use App\Entity\ReportsVet;
 use App\Repository\HabitatsRepository;
-use App\Repository\ReportsRepository;
-use App\Form\ComType;
-use App\Entity\Users;
 use App\Repository\ReportsVetRepository;
-use Doctrine\ORM\EntityManager;
+use App\Repository\UsersRepository;
+use App\Form\ReportsVetType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,141 +16,94 @@ use Symfony\Component\Routing\Annotation\Route;
 class VeterinaryController extends AbstractController
 {
     private $habitatsRepository;
-    private $reportsRepository;
+    private $reportsVetRepository;
     private $usersRepository;
 
-    // Injection des services nécessaires
-    public function __construct(HabitatsRepository $habitatsRepository, ReportsRepository $reportsRepository, UsersRepository $usersRepository)
-    {
+    public function __construct(
+        HabitatsRepository $habitatsRepository,
+        ReportsVetRepository $reportsVetRepository,
+        UsersRepository $usersRepository
+    ) {
         $this->habitatsRepository = $habitatsRepository;
-        $this->reportsRepository = $reportsRepository;
+        $this->reportsVetRepository = $reportsVetRepository;
         $this->usersRepository = $usersRepository;
     }
 
-    // -----------------Route pour l'index vétérinaire-------------------------
     #[Route('/veterinary', name: 'app_veterinary')]
-public function index(Request $request): Response
-{
-    // Vérifier que l'utilisateur est vétérinaire
-    if (!$this->isGranted('ROLE_VETERINARY')) {
-        return $this->redirectToRoute('app_home');
-    }
-
-    // Récupérer l'utilisateur connecté
-    $user = $this->getUser();
-
-    // Vérifier si un utilisateur est connecté
-    if (!$user) {
-        return $this->redirectToRoute('app_login');  // Rediriger si l'utilisateur n'est pas connecté
-    }
-
-    // Récupérer le nom de l'utilisateur
-    $username = $user ? $user->getFirstName() . ' ' . $user->getName() : 'Invité';
-    
-    // Récupérer tous les habitats pour la sélection
-    $habitats = $this->habitatsRepository->findAll();
-
-    // Récupérer l'habitat sélectionné à partir de la requête
-    $selectedHabitatId = $request->query->get('habitat');
-    $selectedHabitat = $selectedHabitatId ? $this->habitatsRepository->find($selectedHabitatId) : null;
-
-    // Récupérer les rapports en fonction de l'habitat sélectionné
-    if ($selectedHabitat) {
-        $reports = $this->reportsRepository->findByHabitat($selectedHabitat);
-    } else {
-        $reports = $this->reportsRepository->findAll();
-    }
-
-    // Rendre la vue avec tous les éléments nécessaires
-    return $this->render('veterinary/index.html.twig', [
-        'user' => $user,
-        'username' => $username,
-        'habitats' => $habitats,
-        'selectedHabitat' => $selectedHabitat,
-        'reports' => $reports,
-    ]);
-}
-
-    // -----------------Ajout d'un rapport pour l'habitat-------------------------
-    #[Route('/vet/comHab/add/{id}', name: 'vet_com_add')]
-    public function add(Request $request, EntityManager $entityManager, $id): Response
+    public function index(Request $request): Response
     {
-        // Récupérer l'habitat associé à l'ID
-        $habitat = $this->habitatsRepository->find($id);
-
-        if (!$habitat) {
-            throw $this->createNotFoundException('Habitat non trouvé');
+        if (!$this->isGranted('ROLE_VETERINARY')) {
+            return $this->redirectToRoute('app_home');
         }
 
-        // Vérifier si l'utilisateur est connecté
         $user = $this->getUser();
+
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
-        // Créer une nouvelle entité Report
-        $report = new Reports();
-        // Créer le formulaire avec le formulaire ComType (assurez-vous que ComType est bien défini)
-        $form = $this->createForm(ComType::class, $report, [
-            'user' => $user,
-            'habitat' => $habitat,
-        ]);
+        $username = $user->getFirstName() . ' ' . $user->getName();
+        $habitats = $this->habitatsRepository->findAll();
 
-        // Traiter la soumission du formulaire
-        $form->handleRequest($request);
+        $selectedHabitatId = $request->query->get('habitat');
+        $selectedHabitat = $selectedHabitatId ? $this->habitatsRepository->find($selectedHabitatId) : null;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $report->setIdHabitats($habitat); // Associer l'habitat
-            $report->setIdUsers($user); // Associer l'utilisateur
-            $report->setDate(new \DateTime()); // Ajouter la date actuelle
-            $report->setComment($form->get('comment')->getData());
-
-            try {
-                // Sauvegarder le rapport dans la base de données
-                $entityManager->persist($report);
-                $entityManager->flush();
-                $this->addFlash('success', 'Rapport ajouté avec succès.');
-            } catch (\Exception $e) {
-                $this->addFlash('error', 'Une erreur est survenue lors de l\'ajout du rapport.');
-            }
-
-            return $this->redirectToRoute('vet_com_list');
+        if ($selectedHabitat) {
+            $reports = $this->reportsVetRepository->findReportsVetByHabitat($selectedHabitat);
+        } else {
+            $reports = $this->reportsVetRepository->findAll();
         }
 
-        // Rendre la vue pour ajouter un rapport
-        return $this->render('veterinary/comHab/add.html.twig', [
-            'form' => $form->createView(),
-            'habitat' => $habitat,
+        return $this->render('veterinary/index.html.twig', [
+            'user' => $user,
+            'username' => $username,
+            'habitats' => $habitats,
+            'selectedHabitat' => $selectedHabitat,
+            'reports' => $reports,
         ]);
     }
 
-    // -----------------Liste des rapports-------------------------
-
-    #[Route('/vet/comHab/list', name: 'vet_com_list')]
-    public function listComments(Request $request, ReportsVetRepository $repo): Response
+    #[Route('/report/vet/new', name: 'app_report_vet_new')]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Vérifier si l'utilisateur est employé ou vétérinaire
-        if (!$this->isGranted('ROLE_EMPLOYEE') && !$this->isGranted('ROLE_VETERINARY')) {
-            return $this->redirectToRoute('app_home');
+        $reportVet = new ReportsVet();
+
+        $form = $this->createForm(ReportsVetType::class, $reportVet, [
+            'user' => $this->getUser(),
+            'habitats' => $this->habitatsRepository->findAll(),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($reportVet);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_vet_reports_list');
         }
 
+        return $this->render('veterinary/comHab/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/veterinary/comHab', name: 'app_vet_reports_list')]
+    public function listReportsByUser(Request $request): Response
+    {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
-        // Récupérer l'habitat sélectionné depuis la requête
-        $selectedHabitatId = $request->query->get('habitat');
+        // Vérifier si l'utilisateur est connecté et a le rôle 'ROLE_VETERINARY'
+        if (!$user || !$this->isGranted('ROLE_VETERINARY')) {
+            return $this->redirectToRoute('app_home');
+        }
 
-        // Récupérer les rapports en fonction de l'habitat sélectionné
-        // $reports = $this->reportsRepository->findCom($user, $selectedHabitatId);
-        $id=1;
-        $reports = $repo->find($id);
-        dd($reports);
+        // Récupérer les rapports vétérinaires associés à l'utilisateur connecté (par ID)
+        $reports = $this->reportsVetRepository->findReportsVetByUserId($user->getId());
 
-        // Rendre la vue avec la liste des rapports
         return $this->render('veterinary/comHab/list.html.twig', [
-            'habitats' => $this->habitatsRepository->findAll(),
-            'selectedHabitat' => $selectedHabitatId,
             'reports' => $reports,
+            'user' => $user
         ]);
     }
 }

@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\AnimalsRepository;
 use App\Repository\UsersRepository;
-use App\Entity\Users;
 use App\Entity\Reports;
 use App\Form\ReportsType as FormReportsType;
 use App\Repository\ReportsRepository;
