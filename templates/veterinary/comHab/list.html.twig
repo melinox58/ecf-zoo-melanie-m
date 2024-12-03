@@ -28,7 +28,11 @@
                                     <td>{{ report.idHabitats.name }}</td>
                                     <td>{{ report.comment }}</td>
                                     <td>{{ report.date|date('d/m/Y') }}</td>
-                                    <td>{{ report.idUsers.firstName }} {{ report.idUsers.Name }}
+                                    <td>{{ report.idUsers.firstName }} {{ report.idUsers.Name }}</td>
+                                    <td>
+                                        <form action="{{ path('vet_comHab_delete', {id: report.id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce commentaire ?');" style="display:inline;">
+                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        </form>
                                     </td>
                                 </tr>
                             {% endfor %}

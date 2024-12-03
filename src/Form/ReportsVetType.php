@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ReportsVetType extends AbstractType
 {
@@ -41,10 +42,8 @@ class ReportsVetType extends AbstractType
                 'attr' => ['readonly' => true],
                 'label' => 'Date du rapport'
             ])
-            ->add('idUsers', TextType::class, [
-                'data' => $user->getName() . ' ' . $user->getFirstName(), // Afficher le nom de l'utilisateur connecté
-                'label' => 'Utilisateur',
-                'disabled' => true, // Désactiver le champ pour éviter la modification
+            ->add('idUsers', HiddenType::class, [
+                'data' => $user->getId(), // Sauvegarder l'ID de l'utilisateur dans la base
             ])
             ->add('idHabitats', ChoiceType::class, [
                 'choices' => $options['habitats'],

@@ -24,6 +24,18 @@ class ReportsVetRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    //Méthode qui récupère le dernier rapport vétérinaire lié à un habitat, trié par date décroissante.
+    public function findLastReportByHabitat($habitatId)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.idHabitats = :habitatId')
+            ->setParameter('habitatId', $habitatId)
+            ->orderBy('r.date', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
 
 

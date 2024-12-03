@@ -37,12 +37,13 @@ class VeterinaryController extends AbstractController
         }
 
         $user = $this->getUser();
-
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
-        $username = $user->getFirstName() . ' ' . $user->getName();
+        // Accès aux données de l'utilisateur
+        $username = $user->getFirstName() . ' ' . $user->getName();  // Utilisation des getters ici
+
         $habitats = $this->habitatsRepository->findAll();
 
         $selectedHabitatId = $request->query->get('habitat');
@@ -60,56 +61,57 @@ class VeterinaryController extends AbstractController
             'habitats' => $habitats,
             'selectedHabitat' => $selectedHabitat,
             'reports' => $reports,
+
+        
         ]);
     }
 
     #[Route('/report/vet/new', name: 'app_report_vet_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
-{
-    $reportVet = new ReportsVet();
+    {
+        $reportVet = new ReportsVet();
 
-    $user = $this->getUser(); // Assurez-vous d'obtenir l'utilisateur connecté
+        $user = $this->getUser(); // Assurez-vous d'obtenir l'utilisateur connecté
 
-    if (!$user) {
-        // Rediriger ou gérer le cas où il n'y a pas d'utilisateur connecté
-        return $this->redirectToRoute('app_login');
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        // Associer l'utilisateur au rapport
+        $reportVet->setIdUsers($user);
+
+        // Créer et traiter le formulaire
+        $form = $this->createForm(ReportsVetType::class, $reportVet, [
+            'user' => $user,
+            'habitats' => $this->habitatsRepository->findAll(),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($reportVet);
+            $entityManager->flush();
+
+            // Ajouter un message flash de succès
+            $this->addFlash('success', 'Le rapport a été créé avec succès.');
+
+            return $this->redirectToRoute('app_vet_reports_list');
+        }
+
+        return $this->render('veterinary/comHab/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
-
-    // Associer l'utilisateur au rapport
-    $reportVet->setIdUsers($user);
-
-    // Créer et traiter le formulaire
-    $form = $this->createForm(ReportsVetType::class, $reportVet, [
-        'user' => $user,
-        'habitats' => $this->habitatsRepository->findAll(),
-    ]);
-
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $entityManager->persist($reportVet);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_vet_reports_list');
-    }
-
-    return $this->render('veterinary/comHab/add.html.twig', [
-        'form' => $form->createView(),
-    ]);
-}
 
     #[Route('/veterinary/comHab', name: 'app_vet_reports_list')]
     public function listReportsByUser(Request $request): Response
     {
-        // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
-        // Vérifier si l'utilisateur est connecté et a le rôle 'ROLE_VETERINARY'
         if (!$user || !$this->isGranted('ROLE_VETERINARY')) {
             return $this->redirectToRoute('app_home');
         }
 
-        // Récupérer les rapports vétérinaires associés à l'utilisateur connecté (par ID)
         $reports = $this->reportsVetRepository->findReportsVetByUserId($user->getId());
 
         return $this->render('veterinary/comHab/list.html.twig', [
@@ -117,4 +119,28 @@ class VeterinaryController extends AbstractController
             'user' => $user
         ]);
     }
+
+    #[Route('/veterinary/comHab/delete/{id}', name: 'vet_comHab_delete', methods: ['POST'])]
+    public function deleteOpinion(EntityManagerInterface $entityManager, int $id): Response
+    {
+        // Récupérer le rapport par ID
+        $report = $this->reportsVetRepository->find($id);
+
+        if (!$report) {
+            // Si le rapport n'existe pas, rediriger avec un message d'erreur
+            $this->addFlash('error', 'Le rapport n\'existe pas.');
+            return $this->redirectToRoute('app_vet_reports_list');
+        }
+
+        // Supprimer le rapport
+        $entityManager->remove($report);
+        $entityManager->flush();
+
+        // Ajouter un message flash de succès
+        $this->addFlash('success', 'Le rapport a été supprimé avec succès.');
+
+        return $this->redirectToRoute('app_vet_reports_list');
+    }
+
+
 }
