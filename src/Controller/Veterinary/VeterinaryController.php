@@ -12,17 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\AnimalsRepository;
 
 class VeterinaryController extends AbstractController
 {
     private $habitatsRepository;
     private $reportsVetRepository;
     private $usersRepository;
+    private $animalsRepository;
 
     public function __construct(
         HabitatsRepository $habitatsRepository,
         ReportsVetRepository $reportsVetRepository,
-        UsersRepository $usersRepository
+        UsersRepository $usersRepository,
+        AnimalsRepository $animalsRepository
     ) {
         $this->habitatsRepository = $habitatsRepository;
         $this->reportsVetRepository = $reportsVetRepository;
@@ -142,5 +145,97 @@ class VeterinaryController extends AbstractController
         return $this->redirectToRoute('app_vet_reports_list');
     }
 
+    #[Route('/veterinary/reports', name: 'app_vet_anim')]
+    public function report(Request $request, AnimalsRepository $animalsRepository): Response
+    {
+        // Créer un queryBuilder pour les animaux
+        $queryBuilder = $animalsRepository->createQueryBuilder('a');
 
+        // Récupérer les filtres depuis la requête
+        $breedFilter = $request->query->get('breed');
+        $nameFilter = $request->query->get('name');
+
+        // Appliquer les filtres
+        if ($breedFilter) {
+            $queryBuilder->andWhere('a.breed = :breed')
+                        ->setParameter('breed', $breedFilter);
+        }
+
+        if ($nameFilter) {
+            $queryBuilder->andWhere('a.nameAnimal LIKE :name')
+                        ->setParameter('name', '%' . $nameFilter . '%');
+        }
+
+        // Exécuter la requête et obtenir les résultats
+        $animals = $queryBuilder->getQuery()->getResult();
+        
+        // Récupérer les races distinctes pour le filtre
+        $races = $animalsRepository->createQueryBuilder('a')
+            ->select('DISTINCT a.breed')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('veterinary/reports/index.html.twig', [
+            'animals' => $animals,
+            'races' => $races,
+        ]);
+    }
+
+    #[Route('/emp/report/add/{id}', name: 'vet_report_add')]
+    public function add(Request $request, EntityManagerInterface $entityManager, UsersRepository $usersRepository, $id): Response
+    {
+        $report = new ReportsVet();
+
+        // Récupérer l'animal par ID
+        $animal = $this->animalsRepository->find($id);
+        
+        if (!$animal) {
+            throw $this->createNotFoundException('Animal non trouvé');
+        }
+
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!$user) {
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion
+        }
+
+        // Création du formulaire en passant l'utilisateur et l'animal
+        $form = $this->createForm(ReportsVetType::class, $report, [
+            'user' => $user,
+            'animal' => $animal,
+        ]);
+
+        // Traitement de la requête
+        $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $data = $form->getData();
+        
+        // Définir le poids et l'unité directement à partir du formulaire
+        $report->setWeight($data->getWeight());
+        $report->setUnit($data->getUnit());
+        
+        // Définir l'animal et l'utilisateur
+        $report->setIdAnimals($animal);
+        $report->setIdUsers($user);
+        $report->setDate(new \DateTime());
+        $report->setComment($data->getComment());
+
+        // Persister le rapport
+        $entityManager->persist($report);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('app_emp_anim');
+
+        //  // Ajouter un message flash
+        //  $this->addFlash('success', 'Rapport enregistré avec succès.');
+        }
+
+
+            return $this->render('veterinary/reports/add.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
 }

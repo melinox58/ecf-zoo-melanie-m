@@ -21,6 +21,10 @@ class ReportsVetRepository extends ServiceEntityRepository
             ->join('r.idUsers', 'u') // Jointure avec l'entité Users
             ->andWhere('u.id = :userId') // Filtrer par l'ID de l'utilisateur
             ->setParameter('userId', $userId) // Utilisez 'userId' pour définir la valeur
+            ->join('r.idAnimals', 'a')  // Utilisation de 'idAnimals' ici
+            ->addSelect('a') // Sélectionnez les détails de l'animal
+            ->join('r.idFoods', 'f')
+            ->addSelect('f') // Sélectionnez les détails de l'aliment
             ->getQuery()
             ->getResult();
     }

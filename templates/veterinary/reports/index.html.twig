@@ -8,11 +8,7 @@
         <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
-                {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
                 <h4>Soigner un animal</h4>
-                {% elseif is_granted('ROLE_EMPLOYEE') %}
-                <h4>Comptes rendus employés</h4>
-                {% endif %}
                 <div class="table-responsive">
                     <table class="table">
                         <!-- Formulaire de filtrage -->
@@ -33,13 +29,9 @@
                                 <th>Image</th>
                                 <th>Race</th>
                                 <th>Habitat</th>
-                                {% if is_granted('ROLE_VETERINARY') %}
-                                    <th>Rapport employé</th>
-                                    <th>Repas</th>
-                                {% endif %}
-                                {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
+                                <th>Repas</th>
                                 <th>Actions</th>
-                                {% endif %}
+
                             </tr>
                         </thead>
                         <tbody class="animals">
@@ -55,36 +47,20 @@
                                     </td>
                                     <td>{{ animal.breed }}</td>
                                     <td>{{ animal.idHabitats.name }}</td>
-                                    {% if is_granted('ROLE_VETERINARY') %}
-                                        <td>
-                                            {% if animal.reports is empty %}
-                                                <p>Aucun rapport</p>
-                                            {% else %}
-                                                {% for report in animal.reports %}
-                                                    <p>
-                                                        {{ report.date|date('d/m/Y') }} - {{ report.comment }}<br>
-                                                        Aliments : {{ report.idFoods.name }} - Quantité : {{ report.weight }} {{ report.unit }}
-                                                    </p>
-                                                {% endfor %}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if animal.reports is not empty %}
-                                                {% for report in animal.reports %}
-                                                    <p>
-                                                        {{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}
-                                                    </p>
-                                                {% endfor %}
-                                            {% else %}
-                                                <p>Aucun repas enregistré</p>
-                                            {% endif %}
-                                        </td>
-                                    {% endif %}
-                                    {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
-                                    <td class="action">
-                                        <a class="btn btn-primary" href="{{ path('emp_report_add', { id: animal.id }) }}">Créer</a>
+                                    <td>
+                                        {% if animal.reports is not empty %}
+                                            {% for report in animal.reports %}
+                                                <p>
+                                                    {{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}
+                                                </p>
+                                            {% endfor %}
+                                        {% else %}
+                                            <p>Aucun repas enregistré</p>
+                                        {% endif %}
                                     </td>
-                                    {% endif %}
+                                    <td class="action">
+                                        <a class ="btn btn-primary" href="{{ path('vet_report_add', { id: animal.id }) }}">Créer</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
