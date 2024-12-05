@@ -33,7 +33,9 @@
                                     <th>Rapport employé</th>
                                     <th>Repas</th>
                                 {% endif %}
+                                {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
                                 <th>Actions</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody class="animals">
@@ -74,9 +76,11 @@
                                             {% endif %}
                                         </td>
                                     {% endif %}
+                                    {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
                                     <td class="action">
                                         <a class="btn btn-primary" href="{{ path('emp_report_add', { id: animal.id }) }}">Créer</a>
                                     </td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                         </tbody>
