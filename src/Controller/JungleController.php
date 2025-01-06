@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\Reports;
 
 class JungleController extends AbstractController
 {
@@ -26,14 +27,14 @@ class JungleController extends AbstractController
     {
         // On récupère les animaux par habitat spécifique
         $jungleAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 1]);
-        $maraisAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 2]);
-        $savaneAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 3]);
+
+        // Récupération des rapports pour tous les animaux de la jungle
+        $reports = $this->entityManager->getRepository(Reports::class)->findAll();
 
         // Envoie des données à la vue
         return $this->render('jungle/index.html.twig', [
             'jungleAnimals' => $jungleAnimals,
-            'maraisAnimals' => $maraisAnimals,
-            'savaneAnimals' => $savaneAnimals,
+            'reports' => $reports,
             'pictureService' => $this->pictureService,
         ]);
     }

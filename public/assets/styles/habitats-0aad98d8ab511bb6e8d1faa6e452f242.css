@@ -196,28 +196,8 @@ p.card-text {
     flex-wrap: nowrap;
 }
 
-div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
-    background-color: white;
-    width: 50vw;
-    margin-left: -30%;
-    padding: 2%;
-  }
 
-  .modal-dialog-scrollable .modal-body {
-    overflow-y:auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cardModal-img{
-    width: 20%;
-    margin: 2%;
-  }
   
-  .table-responsive-modal{
-    width: 100%;
-  }
   
   
   
@@ -304,6 +284,11 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
         margin: auto;
     }
     
-
+    div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
+        background-color: white;
+        width: 50vw;
+        margin-left: -30%;
+        padding: 2%;
+      }
       
 }

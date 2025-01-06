@@ -212,12 +212,8 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
 
   .cardModal-img{
     width: 20%;
-    margin: 2%;
   }
   
-  .table-responsive-modal{
-    width: 100%;
-  }
   
   
   
