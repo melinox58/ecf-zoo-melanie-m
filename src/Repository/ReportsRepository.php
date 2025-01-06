@@ -38,5 +38,4 @@ class ReportsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
 }

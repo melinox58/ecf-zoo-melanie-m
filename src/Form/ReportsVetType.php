@@ -5,6 +5,8 @@ namespace App\Form;
 
 use App\Entity\Habitats;
 use App\Entity\ReportsVet;
+use Proxies\__CG__\App\Entity\Users;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,11 +21,8 @@ class ReportsVetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Récupérer l'habitat à pré-sélectionner si fourni
-        $habitat = $options['habitat'] ?? null;
-
-        // Récupérer l'utilisateur passé en option
-        $user = $options['user'];
+        $user = $options['user'];  // Utilisateur connecté
+        $habitats = $options['habitats'];  // Liste des habitats à afficher
 
         // Vérifiez si l'utilisateur est null
         if (!$user) {
@@ -43,13 +42,13 @@ class ReportsVetType extends AbstractType
                 'label' => 'Date du rapport'
             ])
             ->add('idUsers', HiddenType::class, [
-                'data' => $user->getId(), // Sauvegarder l'ID de l'utilisateur dans la base
-            ])
-            ->add('idHabitats', ChoiceType::class, [
-                'choices' => $options['habitats'],
-                'choice_label' => function (Habitats $habitat) {
-                    return $habitat->getName();
-                },
+                'data' => $user->getId(), // Passez l'ID de l'utilisateur pour lier l'entrée
+                'mapped' => false, // Désactivez le mappage direct, car l'utilisateur est défini dans le contrôleur
+            ])            
+            ->add('idHabitats', EntityType::class, [
+                'class' => Habitats::class,
+                'choice_label' => 'name',
+                'choices' => $habitats,
                 'label' => 'Choisir un habitat',
                 'mapped' => true,
             ])
@@ -60,10 +59,8 @@ class ReportsVetType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ReportsVet::class,
-            'users' => [],
             'habitats' => [],
             'user' => null, // Option pour l'utilisateur connecté
-            'habitat' => null, // Option pour l'habitat (si nécessaire)
         ]);
     }
 }

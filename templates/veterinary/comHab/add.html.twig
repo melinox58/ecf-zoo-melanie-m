@@ -27,13 +27,15 @@
                 <container class="reportEmp">
                     {{ form_row(form.idHabitats) }}
                     {{ form_row(form.date) }}
-                    {{ form_row(form.idUsers) }}
+                    <input type="text" id="user_name" value="{{ user.firstName ~ ' ' ~ user.name }}" readonly class="form-control" />
                     {{ form_row(form.comment, { 'label': 'Commentaire' }) }}
                     {{ form_end(form) }}
                 </container>
+
+
             </main>
         </div>
-        <a class="btn btn-secondary mt-3" href="{{ path('app_vet_reports_list') }}">Retour à la liste</a>
+        <a class="btn btn-secondary mt-3" href="{{ path('vet_com_list') }}">Retour à la liste</a>
     </div>
 </div>
 

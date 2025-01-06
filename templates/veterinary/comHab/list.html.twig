@@ -12,14 +12,13 @@
                     <table class="table">
                         <thead>
                         <td class="action">
-                            <a class="btn btn-primary" href="{{ path('app_report_vet_new') }}">Créer</a>
+                            <a class="btn btn-primary" href="{{ path('vet_com_add') }}">Créer</a>
                         </td>
                             <tr>
                                 <th>Nom de l'habitat</th>
                                 <th>Commentaire</th>
                                 <th>Date</th>
                                 <th>Employé</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,11 +28,6 @@
                                     <td>{{ report.comment }}</td>
                                     <td>{{ report.date|date('d/m/Y') }}</td>
                                     <td>{{ report.idUsers.firstName }} {{ report.idUsers.Name }}</td>
-                                    <td>
-                                        <form action="{{ path('vet_comHab_delete', {id: report.id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce commentaire ?');" style="display:inline;">
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                        </form>
-                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

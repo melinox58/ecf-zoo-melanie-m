@@ -106,8 +106,9 @@ class ReportsController extends AbstractController
         
         return $this->redirectToRoute('app_emp_anim');
 
-        //  // Ajouter un message flash
+         // Ajouter un message flash
         //  $this->addFlash('success', 'Rapport enregistré avec succès.');
+
         }
 
 
