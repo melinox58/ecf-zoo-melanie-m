@@ -52,6 +52,11 @@ class ReportsVetType extends AbstractType
                 'label' => 'Choisir un habitat',
                 'mapped' => true,
             ])
+            // Ajoutez un champ pour l'état de l'animal
+            ->add('state', TextType::class, [
+                'required' => false,
+                'label' => 'État de l\'animal'
+            ])
             ->add('save', SubmitType::class, ['label' => "Ajouter"]);
     }
 

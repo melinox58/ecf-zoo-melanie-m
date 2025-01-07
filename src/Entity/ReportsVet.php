@@ -34,6 +34,23 @@ class ReportsVet
     #[ORM\ManyToOne(inversedBy: 'idReportsVet')]
     private ?Habitats $idHabitats = null;
 
+    // Dans ReportsVet.php
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $state = null;  // Champ pour l'état de l'animal
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

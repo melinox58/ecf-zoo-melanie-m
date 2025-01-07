@@ -40,6 +40,7 @@ class Animals
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $state = null;
 
+
     /**
      * @var Collection<int, ReportsVet>
      */

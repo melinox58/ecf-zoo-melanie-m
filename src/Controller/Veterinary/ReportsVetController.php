@@ -2,6 +2,7 @@
 
 namespace App\Controller\Veterinary;
 
+use App\Entity\Animals;
 use App\Entity\Habitats;
 use App\Entity\Reports;
 use App\Entity\ReportsVet;
@@ -40,6 +41,7 @@ class ReportsVetController extends AbstractController
         $this->reportsVetRepository = $reportsVetRepository;
         $this->usersRepository = $usersRepository;
         $this->reportsRepository = $reportsRepository;
+        $this->animalsRepository = $animalsRepository;
     }
 
 
@@ -242,6 +244,64 @@ class ReportsVetController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    #[Route('/veterinary/reports/status', name: 'vet_animal_status')]
+    public function animalStatus(Request $request, AnimalsRepository $animalsRepository, EntityManagerInterface $entityManager, HabitatsRepository $habitatsRepository): Response
+    {
+        // Récupérer les filtres
+        $breedFilter = $request->query->get('breed');
+        $nameFilter = $request->query->get('name');
+        $habitatFilter = $request->query->get('habitat');
+
+        // Construire la requête de base avec jointure sur ReportsVet
+        $queryBuilder = $animalsRepository->createQueryBuilder('a')
+            ->leftJoin('a.idReportsVet', 'r')  // Jointure avec les rapports vétérinaires
+            ->addSelect('r')
+            ->leftJoin('a.idHabitats', 'h')   // Jointure avec l'habitat
+            ->addSelect('h')
+            ->orderBy('r.date', 'DESC'); // Trier les rapports par date décroissante
+
+        // Appliquer les filtres si fournis
+        if ($breedFilter) {
+            $queryBuilder->andWhere('a.breed = :breed')
+                        ->setParameter('breed', $breedFilter);
+        }
+
+        if ($nameFilter) {
+            $queryBuilder->andWhere('a.nameAnimal LIKE :name')
+                        ->setParameter('name', '%' . $nameFilter . '%');
+        }
+
+        if ($habitatFilter) {
+            $queryBuilder->andWhere('h.name = :habitat') // Filtrer sur le nom de l'habitat
+                        ->setParameter('habitat', $habitatFilter);
+        }
+
+        // Exécuter la requête pour récupérer les animaux filtrés
+        $animals = $queryBuilder->getQuery()->getResult();
+
+        // Récupérer les habitats distincts pour le filtre
+        $habitats = $habitatsRepository->createQueryBuilder('h')
+            ->select('DISTINCT h.name')
+            ->getQuery()
+            ->getResult();
+
+        // Récupérer les races distinctes pour le filtre
+        $races = $animalsRepository->createQueryBuilder('a')
+            ->select('DISTINCT a.breed')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('/veterinary/reports/status.html.twig', [
+            'animals' => $animals,
+            'habitats' => $habitats,
+            'races' => $races,  // Transmettre les races à la vue
+            'breedFilter' => $breedFilter,
+            'nameFilter' => $nameFilter,
+            'habitatFilter' => $habitatFilter
+        ]);
+    }
+
 }
 
 
