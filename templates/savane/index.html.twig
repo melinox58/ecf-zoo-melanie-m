@@ -28,6 +28,16 @@
     climatique et aux activités humaines.</p>
 </div>
 
+<section class="latest-report">
+    <h4>Dernier rapport vétérinaire sur cet habitat</h4>
+    {% if latestReport %}
+    <p>Dernier rapport vétérinaire pour cet habitat : {{ latestReport.date|date('d-m-Y H:i') }}</p>
+    <p>{{ latestReport.comment }}</p>
+{% else %}
+    <p>Aucun rapport vétérinaire disponible pour cet habitat.</p>
+{% endif %}
+</section>
+
 {# Cards d'animaux de la savane #}
 <section class="animaux">
     <div class="row">
