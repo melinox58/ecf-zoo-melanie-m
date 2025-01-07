@@ -70,44 +70,6 @@ class ReportsVetController extends AbstractController
         ]);
     }
 
-    
-    //Ajout d'un rapport animal
-    // #[Route('/report/vet/new', name: 'app_report_vet_new')]
-    // public function new(Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     $reportVet = new ReportsVet();
-
-    //     $user = $this->getUser(); // Assurez-vous d'obtenir l'utilisateur connecté
-
-    //     if (!$user) {
-    //         return $this->redirectToRoute('app_login');
-    //     }
-
-    //     // Associer l'utilisateur au rapport
-    //     $reportVet->setIdUsers($user);
-
-    //     // Créer et traiter le formulaire
-    //     $form = $this->createForm(ReportsVetType::class, $reportVet, [
-    //         'user' => $user,
-    //         'habitats' => $this->habitatsRepository->findAll(),
-    //     ]);
-
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->persist($reportVet);
-    //         $entityManager->flush();
-
-    //         // Ajouter un message flash de succès
-    //         $this->addFlash('success', 'Le rapport a été créé avec succès.');
-
-    //         return $this->redirectToRoute('vet_com_list');
-    //     }
-
-    //     return $this->render('veterinary/comHab/add.html.twig', [
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
 
     // filtre animaux
 
@@ -208,34 +170,28 @@ class ReportsVetController extends AbstractController
         }
 
 
-    // -----------------Liste des rapports-------------------------
+    // -----------------Liste des rapports habitats-------------------------
 
     #[Route('/vet/comHab/list', name: 'vet_com_list')]
-    public function listComments(Request $request, ReportsVetRepository $repo): Response
+    public function listComments(Request $request, ReportsVetRepository $repo, HabitatsRepository $habitatsRepo): Response
     {
-        // Vérifier si l'utilisateur est employé ou vétérinaire
         if (!$this->isGranted('ROLE_EMPLOYEE') && !$this->isGranted('ROLE_VETERINARY')) {
             return $this->redirectToRoute('app_home');
         }
 
-        // Récupérer l'utilisateur connecté
         $user = $this->getUser();
-
-        // Récupérer l'habitat sélectionné depuis la requête
         $selectedHabitatId = $request->query->get('habitat');
 
-        // Récupérer les rapports en fonction de l'habitat sélectionné
-        $reports = $this->reportsVetRepository->findCom($user, $selectedHabitatId);
-        $id=1;
-        $reports = $repo->find($id);
+        // Si aucun habitat n'est sélectionné, récupérer tous les rapports de l'utilisateur
+        $reports = $selectedHabitatId ? $repo->findCom($user, $selectedHabitatId) : [];
 
-        // Rendre la vue avec la liste des rapports
         return $this->render('veterinary/comHab/list.html.twig', [
-            'habitats' => $this->habitatsRepository->findAll(),
+            'habitats' => $habitatsRepo->findAll(),
             'selectedHabitat' => $selectedHabitatId,
             'reports' => $reports,
         ]);
     }
+
 
     // -----------------Ajout d'un rapport pour l'habitat-------------------------
 

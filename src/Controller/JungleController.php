@@ -28,13 +28,16 @@ class JungleController extends AbstractController
         // On récupère les animaux par habitat spécifique
         $jungleAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 1]);
 
-        // Récupération des rapports pour tous les animaux de la jungle
-        $reports = $this->entityManager->getRepository(Reports::class)->findAll();
+        // Récupération des rapports liés aux animaux de la jungle
+    $reportsByAnimal = [];
+    foreach ($jungleAnimals as $animal) {
+        $reportsByAnimal[$animal->getId()] = $this->entityManager->getRepository(Reports::class)->findBy(['idAnimals' => $animal]);
+    }
 
         // Envoie des données à la vue
         return $this->render('jungle/index.html.twig', [
             'jungleAnimals' => $jungleAnimals,
-            'reports' => $reports,
+            'reportsByAnimal' => $reportsByAnimal,
             'pictureService' => $this->pictureService,
         ]);
     }

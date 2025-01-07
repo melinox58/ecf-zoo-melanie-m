@@ -8,12 +8,22 @@
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Rapports habitats</h4>
+                <form method="get" action="{{ path('vet_com_list') }}">
+                    <div class="mb-3">
+                        <label for="habitat" class="form-label">Sélectionnez un habitat</label>
+                        <select name="habitat" id="habitat" class="form-select" onchange="this.form.submit()">
+                            <option value="">Tous les habitats</option>
+                            {% for habitat in habitats %}
+                                <option value="{{ habitat.id }}" {% if selectedHabitat == habitat.id %}selected{% endif %}>
+                                    {{ habitat.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                        <td class="action">
-                            <a class="btn btn-primary" href="{{ path('vet_com_add') }}">Créer</a>
-                        </td>
                             <tr>
                                 <th>Nom de l'habitat</th>
                                 <th>Commentaire</th>
@@ -26,8 +36,12 @@
                                 <tr>
                                     <td>{{ report.idHabitats.name }}</td>
                                     <td>{{ report.comment }}</td>
-                                    <td>{{ report.date|date('d/m/Y') }}</td>
-                                    <td>{{ report.idUsers.firstName }} {{ report.idUsers.Name }}</td>
+                                    <td>{{ report.date|date('d/m/Y H:i') }}</td>
+                                    <td>{{ report.idUsers.firstName }} {{ report.idUsers.name }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun rapport trouvé pour l'habitat sélectionné.</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

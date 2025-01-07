@@ -29,22 +29,19 @@ class ReportsVetRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //Méthode qui récupère le dernier rapport vétérinaire lié à un habitat, trié par date décroissante.
+    // Méthode qui récupère les rapports liés à un habitat, triés par date décroissante
     public function findCom($user, $habitatId)
     {
-        // Utilisation du QueryBuilder pour créer une requête personnalisée
-        $qb = $this->createQueryBuilder('r')
-            ->join('r.idUsers', 'u') // Jointure avec la table des utilisateurs
-            ->join('r.idHabitats', 'h') // Jointure avec la table des habitats
-            ->join('r.idAnimals', 'a') // Jointure avec la table des animaux
-            ->where('u = :user') // Filtrer par utilisateur
+        return $this->createQueryBuilder('r')
+            ->join('r.idUsers', 'u')
+            ->join('r.idHabitats', 'h')
+            ->where('u = :user')
             ->setParameter('user', $user)
-            ->andWhere('h.id = :habitat') // Filtrer par habitat
+            ->andWhere('h.id = :habitat')
             ->setParameter('habitat', $habitatId)
-            ->getQuery(); // Récupérer la requête
-
-        // Exécuter la requête et retourner les résultats
-        return $qb->getResult();
+            ->orderBy('r.date', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }
 
