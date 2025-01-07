@@ -29,6 +29,7 @@
                                 <th>Commentaire</th>
                                 <th>Date</th>
                                 <th>Employé</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,9 @@
                                     <td>{{ report.comment }}</td>
                                     <td>{{ report.date|date('d/m/Y H:i') }}</td>
                                     <td>{{ report.idUsers.firstName }} {{ report.idUsers.name }}</td>
+                                    <td>
+                                        <a href="{{ path('vet_com_add', {'habitat': report.idHabitats.id}) }}" class="btn btn-primary">Créer</a>
+                                    </td>
                                 </tr>
                             {% else %}
                                 <tr>

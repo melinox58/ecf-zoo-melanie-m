@@ -173,8 +173,12 @@ class ReportsVetController extends AbstractController
     // -----------------Liste des rapports habitats-------------------------
 
     #[Route('/vet/comHab/list', name: 'vet_com_list')]
-    public function listComments(Request $request, ReportsVetRepository $repo, HabitatsRepository $habitatsRepo): Response
-    {
+    public function listComments(
+        Request $request, 
+        ReportsVetRepository $repo, 
+        HabitatsRepository $habitatsRepo
+    ): Response {
+        // Vérifie si l'utilisateur a les autorisations nécessaires
         if (!$this->isGranted('ROLE_EMPLOYEE') && !$this->isGranted('ROLE_VETERINARY')) {
             return $this->redirectToRoute('app_home');
         }
@@ -182,8 +186,13 @@ class ReportsVetController extends AbstractController
         $user = $this->getUser();
         $selectedHabitatId = $request->query->get('habitat');
 
-        // Si aucun habitat n'est sélectionné, récupérer tous les rapports de l'utilisateur
-        $reports = $selectedHabitatId ? $repo->findCom($user, $selectedHabitatId) : [];
+        // Si un habitat est sélectionné, récupérer les rapports pour cet habitat
+        if ($selectedHabitatId) {
+            $reports = $repo->findCom($user, $selectedHabitatId);
+        } else {
+            // Si aucun habitat n'est sélectionné, récupérer tous les rapports pour l'utilisateur
+            $reports = $repo->findAllForUser($user);
+        }
 
         return $this->render('veterinary/comHab/list.html.twig', [
             'habitats' => $habitatsRepo->findAll(),
@@ -191,7 +200,7 @@ class ReportsVetController extends AbstractController
             'reports' => $reports,
         ]);
     }
-
+    
 
     // -----------------Ajout d'un rapport pour l'habitat-------------------------
 

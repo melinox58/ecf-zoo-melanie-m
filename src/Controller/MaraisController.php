@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Animals;
+use App\Repository\HabitatsRepository;
+use App\Repository\ReportsVetRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,4 +39,17 @@ class MaraisController extends AbstractController
             'pictureService' => $this->pictureService,
         ]);
     }
+
+    public function habitatDetails(int $id, ReportsVetRepository $reportsVetRepo, HabitatsRepository $habitatsRepo): Response
+    {
+        $habitat = $habitatsRepo->find($id);
+        $latestReport = $reportsVetRepo->findOneBy(['idHabitats' => $habitat], ['date' => 'DESC']);
+
+        return $this->render('habitat/details.html.twig', [
+            'habitat' => $habitat,
+            'latestReport' => $latestReport,
+            'jungleAnimals' => $habitat->getAnimals(), // Supposons que la relation soit déjà définie
+        ]);
+    }
+
 }

@@ -43,6 +43,28 @@ class ReportsVetRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findAllForUser($user)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.idUsers = :user')
+            ->setParameter('user', $user)
+            ->orderBy('r.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findLatestReportVetByHabitat(int $habitatId)
+{
+    return $this->createQueryBuilder('r')
+        ->andWhere('r.idHabitats = :habitatId')
+        ->setParameter('habitatId', $habitatId)
+        ->orderBy('r.date', 'DESC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+
 }
 
 
