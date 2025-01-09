@@ -246,4 +246,14 @@ public function add(Request $request, EntityManagerInterface $entityManager, Hab
         return new JsonResponse(['clicks' => $animal->getViews()]);
     }
 
+    #[Route('/admin/animals/view', name: 'admin_animals_view')]
+    public function adminAnimalsList(EntityManagerInterface $em)
+    {
+        $animals = $em->getRepository(Animals::class)->findBy([], ['views' => 'DESC']);
+
+        return $this->render('admin/animals/view.html.twig', [
+            'animals' => $animals,
+        ]);
+    }
+
 }
