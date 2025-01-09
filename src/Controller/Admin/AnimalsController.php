@@ -226,10 +226,10 @@ public function add(Request $request, EntityManagerInterface $entityManager, Hab
     ]);
 }
 
-    #[Route("/jungle/{id}/increment", name:"increment_jungle_click", methods: ['POST'])]
+    #[Route("/{habitat}/{id}/increment", name:"increment_habitat_click", methods: ['POST'])]
 
-    public function incrementClick(int $id, EntityManagerInterface $em, Request $request)
-    {
+    public function incrementClick(int $id, string $habitat, EntityManagerInterface $em, Request $request)
+        {
         // Récupère l'animal en fonction de l'ID
         $animal = $em->getRepository(Animals::class)->find($id);
         if (!$animal) {
