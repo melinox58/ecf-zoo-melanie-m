@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\AnimalsRepository;
@@ -224,5 +225,25 @@ public function add(Request $request, EntityManagerInterface $entityManager, Hab
         'form' => $form->createView(),
     ]);
 }
+
+    #[Route("/jungle/{id}/increment", name:"increment_jungle_click", methods: ['POST'])]
+
+    public function incrementClick(int $id, EntityManagerInterface $em, Request $request)
+    {
+        // Récupère l'animal en fonction de l'ID
+        $animal = $em->getRepository(Animals::class)->find($id);
+        if (!$animal) {
+            return new JsonResponse(['message' => 'Animal non trouvé'], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        // Récupérer le nombre actuel de clics, et l'incrémenter
+        $clicks = $animal->getviews();
+        $animal->setViews($clicks + 1);
+
+        // Sauvegarder en BDD
+        $em->flush();
+
+        return new JsonResponse(['clicks' => $animal->getViews()]);
+    }
 
 }

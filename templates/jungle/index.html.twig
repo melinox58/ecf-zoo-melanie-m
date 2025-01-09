@@ -49,9 +49,10 @@
                     <p class="card-text">{{ animal.description }}</p>
                     
                     <!-- Button trigger modal -->
-                    <button type="button" class="jungle btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ animal.id }}">
-                        Détails
-                    </button>
+                    <button type="button" class="jungle btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ animal.id }}" data-id="{{ animal.id }}">
+    Détails
+</button>
+
 
                     <!-- Modal -->
                     <div class="modal fade" id="modal-{{ animal.id }}" tabindex="-1" aria-labelledby="modalLabel-{{ animal.id }}" aria-hidden="true">

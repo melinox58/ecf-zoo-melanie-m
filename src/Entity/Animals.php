@@ -40,12 +40,15 @@ class Animals
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $state = null;
 
+    #[ORM\Column(type: 'integer')] 
+    private int $views = 0; 
 
     /**
      * @var Collection<int, ReportsVet>
      */
     #[ORM\OneToMany(targetEntity: ReportsVet::class, mappedBy: 'idAnimals')]
     private Collection $idReportsVet;
+
 
     public function __construct()
     {
@@ -211,4 +214,22 @@ class Animals
 
         return $this;
     }
+
+    public function getViews(): int 
+    { 
+        return $this->views; 
+    } 
+
+    public function setViews(int $views): self 
+
+    {
+        $this->views = $views; 
+        return $this; 
+    } 
+
+    public function incrementViews(): self 
+    { 
+        $this->views++; 
+        return $this; 
+    } 
 }
