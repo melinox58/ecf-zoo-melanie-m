@@ -40,6 +40,7 @@ body{
     background-color:beige;
     width: 100vw;
     height: 100vh;
+    -webkit-text-size-adjust: unset !important;
 }
 
 .banner{
