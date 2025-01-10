@@ -37,13 +37,86 @@
 </div>
 
 <section class="animaux">
-    <div class="card">
-        <img class="card-img" src={{asset("/images/savane/lion-card.jpg")}} alt="Lion">
-        <div class="card-body">
-            <h5 class="card-title">Lion</h5>
-        </div>
+    <div class="row">
+        {% for animal in topAnimals %}
+            <div class="card {{ animal.idHabitats.name|lower }}">
+                <img class="card-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ animal.nameAnimal }}</h5>
+                    <p class="card-text">{{ animal.description }}</p>
+                    
+                    <!-- Bouton Détails -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ animal.id }}" data-id="{{ animal.id }}" data-habitat="{{ animal.idHabitats.name|lower }}">
+                        Détails
+                    </button>
+
+                    <!-- Modal -->
+                        <div class="modal fade" id="modal-{{ animal.id }}" tabindex="-1" aria-labelledby="modalLabel-{{ animal.id }}" aria-hidden="true">                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title fs-5" id="modalLabel-{{ animal.id }}">{{ animal.nameAnimal }}</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img class="img-thumbnail" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" width="100">
+                                    <p>{{ animal.description }}</p>
+                                    <h4>Comptes rendus</h4>
+                                    <div class="table-responsive-modal">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Commentaire</th>
+                                                    <th>Aliments donnés</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for report in reportsByAnimal[animal.id] %}
+                                                    <tr>
+                                                        <td>{{ report.date|date('d/m/Y H:i') }}</td>
+                                                        <td>{{ report.comment }}</td>
+                                                        <td>{{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}</td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="3">Aucun rapport disponible.</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Fin de .card-body -->
+            </div> <!-- Fin de .card -->
+        {% endfor %}
     </div>
 </section>
+
+{# Réglage de la fermeture du modal #}
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        {% for animal in topAnimals %}
+        // Cibler le bouton de fermeture pour chaque modal
+        var closeButton = document.querySelector('#modal-{{ animal.id }} .btn-close');
+        var modalElement = document.getElementById('modal-{{ animal.id }}');
+        var modal = new bootstrap.Modal(modalElement);
+
+        closeButton.addEventListener('click', function() {
+            modal.hide();  // Utiliser bootstrap.Modal pour fermer explicitement
+        });
+        {% endfor %}
+    });
+</script>
+{% endblock %}
+
+
 
 <div class="banner">
     <h4>Les habitats</h4>
