@@ -8,6 +8,7 @@ use App\Entity\Reports;
 use App\Entity\ReportsVet;
 use App\Form\ComType;
 use App\Entity\Users;
+use App\Form\StatusAnimFormType;
 use App\Repository\HabitatsRepository;
 use App\Repository\ReportsVetRepository;
 use App\Repository\UsersRepository;
@@ -20,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\AnimalsRepository;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class ReportsVetController extends AbstractController
 {
@@ -302,6 +304,48 @@ class ReportsVetController extends AbstractController
         ]);
     }
 
+    #[Route('/veterinary/reports/status/add/{id}', name: 'vet_add_animal_status')]
+    public function addAnimalStatus(
+        int $id, 
+        Request $request, 
+        AnimalsRepository $animalsRepository, 
+        EntityManagerInterface $entityManager, 
+        Security $security
+    ): Response {
+        $animal = $animalsRepository->find($id);
+        
+        if (!$animal) {
+            throw $this->createNotFoundException("Animal introuvable.");
+        }
+
+        $user = $security->getUser();  // Utilisateur connecté
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter un rapport.');
+        }
+
+        $reportVet = new ReportsVet();
+        $reportVet->setIdAnimals($animal);
+        $reportVet->setDate(new \DateTime());  // Date automatique
+
+        // Création du formulaire avec les options utilisateur et habitats
+        $form = $this->createForm(StatusAnimFormType::class, $reportVet, [
+            'user' => $user,   // Fournir l'utilisateur
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reportVet->setIdUsers($user);  // Lier l'utilisateur directement dans l'entité
+            $entityManager->persist($reportVet);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('vet_animal_status');  // Redirection vers la liste des états
+        }
+
+        return $this->render('veterinary/reports/add_status.html.twig', [
+            'form' => $form->createView(),
+            'animal' => $animal,
+        ]);
+    }
 }
 
 
