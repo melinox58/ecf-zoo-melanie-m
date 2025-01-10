@@ -1,0 +1,50 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Stat animaux{% endblock %}
+
+{% block body %}
+
+<div class="containerAdmin">
+    <div class="row dash">
+
+        {% include "_partials/_adminnav.html.twig" %}
+
+        <main class="col-9 border bg-white p-2">
+            <h4>Statistique des Animaux</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Habitat</th>
+                            <th>Nombre de clics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for animal in animals %}
+                            <tr>
+                                <td>{{ animal.nameAnimal }}</td>
+                                <td>
+                                    {% if animal.images %}
+                                        <img src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].filePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" style="max-width: 200px;">
+                                    {% else %}
+                                        Pas d'image
+                                    {% endif %}
+                                </td>
+                                <td>{{ animal.idHabitats.name }}</td>
+                                <td>{{ animal.views }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">Aucun animal trouvé.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+    
+{% endblock %}

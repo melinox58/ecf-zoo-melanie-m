@@ -22,6 +22,7 @@
                                 <th>Pseudo</th>
                                 <th>Titre</th>
                                 <th>Commentaire</th>
+                                <th>Note</th>
                                 <th>Date</th>
                                 <th>Validé</th>
                                 <th>Actions</th>
@@ -33,6 +34,13 @@
                                 <td>{{ opinion.pseudo }}</td>
                                 <td>{{ opinion.title }}</td>
                                 <td>{{ opinion.comment }}</td>
+                                <td>
+                                    {% if opinion.star is defined %}
+                                        <span>{{ opinion.star }}/5</span>
+                                    {% else %}
+                                        <span>Aucune note</span>
+                                    {% endif %}
+                                </td>
                                 <td>{{ opinion.date }}</td>
                                 <td>
                                     {% if opinion.isValidated %}

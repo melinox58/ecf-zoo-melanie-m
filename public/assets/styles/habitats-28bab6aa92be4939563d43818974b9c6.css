@@ -1,0 +1,309 @@
+/* -----------------------------HABITATS-PAGE--------------------------- */
+
+.transparent-hab{
+    width: 50vw;
+    height: 18vh;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    opacity: 70%;
+    margin-top: 48%;
+}
+
+.transparent-jungle,
+.transparent-marais,
+.transparent-savane{
+    width: 84vw;
+    height: 35vh;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    opacity: 70%;
+    margin-top: 43%;
+}
+
+.h3Hab{
+    margin-top: 2.5%;
+}
+
+.titleServ .rectangle{
+    height: 10vh;
+}
+
+.habitincl{
+    position: absolute;
+    z-index: 5;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    margin-top: 50%;
+    text-align: center;
+    width: 44vw;
+}
+
+.habitmar,
+.habitjung,
+.habitsav{
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: center;
+    width: 85vw;
+    margin-top: -5%;
+    margin-bottom: 2%;
+}
+
+.habitat{
+    display: flex;
+    justify-content: space-around; /* Pour espacer les éléments uniformément */
+    width: 85vw;
+    margin-top: 4%;
+    margin-bottom: 8%;
+    height: 80vh;
+    width: 85vw;
+}
+
+.habitats .imgHab {
+    text-align: center; /* Centre le contenu textuel, y compris les légendes */
+    display: flex; /* Utilisation de flexbox pour aligner le contenu */
+    flex-direction: column; /* Aligne les éléments en colonne */
+    align-items: center; 
+    clip-path: ellipse(40% 50%);
+    width: 65%;
+    height: auto;
+}
+
+
+/*section habitats*/
+
+.habitats{
+    display: flex;
+    justify-content: space-around;
+    width: 85vw;
+    margin-top: 4%;
+    margin-bottom: 3%;
+    align-items: center;
+}
+
+
+.habitats .legend{
+    font-family: "Lemonada", cursive;
+    margin-top: 2%;
+    text-align: center;
+    color: #4B543B;
+    font-size: 1rem;
+    margin-left: 24%;
+}
+
+.img-fluid {
+    max-width:20vw;
+    height:auto
+}
+
+.imgHab img{
+    width: 20vw;
+    height: auto;
+}
+
+legend {
+    float:left;
+    width:100%;
+    padding:0;
+    margin-bottom:.5rem;
+    line-height:inherit;
+    font-size: 1rem;
+    font-family: "Lemonada", cursive;
+}
+
+.hab{
+    width: 85vw;
+    display: flex;
+    margin-top: 3%;
+}
+
+.hab p{
+    font-family: "Lemonada", cursive;
+    font-size: 0.9rem;
+    margin-top: 7%;
+    color: #4B543B;
+}
+
+.card.jungle{
+    background-color:#8ED081;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 3%;
+}
+
+.card.marais{
+    background-color:#B57F50;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
+}
+
+.card.savane{
+    background-color:#DCE2AA;
+    box-shadow: 0 4px 4px lightgrey;
+    margin-top: 0;
+}
+  
+a.jungle.btn.btn-primary,
+a.marais.btn.btn-primary,
+a.savane.btn.btn-primary{
+    width: 6vw;
+    font-family: lemon;
+    font-size: 0.7rem;
+    margin-top: 8%;
+}
+
+p.card-text {
+    text-align: justify;
+    color: #4B543B;
+    font-family: lemonada;
+    font-size: 0.7rem;
+    overflow: auto;
+    text-overflow: ellipsis;
+    height: 20vh;
+}
+
+.img-thumbnail {
+    padding:0.2rem;
+    background-color:var(--bs-body-bg);
+    border:var(--bs-border-width) solid var(--bs-border-color);
+    border-radius:var(--bs-border-radius);
+    max-width:100%;
+    height:auto;
+    width: 64%;
+    margin-top: 8%;
+}
+  
+.card-title {
+    padding-top: 3%;
+    text-align: center;
+    font-family: "Lemonada", cursive;
+    font-size: 0.9rem;
+    color: #4B543B;
+}
+
+.animaux .row{
+    gap: 2%;
+    justify-content: center;
+    height: 67vh;
+    flex: 1;
+}
+
+.row{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
+    background-color: white;
+    width: 50vw;
+    margin-left: -30%;
+    padding: 2%;
+  }
+
+  .modal-dialog-scrollable .modal-body {
+    overflow-y:auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cardModal-img{
+    width: 20%;
+    margin: 2%;
+  }
+  
+  .table-responsive-modal{
+    width: 100%;
+  }
+  
+  
+  
+@media screen and (max-width: 650px){
+    .habitat {
+        height: auto;
+    }
+
+    .titleServ .rectangle {
+        height: 5vh;
+    }
+
+    .h3Serv {
+        margin-top: 4%;
+    }
+
+    .habitincl {
+        width: 71vw;
+    }
+
+    .transparent-hab {
+        width: 73vw;
+        height: 7vh;
+        margin-top: 67%;
+    }
+
+    .habitincl p {
+        font-size: 0.4rem;
+        margin-top: 26%;
+      }
+
+    .hab p {
+        font-size: 0.5rem;
+    }
+
+    .hab {
+        margin-top: 9%;
+        margin-bottom: 9%;
+    }
+
+    .imgHab {
+        width: 268%;
+    }
+
+    .animaux {
+        display: flex;
+    }
+
+    .animaux .card {
+        width: 49%;
+        height: 54vh;
+    }
+
+    .animaux .row{
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+
+    .card.jungle,
+    .card.marais,
+    .card.savane {
+        margin-top: 2%;
+    }
+
+    .jungle .card-title {
+        padding-top: 0;
+    }
+
+    p.card-text {
+        font-size: 0.5rem;
+    }
+
+    a.jungle.btn.btn-primary,
+    a.marais.btn.btn-primary,
+    a.savane.btn.btn-primary {
+        width: 46%;
+        font-size: 0.4rem;
+        margin-top: -9%;
+    }
+
+    .cardModal-img{
+        width: 30%;
+        margin: auto;
+    }
+    
+
+      
+}

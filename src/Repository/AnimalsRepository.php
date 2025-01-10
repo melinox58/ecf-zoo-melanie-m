@@ -42,14 +42,18 @@ class AnimalsRepository extends ServiceEntityRepository
         ]);
     }
 
-
-//    public function findOneBySomeField($value): ?Animals
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function updateAnimalStateFromReportsVet(): static
+    {
+        if ($this->idReportsVet->isEmpty()) {
+            return $this;
+        }
+    
+        // Prendre en compte l'état du dernier rapport vétérinaire, par exemple
+        $latestReportVet = $this->idReportsVet->last();
+        if ($latestReportVet && $latestReportVet->getState()) {
+            $this->state = $latestReportVet->getState();
+        }
+    
+        return $this;
+    }
 }

@@ -46,7 +46,11 @@
                 </container>
             </main>
         </div>
-        <a class="btn btn-secondary mt-3" href="{{ path('app_admin_hab') }}">Retour à la liste</a>
+        {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
+        <a class="btn btn-secondary mt-3" href="{{ path('app_emp_anim') }}">Retour à la liste</a>
+        {% elseif is_granted('ROLE_VETERINARY') %}
+        <a class="btn btn-secondary mt-3" href="{{ path('app_vet_anim') }}">Retour à la liste</a>
+        {% endif %}
     </div>
 </div>
 

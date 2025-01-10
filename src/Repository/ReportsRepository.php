@@ -26,4 +26,16 @@ class ReportsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findReportsWithRoles(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r', 'u', 'a')
+            ->join('r.idUsers', 'u')
+            ->join('r.idAnimals', 'a')
+            ->orderBy('r.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

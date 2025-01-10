@@ -8,13 +8,16 @@
         <div class="row dash">
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
+                {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
                 <h4>Soigner un animal</h4>
+                {% elseif is_granted('ROLE_EMPLOYEE') %}
+                <h4>Comptes rendus employés</h4>
+                {% endif %}
                 <div class="table-responsive">
                     <table class="table">
                         <!-- Formulaire de filtrage -->
                         <form method="get" class="mb-3">
                             <div class="form-group">
-                                <label for="breed">Filtrer par race</label>
                                 <select id="breed" name="breed" class="form-control">
                                     <option value="">Sélectionner une race</option>
                                     {% for race in races %}
@@ -34,7 +37,9 @@
                                     <th>Rapport employé</th>
                                     <th>Repas</th>
                                 {% endif %}
+                                {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
                                 <th>Actions</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody class="animals">
@@ -75,9 +80,11 @@
                                             {% endif %}
                                         </td>
                                     {% endif %}
+                                    {% if is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
                                     <td class="action">
                                         <a class="btn btn-primary" href="{{ path('emp_report_add', { id: animal.id }) }}">Créer</a>
                                     </td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                         </tbody>

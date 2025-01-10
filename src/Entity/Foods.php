@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FoodsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FoodsRepository::class)]
@@ -21,6 +23,17 @@ class Foods
 
     #[ORM\Column(length: 4)]
     private ?string $unit = null;
+
+    /**
+     * @var Collection<int, ReportsVet>
+     */
+    #[ORM\OneToMany(targetEntity: ReportsVet::class, mappedBy: 'idFoods')]
+    private Collection $idReportsVet;
+
+    public function __construct()
+    {
+        $this->idReportsVet = new ArrayCollection();
+    }
 
     // #[ORM\ManyToOne()]
     // #[ORM\JoinColumn(nullable: false)]
@@ -78,4 +91,34 @@ class Foods
 
     //     return $this;
     // }
+
+    /**
+     * @return Collection<int, ReportsVet>
+     */
+    public function getIdReportsVet(): Collection
+    {
+        return $this->idReportsVet;
+    }
+
+    public function addIdReportsVet(ReportsVet $idReportsVet): static
+    {
+        if (!$this->idReportsVet->contains($idReportsVet)) {
+            $this->idReportsVet->add($idReportsVet);
+            $idReportsVet->setIdFoods($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdReportsVet(ReportsVet $idReportsVet): static
+    {
+        if ($this->idReportsVet->removeElement($idReportsVet)) {
+            // set the owning side to null (unless already changed)
+            if ($idReportsVet->getIdFoods() === $this) {
+                $idReportsVet->setIdFoods(null);
+            }
+        }
+
+        return $this;
+    }
 }

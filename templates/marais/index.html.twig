@@ -26,6 +26,16 @@
     tampons contre les inondations, bien qu'ils soient menacés par le drainage et l'urbanisation.</p>
 </div>
 
+<section class="latest-report">
+    <h4>Dernier rapport vétérinaire sur cet habitat</h4>
+    {% if latestReport %}
+    <p>Dernier rapport vétérinaire pour cet habitat : {{ latestReport.date|date('d-m-Y H:i') }}</p>
+    <p>{{ latestReport.comment }}</p>
+{% else %}
+    <p>Aucun rapport vétérinaire disponible pour cet habitat.</p>
+{% endif %}
+</section>
+
 {# Cards d'animaux des marais #}
 <section class="animaux">
     <div class="row">
@@ -35,7 +45,55 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ animal.nameAnimal }}</h5>
                         <p class="card-text">{{ animal.description }}</p>
-                        <a href="#" class="marais btn btn-primary">Détails</a>
+                        
+                            <!-- Button trigger modal -->
+                        <button type="button" class="jungle btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ animal.id }}" data-id="{{ animal.id }}" data-habitat="marais">
+                            Détails
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal-{{ animal.id }}" tabindex="-1" aria-labelledby="modalLabel-{{ animal.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-contentCard">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title fs-5" id="modalLabel-{{ animal.id }}">{{ animal.nameAnimal }}</h3>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img class="cardModal-img" src="{{ asset('uploads/animals/mini/250x250-' ~ animal.images[0].getFilePath) }}" alt="{{ animal.nameAnimal }}" class="img-thumbnail" width="100">
+                                        <p class="card-text">{{ animal.description }}</p>
+                                        <h4>Comptes rendus</h4>
+                                        <div class="table-responsive-modal">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Commentaire</th>
+                                                        <th>Aliments donnés</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for report in reportsByAnimal[animal.id] %}
+                                                        <tr>
+                                                            <td>{{ report.date|date('d/m/Y H:i') }}</td>
+                                                            <td>{{ report.comment }}</td>
+                                                            <td>{{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}</td>
+                                                        </tr>
+                                                    {% else %}
+                                                        <tr>
+                                                            <td colspan="3">Aucun rapport disponible.</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
         {% endfor %}

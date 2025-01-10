@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Animals;
+use App\Entity\Reports;
+use App\Entity\ReportsVet;
+use App\Repository\HabitatsRepository;
+use App\Repository\ReportsVetRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,16 +29,43 @@ class MaraisController extends AbstractController
     public function index(): Response
     {
         // On récupère les animaux par habitat spécifique
-        $jungleAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 1]);
         $maraisAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 2]);
-        $savaneAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 3]);
+
+        $reportsByAnimal = [];
+        $latestReportVet = $this->entityManager->getRepository(ReportsVet::class)->findOneBy(
+        ['idHabitats' => 2],
+        ['date' => 'DESC']
+    );
+
+    foreach ($maraisAnimals as $animal) {
+        $reportsByAnimal[$animal->getId()] = $this->entityManager->getRepository(Reports::class)->findBy(['idAnimals' => $animal]);
+    }
+
 
         // Envoie des données à la vue
         return $this->render('marais/index.html.twig', [
-            'jungleAnimals' => $jungleAnimals,
             'maraisAnimals' => $maraisAnimals,
-            'savaneAnimals' => $savaneAnimals,
+            'reportsByAnimal' => $reportsByAnimal,
             'pictureService' => $this->pictureService,
+            'latestReport' => $latestReportVet,  // Assurez-vous que la variable 'latestReport' est bien utilisée dans la vue        ]);
+
         ]);
     }
+
+    public function habitatDetails(
+        int $id, 
+        ReportsVetRepository $reportsVetRepo, 
+        HabitatsRepository $habitatsRepo
+    ): Response {
+        $habitat = $habitatsRepo->find($id);
+        // Dans la méthode habitatDetails
+        $latestReportVet = $reportsVetRepo->findLatestReportVetByHabitat($id);
+    
+        return $this->render('jungle/index.html.twig', [
+            'habitat' => $habitat,
+            'latestReport' => $latestReportVet,  // Assurez-vous que la variable 'latestReport' est bien utilisée dans la vue
+            'jungleAnimals' => $habitat->getAnimals(),
+        ]);
+    }    
+
 }

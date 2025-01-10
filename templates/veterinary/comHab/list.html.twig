@@ -1,60 +1,57 @@
 {% extends 'baseDash.html.twig' %}
 
+{% block title %}Liste des rapports{% endblock %}
+
 {% block body %}
-<div class="containerAdmin">
-    <div class="row dash">
-        {% include "_partials/_adminnav.html.twig" %}
-        <main class="col-9 border bg-white p-2">
-            <h4>Liste des rapports</h4>  
-            <form method="get" class="mb-3">
-                <select name="habitat" onchange="this.form.submit()">
-                    <option value="">-- Sélectionner un habitat --</option>
-                    {% for habitat in habitats %}
-                        <option value="{{ habitat.id }}" {% if selectedHabitat and habitat.id == selectedHabitat.id %}selected{% endif %}>                            {{ habitat.name }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </form>
-
-            {# Affichage du bouton Ajouter un commentaire, activé si un habitat est sélectionné #}
-            <a href="{% if selectedHabitat is not null %}{{ path('vet_com_add', {'id': selectedHabitat.id}) }}{% else %}#{% endif %}"
-               class="btn btn-success mb-3" 
-               {% if selectedHabitat is null %}disabled{% endif %}>
-                Ajouter un commentaire
-            </a>
-
-            {# Table des rapports, même vide #}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Habitat</th>
-                        <th>Commentaire</th>
-                        <th>Date et Heure</th>
-                        <th>Nom du vétérinaire</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if reports is not empty %}
-                        {% for report in reports %}
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Rapports habitats</h4>
+                <form method="get" action="{{ path('vet_com_list') }}">
+                    <div class="mb-3">
+                        <label for="habitat" class="form-label">Sélectionnez un habitat</label>
+                        <select name="habitat" id="habitat" class="form-select" onchange="this.form.submit()">
+                            <option value="">Tous les habitats</option>
+                            {% for habitat in habitats %}
+                                <option value="{{ habitat.id }}" {% if selectedHabitat == habitat.id %}selected{% endif %}>
+                                    {{ habitat.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ report.idAnimals.idHabitats.name }}</td>
-                                <td>{{ report.comment }}</td>
-                                <td>{{ report.date|date('d-m-Y H:i') }}</td>
-                                <td>{{ report.idUsers.name }}</td>
-                                <td class="action">
-                                    <a class="btn btn-primary" class="btn btn-primary" href="{{ path('vet_com_edit', {'id': report.id}) }}" class="btn btn-warning">Éditer</a>
-                                </td>
+                                <th>Nom de l'habitat</th>
+                                <th>Commentaire</th>
+                                <th>Date</th>
+                                <th>Employé</th>
+                                <th>Actions</th>
                             </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="5" class="text-center">Aucun rapport disponible pour cet habitat.</td>
-                        </tr>
-                    {% endif %}
-                </tbody>
-            </table>
-        </main>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                                <tr>
+                                    <td>{{ report.idHabitats.name }}</td>
+                                    <td>{{ report.comment }}</td>
+                                    <td>{{ report.date|date('d/m/Y H:i') }}</td>
+                                    <td>{{ report.idUsers.firstName }} {{ report.idUsers.name }}</td>
+                                    <td>
+                                        <a href="{{ path('vet_com_add', {'habitat': report.idHabitats.id}) }}" class="btn btn-primary">Créer</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun rapport trouvé pour l'habitat sélectionné.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
     </div>
-</div>
 {% endblock %}

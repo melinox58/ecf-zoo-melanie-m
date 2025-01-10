@@ -49,6 +49,7 @@ class OpinionController extends AbstractController
                     'title' => $data['title'],
                     'comment' => $data['comment'],
                     'date' => (new \DateTime())->format('d-m-Y'), // Enregistrement de la date sous forme de chaîne
+                    'star' => (int)$data['etoiles'],
                     'isValidated' => false, // Avis en attente de validation
                     '_id' => new ObjectId(), // Utilisation de ObjectId
                 ];
@@ -62,6 +63,6 @@ class OpinionController extends AbstractController
             }
         }
 
-        return $this->render('employee/opinion/add.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
+        return $this->render('employee/opinion/index.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
     }
 }

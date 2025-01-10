@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 80)]
     private ?string $name = null;
+
+    /**
+     * @var Collection<int, ReportsVet>
+     */
+    #[ORM\OneToMany(targetEntity: ReportsVet::class, mappedBy: 'idUsers')]
+    private Collection $idReportsVet;
+
+    public function __construct()
+    {
+        $this->idReportsVet = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,6 +137,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReportsVet>
+     */
+    public function getIdReportsVet(): Collection
+    {
+        return $this->idReportsVet;
+    }
+
+    public function addIdReportsVet(ReportsVet $idReportsVet): static
+    {
+        if (!$this->idReportsVet->contains($idReportsVet)) {
+            $this->idReportsVet->add($idReportsVet);
+            $idReportsVet->setIdUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdReportsVet(ReportsVet $idReportsVet): static
+    {
+        if ($this->idReportsVet->removeElement($idReportsVet)) {
+            // set the owning side to null (unless already changed)
+            if ($idReportsVet->getIdUsers() === $this) {
+                $idReportsVet->setIdUsers(null);
+            }
+        }
 
         return $this;
     }

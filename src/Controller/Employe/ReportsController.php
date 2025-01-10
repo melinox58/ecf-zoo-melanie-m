@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\AnimalsRepository;
 use App\Repository\UsersRepository;
-use App\Entity\Users;
 use App\Entity\Reports;
 use App\Form\ReportsType as FormReportsType;
 use App\Repository\ReportsRepository;
@@ -107,8 +106,9 @@ class ReportsController extends AbstractController
         
         return $this->redirectToRoute('app_emp_anim');
 
-        //  // Ajouter un message flash
+         // Ajouter un message flash
         //  $this->addFlash('success', 'Rapport enregistré avec succès.');
+
         }
 
 
@@ -120,16 +120,24 @@ class ReportsController extends AbstractController
         #[Route('/employee/reports/list', name: 'app_employee_reports_list')]
         public function reports(ReportsRepository $reportsRepository): Response
         {
-        // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
+            $user = $this->getUser();
 
-        // Vérifier si l'utilisateur est connecté
-        if (!$user) {
-            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion
-        }
+            if (!$user) {
+                return $this->redirectToRoute('app_login');
+            }
 
-            // Récupérer les rapports avec les détails associés
-            $reports = $reportsRepository->findReportsWithDetails();
+            $reports = [];
+            
+            if ($this->isGranted('ROLE_ADMIN')) {
+                // Administrateur : Tous les rapports avec les rôles
+                $reports = $reportsRepository->findReportsWithRoles();
+            } elseif ($this->isGranted('ROLE_VETERINARY')) {
+                // Vétérinaire : Ses propres rapports
+                $reports = $reportsRepository->findBy(['idUsers' => $user], ['date' => 'DESC']);
+            } else {
+                // Employé : Rapports liés à ses animaux
+                $reports = $reportsRepository->findReportsForEmployee($user->getId());
+            }
 
             return $this->render('employee/reports/list.html.twig', [
                 'reports' => $reports,

@@ -8,8 +8,8 @@
         <button type="button" class="btn btnRegister"><a href="{{ path('schedules_list') }}">Horaires</a></button>
         <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_hab') }}">Habitats</a></button>
         <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_anim') }}">Animaux</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_employee_reports_list') }}">Comptes rendus employés</a></button>
-        <button type="button" class="btn btnRegister"><a href="#">Statistiques</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_employee_reports_list') }}">Comptes rendus</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('admin_animals_view') }}">Statistiques</a></button>
         {# Boutons pour l'espace employé visibles également pour l'admin #}
         <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
         <button type="button" class="btn btnRegister"><a href="{{ path('emp_opinion_list') }}">Avis à traiter</a></button>
@@ -23,9 +23,9 @@
 
     {% elseif is_granted('ROLE_VETERINARY') %}
         {# Affichage pour les vétérinaires uniquement #}
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_emp_anim') }}">Faire un compte rendu</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_employee_reports_list') }}">Comptes rendus employés</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_veterinary') }}">Commentaire habitat</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_veterinary') }}">Etat animal</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_emp_anim') }}">Comptes rendus employés</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_vet_anim') }}">Faire un compte rendu</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('vet_com_list') }}">Commentaire habitat</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('vet_animal_status') }}">Etat animal</a></button>
     {% endif %}
 </aside>

@@ -26,8 +26,8 @@
                         <tr>
                             <th>Nom</th>
                             <th>Description</th>
-                            <th>Actions</th>
                             <th>Image</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,13 +35,20 @@
                             <tr>
                                 <td>{{ habitat.name}}</td>
                                 <td>{{ habitat.description}}</td>
+                                 <td class="image">
+                                    {% if habitat.images|length > 0 %}
+                                        {% for image in habitat.images %}
+                                            <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid" style="max-width: 100px; max-height: 100px;">
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>Pas d'image</span>
+                                    {% endif %}
+                                </td>
                                 <td class="action">
                                     <a class="btn btn-primary" href="{{ path('admin_habitat_modif', { id: habitat.id }) }}">Modifier</a>
                                     <form action="{{ path('habitat_delete', { id: habitat.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet habitat?');" style="display:inline;">
                                         <button class="btn btn-danger" type="submit">Supprimer</button>
                                     </form>
-                                </td>
-                                <td class="image">...
                                 </td>
                             </tr>
                         {% endfor %}

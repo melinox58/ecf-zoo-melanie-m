@@ -1,0 +1,45 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block title %}Rapports{% endblock %}
+
+{% block body %}
+    <div class="containerAdmin">
+        <div class="row dash">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border bg-white p-2">
+                <h4>Comptes rendus</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Animal</th>
+                                <th>Utilisateur</th>
+                                <th>Rôle</th>
+                                <th>Commentaire</th>
+                                <th>Aliments</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                                <tr>
+                                    <td>{{ report.date|date('d/m/Y H:i') }}</td>
+                                    <td>{{ report.idAnimals.nameAnimal }}</td>
+                                    <td>{{ report.idUsers.name }}</td>
+                                    <td>{{ report.comment }}</td>
+                                    <td>{{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">Aucun rapport disponible.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>    
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
