@@ -3,7 +3,7 @@
 .navbar{
     background-image: url("../images/bg_header.png");
     background-size: cover;
-    width: 100%;
+    width: 100vw;
     height: 12vh;
     align-content: center;
     box-shadow: 0 4px 4px lightgray;
@@ -74,7 +74,7 @@ font-size: 1rem;
 
     .navbar {
         height: 8vh;
-        background-size: contain;
+        background-size: cover;
     }
 
     .banner img{
@@ -86,13 +86,17 @@ font-size: 1rem;
     }
 
     .navbar-brand img {
-        width: 50px; /* Ajustez la taille pour la version mobile */
+        width: 2rem;
     }
 
-    a.nav-link:nth-child(5), a.nav-link:nth-child(6) {
+    a.nav-link:nth-child(5) {
+    font-size: 0.7rem;
+    }
+
+    a.nav-link:nth-child(6) {
         font-size: 0.7rem;
     }
-
+      
     .collapse a {
         font-size: 0.8rem;
     }
@@ -102,8 +106,8 @@ font-size: 1rem;
     }
 
     .navbar-collapse {
-        margin-left: 0;
-        text-align: center; /* Centré pour mieux s'adapter sur mobile */
+        margin-left: 64%;
+        text-align: right;
         z-index: 99;
         background: linear-gradient( #aee199 ,white);
         padding: 2%;
