@@ -18,7 +18,6 @@
                                 <th>Rôle</th>
                                 <th>Commentaire</th>
                                 <th>Aliments</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +26,20 @@
                                     <td>{{ report.date|date('d/m/Y H:i') }}</td>
                                     <td>{{ report.idAnimals.nameAnimal }}</td>
                                     <td>{{ report.idUsers.name }}</td>
+                                    <td>
+                                        {% for role in report.idUsers.roles %}
+                                            {% if role == "ROLE_ADMIN" %}
+                                                {% set name = "Administrateur" %}
+                                            {% elseif role == "ROLE_EMPLOYEE" %}
+                                                {% set name = "Employé(e)" %}
+                                            {% elseif role == "ROLE_VETERINARY" %}
+                                                {% set name = "Vétérinaire" %}
+                                            {% else %}
+                                                {% set name = null %}
+                                            {% endif %}
+                                            <span class="badge">{{ name }}</span>
+                                        {% endfor %}
+                                    </td>
                                     <td>{{ report.comment }}</td>
                                     <td>{{ report.idFoods.name }} - {{ report.weight }} {{ report.unit }}</td>
                                 </tr>
