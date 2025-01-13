@@ -35,10 +35,6 @@ class Foods
         $this->idReportsVet = new ArrayCollection();
     }
 
-    // #[ORM\ManyToOne()]
-    // #[ORM\JoinColumn(nullable: false)]
-    // private ?Reports $report = null;
-
     public function getId(): ?int
     {
         return $this->id;
