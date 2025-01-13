@@ -2,9 +2,10 @@
 
 namespace App\Controller\Employe;
 
+use App\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\AnimalsRepository;
 use App\Repository\UsersRepository;
 use App\Entity\Reports;
@@ -16,23 +17,23 @@ use Symfony\Component\HttpFoundation\Request;
 class ReportsController extends AbstractController
 {
     private $animalsRepository;
+    private $reportsRepository;
 
-    public function __construct(AnimalsRepository $animalsRepository)
+    public function __construct(AnimalsRepository $animalsRepository, ReportsRepository $reportsRepository)
     {
-        $this->animalsRepository = $animalsRepository; // Injecter le AnimalsRepository
+        $this->animalsRepository = $animalsRepository;
+        $this->reportsRepository = $reportsRepository;
     }
     
     #[Route('/emp/report', name: 'app_emp_anim')]
     public function report(Request $request, AnimalsRepository $animalsRepository): Response
     {
-        // Créer un queryBuilder pour les animaux
         $queryBuilder = $animalsRepository->createQueryBuilder('a');
 
         // Récupérer les filtres depuis la requête
         $breedFilter = $request->query->get('breed');
         $nameFilter = $request->query->get('name');
 
-        // Appliquer les filtres
         if ($breedFilter) {
             $queryBuilder->andWhere('a.breed = :breed')
                         ->setParameter('breed', $breedFilter);
@@ -46,7 +47,6 @@ class ReportsController extends AbstractController
         // Exécuter la requête et obtenir les résultats
         $animals = $queryBuilder->getQuery()->getResult();
         
-        // Récupérer les races distinctes pour le filtre
         $races = $animalsRepository->createQueryBuilder('a')
             ->select('DISTINCT a.breed')
             ->getQuery()
@@ -59,7 +59,7 @@ class ReportsController extends AbstractController
     }
 
     #[Route('/emp/report/add/{id}', name: 'emp_report_add')]
-    public function add(Request $request, EntityManagerInterface $entityManager, UsersRepository $usersRepository, $id): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
         $report = new Reports();
 
@@ -70,56 +70,50 @@ class ReportsController extends AbstractController
             throw $this->createNotFoundException('Animal non trouvé');
         }
 
-        // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
-        // Vérifier si l'utilisateur est connecté
         if (!$user) {
-            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion
+            return $this->redirectToRoute('app_login');
         }
 
-        // Création du formulaire en passant l'utilisateur et l'animal
+        // Création du formulaire
         $form = $this->createForm(FormReportsType::class, $report, [
             'user' => $user,
             'animal' => $animal,
         ]);
 
-        // Traitement de la requête
         $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        $data = $form->getData();
-        
-        // Définir le poids et l'unité directement à partir du formulaire
-        $report->setWeight($data->getWeight());
-        $report->setUnit($data->getUnit());
-        
-        // Définir l'animal et l'utilisateur
-        $report->setIdAnimals($animal);
-        $report->setIdUsers($user);
-        $report->setDate(new \DateTime());
-        $report->setComment($data->getComment());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
 
-        // Persister le rapport
-        $entityManager->persist($report);
-        $entityManager->flush();
-        
-        return $this->redirectToRoute('app_emp_anim');
+            // Définir les propriétés du rapport
+            $report->setWeight($data->getWeight());
+            $report->setUnit($data->getUnit());
+            $report->setIdAnimals($animal);
+            $report->setIdUsers($user);
+            $report->setDate(new \DateTime());
+            $report->setComment($data->getComment());
 
-         // Ajouter un message flash
-        //  $this->addFlash('success', 'Rapport enregistré avec succès.');
-
+            // Sauvegarder le rapport dans la base de données
+            $entityManager->persist($report);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('app_emp_anim');
         }
 
+        return $this->render('employee/reports/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
-            return $this->render('employee/reports/add.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
+    // Méthode pour afficher les rapports d'un utilisateur spécifique
+    #[Route('/employee/reports/list/{userId}', name: 'app_employee_reports_list')]
+    public function reports($userId, ReportsRepository $reportsRepository): Response
+    {
+        // Récupérer l'utilisateur par son ID
+        $user = $this->getDoctrine()->getRepository(Users::class)->find($userId);
 
-        #[Route('/employee/reports/list', name: 'app_employee_reports_list')]
-        public function reports(ReportsRepository $reportsRepository): Response
-        {
             $user = $this->getUser();
 
             if (!$user) {
@@ -138,10 +132,16 @@ class ReportsController extends AbstractController
                 // Employé : Rapports liés à ses animaux
                 $reports = $reportsRepository->findReportsForEmployee($user->getId());
             }
-
-            return $this->render('employee/reports/list.html.twig', [
-                'reports' => $reports,
-            ]);
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
         }
-}
 
+        // Récupérer les rapports de cet utilisateur spécifique
+        $reports = $this->reportsRepository->findReportsByCreator($user);
+
+        return $this->render('employee/reports/list.html.twig', [
+            'reports' => $reports,
+            'user' => $user,
+        ]);
+    }
+}
