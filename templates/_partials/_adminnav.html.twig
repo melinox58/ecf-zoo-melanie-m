@@ -8,7 +8,7 @@
         <button type="button" class="btn btnRegister"><a href="{{ path('schedules_list') }}">Horaires</a></button>
         <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_hab') }}">Habitats</a></button>
         <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_anim') }}">Animaux</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_employee_reports_list') }}">Comptes rendus</a></button>
+        <button type="button" class="btn btnRegister"><a href="{{ path('app_employee_reports_list', { 'userId': app.user.id }) }}">Comptes rendus</a></button>
         <button type="button" class="btn btnRegister"><a href="{{ path('admin_animals_view') }}">Statistiques</a></button>
         {# Boutons pour l'espace employé visibles également pour l'admin #}
         <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>

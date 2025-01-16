@@ -18,12 +18,15 @@ class ReportsController extends AbstractController
 {
     private $animalsRepository;
     private $reportsRepository;
+    private $entityManager;
 
-    public function __construct(AnimalsRepository $animalsRepository, ReportsRepository $reportsRepository)
+    public function __construct(AnimalsRepository $animalsRepository, ReportsRepository $reportsRepository, EntityManagerInterface $entityManager)
     {
         $this->animalsRepository = $animalsRepository;
         $this->reportsRepository = $reportsRepository;
+        $this->entityManager = $entityManager;
     }
+
     
     #[Route('/emp/report', name: 'app_emp_anim')]
     public function report(Request $request, AnimalsRepository $animalsRepository): Response
@@ -112,8 +115,7 @@ class ReportsController extends AbstractController
     public function reports($userId, ReportsRepository $reportsRepository): Response
     {
         // Récupérer l'utilisateur par son ID
-        $user = $this->getDoctrine()->getRepository(Users::class)->find($userId);
-
+        $user = $this->entityManager->getRepository(Users::class)->find($userId);
             $user = $this->getUser();
 
             if (!$user) {
