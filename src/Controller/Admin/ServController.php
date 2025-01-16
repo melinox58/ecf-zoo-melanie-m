@@ -62,9 +62,19 @@ class ServController extends AbstractController
             throw $this->createAccessDeniedException('Accès non autorisé.');
         }
 
-        $entityManager->remove($serv);
-        $entityManager->flush();
-        return $this->redirectToRoute('app_admin_serv');
+// Récupérer les images associées à ce service
+$images = $serv->getImages();
+
+// Supprimer chaque image
+foreach ($images as $image) {
+    $entityManager->remove($image);
+}
+
+// Ensuite, supprimer le service
+$entityManager->remove($serv);
+$entityManager->flush();
+
+return $this->redirectToRoute('app_admin_serv');
     }
 
     #[Route('/admin/services/add', name: 'admin_services_add')]

@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ServicesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 class Services
@@ -19,6 +21,22 @@ class Services
 
     #[ORM\Column(length: 24)]
     private ?string $name = null;
+
+    #[ORM\OneToMany(mappedBy: 'idServices', targetEntity: Images::class)]
+    private Collection $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
 
     public function getId(): ?int
     {
