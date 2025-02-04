@@ -27,16 +27,22 @@ document.querySelectorAll('.btn-primary').forEach(button => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
             },
             body: JSON.stringify({ id: animalId })
         })
-        .then(response => response.json())
+        .then(response => response.text())  // Utiliser text() pour vérifier la réponse brute
         .then(data => {
-            if (data.clicks) {
-                console.log(`L'animal ${animalId} a maintenant ${data.clicks} clics.`);
-            } else {
-                console.error('Erreur de récupération des clics.');
+            console.log('Réponse brute du serveur:', data);  // Afficher la réponse brute
+
+            try {
+                const jsonData = JSON.parse(data);  // Essayer de parser manuellement
+                if (jsonData.clicks) {
+                    console.log(`L'animal ${animalId} a maintenant ${jsonData.clicks} clics.`);
+                } else {
+                    console.error('Erreur de récupération des clics.');
+                }
+            } catch (e) {
+                console.error('Erreur de parsing JSON:', e);
             }
         })
         .catch(error => {

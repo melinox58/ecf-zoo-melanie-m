@@ -56,7 +56,7 @@ class HabController extends AbstractController
             if ($hab->getImages()->count() > 0) {
                 // Supposons que chaque habitat n'a qu'une seule image (si vous avez plusieurs images par habitat, vous devrez adapter ceci)
                 $existingImage = $hab->getImages()->first();
-                $oldImagePath = $this->getParameter('images_directory') . '/' . $existingImage->getFilePath();
+                $oldImagePath = $this->getParameter('images_directory_habitats') . '/' . $existingImage->getFilePath();
 
                 // Supprimer l'ancienne image du serveur
                 if (file_exists($oldImagePath)) {
@@ -73,7 +73,7 @@ class HabController extends AbstractController
 
                 // Déplacer l'image dans le répertoire défini
                 $imageFile->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('images_directory_habitats'),
                     $newFilename
                 );
 
@@ -102,7 +102,7 @@ class HabController extends AbstractController
     {
         // Supprime les fichiers des images associées
         foreach ($hab->getImages() as $image) {
-            $imagePath = $this->getParameter('images_directory') . '/' . $image->getFilename();
+            $imagePath = $this->getParameter('images_directory_habitats') . '/' . $image->getFilename();
             if (file_exists($imagePath)) {
                 unlink($imagePath); // Supprime le fichier physique
             }
@@ -146,7 +146,7 @@ class HabController extends AbstractController
 
                 // Déplacez le fichier dans le répertoire défini
                 $imageFile->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('images_directory_habitats'),
                     $newFilename
                 );
 

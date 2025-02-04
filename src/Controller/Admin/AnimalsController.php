@@ -50,17 +50,18 @@ class AnimalsController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/anim/modif/{id}', name: 'admin_anim_modif')]
-    public function modify(
-        Animals $animal,
-        Request $request,
-        EntityManagerInterface $entityManager,
-        HabitatsRepository $habitatsRepository,
-        PictureService $pictureService
-    ): Response {
-        $habitats = $habitatsRepository->findAll();
+    // Modification de l'animal (avec gestion d'image)
+#[Route('/admin/anim/modif/{id}', name: 'admin_anim_modif')]
+public function modify(
+    Animals $animal,
+    Request $request,
+    EntityManagerInterface $entityManager,
+    HabitatsRepository $habitatsRepository,
+    PictureService $pictureService
+): Response {
+    $habitats = $habitatsRepository->findAll();
 
-        $form = $this->createFormBuilder($animal)
+    $form = $this->createFormBuilder($animal)
         ->add('nameAnimal', TextType::class, [
             'label' => 'Nom de l\'animal',
         ])
@@ -80,7 +81,7 @@ class AnimalsController extends AbstractController
         ->add('image', FileType::class, [
             'label' => 'Image de l\'animal',
             'mapped' => false,
-            'required' => false, // L'image n'est pas obligatoire
+            'required' => false,
             'attr' => ['accept' => 'image/png, image/jpeg, image/webp'],
             'constraints' => [
                 new Image(
@@ -98,41 +99,42 @@ class AnimalsController extends AbstractController
         ])
         ->getForm();
 
+    $form->handleRequest($request);
 
-        $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+        $imageFile = $form->get('image')->getData();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData();
-            
-            if ($imageFile) {
-                // Supprime l'ancienne image si elle existe
-                foreach ($animal->getImages() as $existingImage) {
-                    $imagePath = $this->getParameter('uploads_directory') . '/animals/' . $existingImage->getFilePath();
-                    if (file_exists($imagePath)) {
-                        unlink($imagePath);
-                    }
-                    $entityManager->remove($existingImage);
+        if ($imageFile) {
+            // Supprimer les anciennes images si l'animal en a
+            foreach ($animal->getImages() as $existingImage) {
+                $imagePath = $this->getParameter('uploads_directory') . '/animals/' . $existingImage->getFilePath();
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);  // Supprime l'ancienne image
                 }
-                
-                $newFilename = $pictureService->square($imageFile, 'animals');
-
-                $newImage = new Images();
-                $newImage->setFilePath($newFilename);
-                $entityManager->persist($newImage);
-                $animal->addImage($newImage);
+                $entityManager->remove($existingImage);  // Retire l'ancienne image de l'animal
             }
 
-            $entityManager->flush();
+            // Traiter la nouvelle image
+            $newFilename = $pictureService->square($imageFile, 'animals');
 
-            $this->addFlash('success', 'Les modifications ont été enregistrées avec succès.');
-            return $this->redirectToRoute('app_admin_anim');
+            $newImage = new Images();
+            $newImage->setFilePath($newFilename);
+            $entityManager->persist($newImage);
+            $animal->addImage($newImage);  // Ajoute la nouvelle image à l'animal
         }
 
-        return $this->render('admin/animals/modif.html.twig', [
-            'form' => $form->createView(),
-            'animal' => $animal,
-        ]);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Les modifications ont été enregistrées avec succès.');
+        return $this->redirectToRoute('app_admin_anim');
     }
+
+    return $this->render('admin/animals/modif.html.twig', [
+        'form' => $form->createView(),
+        'animal' => $animal,
+    ]);
+}
+
 
 
 

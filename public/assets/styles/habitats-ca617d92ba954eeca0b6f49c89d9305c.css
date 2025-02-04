@@ -83,25 +83,25 @@
     margin-top: 4%;
     margin-bottom: 3%;
     align-items: center;
+    margin-left: 10%;
 }
 
 
 .habitats .legend{
     font-family: "Lemonada", cursive;
     margin-top: 2%;
-    text-align: center;
     color: #4B543B;
     font-size: 1rem;
     margin-left: 24%;
 }
 
 .img-fluid {
-    max-width:20vw;
+    max-width:100%;
     height:auto
 }
 
 .imgHab img{
-    width: 20vw;
+    width: 100%;
     height: auto;
 }
 
@@ -137,13 +137,13 @@ legend {
 .card.marais{
     background-color:#B57F50;
     box-shadow: 0 4px 4px lightgrey;
-    margin-top: 0;
+    margin-top: 3%;
 }
 
 .card.savane{
     background-color:#DCE2AA;
     box-shadow: 0 4px 4px lightgrey;
-    margin-top: 0;
+    margin-top: 3%;
 }
   
 a.jungle.btn.btn-primary,
@@ -199,7 +199,7 @@ p.card-text {
 div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
     background-color: white;
     width: 50vw;
-    margin-left: -30%;
+    margin-left: -22%;
     padding: 2%;
   }
 
