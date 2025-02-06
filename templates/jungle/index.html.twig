@@ -9,7 +9,17 @@
     <div class="rectangle"></div>
 </section>
 
-<img class="habitat" src="{{ asset('/images/jungle/jungle.jpg') }}" alt="Entrée du zoo">
+<div class='imgHab'>
+    {% if habitat.images|length > 0 %}
+        {% for image in habitat.images %}
+                <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
+        {% endfor %}
+    {% else %}
+        <span>Pas d'image</span>
+    {% endif %}
+</div>
+
+
 <div class="habitjung">
     <p>La jungle, caractérisée par un climat chaud et humide, abrite une faune et une flore
     incroyablement riches et variées.<br>

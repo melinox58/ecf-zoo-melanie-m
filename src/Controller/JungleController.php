@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Animals;
+use App\Entity\Habitats;
 use App\Entity\ReportsVet;
 use App\Repository\HabitatsRepository;
 use App\Repository\ReportsVetRepository;
@@ -28,43 +28,57 @@ class JungleController extends AbstractController
     #[Route('/jungle', name: 'app_jungle')]
     public function index(): Response
     {
-        // On récupère les animaux par habitat spécifique
-        $jungleAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 1]);
+        // On récupère l'habitat spécifique (par exemple, ID = 1 pour la jungle)
+        $habitat = $this->entityManager->getRepository(Habitats::class)->find(1);
         
-        // Récupération des rapports liés aux animaux de la jungle
-    $reportsByAnimal = [];
-    $latestReportVet = $this->entityManager->getRepository(ReportsVet::class)->findOneBy(
-        ['idHabitats' => 1],
-        ['date' => 'DESC']
-    );
-    
-    foreach ($jungleAnimals as $animal) {
-        $reportsByAnimal[$animal->getId()] = $this->entityManager->getRepository(Reports::class)->findBy(['idAnimals' => $animal]);
-    }
+        // Si l'habitat n'est pas trouvé, afficher une erreur
+        if (!$habitat) {
+            throw $this->createNotFoundException('Habitat non trouvé');
+        }
 
-        // Envoie des données à la vue
+        // On récupère les animaux associés à cet habitat
+        $jungleAnimals = $habitat->getAnimals();
+        
+        // Récupération des rapports vétérinaires pour les animaux de la jungle
+        $reportsByAnimal = [];
+        $latestReportVet = $this->entityManager->getRepository(ReportsVet::class)->findOneBy(
+            ['idHabitats' => 1],
+            ['date' => 'DESC']
+        );
+        
+        foreach ($jungleAnimals as $animal) {
+            $reportsByAnimal[$animal->getId()] = $this->entityManager->getRepository(Reports::class)->findBy(['idAnimals' => $animal]);
+        }
+
+        // Passer la variable 'habitat' à la vue
         return $this->render('jungle/index.html.twig', [
+            'habitat' => $habitat,  // Passer l'objet habitat à la vue
             'jungleAnimals' => $jungleAnimals,
             'reportsByAnimal' => $reportsByAnimal,
             'pictureService' => $this->pictureService,
-            'latestReport' => $latestReportVet,  // Assurez-vous que la variable 'latestReport' est bien utilisée dans la vue        ]);
+            'latestReport' => $latestReportVet,
         ]);
     }
 
-    public function habitatDetails(
-        int $id, 
-        ReportsVetRepository $reportsVetRepo, 
-        HabitatsRepository $habitatsRepo
-    ): Response {
-        $habitat = $habitatsRepo->find($id);
-        // Dans la méthode habitatDetails
-        $latestReportVet = $reportsVetRepo->findLatestReportVetByHabitat($id);
-    
-        return $this->render('jungle/index.html.twig', [
-            'habitat' => $habitat,
-            'latestReport' => $latestReportVet,  // Assurez-vous que la variable 'latestReport' est bien utilisée dans la vue
-            'jungleAnimals' => $habitat->getAnimals(),
-        ]);
-    }    
+    // Méthode pour récupérer les détails d'un habitat spécifique (optionnelle)
+    public function habitatDetails(int $id, ReportsVetRepository $reportsVetRepo, HabitatsRepository $habitatsRepository)
+    {
+        // Récupérer l'habitat par ID
+        $habitat = $habitatsRepository->find($id);
+        
+        // Si l'habitat n'est pas trouvé, afficher une erreur
+        if (!$habitat) {
+            throw $this->createNotFoundException('Habitat non trouvé');
+        }
 
+        // Récupérer le dernier rapport vétérinaire pour cet habitat
+        $latestReportVet = $reportsVetRepo->findLatestReportVetByHabitat($id);
+
+        return $this->render('jungle/index.html.twig', [
+            'habitat' => $habitat,  // Passer l'habitat à la vue
+            'latestReport' => $latestReportVet,
+            'jungleAnimals' => $habitat->getAnimals(),  // Liste des animaux dans cet habitat
+            'images' => $habitat->getImages(),  // Liste des images associées à l'habitat
+        ]);
+    }
 }

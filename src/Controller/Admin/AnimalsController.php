@@ -235,7 +235,7 @@ public function add(Request $request, EntityManagerInterface $entityManager, Hab
         // Récupère l'animal en fonction de l'ID
         $animal = $em->getRepository(Animals::class)->find($id);
         if (!$animal) {
-            return new JsonResponse(['message' => 'Animal non trouvé'], JsonResponse::HTTP_NOT_FOUND);
+            return new JsonResponse(['message' => 'Animal non trouvé'], Response::HTTP_NOT_FOUND);
         }
 
         // Récupérer le nombre actuel de clics, et l'incrémenter

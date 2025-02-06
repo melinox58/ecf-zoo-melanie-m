@@ -21,9 +21,16 @@
     <img src="{{ asset('/images/vecteurs/bg_headerbis.png') }}" alt="Bannière colorée verte">
 </div>
 
-<div class="habitats">
-    <a href="{{path ('app_jungle')}}"><img class="imgHab" src="{{ asset('/images/jungle/jungle.jpg') }}" alt="Paysage de jungle"></a>
-    <legend>La jungle est une immense forêt où poussent de façon très serrée, arbres, broussailles et plantes hautes. Pour vivre, cette végétation très dense a besoin de beaucoup d'eau. C'est pourquoi elle se situe dans les régions proches de l'équateur où le climat est pluvieux. Nous avons essayé de reproduire cet habitat pour ses occupants :</legend>
+<div class='imgHab'>
+    {% if habitat.images|length > 0 %}
+        {% for image in habitat.images %}
+            <a href="{{ path('app_jungle') }}"> <!-- Lien vers la page jungle -->
+                <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
+            </a>
+        {% endfor %}
+    {% else %}
+        <span>Pas d'image</span>
+    {% endif %}
 </div>
 
 {# Code marais #}

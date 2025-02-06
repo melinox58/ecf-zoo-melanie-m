@@ -26,6 +26,10 @@ class Habitats
     #[ORM\OneToMany(mappedBy: 'idHabitats', targetEntity: Images::class, cascade: ['persist', 'remove'])]
     private Collection $images;
 
+    #[ORM\OneToMany(mappedBy: 'idHabitats', targetEntity: Animals::class)]
+    private Collection $animals;
+    
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $state = null;
 
@@ -39,6 +43,7 @@ class Habitats
     {
         $this->images = new ArrayCollection();
         $this->idReportsVet = new ArrayCollection();
+        $this->animals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,4 +143,31 @@ class Habitats
 
         return $this;
     }
+
+    public function getAnimals(): Collection
+{
+    return $this->animals;
+}
+
+public function addAnimal(Animals $animal): static
+{
+    if (!$this->animals->contains($animal)) {
+        $this->animals->add($animal);
+        $animal->setIdHabitats($this);
+    }
+
+    return $this;
+}
+
+public function removeAnimal(Animals $animal): static
+{
+    if ($this->animals->removeElement($animal)) {
+        if ($animal->getIdHabitats() === $this) {
+            $animal->setIdHabitats(null);
+        }
+    }
+
+    return $this;
+}
+
 }

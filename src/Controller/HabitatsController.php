@@ -29,12 +29,17 @@ class HabitatsController extends AbstractController
         $jungleAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 1]);
         $maraisAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 2]);
         $savaneAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 3]);
+        $habitat = $this->entityManager->getRepository(Habitats::class)->find(1);
 
+        // On récupère les animaux associés à cet habitat
+        $jungleAnimals = $habitat->getAnimals();
+        
         // Envoie des données à la vue
         return $this->render('habitats/index.html.twig', [
             'jungleAnimals' => $jungleAnimals,
             'maraisAnimals' => $maraisAnimals,
             'savaneAnimals' => $savaneAnimals,
+            'habitat' => $habitat,
             'pictureService' => $this->pictureService,
         ]);
     }
