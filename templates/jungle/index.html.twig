@@ -42,9 +42,9 @@
                     <p class="card-text">{{ animal.description }}</p>
                     
                     <!-- Button trigger modal -->
-                    <button type="button" class="jungle btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ animal.id }}" data-id="{{ animal.id }}" data-habitat="jungle">
-    Détails
-</button>
+                    <button type="button" class="btn btn-primary btn-animal-details" data-bs-toggle="modal" data-bs-target="#modal-{{ animal.id }}" data-id="{{ animal.id }}" data-habitat="{{ habitat.name }}">
+                        Détails
+                    </button>
 
 
                     <!-- Modal -->

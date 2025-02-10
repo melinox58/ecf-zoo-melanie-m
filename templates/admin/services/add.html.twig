@@ -4,6 +4,15 @@
 
 
 {% block body %}
+
+{% if app.session.flashBag.has('error') %}
+    <div class="alert alert-danger">
+        {% for message in app.session.flashBag.get('error') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
     {% if is_granted('ROLE_ADMIN') %}
 
     <div class="containerAdmin">
@@ -13,8 +22,10 @@
             <main class="col-9 border bg-white p-2">
                 <h1>Ajouter un nouveau service</h1>
 
-                    {{ form_start(form) }}
-                        {{ form_widget(form) }}
+                   {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.image) }}
                     {{ form_end(form) }}
 
             </main>

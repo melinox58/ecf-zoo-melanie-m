@@ -24,11 +24,18 @@
     </div>
 
     <div class="servRest">
-        <p>En toutes saisons, venez profiter de notre restaurant.<br>
-        En intérieur ou en terrasse.<br>
-        Pour les petites faims, nos points de restauration offrent une variété de repas et de collations pour tous les goûts.
-        </p>
+        {% for service in services %}
+            <div class="service-item">
+                {% if service.images is not empty %}
+                    {% for image in service.images %}
+                        <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ service.name }}" class="img-fluid">
+                    {% endfor %}
+                {% endif %}
+                <div class="habitjung">{{ service.description }}</div>
+            </div>
+        {% endfor %}
     </div>
+
 
     {# Caroussel #}
     <div class="carousel">

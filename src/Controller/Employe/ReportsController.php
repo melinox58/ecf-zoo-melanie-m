@@ -139,7 +139,7 @@ class ReportsController extends AbstractController
         }
 
         // Récupérer les rapports de cet utilisateur spécifique
-        $reports = $this->reportsRepository->findReportsByCreator($user);
+        $reports = $this->reportsRepository->findReportsWithRoles();
 
         return $this->render('employee/reports/list.html.twig', [
             'reports' => $reports,

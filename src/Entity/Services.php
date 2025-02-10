@@ -22,7 +22,7 @@ class Services
     #[ORM\Column(length: 24)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'idServices', targetEntity: Images::class)]
+    #[ORM\OneToMany(mappedBy: 'idServices', targetEntity: Images::class, cascade: ['persist', 'remove'])]
     private Collection $images;
 
     public function __construct()
@@ -51,7 +51,6 @@ class Services
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -63,6 +62,26 @@ class Services
     public function setName(string $name): static
     {
         $this->name = $name;
+        return $this;
+    }
+
+    public function addImage(Images $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setIdServices($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            if ($image->getIdServices() === $this) {
+                $image->setIdServices(null);
+            }
+        }
 
         return $this;
     }
