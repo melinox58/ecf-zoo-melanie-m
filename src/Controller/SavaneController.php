@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Animals;
+use App\Entity\Habitats;
 use App\Entity\Reports;
 use App\Entity\ReportsVet;
 use App\Repository\HabitatsRepository;
@@ -28,6 +29,13 @@ class SavaneController extends AbstractController
     #[Route('/savane', name: 'app_savane')]
     public function index(): Response
     {
+        $habitat = $this->entityManager->getRepository(Habitats::class)->find(3);
+        
+        // Si l'habitat n'est pas trouvé, afficher une erreur
+        if (!$habitat) {
+            throw $this->createNotFoundException('Habitat non trouvé');
+        }
+
         // On récupère les animaux par habitat spécifique
         $savaneAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 3]);
 
@@ -42,6 +50,7 @@ class SavaneController extends AbstractController
     }
         // Envoie des données à la vue
         return $this->render('savane/index.html.twig', [
+            'habitat' => $habitat,
             'savaneAnimals' => $savaneAnimals,
             'reportsByAnimal' => $reportsByAnimal,
             'pictureService' => $this->pictureService,

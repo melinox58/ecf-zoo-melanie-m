@@ -41,6 +41,10 @@
     width: 44vw;
 }
 
+.habitincl > p:nth-child(1) {
+    margin-top: -1%;
+  }  
+
 .habitmar,
 .habitjung,
 .habitsav{
@@ -50,14 +54,20 @@
     text-align: center;
     width: 85vw;
     margin-top: -5%;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 
 .habitat{
+    width: 85vw;
+    margin-top: 2%;
+    height: auto;
+}
+
+.img-fluid{
     display: flex;
     justify-content: space-around; /* Pour espacer les éléments uniformément */
     width: 85vw;
-    margin-top: 4%;
+    margin-top: 2%;
     margin-bottom: 8%;
     height: 80vh;
     width: 85vw;
@@ -93,11 +103,6 @@
     color: #4B543B;
     font-size: 1rem;
     margin-left: 24%;
-}
-
-.img-fluid {
-    max-width:100%;
-    height:auto
 }
 
 .imgHab img{

@@ -9,23 +9,15 @@
     <div class="rectangle"></div>
 </section>
 
-<img class="habitat" src="{{ asset('/images/savane/savane.jpg') }}" alt="Entrée du zoo">
-<div class="habitsav">
-    <p>La savane, vaste étendue herbeuse parsemée d'arbres clairsemés, se distingue par une faune
-    et une flore adaptées à un climat tropical alternant saisons sèches et humides.<br>
-    La végétation de la savane est dominée par des herbes hautes, telles que les graminées, qui peuvent
-    atteindre plusieurs mètres de hauteur. On y trouve également des arbres isolés et résistants
-    à la sécheresse, comme les baobabs, les acacias et les palmiers doum. Ces arbres, souvent dotés
-    de feuilles réduites ou d'épines, minimisent la perte d'eau et offrent de l'ombre aux animaux.<br>
-    La savane est célèbre pour sa faune emblématique et abondante. Elle abrite de grands herbivores
-    tels que les éléphants, girafes, zèbres, gnous et antilopes, qui se nourrissent des herbes et
-    des feuilles des arbres. Les prédateurs comme les lions, guépards, hyènes et léopards règnent
-    sur cette vaste plaine. Les rivières et points d’eau attirent des hippopotames, crocodiles et
-    de nombreuses espèces d’oiseaux aquatiques. Par ailleurs, des insectes comme les termites et
-    les mouches tsé-tsé jouent un rôle crucial dans l’écosystème.<br>
-    La savane, bien que souvent associée à l'Afrique, se retrouve également en Amérique du Sud et en
-    Australie. Elle est essentielle à l'équilibre écologique, mais reste vulnérable face au changement
-    climatique et aux activités humaines.</p>
+<div class='habitat'>
+    {% if habitat.images|length > 0 %}
+        {% for image in habitat.images %}
+                <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
+                <div class="habitjung">{{ habitat.description }}</div>
+        {% endfor %}
+    {% else %}
+        <span>Pas d'image</span>
+    {% endif %}
 </div>
 
 <section class="latest-report">

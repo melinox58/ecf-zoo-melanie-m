@@ -9,21 +9,15 @@
     <div class="rectangle"></div>
 </section>
 
-<img class="habitat" src="{{ asset('/images/marais/marais.jpg') }}" alt="Entrée du zoo">
-<div class="habitmar">
-    <p>Les marais, zones humides situées entre terre et eau, offrent un habitat riche et
-    diversifié qui joue un rôle essentiel dans les écosystèmes.<br>
-    La végétation des marais est adaptée à un environnement gorgé d'eau. On y trouve des plantes
-    aquatiques comme les roseaux, les joncs et les nénuphars, ainsi que des arbres comme les cyprès
-    chauves et les saules, dont les racines plongent dans l'eau stagnante. Les herbes hautes et les mousses
-    prolifèrent, formant des abris pour de nombreuses espèces.<br>
-    Les marais abritent une faune variée, adaptée à ces zones humides. Les oiseaux aquatiques tels que les hérons,
-    cigognes et canards y sont fréquents. Les mammifères comme les castors, loutres, ou encore les ratons laveurs
-    y trouvent refuge. Les eaux stagnantes sont le domaine des grenouilles, serpents d'eau, et tortues, tandis
-    que des poissons comme les brochets et les perches prospèrent dans les zones immergées. Les insectes,
-    notamment les libellules et les moustiques, y jouent un rôle important dans l'écosystème.<br>
-    Les marais, véritables réservoirs de biodiversité, servent également de filtres naturels pour l'eau et de zones
-    tampons contre les inondations, bien qu'ils soient menacés par le drainage et l'urbanisation.</p>
+<div class='habitat'>
+    {% if habitat.images|length > 0 %}
+        {% for image in habitat.images %}
+                <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
+                <div class="habitjung">{{ habitat.description }}</div>
+        {% endfor %}
+    {% else %}
+        <span>Pas d'image</span>
+    {% endif %}
 </div>
 
 <section class="latest-report">
