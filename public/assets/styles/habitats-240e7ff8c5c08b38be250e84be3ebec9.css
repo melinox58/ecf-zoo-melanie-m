@@ -41,10 +41,6 @@
     width: 44vw;
 }
 
-.habitincl > p:nth-child(1) {
-    margin-top: -1%;
-  }  
-
 .habitmar,
 .habitjung,
 .habitsav{
@@ -105,18 +101,11 @@
 }
 
 .imgHab img{
-    width: 70%;
+    width: 100%;
     height: auto;
     clip-path: ellipse(40% 50%);
-    margin: 6%;
+    margin: 5%;
 }
-
-div.imgHab {
-    width: 85vw;
-    display: flex;
-    align-items: center;
-  }
-  
 
 .habitatHab{
     display: flex;

@@ -9,7 +9,7 @@
     <div class="rectangle"></div>
 </section>
 
-<div class='imgHab'>
+<div class='habitatHab'>
     {% if habitat.images|length > 0 %}
         {% for image in habitat.images %}
                 <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">

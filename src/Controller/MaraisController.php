@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Animals;
+use App\Entity\Habitats;
 use App\Entity\Reports;
 use App\Entity\ReportsVet;
 use App\Repository\HabitatsRepository;
@@ -28,6 +29,13 @@ class MaraisController extends AbstractController
     #[Route('/marais', name: 'app_marais')]
     public function index(): Response
     {
+        $habitat = $this->entityManager->getRepository(Habitats::class)->find(2);
+        
+        // Si l'habitat n'est pas trouvé, afficher une erreur
+        if (!$habitat) {
+            throw $this->createNotFoundException('Habitat non trouvé');
+        }
+
         // On récupère les animaux par habitat spécifique
         $maraisAnimals = $this->entityManager->getRepository(Animals::class)->findBy(['idHabitats' => 2]);
 
@@ -44,6 +52,7 @@ class MaraisController extends AbstractController
 
         // Envoie des données à la vue
         return $this->render('marais/index.html.twig', [
+            'habitat' => $habitat,  // Passer l'objet habitat à la vue
             'maraisAnimals' => $maraisAnimals,
             'reportsByAnimal' => $reportsByAnimal,
             'pictureService' => $this->pictureService,
@@ -61,10 +70,10 @@ class MaraisController extends AbstractController
         // Dans la méthode habitatDetails
         $latestReportVet = $reportsVetRepo->findLatestReportVetByHabitat($id);
     
-        return $this->render('jungle/index.html.twig', [
+        return $this->render('marais/index.html.twig', [
             'habitat' => $habitat,
             'latestReport' => $latestReportVet,  // Assurez-vous que la variable 'latestReport' est bien utilisée dans la vue
-            'jungleAnimals' => $habitat->getAnimals(),
+            'maraisAnimals' => $habitat->getAnimals(),
         ]);
     }    
 
