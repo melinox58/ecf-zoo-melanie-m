@@ -130,7 +130,9 @@
             <div class='imgHab'>
             {% if habitat.images|length > 0 %}
                 {% for image in habitat.images %}
-                    <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
+                    <a href="{{ path('app_' ~ habitat.name|lower) }}"> 
+                        <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
+                    </a>
                 {% endfor %}
                 {% else %}
                     <span>Pas d'image</span>
