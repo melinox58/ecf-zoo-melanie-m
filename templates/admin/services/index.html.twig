@@ -37,16 +37,22 @@
                                 <tr>
                                     <td>{{ service.name}}</td>
                                     <td>{{ service.description}}</td>
-                                    <td class="image">...
+                                    <td class="image">
+                                        {% if service.images|length > 0 %}
+                                            <img src="{{ asset('uploads/services/' ~ service.images[0].filePath) }}" alt="Image de {{ service.name }}" width="100">
+                                        {% else %}
+                                            Aucune image
+                                        {% endif %}
                                     </td>
                                     <td class="action">
                                         <a href="{{ path('admin_services_modif', { id: service.id }) }}" class="btn btn-primary">Modifier</a>
                                         {# <a href="{{ path('admin_services_modif', { id: service.id }) }}">Modifier</a> #}
                                         {% if is_granted('ROLE_ADMIN') %}
                                             <form action="{{ path('services_delete', { id: service.id }) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce service?');" style="display:inline;">
-                                            <button class="btn btn-danger" type="submit">Supprimer</button>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button class="btn btn-danger" type="submit">Supprimer</button>
+                                            </form>
                                         {% endif %}
-                                        </form>
                                     </td>
                                 </tr>
                             {% endfor %}

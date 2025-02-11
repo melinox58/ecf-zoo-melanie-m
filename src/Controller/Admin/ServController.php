@@ -40,14 +40,15 @@ class ServController extends AbstractController
             throw $this->createAccessDeniedException('Accès non autorisé.');
         }
     
+        // Création du formulaire
         $form = $this->createFormBuilder($serv)
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('image', FileType::class, [
-                'label' => 'Image de l\'animal',
+                'label' => 'Image du service',
                 'mapped' => false,
                 'required' => false,
-                'attr' => ['accept' => 'image/png, image/jpeg, image/webp'],
+                'attr' => ['accept' => 'image/png, image/jpg, image/jpeg, image/webp'],
                 'constraints' => [
                     new Image(
                         minWidth: 100,
@@ -55,7 +56,7 @@ class ServController extends AbstractController
                         minHeight: 100,
                         maxHeight: 7000,
                         allowPortrait: false,
-                        mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
+                        mimeTypes: ['image/jpeg', 'image/jpg','image/png', 'image/webp']
                     )
                 ],
             ])
@@ -64,6 +65,7 @@ class ServController extends AbstractController
     
         $form->handleRequest($request);
     
+        // Si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('image')->getData();
     
@@ -91,37 +93,37 @@ class ServController extends AbstractController
             // Ajouter un message flash de succès
             $this->addFlash('success', 'Le service a bien été modifié.');
     
-            return $this->redirectToRoute('app_admin_serv');
+            // Redirection vers la liste des services après la modification
+            return $this->redirectToRoute('app_admin_serv', [], Response::HTTP_SEE_OTHER);
         }
     
+        // Afficher la vue de modification avec le formulaire
         return $this->render('admin/services/modif.html.twig', [
             'form' => $form->createView(),
             'service' => $serv,
         ]);
-    }
+    }    
     
 
     #[Route('/services/delete/{id}', name: 'services_delete', methods: ['POST'])]
     public function delete(Services $serv, EntityManagerInterface $entityManager): Response
     {
-        // Vérification des droits d'accès
         if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_EMPLOYEE')) {
             throw $this->createAccessDeniedException('Accès non autorisé.');
         }
     
-        // Récupérer les images associées à ce service
         $images = $serv->getImages();
-    
-        // Supprimer chaque image
         foreach ($images as $image) {
+            $imagePath = $this->getParameter('uploads_directory') . '/services/' . $image->getFilePath();
+            if (file_exists($imagePath)) {
+                unlink($imagePath); 
+            }
             $entityManager->remove($image);
         }
     
-        // Ensuite, supprimer le service
         $entityManager->remove($serv);
         $entityManager->flush();
     
-        // Ajouter un message flash de succès
         $this->addFlash('success', 'Le service a bien été supprimé.');
     
         return $this->redirectToRoute('app_admin_serv');
@@ -147,7 +149,7 @@ class ServController extends AbstractController
                 'label' => 'Image du service',
                 'mapped' => false,
                 'required' => false,
-                'attr' => ['accept' => 'image/png, image/jpeg, image/webp'],
+                'attr' => ['accept' => 'image/png, image/jpg, image/jpeg, image/webp'],
                 'constraints' => [
                     new Image(
                         minWidth: 100,
@@ -155,7 +157,7 @@ class ServController extends AbstractController
                         minHeight: 100,
                         maxHeight: 7000,
                         allowPortrait: false,
-                        mimeTypes: ['image/jpeg', 'image/png', 'image/webp']
+                        mimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
                     )
                 ],
             ])
