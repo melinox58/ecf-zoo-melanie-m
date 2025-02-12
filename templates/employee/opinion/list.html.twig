@@ -15,6 +15,7 @@
                 {% for message in app.flashes('error') %}
                     <div class="alert alert-danger">{{ message }}</div>
                 {% endfor %}
+                
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -23,21 +24,35 @@
                                 <th>Titre</th>
                                 <th>Commentaire</th>
                                 <th>Date</th>
+                                <th>Statut</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for opinion in opinions %}
-                            <tr>
-                                <td>{{ opinion.pseudo }}</td>
-                                <td>{{ opinion.title }}</td>
-                                <td>{{ opinion.comment }}</td>
-                                <td class="action">
-                                    <form action="{{ path('opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
-                                        <button class="btn btn-danger" type="submit">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ opinion.pseudo }}</td>
+                                    <td>{{ opinion.title }}</td>
+                                    <td>{{ opinion.comment }}</td>
+                                    <td>{{ opinion.created_at|date("d-m-Y H:i") }}</td>
+                                    <td>
+                                        {% if opinion.isValidated %}
+                                            <span class="badge bg-success">Validé</span>
+                                        {% else %}
+                                            <span class="badge bg-warning">Non validé</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="action">
+                                        {% if not opinion.isValidated %}
+                                            <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
+                                                <button class="btn btn-success" type="submit">Approuver</button>
+                                            </form>
+                                        {% endif %}
+                                        <form action="{{ path('emp_opinion_delete', {id: opinion._id}) }}" method="post" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cet avis ?');" style="display:inline;">
+                                            <button class="btn btn-danger" type="submit">Supprimer</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -46,4 +61,3 @@
         </div>
     </div>
 {% endblock %}
-

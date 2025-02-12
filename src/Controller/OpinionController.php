@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Service\MongoDBService;
-use MongoDB\BSON\ObjectId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,26 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OpinionController extends AbstractController
 {
-    #[Route('employee/opinion', name: 'opinion_list', methods: ['GET'])]
-    public function listOpinion(MongoDBService $mongoDBService): Response
-    {
-        $collection = $mongoDBService->getCollection('opinions');
-        $opinions = $collection->find();
 
-        $opinionsArray = [];
-        foreach ($opinions as $opinion) {
-            $opinionArray = (array)$opinion;
-            $opinionArray['_id'] = (string) $opinionArray['_id']; // Assurez-vous que l'ID est une chaîne
-            $opinionsArray[] = $opinionArray;
-        }
-
-        return $this->render('opinion/list.html.twig', [
-            'opinions' => $opinionsArray, // Utiliser le tableau transformé
-        ]);
-    }
-
-
-    #[Route('employee/opinion/add', name: 'add_opinion', methods: ['GET', 'POST'])]
+    #[Route('opinion/add', name: 'add_opinion', methods: ['GET', 'POST'])]
     public function addOpinion(Request $request, MongoDBService $mongoDBService): Response
     {
         if ($request->isMethod('POST')) {
@@ -51,18 +32,25 @@ class OpinionController extends AbstractController
                     'date' => (new \DateTime())->format('d-m-Y'), // Enregistrement de la date sous forme de chaîne
                     'star' => (int)$data['etoiles'],
                     'isValidated' => false, // Avis en attente de validation
-                    '_id' => new ObjectId(), // Utilisation de ObjectId
+                    'created_at' => new \DateTime(), // Date de création
                 ];
-        
+                
                 // Insertion dans la collection MongoDB
                 $collection = $mongoDBService->getCollection('opinions');
-                $collection->insertOne($newOpinion);
+                $result = $collection->insertOne($newOpinion); // Insert the document into MongoDB
+
+                // Vérification du succès de l'insertion
+                if ($result->getInsertedCount() > 0) {
+                    $this->addFlash('success', 'L\'avis a été déposé avec succès.');
+                } else {
+                    $this->addFlash('error', 'Une erreur s\'est produite lors de l\'ajout de l\'avis.');
+                }
         
-                $this->addFlash('success', 'L\'avis a été déposé avec succès.');
                 return $this->redirectToRoute('app_home', ['_fragment' => 'avis']);
             }
-        }
 
-        return $this->render('employee/opinion/index.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
+            }
+
+        return $this->render('opinion/index.html.twig'); // Ajout de cette ligne pour gérer les requêtes GET
     }
 }
