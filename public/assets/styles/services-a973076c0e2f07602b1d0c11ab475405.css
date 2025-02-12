@@ -121,12 +121,12 @@
     text-align: left;
 }
 
-div.service-item .img-fluid{
+div.service-item:nth-child(11) > img:nth-child(1) {
     width: 30vw;
     height: auto;
 }
 
-div.service-item {
+div.service-item:nth-child(11) {
     display: flex;
     align-items: center;
     width: 85vw;
@@ -150,7 +150,7 @@ div.service-item {
 }
 
 .panels img{
-    width: 42%;
+    width: 25%;
     margin-right: 8%;
     margin-left: 8%;
 }

@@ -154,18 +154,24 @@
 </div>
     
 <section class="nos-services">
-    <div>
-        <a href="{{path ('app_services')}}#resto"><img src={{asset("/images/cafe.jpg")}} alt="Terrasse de café"></a>
-        <legend>Restauration</legend>
-    </div>
-    <div>
-        <a href="{{path ('app_services')}}#visite"><img src={{asset("/images/rencontre.jpg")}} alt="Visite de la girafe"></a>
-        <legend>Visites guidées</legend>
-    </div>
-    <div>
-        <a href="{{path ('app_services')}}#train"><img src={{asset("/images/petit-train.jpg")}} alt="Petit train touristique"></a>
-        <legend>Le petit train</legend>
-    </div>
+    {% if services is not empty %}
+        {% for service in services %}
+        <div>
+            {% if service.images|length > 0 %}
+                {% for image in service.images %}
+                        <img src="{{ asset('uploads/services/' ~ image.filePath) }}" alt="{{ service.name }}" class="img-serv">
+                {% endfor %}
+                {% else %}
+                    <span>Pas d'image</span>
+                {% endif %}
+            <div class='legend'>
+                {{ service.name }}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Aucun habitat trouvé.</p>
+    {% endif %}
 </section>
 
 <div class="banner">

@@ -17,27 +17,7 @@
             Nos services incluent :
     </div>
 
-    {# Code restauration #}
-    <div class="banner">
-        <h4 id="resto">Restauration</h4>
-        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
-    </div>
-
-    <div class="servRest">
-        {% for service in services %}
-            <div class="service-item">
-                {% if service.images is not empty %}
-                    {% for image in service.images %}
-                        <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ service.name }}" class="img-fluid">
-                    {% endfor %}
-                {% endif %}
-                <div class="habitjung">{{ service.description }}</div>
-            </div>
-        {% endfor %}
-    </div>
-
-
-    {# Caroussel #}
+        {# Caroussel #}
     <div class="carousel">
         <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
             <div class="carousel-inner">
@@ -65,44 +45,21 @@
         </div>
     </div>
 
-    {# Code visite #}
+    {# Code restauration #}
+{% for service in services %}
     <div class="banner">
-        <h4 id="visite">Visite des habitats</h4>
-        <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+        <h4>{{ service.name }}</h4>
+        <img src="{{ asset('/images/vecteurs/bg_headerbis.png') }}" alt="Bannière colorée verte">
     </div>
-
-    <div class="servRest">
-        <p>Un voyage commenté du zoo, avec présentation des habitats et de leurs occupants.<br>
-        Seul ou en famille, un magnifique voyage à découvrir.</p>
+    <div class="service-item">
+        {% if service.images is not empty %}
+            {% for image in service.images %}
+                <img src="{{ asset('uploads/services/' ~ image.filePath) }}" alt="{{ service.name }}" class="img-fluid">
+            {% endfor %}
+        {% endif %}
+        <div class="habitjung">{{ service.description }}</div>
     </div>
-
-    <section class="visited">
-        <div class="visiteh">
-            <p>Visites Guidées :<br>
-            Profitez de nos visites guidées pour découvrir des faits fascinants
-            sur nos résidents animaliers.Nos experts vous dévoileront les secrets
-            de la vie sauvage et vous feront part de leurs connaissances
-            approfondies sur la conservation des espèces.</p>
-            <img src={{asset("/images/img-visite.jpg")}} alt="Homme ayant un bébé crocodile en main">
-        </div>
-
-        <div class="visite">
-            <img src={{asset("/images/rencontre.jpg")}} alt="Femme portant une petite fille, elles regardent une girafe">
-            <p>Rencontres avec les Animaux :<br>
-            Vivez des moments uniques en participant
-            à nos sessions de rencontres avec les animaux.
-            Approchez-vous de nos créatures exotiques
-            et apprenez-en plus sur leur habitat et leur comportement.</p>
-        </div>
-        <div class="visiteh" id="train">
-            <p>Découvrez le Zoo à bord de notre petit train !<br>
-            Montez à bord de notre charmant petit train pour une visite inoubliable
-            à travers les différents habitats du zoo.Ce moyen de transport ludique et relaxant
-            est parfait pour les familles, les enfants, et tous ceux qui souhaitent
-            profiter d'une vue panoramique du parc sans se fatiguer.</p>
-            <img src={{asset("/images/petit-train.jpg")}} alt="Petit train touristique">
-        </div>
-    </section>
+{% endfor %}
 
     {# Code écologie #}
     <div class="banner">

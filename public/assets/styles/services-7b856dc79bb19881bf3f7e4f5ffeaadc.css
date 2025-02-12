@@ -42,7 +42,7 @@
     font-family: "Lemonada", cursive;
     color: #4B543B;
     font-size: 1rem;
-    margin-top: -8%;
+
 }
 
 /*Section carousel*/
@@ -121,20 +121,6 @@
     text-align: left;
 }
 
-div.service-item .img-fluid{
-    width: 30vw;
-    height: auto;
-}
-
-div.service-item {
-    display: flex;
-    align-items: center;
-    width: 85vw;
-    margin-top: 2%;
-    margin-bottom: -2%;
-    padding: 2%;
-}
-  
 /*Section ecolo*/
 .panels{
     display: flex;
@@ -150,7 +136,7 @@ div.service-item {
 }
 
 .panels img{
-    width: 42%;
+    width: 25%;
     margin-right: 8%;
     margin-left: 8%;
 }

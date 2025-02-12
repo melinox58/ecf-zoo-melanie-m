@@ -121,12 +121,12 @@
     text-align: left;
 }
 
-div.service-item .img-fluid{
+div.service-item{
     width: 30vw;
     height: auto;
 }
 
-div.service-item {
+div.service-item .img-fluid {
     display: flex;
     align-items: center;
     width: 85vw;
@@ -150,7 +150,7 @@ div.service-item {
 }
 
 .panels img{
-    width: 42%;
+    width: 25%;
     margin-right: 8%;
     margin-left: 8%;
 }

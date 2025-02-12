@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Animals;
 use App\Entity\Reports;
 use App\Repository\HabitatsRepository;
+use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,13 +22,14 @@ class HomeController extends AbstractController
     }
     
     #[Route('/', name: 'app_home')]
-    public function index(HabitatsRepository $habitatsRepository, EntityManagerInterface $em): Response
+    public function index(HabitatsRepository $habitatsRepository, EntityManagerInterface $em, ServicesRepository $servicesRepository): Response
     {
         // Récupérer les habitats
         $habitats = $habitatsRepository->findAllById();
         $topAnimals = $em->getRepository(Animals::class)->findBy([], ['views' => 'DESC'], 4);
+        $services = $servicesRepository->findAll();
 
-        // Récupérer les avis et horaires comme avant
+        // Récupérer les avis et horaires
         $opinionsCollection = $this->mongoDBService->getCollection('opinions');
         $opinions = iterator_to_array($opinionsCollection->find(['isValidated' => true], ['sort' => ['date' => -1]]));
         
@@ -46,6 +48,7 @@ class HomeController extends AbstractController
             'habitats' => $habitats,  // Passez aussi les habitats à la vue
             'topAnimals' => $topAnimals,
             'reportsByAnimal' => $reportsByAnimal,
+            'services' => $services
         ]);
     }
 }
