@@ -24,7 +24,7 @@
         <div class='imgHab'>
             {% if habitat.images|length > 0 %}
                 {% for image in habitat.images %}
-                    <a href="{{ path('app_' ~ habitat.name|lower) }}"> 
+                    <a href="{{ path('app_' ~ habitat.name|lower) }}#top"> 
                         <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
                     </a>
                     <legend>{{ habitat.description }}</legend>

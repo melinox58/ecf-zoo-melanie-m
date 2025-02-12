@@ -18,23 +18,25 @@ class ReportsVetRepository extends ServiceEntityRepository
     public function findReportsVetByUserId(int $userId): array
     {
         return $this->createQueryBuilder('r')
-            ->join('r.idUsers', 'u') // Jointure avec l'entité Users
-            ->andWhere('u.id = :userId') // Filtrer par l'ID de l'utilisateur
-            ->setParameter('userId', $userId) // Utilisez 'userId' pour définir la valeur
-            ->join('r.idAnimals', 'a')  // Utilisation de 'idAnimals' ici
-            ->addSelect('a') // Sélectionnez les détails de l'animal
-            ->join('r.idFoods', 'f')
-            ->addSelect('f') // Sélectionnez les détails de l'aliment
+            ->leftJoin('r.idUsers', 'u') // LEFT JOIN pour inclure tous les rapports
+            ->andWhere('u.id = :userId')
+            ->setParameter('userId', $userId)
+            ->leftJoin('r.idAnimals', 'a')
+            ->addSelect('a')
+            ->leftJoin('r.idFoods', 'f')
+            ->addSelect('f')
             ->getQuery()
             ->getResult();
     }
+    
 
     // Méthode qui récupère les rapports liés à un habitat, triés par date décroissante
     public function findCom($user, $habitatId)
     {
         return $this->createQueryBuilder('r')
             ->join('r.idUsers', 'u')
-            ->join('r.idHabitats', 'h')
+            ->join('r.idAnimals', 'a')
+            ->join('a.idHabitats', 'h') // On joint l'habitat via l'animal
             ->where('u = :user')
             ->setParameter('user', $user)
             ->andWhere('h.id = :habitat')
@@ -43,28 +45,32 @@ class ReportsVetRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    
 
     public function findAllForUser($user)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.idUsers = :user')
+            ->where('r.idUsers = :user')
             ->setParameter('user', $user)
             ->orderBy('r.date', 'DESC')
             ->getQuery()
             ->getResult();
     }
+    
 
     public function findLatestReportVetByHabitat(int $habitatId)
-{
-    return $this->createQueryBuilder('r')
-        ->andWhere('r.idHabitats = :habitatId')
-        ->setParameter('habitatId', $habitatId)
-        ->orderBy('r.date', 'DESC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
-}
-
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.idAnimals', 'a')
+            ->join('a.idHabitats', 'h')
+            ->andWhere('h.id = :habitatId')
+            ->setParameter('habitatId', $habitatId)
+            ->orderBy('r.date', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+    
 }
 
 

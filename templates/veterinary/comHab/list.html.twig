@@ -8,6 +8,7 @@
             {% include "_partials/_adminnav.html.twig" %}
             <main class="col-9 border bg-white p-2">
                 <h4>Rapports habitats</h4>
+                <a href="{{ path('vet_com_add') }}" class="btn btn-success">Créer</a>
                 <form method="get" action="{{ path('vet_com_list') }}">
                     <div class="mb-3">
                         <label for="habitat" class="form-label">Sélectionnez un habitat</label>

@@ -2,19 +2,14 @@
 
 namespace App\Controller\Veterinary;
 
-use App\Entity\Animals;
 use App\Entity\Habitats;
-use App\Entity\Reports;
 use App\Entity\ReportsVet;
-use App\Form\ComType;
-use App\Entity\Users;
 use App\Form\StatusAnimFormType;
 use App\Repository\HabitatsRepository;
 use App\Repository\ReportsVetRepository;
 use App\Repository\UsersRepository;
 use App\Repository\ReportsRepository;
 use App\Form\ReportsVetType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

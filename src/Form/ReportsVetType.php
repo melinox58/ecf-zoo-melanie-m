@@ -5,12 +5,9 @@ namespace App\Form;
 
 use App\Entity\Habitats;
 use App\Entity\ReportsVet;
-use Proxies\__CG__\App\Entity\Users;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -52,17 +49,13 @@ class ReportsVetType extends AbstractType
                 'label' => 'Choisir un habitat',
                 'mapped' => true,
             ])
-            // Ajoutez un champ pour l'état de l'animal
-            ->add('state', TextareaType::class, [
-                'required' => false,
-                'label' => 'État de l\'animal'
-            ])
             ->add('save', SubmitType::class, [
                 'label' => "Ajouter"
             ]);
             
         }
 
+     // Configurer les options du formulaire
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

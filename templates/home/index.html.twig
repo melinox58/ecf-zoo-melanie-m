@@ -33,7 +33,7 @@
 
 <div class="banner">
     <h4>Animaux favoris</h4>
-    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
 
 <section class="animaux">
@@ -120,7 +120,7 @@
 
 <div class="banner">
     <h4>Les habitats</h4>
-    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
     
 <section class="habitats">
@@ -130,7 +130,7 @@
             <div class='imgHab'>
             {% if habitat.images|length > 0 %}
                 {% for image in habitat.images %}
-                    <a href="{{ path('app_' ~ habitat.name|lower) }}"> 
+                    <a href="{{ path('app_' ~ habitat.name|lower) }}#top"> 
                         <img src="{{ asset('uploads/images/' ~ image.filePath) }}" alt="{{ habitat.name }}" class="img-fluid">
                     </a>
                 {% endfor %}
@@ -150,7 +150,7 @@
 
 <div class="banner">
     <h4>Nos services</h4>
-    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
     
 <section class="nos-services">
@@ -176,7 +176,7 @@
 
 <div class="banner">
     <h4>Avis</h4>
-    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
 
 <section id="avis" class="avis">
@@ -208,7 +208,7 @@
 
 <div class="banner" id="schedules">
     <h4>Horaires</h4>
-    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
 
 <div class="schedules">
@@ -241,7 +241,7 @@
 
 <div class="banner" id="search">
     <h4>Où nous trouver ?</h4>
-    <img src={{asset("/images/vecteurs/bg_headerbis.png")}} alt="Bannière colorée verte">
+    <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
 
 <div class="discover3">
