@@ -30,8 +30,8 @@
                                 <th>Race</th>
                                 <th>Habitat</th>
                                 <th>Repas</th>
+                                <th>État</th>
                                 <th>Actions</th>
-
                             </tr>
                         </thead>
                         <tbody class="animals">
@@ -59,7 +59,19 @@
                                         {% endif %}
                                     </td>
                                     <td class="action">
-                                        <a class ="btn btn-primary" href="{{ path('vet_report_add', { id: animal.id }) }}">Créer</a>
+                                        <form action="{{ path('animal_status_edit', {id: animal.id}) }}" method="post" class="status">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('edit_status_' ~ animal.id) }}">
+                                            <select name="state" class="form-select">
+                                                <option value="Bonne santé" {% if animal.state == 'Bonne santé' %}selected{% endif %}>Bonne santé</option>
+                                                <option value="Santé moyenne" {% if animal.state == 'Santé moyenne' %}selected{% endif %}>Santé moyenne</option>
+                                                <option value="Malade" {% if animal.state == 'Malade' %}selected{% endif %}>Malade</option>
+                                            </select>
+
+                                            <button type="submit" class="btn btn-sm btn-success mt-2"><i class="fa-solid fa-check"></i></button>
+                                        </form>
+                                    </td>
+                                    <td class="action">
+                                        <a class="btn btn-primary" href="{{ path('emp_report_add', { id: animal.id }) }}">Créer</a>
                                     </td>
                                 </tr>
                             {% endfor %}

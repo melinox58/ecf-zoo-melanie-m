@@ -1,6 +1,6 @@
 {
     "app": {
-        "path": "\/assets\/app-257c6025b030f10b835aaa5e2702484d.js",
+        "path": "\/assets\/app-df724ae8ef795734971d957040f0fcfd.js",
         "type": "js"
     },
     "\/assets\/bootstrap.js": {
@@ -61,6 +61,10 @@
     },
     "\/assets\/styles\/button.css": {
         "path": "\/assets\/styles\/button-3ae126da5bfa628f1e55d7456f5028cd.css",
+        "type": "css"
+    },
+    "\/assets\/styles\/veto.css": {
+        "path": "\/assets\/styles\/veto-3762b291a4e872ccd8323503b43f5272.css",
         "type": "css"
     },
     "@symfony\/stimulus-bundle": {

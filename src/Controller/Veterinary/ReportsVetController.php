@@ -2,6 +2,7 @@
 
 namespace App\Controller\Veterinary;
 
+use App\Entity\Animals;
 use App\Entity\Habitats;
 use App\Entity\ReportsVet;
 use App\Form\StatusAnimFormType;
@@ -25,6 +26,7 @@ class ReportsVetController extends AbstractController
     private $usersRepository;
     private $animalsRepository;
     private $reportsRepository;
+    private $entityManager;
 
      // Injection des services nécessaires
     public function __construct(
@@ -32,13 +34,14 @@ class ReportsVetController extends AbstractController
         ReportsVetRepository $reportsVetRepository,
         UsersRepository $usersRepository,
         AnimalsRepository $animalsRepository,
-        ReportsRepository $reportsRepository
+        ReportsRepository $reportsRepository,
+        EntityManagerInterface $entityManager
     ) {
         $this->habitatsRepository = $habitatsRepository;
         $this->reportsVetRepository = $reportsVetRepository;
         $this->usersRepository = $usersRepository;
         $this->reportsRepository = $reportsRepository;
-        $this->animalsRepository = $animalsRepository;
+        $this->entityManager = $entityManager;
     }
 
 
@@ -70,8 +73,6 @@ class ReportsVetController extends AbstractController
     }
 
 
-    // filtre animaux
-
     #[Route('/veterinary/reports', name: 'app_vet_anim')]
     public function report(Request $request, AnimalsRepository $animalsRepository): Response
     {
@@ -95,7 +96,7 @@ class ReportsVetController extends AbstractController
 
         // Exécuter la requête et obtenir les résultats
         $animals = $queryBuilder->getQuery()->getResult();
-        
+
         // Récupérer les races distinctes pour le filtre
         $races = $animalsRepository->createQueryBuilder('a')
             ->select('DISTINCT a.breed')
@@ -107,66 +108,6 @@ class ReportsVetController extends AbstractController
             'races' => $races,
         ]);
     }
-
-    //nouveau rapport animal
-
-    #[Route('/emp/report/add/{id}', name: 'vet_report_add')]
-    public function add(Request $request, EntityManagerInterface $entityManager, UsersRepository $usersRepository, $id): Response
-    {
-        $report = new ReportsVet();
-
-        // Récupérer l'animal par ID
-        $animal = $this->animalsRepository->find($id);
-        
-        if (!$animal) {
-            throw $this->createNotFoundException('Animal non trouvé');
-        }
-
-        // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
-
-        // Vérifier si l'utilisateur est connecté
-        if (!$user) {
-            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion
-        }
-
-        // Création du formulaire en passant l'utilisateur et l'animal
-        $form = $this->createForm(ReportsVetType::class, $report, [
-            'user' => $user,
-            'animal' => $animal,
-        ]);
-
-        // Traitement de la requête
-        $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $data = $form->getData();
-        
-        // Définir le poids et l'unité directement à partir du formulaire
-        $report->setWeight($data->getWeight());
-        $report->setUnit($data->getUnit());
-        
-        // Définir l'animal et l'utilisateur
-        $report->setIdAnimals($animal);
-        $report->setIdUsers($user);
-        $report->setDate(new \DateTime());
-        $report->setComment($data->getComment());
-
-        // Persister le rapport
-        $entityManager->persist($report);
-        $entityManager->flush();
-        
-        return $this->redirectToRoute('app_emp_anim');
-
-        //  // Ajouter un message flash
-        //  $this->addFlash('success', 'Rapport enregistré avec succès.');
-        }
-
-
-            return $this->render('veterinary/reports/add.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
 
 
     // -----------------Liste des rapports habitats-------------------------
@@ -242,108 +183,28 @@ class ReportsVetController extends AbstractController
         ]);
     }
 
-    #[Route('/veterinary/reports/status', name: 'vet_animal_status')]
-    public function animalStatus(Request $request, AnimalsRepository $animalsRepository, EntityManagerInterface $entityManager, HabitatsRepository $habitatsRepository): Response
+        // -----------------Status de l'animal-------------------------
+
+
+    #[Route(path: '/animal/{id}/status/edit', name: 'animal_status_edit')]
+    public function editStatus(Animals $animal, Request $request): Response
     {
-        // Récupérer les filtres
-        $breedFilter = $request->query->get('breed');
-        $nameFilter = $request->query->get('name');
-        $habitatFilter = $request->query->get('habitat');
+        // Récupérer l'état du formulaire
+        $status = $request->request->get('state');
 
-        // Construire la requête de base avec jointure sur ReportsVet
-        $queryBuilder = $animalsRepository->createQueryBuilder('a')
-            ->leftJoin('a.idReportsVet', 'r')  // Jointure avec les rapports vétérinaires
-            ->addSelect('r')
-            ->leftJoin('a.idHabitats', 'h')   // Jointure avec l'habitat
-            ->addSelect('h')
-            ->orderBy('r.date', 'DESC'); // Trier les rapports par date décroissante
+        if ($status) {
+            // Appliquer l'état à l'animal
+            $animal->setState($status);
 
-        // Appliquer les filtres si fournis
-        if ($breedFilter) {
-            $queryBuilder->andWhere('a.breed = :breed')
-                        ->setParameter('breed', $breedFilter);
+            // Sauvegarder les modifications
+            $this->entityManager->flush();
+
+            // Ajouter un message de succès
+            $this->addFlash('success', 'L\'état de l\'animal a été mis à jour.');
         }
 
-        if ($nameFilter) {
-            $queryBuilder->andWhere('a.nameAnimal LIKE :name')
-                        ->setParameter('name', '%' . $nameFilter . '%');
-        }
-
-        if ($habitatFilter) {
-            $queryBuilder->andWhere('h.name = :habitat') // Filtrer sur le nom de l'habitat
-                        ->setParameter('habitat', $habitatFilter);
-        }
-
-        // Exécuter la requête pour récupérer les animaux filtrés
-        $animals = $queryBuilder->getQuery()->getResult();
-
-        // Récupérer les habitats distincts pour le filtre
-        $habitats = $habitatsRepository->createQueryBuilder('h')
-            ->select('DISTINCT h.name')
-            ->getQuery()
-            ->getResult();
-
-        // Récupérer les races distinctes pour le filtre
-        $races = $animalsRepository->createQueryBuilder('a')
-            ->select('DISTINCT a.breed')
-            ->getQuery()
-            ->getResult();
-
-        return $this->render('/veterinary/reports/status.html.twig', [
-            'animals' => $animals,
-            'habitats' => $habitats,
-            'races' => $races,  // Transmettre les races à la vue
-            'breedFilter' => $breedFilter,
-            'nameFilter' => $nameFilter,
-            'habitatFilter' => $habitatFilter
-        ]);
+        // Rediriger vers la page de gestion des animaux
+        return $this->redirectToRoute('app_vet_anim');
     }
 
-    #[Route('/veterinary/reports/status/add/{id}', name: 'vet_add_animal_status')]
-    public function addAnimalStatus(
-        int $id, 
-        Request $request, 
-        AnimalsRepository $animalsRepository, 
-        EntityManagerInterface $entityManager, 
-        Security $security
-    ): Response {
-        $animal = $animalsRepository->find($id);
-        
-        if (!$animal) {
-            throw $this->createNotFoundException("Animal introuvable.");
-        }
-
-        $user = $security->getUser();  // Utilisateur connecté
-        if (!$user) {
-            throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter un rapport.');
-        }
-
-        $reportVet = new ReportsVet();
-        $reportVet->setIdAnimals($animal);
-        $reportVet->setDate(new \DateTime());  // Date automatique
-
-        // Création du formulaire avec les options utilisateur et habitats
-        $form = $this->createForm(StatusAnimFormType::class, $reportVet, [
-            'user' => $user,   // Fournir l'utilisateur
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $reportVet->setIdUsers($user);  // Lier l'utilisateur directement dans l'entité
-            $entityManager->persist($reportVet);
-            $entityManager->flush();
-            
-            return $this->redirectToRoute('vet_animal_status');  // Redirection vers la liste des états
-        }
-
-        return $this->render('veterinary/reports/add_status.html.twig', [
-            'form' => $form->createView(),
-            'animal' => $animal,
-        ]);
-    }
 }
-
-
-
-
-

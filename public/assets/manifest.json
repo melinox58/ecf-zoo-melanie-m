@@ -3,7 +3,7 @@
     "@symfony\/stimulus-bundle\/loader.js": "\/assets\/@symfony\/stimulus-bundle\/loader-763a9e2ea6bbeffec5de3eee8492b6ac.js",
     "@symfony\/ux-turbo\/turbo_controller.js": "\/assets\/@symfony\/ux-turbo\/turbo_controller-ce5e32dafdec0b7752f02e3e2cb25751.js",
     "@symfony\/ux-turbo\/turbo_stream_controller.js": "\/assets\/@symfony\/ux-turbo\/turbo_stream_controller-50eae293c1db68bd470da3c229c44f7a.js",
-    "app.js": "\/assets\/app-257c6025b030f10b835aaa5e2702484d.js",
+    "app.js": "\/assets\/app-df724ae8ef795734971d957040f0fcfd.js",
     "bootstrap.js": "\/assets\/bootstrap-7d6354d3e22b86483b44e32a99d2c73c.js",
     "controllers\/hello_controller.js": "\/assets\/controllers\/hello_controller-87b6385829902356204e988334af9bf5.js",
     "images\/admin.jpg": "\/assets\/images\/admin-f4ba72d240d50a44fbe917dd5cdd87e4.jpg",
@@ -126,6 +126,7 @@
     "styles\/home.css": "\/assets\/styles\/home-84bd9c103cf77e208c1c7b13da3774a9.css",
     "styles\/login.css": "\/assets\/styles\/login-5e24eb4913cf0c6308e5bfa39bf5b6e3.css",
     "styles\/services.css": "\/assets\/styles\/services-8b4c6660183b8b38c88e4156f4da5e61.css",
+    "styles\/veto.css": "\/assets\/styles\/veto-3762b291a4e872ccd8323503b43f5272.css",
     "vendor\/@hotwired\/stimulus\/stimulus.index.js": "\/assets\/vendor\/@hotwired\/stimulus\/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
     "vendor\/@hotwired\/turbo\/turbo.index.js": "\/assets\/vendor\/@hotwired\/turbo\/turbo.index-57ab2adf076a10f2234da506ad1d5a0d.js"
 }

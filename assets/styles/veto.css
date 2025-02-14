@@ -1,0 +1,9 @@
+form.status{
+    display: flex;
+    flex-direction: row;
+    width: 16vw;
+}
+
+.fa-check{
+    color: white;
+}

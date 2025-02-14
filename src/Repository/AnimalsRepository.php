@@ -56,4 +56,5 @@ class AnimalsRepository extends ServiceEntityRepository
     
         return $this;
     }
+    
 }

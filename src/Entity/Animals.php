@@ -43,12 +43,8 @@ class Animals
     #[ORM\Column(type: 'integer')] 
     private int $views = 0; 
 
-    /**
-     * @var Collection<int, ReportsVet>
-     */
-    #[ORM\OneToMany(targetEntity: ReportsVet::class, mappedBy: 'idAnimals')]
+    #[ORM\OneToMany(mappedBy: 'idAnimals', targetEntity: ReportsVet::class, cascade: ['persist', 'remove'])]
     private Collection $idReportsVet;
-
 
     public function __construct()
     {
