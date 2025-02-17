@@ -184,7 +184,7 @@ p.card-text {
     text-align: justify;
     color: #4B543B;
     font-family: lemonada;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     overflow: auto;
     text-overflow: ellipsis;
     height: 20vh;
@@ -264,7 +264,7 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
   
   
   
-@media screen and (max-width: 767px){
+@media screen and (max-width: 650px){
     .habitat {
         height: auto;
     }
@@ -301,13 +301,17 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
         margin-bottom: 9%;
     }
 
+    .imgHab {
+        width: 268%;
+    }
+
     .animaux {
         display: flex;
     }
 
     .animaux .card {
         width: 49%;
-        height: 48.8vh;
+        height: 54vh;
     }
 
     .animaux .row{
@@ -327,7 +331,7 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
     }
 
     p.card-text {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
 
     a.jungle.btn.btn-primary,
@@ -337,12 +341,12 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
         font-size: 0.4rem;
         margin-top: -9%;
     }
-    
-    .modal {
-        background-image: none;
-        width: 67vw;
-        margin-top: 18.8vh;
-        margin-left: 17.6%;
+
+    .cardModal-img{
+        width: 30%;
+        margin: auto;
     }
+    
+
       
 }

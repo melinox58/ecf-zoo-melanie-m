@@ -1,7 +1,0 @@
-framework:
-    asset_mapper:
-        paths:
-            - assets/
-    assets:
-        enabled: true
-        base_path: '/'

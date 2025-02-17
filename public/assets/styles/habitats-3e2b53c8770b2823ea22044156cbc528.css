@@ -66,7 +66,7 @@
 .img-fluid{
     display: flex;
     justify-content: space-around; /* Pour espacer les éléments uniformément */
-    width: 85vw;
+    width: 20%;
     margin-top: 2%;
     margin-bottom: 8%;
     height: 80vh;
@@ -79,8 +79,6 @@
     flex-direction: column; /* Aligne les éléments en colonne */
     align-items: center; 
     clip-path: ellipse(40% 50%);
-    width: 65%;
-    height: auto;
 }
 
 
@@ -93,16 +91,19 @@
     margin-top: 4%;
     margin-bottom: 3%;
     align-items: center;
-    margin-left: 10%;
 }
 
+.habitats div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
 
 .habitats .legend{
     font-family: "Lemonada", cursive;
     margin-top: 2%;
     color: #4B543B;
     font-size: 1rem;
-    text-align: center;
 }
 
 .imgHab img{

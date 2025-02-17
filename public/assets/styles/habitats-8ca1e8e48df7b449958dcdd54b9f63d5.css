@@ -66,7 +66,7 @@
 .img-fluid{
     display: flex;
     justify-content: space-around; /* Pour espacer les éléments uniformément */
-    width: 85vw;
+    width: 20%;
     margin-top: 2%;
     margin-bottom: 8%;
     height: 80vh;
@@ -79,8 +79,6 @@
     flex-direction: column; /* Aligne les éléments en colonne */
     align-items: center; 
     clip-path: ellipse(40% 50%);
-    width: 65%;
-    height: auto;
 }
 
 
@@ -93,16 +91,19 @@
     margin-top: 4%;
     margin-bottom: 3%;
     align-items: center;
-    margin-left: 10%;
 }
 
+.habitats div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
 
 .habitats .legend{
     font-family: "Lemonada", cursive;
     margin-top: 2%;
     color: #4B543B;
     font-size: 1rem;
-    margin-left: 22%;
 }
 
 .imgHab img{
@@ -112,8 +113,8 @@
     margin: 6%;
 }
 
-div.imgHab {
-    width: 85vw;
+.imgHab {
+    width: 100%;
     display: flex;
     align-items: center;
   }
@@ -183,7 +184,7 @@ p.card-text {
     text-align: justify;
     color: #4B543B;
     font-family: lemonada;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     overflow: auto;
     text-overflow: ellipsis;
     height: 20vh;
@@ -263,7 +264,7 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
   
   
   
-@media screen and (max-width: 650px){
+@media screen and (max-width: 767px){
     .habitat {
         height: auto;
     }
@@ -300,17 +301,13 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
         margin-bottom: 9%;
     }
 
-    .imgHab {
-        width: 268%;
-    }
-
     .animaux {
         display: flex;
     }
 
     .animaux .card {
         width: 49%;
-        height: 54vh;
+        height: 48.8vh;
     }
 
     .animaux .row{
@@ -330,7 +327,7 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
     }
 
     p.card-text {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
     }
 
     a.jungle.btn.btn-primary,
@@ -340,12 +337,12 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
         font-size: 0.4rem;
         margin-top: -9%;
     }
-
-    .cardModal-img{
-        width: 30%;
-        margin: auto;
-    }
     
-
+    .modal {
+        background-image: none;
+        width: 67vw;
+        margin-top: 18.8vh;
+        margin-left: 17.6%;
+    }
       
 }

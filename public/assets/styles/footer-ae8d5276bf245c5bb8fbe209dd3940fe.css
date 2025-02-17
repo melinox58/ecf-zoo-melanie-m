@@ -9,17 +9,15 @@ footer{
     align-items: center;
     background-color: #4B543B;
     width: 100vw;
-    height: 15vh;
+    height: 19vh;
 }
 
 .container-fluid-foot{
     display: flex;
     flex-direction: row;
     width: 95vw;
-    gap: 30%;
-    justify-content: center;
     align-items: center;
-    margin-top: 4%;
+    margin-top: 3%;
 }
 
 .gauche{
@@ -28,25 +26,27 @@ footer{
     justify-content: center;
     align-items: center;
     margin-top: 1%;
+    flex: 1;
 }
 
 h1{
     color: #DCE2AA;
     font-family: 'Piedra','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.3rem;
+    font-size: 2.5rem;
 }
 
 .suivez{
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
 }
 
 h2{
     display: flex;
     color: #DCE2AA;
     font-family: 'Lemon', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.7rem;
+    font-size: 2.5rem;
     width: 105%;
 }
 
@@ -74,6 +74,7 @@ h7{
 
 .lien_footer {
     padding-top: 2%;
+    flex: 1;
 }
 
   
@@ -96,7 +97,6 @@ h7{
     font-size: 0.5rem;
     color: #DCE2AA;
     margin-bottom: 4%;
-    margin-top: 2%;
 }
 
 @media screen and (max-width: 650px) {

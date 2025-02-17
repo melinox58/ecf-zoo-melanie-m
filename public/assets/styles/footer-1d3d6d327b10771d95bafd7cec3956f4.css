@@ -55,6 +55,7 @@ h2{
     gap: 51%;
     width: 40%;
     text-align: center;
+    margin-left: -24%;
 }
 
 .bootstrap-icons i{
@@ -74,9 +75,6 @@ h7{
 .lien_footer {
     padding-top: 2%;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
   
@@ -89,13 +87,19 @@ h7{
     font-size: 1rem;
 }
 
+.bi-instagram, .bi-twitter-x{
+    font-size: 2rem;
+    color: #4B543B;
+    text-decoration: none;
+}
+
 .copy{
     font-size: 0.5rem;
     color: #DCE2AA;
     margin-bottom: 4%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 650px) {
 
     footer {
         height: 14vh;
@@ -121,7 +125,6 @@ h7{
     h1 {
         font-size: 0.9rem;
         width: 20vw;
-        text-align: center;
     }
     
     h7 {
