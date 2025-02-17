@@ -81,6 +81,47 @@
     margin-top: 6%;
 }
 
+.visited{
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+
+.visiteh{
+    display: flex;
+    align-items: center;
+}
+
+.visite{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.visiteh img{
+    width: 15%;
+    height: auto;
+}
+
+.visiteh p{
+    width: 60vw;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: right;
+}
+
+.visite p{
+    width: 60vw;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: left;
+}
 
 div.service-item .img-fluid{
     width: 30vw;
@@ -169,8 +210,10 @@ div.service-item {
     }
 
     .panels p {
-        font-size: 0.8rem;
-        text-align: center;
+        font-size: 0.5rem;
+        margin-top: 5%;
+        font-family: lemonada;
+        color: #4B543B;
     }
 
     div.service-item .img-fluid {

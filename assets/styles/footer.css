@@ -52,9 +52,9 @@ h2{
 
 .bootstrap-icons{
     display: flex;
-    gap: 51%;
-    width: 40%;
+    gap: 27%;
     text-align: center;
+    justify-content: center;
 }
 
 .bootstrap-icons i{
@@ -62,7 +62,6 @@ h2{
     font-size: 1.2rem;
     color: #DCE2AA;
     text-decoration: none;
-    gap: 2rem;
 }
 
 h7{
@@ -90,7 +89,7 @@ h7{
 }
 
 .copy{
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     color: #DCE2AA;
     margin-bottom: 4%;
 }
@@ -104,10 +103,6 @@ h7{
     h2{
         font-size: 1.2rem;
         width: 44vw;
-    }
-
-    .bootstrap-icons {
-        gap: 22%;
     }
 
     .lien_footer a{
@@ -129,6 +124,6 @@ h7{
     }
     
     .copy {
-        font-size: 0.3rem;
+        font-size: 0.4rem;
     }
 }

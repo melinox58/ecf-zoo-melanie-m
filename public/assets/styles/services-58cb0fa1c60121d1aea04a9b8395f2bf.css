@@ -47,9 +47,7 @@
 
 /*Section carousel*/
 .carousel{
-    width: 58%;
-    margin: auto;
-    padding-bottom: 5%;
+    margin-bottom: 5%;
 }
 
 .carouselExampleAutoplaying{
@@ -81,6 +79,47 @@
     margin-top: 6%;
 }
 
+.visited{
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+
+.visiteh{
+    display: flex;
+    align-items: center;
+}
+
+.visite{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.visiteh img{
+    width: 15%;
+    height: auto;
+}
+
+.visiteh p{
+    width: 60vw;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: right;
+}
+
+.visite p{
+    width: 60vw;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: left;
+}
 
 div.service-item .img-fluid{
     width: 30vw;
@@ -144,43 +183,47 @@ div.service-item {
     
     .tranparentserv {
         height: 6%;
-        margin-top: 74.9%;
+        margin-top: 70%;
         width: 67.6%;
     }
 
     .servincl {
-        margin-top: 75.2%;
+        margin-top: 69%;
     }
 
     .servincl p{
         margin-top: 8%;
     }
 
-    .carousel {
-        margin-bottom: 4%;
-        width: 80%;
-        margin: auto;
-        padding-top: 10%;
-        padding-bottom: 5%;
+    .servRest p{
+        margin-top: 2%;
+        width: 85vw;
+        font-size: 0.5rem;
     }
 
-    div.service-item {
-        flex-direction: column;
+    .visiteh p {
+        font-size: 0.5rem;
+    }
+
+    .visiteh img {
+        width: 43%;
+    }
+
+    .visite p {
+        font-size: 0.5rem;
+    }
+
+    .visite img {
+        width: 94%;
+        padding: 5%;
+        margin-top: 6%;
     }
 
     .panels p {
-        font-size: 0.8rem;
-        text-align: center;
-    }
-
-    div.service-item .img-fluid {
-        width: 75vw;
-    }
-
-    div .habitmar,
-    div .habitjung,
-    div .habitsav {
-        font-size: 0.8rem;
+        font-size: 0.5rem;
+        margin-top: 5%;
+        font-family: lemonada;
+        color: #4B543B;
     }
 
     .panels {

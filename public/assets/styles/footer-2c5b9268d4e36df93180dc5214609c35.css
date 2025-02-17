@@ -16,9 +16,8 @@ footer{
     display: flex;
     flex-direction: row;
     width: 95vw;
-    justify-content: center;
     align-items: center;
-    margin-top: 4%;
+    margin-top: 3%;
 }
 
 .gauche{
@@ -33,7 +32,7 @@ footer{
 h1{
     color: #DCE2AA;
     font-family: 'Piedra','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.3rem;
+    font-size: 2.5rem;
 }
 
 .suivez{
@@ -47,16 +46,15 @@ h2{
     display: flex;
     color: #DCE2AA;
     font-family: 'Lemon', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.7rem;
+    font-size: 2.5rem;
     width: 105%;
 }
 
 .bootstrap-icons{
     display: flex;
     gap: 51%;
-    width: 40%;
     text-align: center;
-    margin-left: -24%;
+    justify-content: center;
 }
 
 .bootstrap-icons i{
@@ -64,7 +62,6 @@ h2{
     font-size: 1.2rem;
     color: #DCE2AA;
     text-decoration: none;
-    gap: 2rem;
 }
 
 h7{
@@ -76,6 +73,9 @@ h7{
 .lien_footer {
     padding-top: 2%;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
   
@@ -85,23 +85,16 @@ h7{
     font-family: 'lemonada',cursive;
     color: #DCE2AA;
     text-decoration: none;
-    font-size: 0.7rem;
-}
-
-.bi-instagram, .bi-twitter-x{
-    font-size: 2rem;
-    color: #4B543B;
-    text-decoration: none;
+    font-size: 1rem;
 }
 
 .copy{
     font-size: 0.5rem;
     color: #DCE2AA;
     margin-bottom: 4%;
-    margin-top: 2%;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 767px) {
 
     footer {
         height: 14vh;
@@ -127,6 +120,7 @@ h7{
     h1 {
         font-size: 0.9rem;
         width: 20vw;
+        text-align: center;
     }
     
     h7 {

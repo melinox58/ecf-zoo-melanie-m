@@ -26,10 +26,6 @@
     margin-top: 2.5%;
 }
 
-.titleServ .rectangle{
-    height: 10vh;
-}
-
 .habitincl{
     position: absolute;
     z-index: 5;
@@ -267,10 +263,6 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
 @media screen and (max-width: 767px){
     .habitat {
         height: auto;
-    }
-
-    .titleServ .rectangle {
-        height: 5vh;
     }
 
     .h3Serv {

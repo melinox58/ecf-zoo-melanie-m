@@ -52,10 +52,9 @@ h2{
 
 .bootstrap-icons{
     display: flex;
-    gap: 51%;
-    width: 40%;
+    gap: 27%;
     text-align: center;
-    margin-left: -24%;
+    justify-content: center;
 }
 
 .bootstrap-icons i{
@@ -63,7 +62,6 @@ h2{
     font-size: 1.2rem;
     color: #DCE2AA;
     text-decoration: none;
-    gap: 2rem;
 }
 
 h7{
@@ -74,8 +72,10 @@ h7{
 
 .lien_footer {
     padding-top: 2%;
-    padding-left: 2%;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
   
@@ -88,19 +88,13 @@ h7{
     font-size: 1rem;
 }
 
-.bi-instagram, .bi-twitter-x{
-    font-size: 2rem;
-    color: #4B543B;
-    text-decoration: none;
-}
-
 .copy{
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     color: #DCE2AA;
     margin-bottom: 4%;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 767px) {
 
     footer {
         height: 14vh;
@@ -109,10 +103,6 @@ h7{
     h2{
         font-size: 1.2rem;
         width: 44vw;
-    }
-
-    .bootstrap-icons {
-        gap: 22%;
     }
 
     .lien_footer a{
@@ -126,6 +116,7 @@ h7{
     h1 {
         font-size: 0.9rem;
         width: 20vw;
+        text-align: center;
     }
     
     h7 {
@@ -133,6 +124,6 @@ h7{
     }
     
     .copy {
-        font-size: 0.3rem;
+        font-size: 0.4rem;
     }
 }
