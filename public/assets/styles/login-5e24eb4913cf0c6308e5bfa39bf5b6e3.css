@@ -66,7 +66,7 @@ form.login {
 
 
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 767px){
     .rond {
         width: 30vw;
         height: 30vw;

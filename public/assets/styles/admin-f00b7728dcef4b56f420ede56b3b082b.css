@@ -98,7 +98,7 @@ td.image{
 }
 
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 767px){
 
     .dash{
         display: flex;

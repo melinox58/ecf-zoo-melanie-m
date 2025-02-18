@@ -1,0 +1,198 @@
+/* -----------------------------------SERVICES-PAGE-------------------------------------------- */
+
+.titleServ{
+    display: flex;
+    justify-content: center;
+}
+
+.h3Serv{
+    margin-top: 2.5%;
+}
+
+.service{
+    width: 90vw;
+    height: 80vh;
+    position: relative;
+    z-index: 0;
+    margin-top: 4%;
+    margin-bottom: 5%;
+}
+
+.tranparentserv{
+    width: 50vw;
+    height: 12vh;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    opacity: 70%;
+    margin-top: 42.6%;
+}
+
+.servincl{
+    position: absolute;
+    z-index: 5;
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 43.8%;
+}
+
+.nos-services .legend{
+    font-family: "Lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    margin-top: -8%;
+}
+
+/*Section carousel*/
+.carousel{
+    width: 58%;
+    margin: auto;
+    padding-bottom: 5%;
+}
+
+.carouselExampleAutoplaying{
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-item img {
+    width: 100%; /* Ajuste la largeur de l'image à 100% du conteneur */
+    height: 300%; /* Garde les proportions de l'image*/
+    object-fit: cover; /* Recadre l'image si nécessaire pour couvrir le conteneur */
+}
+
+
+/*Section services*/
+
+.visite img{
+    width: 32%;
+    height: auto;
+    margin: 2%;
+}
+
+.servRest{
+    font-family: "lemonada", cursive;
+    color: #4B543B;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 4%;
+    margin-top: 6%;
+}
+
+
+div.service-item .img-fluid{
+    width: 30vw;
+    height: auto;
+}
+
+div.service-item {
+    display: flex;
+    align-items: center;
+    width: 85vw;
+    margin-top: 2%;
+    margin-bottom: -2%;
+    padding: 2%;
+}
+  
+/*Section ecolo*/
+.panels{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5%;
+    width: 85vw;
+}
+
+.panels p{
+    font-family: lemonada;
+    color: #4B543B;
+}
+
+.panels img{
+    width: 42%;
+    margin-right: 8%;
+    margin-left: 8%;
+}
+
+.ecolo{
+    display: flex;
+    justify-content: center;
+}
+
+.ecolo img{
+    width: 15%;
+    margin-bottom: 2%;
+}
+
+@media screen and (max-width: 767px){
+
+    .h3Serv {
+        margin-top: 6%;
+    }
+
+    .service {
+        width: 85vw;
+        height: auto;
+        margin-bottom: 8%;
+    }
+
+    .titleServ .rectangle {
+        height: 4vh;
+    }
+    
+    .tranparentserv {
+        height: 6%;
+        margin-top: 74.9%;
+        width: 67.6%;
+    }
+
+    .servincl {
+        margin-top: 75.2%;
+    }
+
+    .servincl p{
+        margin-top: 8%;
+    }
+
+    .carousel {
+        margin-bottom: 4%;
+        width: 80%;
+        margin: auto;
+        padding-top: 10%;
+        padding-bottom: 5%;
+    }
+
+    div.service-item {
+        flex-direction: column;
+    }
+
+    .panels p {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    div.service-item .img-fluid {
+        width: 75vw;
+    }
+
+    div .habitmar,
+    div .habitjung,
+    div .habitsav {
+        font-size: 0.8rem;
+    }
+
+    .panels {
+        flex-direction: column;
+        width: 85vw;
+    }
+
+    .panels img {
+        width: 45%;
+    }
+
+    .ecolo img {
+        width: 25%;
+    }
+}

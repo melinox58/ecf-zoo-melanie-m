@@ -1,0 +1,129 @@
+/* ----------------------------------------FOOTER-------------------------------------------------------- */
+
+footer{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background-color: #4B543B;
+    width: 100vw;
+    height: 19vh;
+}
+
+.container-fluid-foot{
+    display: flex;
+    flex-direction: row;
+    width: 95vw;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.gauche{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    flex: 1;
+}
+
+h1{
+    color: #DCE2AA;
+    font-family: 'Piedra','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5rem;
+}
+
+.suivez{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+h2{
+    display: flex;
+    color: #DCE2AA;
+    font-family: 'Lemon', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2.5rem;
+    width: 105%;
+}
+
+.bootstrap-icons{
+    display: flex;
+    gap: 27%;
+    text-align: center;
+    justify-content: center;
+}
+
+.bootstrap-icons i{
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #DCE2AA;
+    text-decoration: none;
+}
+
+h7{
+    font-family: 'lemonada',cursive;
+    font-size: 0.8rem;
+    color: #DCE2AA;
+}
+
+.lien_footer {
+    padding-top: 2%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  
+.lien_footer a{
+    display: flex;
+    flex-direction: column;
+    font-family: 'lemonada',cursive;
+    color: #DCE2AA;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.copy{
+    font-size: 0.7rem;
+    color: #DCE2AA;
+    margin-bottom: 4%;
+}
+
+@media screen and (max-width: 767px) {
+
+    footer {
+        height: 14vh;
+    }
+
+    h2{
+        font-size: 1.2rem;
+        width: 44vw;
+    }
+
+    .lien_footer a{
+        font-size: 0.4rem;
+    }
+    
+    .container-fluid-foot {
+        gap: 10%;
+      }
+    
+    h1 {
+        font-size: 0.9rem;
+        width: 20vw;
+        text-align: center;
+    }
+    
+    h7 {
+        font-size: 0.4rem;
+    }
+    
+    .copy {
+        font-size: 0.4rem;
+    }
+}
