@@ -300,12 +300,6 @@ div.show:nth-child(4) > div:nth-child(1) > div:nth-child(1) {
         margin-bottom: 16.8%;
     }
 
-    .habitmar,
-    .habitjung,
-    .habitsav{
-        padding: 0;
-    }
-
     .hab p {
         font-size: 0.5rem;
     }
