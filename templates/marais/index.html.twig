@@ -21,9 +21,9 @@
 </div>
 
 <section class="latest-report">
-    <h4>Dernier rapport vétérinaire sur cet habitat</h4>
+    <h4>Dernier rapport vétérinaire</h4>
     {% if latestReport %}
-    <p>Dernier rapport vétérinaire pour cet habitat : {{ latestReport.date|date('d-m-Y H:i') }}</p>
+    <p>{{ latestReport.date|date('d-m-Y H:i') }}</p>
     <p>{{ latestReport.comment }}</p>
 {% else %}
     <p>Aucun rapport vétérinaire disponible pour cet habitat.</p>
