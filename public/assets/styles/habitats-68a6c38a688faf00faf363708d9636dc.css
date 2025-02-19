@@ -48,6 +48,9 @@
     color: #4B543B;
     font-size: 1rem;
     text-align: center;
+    width: 85vw;
+    margin-top: -5%;
+    margin-bottom: 5%;
 }
 
 .habitat{
@@ -72,6 +75,10 @@
     flex-direction: column; /* Aligne les éléments en colonne */
     align-items: center; 
     clip-path: ellipse(40% 50%);
+}
+
+.imgHab{
+    width: 85vw;
 }
 
 div.imgHab a {
@@ -111,7 +118,7 @@ div.imgHab a {
 }
 
 .imgHab {
-    width: 85vw;
+    width: 100%;
     display: flex;
     align-items: center;
   }

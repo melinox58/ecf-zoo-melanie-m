@@ -12,7 +12,7 @@
 
 .rectangle{
     width: 50vw;
-    height: 10.5vh;
+    height: 13vh;
     position: absolute;
     z-index: 2;
     background-color: white;
@@ -37,7 +37,6 @@ h3{
     z-index: 0;
     margin-top: 4%;
     margin-bottom: 10%;
-    object-fit: cover;
 }
 
 /*rectangle transparent + txt*/
@@ -161,7 +160,7 @@ dl, ol, ul {
 /*Modal Avis*/
 
 .modal {
-    background-image: url('../images/background_avis.jpg');
+    background-image: url("../images/background_avis-58aefd290e1962f481c5b065b43de46d.jpg");
     background-size: cover;
     width: 57vw;
     height: 67vh;
@@ -293,7 +292,6 @@ iframe{
     .accueil{
         height: 100%;
         margin-top: 10%;
-
     }
 
     .rectangle{

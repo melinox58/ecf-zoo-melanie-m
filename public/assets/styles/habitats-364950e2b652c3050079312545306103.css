@@ -48,6 +48,9 @@
     color: #4B543B;
     font-size: 1rem;
     text-align: center;
+    width: 85vw;
+    margin-top: -5%;
+    margin-bottom: 5%;
 }
 
 .habitat{
