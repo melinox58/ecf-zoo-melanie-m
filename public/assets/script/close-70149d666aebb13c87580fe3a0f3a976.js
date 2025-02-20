@@ -1,16 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     let navbarMain = document.getElementById("navbarNavAltMarkup");
     let navbarAdmin = document.getElementById("navbarAdmin");
-
+    
+    let burgerMain = document.querySelector(".navbar-toggler[data-bs-target='#navbarNavAltMarkup']");
+    let burgerAdmin = document.querySelector(".navbar-toggler[data-bs-target='#navbarAdmin']");
+    
     let navLinksMain = document.querySelectorAll("#navbarNavAltMarkup .nav-link");
     let navLinksAdmin = document.querySelectorAll("#navbarAdmin .btnRegister");
 
     function closeNavbar(navbar) {
         if (navbar.classList.contains("show")) {
-            let bsCollapse = bootstrap.Collapse.getInstance(navbar);
-            if (bsCollapse) {
-                bsCollapse.hide();
-            }
+            let bsCollapse = new bootstrap.Collapse(navbar, { toggle: false });
+            bsCollapse.hide();
         }
     }
 
@@ -31,4 +32,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    // Fermer le menu principal si on reclique sur le bouton burger (mobile)
+    if (burgerMain) {
+        burgerMain.addEventListener("click", function () {
+            closeNavbar(navbarMain);
+        });
+    }
+
+    // Fermer le menu admin si on reclique sur le bouton burger (mobile)
+    if (burgerAdmin) {
+        burgerAdmin.addEventListener("click", function () {
+            closeNavbar(navbarAdmin);
+        });
+    }
 });

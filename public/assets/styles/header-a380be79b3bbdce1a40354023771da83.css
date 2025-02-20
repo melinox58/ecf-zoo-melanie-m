@@ -3,7 +3,7 @@ header{
     flex: 1;
 }
 .navbar{
-    background-image: url("../images/bg_header.png");
+    background-image: url("../images/bg_header-d269c2ffae1a15d221588dd007641ad7.png");
     background-size: cover;
     width: 100vw;
     height: 12vh;
@@ -87,12 +87,6 @@ font-size: 1rem;
         position: fixed;
         right: 10%;
       }
-
-    #header .navbar-collapse {
-        background: white;
-        margin-top: 60.7%;
-        box-shadow: 0 4px 4px lightgray;
-    }
       
     .banner img{
         height: auto;
@@ -107,16 +101,15 @@ font-size: 1rem;
     }
 
     a.nav-link:nth-child(5) {
-        font-size: 0.8rem;
-        margin: 0;
+    font-size: 0.7rem;
     }
 
     a.nav-link:nth-child(6) {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
       
     .collapse a {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     .fa-solid {
