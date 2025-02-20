@@ -14,24 +14,25 @@
     margin-right: 2%;
     width: 50%;
     font-size: 1rem;
-    font-family: lemonada;
-    color: #4B543B;
 }
+  
+
 
 button#contact_save {
     background-color: #8ED081;
     border: none;
     font-family: "Lemon", serif;
-    width: 6vw;
+    width: 12%;
     font-size: 1rem;
+    margin-left: 48%;
 }
 
 .contact {
-    width: 85vw;
+    width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3.4vw;
+    margin-bottom: 2vw;
     flex: 1;
   }
 
@@ -43,39 +44,36 @@ button#contact_save {
     align-items: center;
 }
 
-textarea.form-control {
-    height: 19.8vh;
-  }  
-
 .col {
     flex:1 0 0%;
     width: 80%;
     margin-top: 1.5%;
-    padding-left: 5%;
     }
 
+    #contact_save {
+        width: 99%;
+        font-size: 0.5rem;
+    }
 
 
 @media screen and (max-width: 767px){
 
-    button#contact_save {
-        width: 23vw;
-        margin-bottom: 10%;
-        font-size: 0.8rem;
-    }
+    
 
-    .form-label {
-        font-size: 1rem;
+    button#contact_save {
+        width: 20vw;
+        margin-bottom: 10%;
+        font-size: 0.5rem;
+        margin-left: 43%;
     }
 
     .col {
-        margin-top: 8.1%;
-        padding: 0;
+        margin-top: 15%;
     }
 
     .contact {
-        width: 158vw;
-        margin-bottom: 18.9vw;
+        width: 137vw;
+        margin-bottom: 2vw;
     }
 
     .mb-3 {

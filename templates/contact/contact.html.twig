@@ -3,10 +3,11 @@
 {% block title %}Nous contacter{% endblock %}
 
 {% block body %}
-    <h4>Nous contacter</h4>
+    
 <section class="contact">
-    {{ form_start(form, {'attr': {'data-turbo': 'false'}}) }}
 
+    {{ form_start(form, {'attr': {'data-turbo': 'false'}}) }}
+    <h4>Nous contacter</h4>
     <div class="col">
         <div class="col-sm">{{ form_row(form.name) }}</div>
         <div class="col-sm">{{ form_row(form.email) }}</div>
