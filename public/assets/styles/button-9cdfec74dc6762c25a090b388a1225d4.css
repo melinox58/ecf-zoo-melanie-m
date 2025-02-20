@@ -17,11 +17,6 @@ button.btn.btnRegister{
     color: white;
 }
 
-#aside a.btn{
-    text-shadow: none;
-    font-size: 1rem;
-}
-
 a.btnRegister{
     color: white;
     font-family: 'Lemonada', serif;

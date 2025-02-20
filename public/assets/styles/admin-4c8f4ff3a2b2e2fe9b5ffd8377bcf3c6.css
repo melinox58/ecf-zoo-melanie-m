@@ -1,6 +1,6 @@
 /* ----------------------------------ADMIN-PAGE------------------------------------ */
 
-#aside {
+aside {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -9,13 +9,6 @@
     gap: 2%;
     height: 60%;
 }
-
-#navAdmin {
-    background-image: none;
-    box-shadow: none;
-    width: 100%;
-    height: auto;
-  }
 
 .col-9 img{
     width: 50%;
@@ -58,11 +51,6 @@ main h1{
     margin-bottom: 3%;
 }
 
-.bg-body-tertiary {
-    background-color:rgba(248, 249, 250, 0) !important;
-  }
-  
-  
 .table-responsive{
     width: 70vw;
     height: auto;
@@ -137,19 +125,6 @@ td.image{
         position: absolute;
     }
 
-    header{
-        flex: none;
-    }
-
-    
-    #navbarAdmin{
-        position: absolute;
-        top: 100%;
-        margin: 0;
-        background: none;
-    }
-      
-
     main.col-9{
         width: 90vw;
         display: flex;
@@ -169,6 +144,7 @@ td.image{
         width: 85vw;
         display: flex;
         flex-wrap: wrap;
+        height: 18vh;
     }
     
     .table-responsive {
@@ -184,10 +160,6 @@ td.image{
         margin-top: -28%;
         width: 85vw;
         text-align: center;
-        font-size: 2rem;
     }
 
-    .hello {
-        font-size: 1rem;
-      }
 }

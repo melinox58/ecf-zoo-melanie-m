@@ -17,11 +17,6 @@ button.btn.btnRegister{
     color: white;
 }
 
-#aside a.btn{
-    text-shadow: none;
-    font-size: 1rem;
-}
-
 a.btnRegister{
     color: white;
     font-family: 'Lemonada', serif;
@@ -109,8 +104,8 @@ button.btn.btn-danger{
     a.btnRegister {
         color: white;
         font-family: 'Lemonada', serif;
-        font-size: 0.8rem;
-        width: 44vw;
+        font-size: 0.5rem;
+        width: 20vw;
     }
 
     a.btn.btn-primary {

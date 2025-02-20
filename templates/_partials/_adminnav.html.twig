@@ -1,30 +1,79 @@
 <aside class="col-2 border border-light p-2">
     
-    
+
     {# Boutons pour l'espace admin #}
-    {% if is_granted('ROLE_ADMIN') %}
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_emp') }}">Employés</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_serv') }}">Services</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('schedules_list') }}">Horaires</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_hab') }}">Habitats</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_anim') }}">Animaux</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_employee_reports_list', { 'userId': app.user.id }) }}">Comptes rendus</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('admin_animals_view') }}">Statistiques</a></button>
-        {# Boutons pour l'espace employé visibles également pour l'admin #}
-        <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
-        <button type="button" class="btn btnRegister"><a href="{{ path('emp_opinion_list') }}">Avis à traiter</a></button>
-        
+{% if is_granted('ROLE_ADMIN') %}
+	<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navAdmin">
+		<div
+			class="container-fluid">
+			<!-- Bouton burger -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Contenu du menu -->
+			<div class="collapse navbar-collapse" id="navbarAdmin">
+				<div class="navbar-nav w-100 justify-content-center" id="aside">
+					<a class="btn btnRegister" href="{{ path('app_admin_emp') }}">Employés</a>
+					<a class="btn btnRegister" href="{{ path('app_admin_serv') }}">Services</a>
+					<a class="btn btnRegister" href="{{ path('schedules_list') }}">Horaires</a>
+					<a class="btn btnRegister" href="{{ path('app_admin_hab') }}">Habitats</a>
+					<a class="btn btnRegister" href="{{ path('app_admin_anim') }}">Animaux</a>
+					<a class="btn btnRegister" href="{{ path('app_employee_reports_list', { 'userId': app.user.id }) }}">Comptes rendus</a>
+					<a class="btn btnRegister" href="{{ path('admin_animals_view') }}">Statistiques</a>
+					<a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
+					<a class="btn btnRegister" href="{{ path('emp_opinion_list') }}">Avis à traiter</a>
+
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
     {% elseif is_granted('ROLE_EMPLOYEE') and not is_granted('ROLE_VETERINARY') %}
-        {# Affichage pour les employés uniquement #}
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_emp_anim') }}">Soigner un animal</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_admin_serv') }}">Modifier les services</a></button>
-        <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
-        <button type="button" class="btn btnRegister"><a href="{{ path('emp_opinion_list') }}">Avis à traiter</a></button>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navAdmin">
+		<div
+			class="container-fluid">
+			<!-- Bouton burger -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Contenu du menu -->
+			<div class="collapse navbar-collapse" id="navbarAdmin">
+				<div class="navbar-nav w-100 justify-content-center" id="aside">
+            {# Affichage pour les employés uniquement #}
+            <a class="btn btnRegister" href="{{ path('app_emp_anim') }}">Soigner un animal</a>
+            <a class="btn btnRegister" href="{{ path('app_admin_serv') }}">Modifier les services</a>
+            <a class="btn btnRegister" href="http://localhost:8025" target="_blank">Mail</a>
+            <a class="btn btnRegister" href="{{ path('emp_opinion_list') }}">Avis à traiter</a>
+
+				</div>
+			</div>
+		</div>
+	</nav>
 
     {% elseif is_granted('ROLE_VETERINARY') %}
-        {# Affichage pour les vétérinaires uniquement #}
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_emp_anim') }}">Comptes rendus employés</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('app_vet_anim') }}">Faire un compte rendu</a></button>
-        <button type="button" class="btn btnRegister"><a href="{{ path('vet_com_list') }}">Commentaire habitat</a></button>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navAdmin">
+		<div
+			class="container-fluid">
+			<!-- Bouton burger -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Contenu du menu -->
+			<div class="collapse navbar-collapse" id="navbarAdmin">
+				<div class="navbar-nav w-100 justify-content-center" id="aside">
+            {# Affichage pour les vétérinaires uniquement #}
+            <a class="btn btnRegister" href="{{ path('app_emp_anim') }}">Comptes rendus employés</a></button>
+            <a class="btn btnRegister" href="{{ path('app_vet_anim') }}">Faire un compte rendu</a></button>
+            <a class="btn btnRegister" href="{{ path('vet_com_list') }}">Commentaire habitat</a></button>
+				</div>
+			</div>
+		</div>
+	</nav>
     {% endif %}
+
+
 </aside>

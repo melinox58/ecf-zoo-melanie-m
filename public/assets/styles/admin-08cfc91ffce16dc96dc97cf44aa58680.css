@@ -13,8 +13,8 @@
 #navAdmin {
     background-image: none;
     box-shadow: none;
-    width: 100%;
-    height: auto;
+    flex-wrap: initial;
+    width: 11vw;
   }
 
 .col-9 img{
@@ -184,10 +184,6 @@ td.image{
         margin-top: -28%;
         width: 85vw;
         text-align: center;
-        font-size: 2rem;
     }
 
-    .hello {
-        font-size: 1rem;
-      }
 }

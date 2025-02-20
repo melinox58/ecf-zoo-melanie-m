@@ -10,6 +10,11 @@
     height: 60%;
 }
 
+#aside .collapse a {
+    font-size: 1.2rem;
+    text-shadow: none;
+}
+
 #navAdmin {
     background-image: none;
     box-shadow: none;
@@ -184,10 +189,6 @@ td.image{
         margin-top: -28%;
         width: 85vw;
         text-align: center;
-        font-size: 2rem;
     }
 
-    .hello {
-        font-size: 1rem;
-      }
 }

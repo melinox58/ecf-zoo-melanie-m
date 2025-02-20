@@ -10,13 +10,6 @@
     height: 60%;
 }
 
-#navAdmin {
-    background-image: none;
-    box-shadow: none;
-    width: 100%;
-    height: auto;
-  }
-
 .col-9 img{
     width: 50%;
     height: auto;
@@ -141,6 +134,12 @@ td.image{
         flex: none;
     }
 
+    #navAdmin {
+        background-image: none;
+        box-shadow: none;
+        flex-wrap: initial;
+        width: 11vw;
+      }
     
     #navbarAdmin{
         position: absolute;
@@ -184,10 +183,6 @@ td.image{
         margin-top: -28%;
         width: 85vw;
         text-align: center;
-        font-size: 2rem;
     }
 
-    .hello {
-        font-size: 1rem;
-      }
 }

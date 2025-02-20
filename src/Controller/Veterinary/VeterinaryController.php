@@ -60,7 +60,7 @@ class VeterinaryController extends AbstractController
         }
 
         // Rendre la vue avec tous les éléments nécessaires
-        return $this->render('veterinary/comHab/list.html.twig', [
+        return $this->render('veterinary/index.html.twig', [
             'user' => $user,
             'username' => $username,
             'habitats' => $habitats,

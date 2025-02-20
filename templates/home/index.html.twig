@@ -208,17 +208,17 @@
 {# Ouverture du modal avis #}
 {% include "opinion/index.html.twig" %}
 
-<div class="banner" id="schedules">
+<div class="banner">
     <h4>Horaires</h4>
     <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
 
-<div class="schedules">
+<div class="schedules" id="schedules">
     <table>
     <tbody>
         {% for schedule in schedules %}
             <tr>
-                <td colspan="4"><strong>{{ schedule['name'] }}</strong></td>
+                <td class="title" colspan="4"><strong>{{ schedule['name'] }}</strong></td>
             </tr>
             {% for entry in schedule['entries'] %}
                 <tr>
@@ -241,12 +241,12 @@
 </div>
 
 
-<div class="banner" id="search">
+<div class="banner">
     <h4>Où nous trouver ?</h4>
     <img src="{{asset("/images/vecteurs/bg_headerbis.png")}}" alt="Bannière colorée verte">
 </div>
 
-<div class="discover3">
+<div class="discover3" id="search">
     <h3 class="search">Nous avons hâte de vous accueillir <br>
         et de partager avec vous <br>
         la magie de la vie sauvage!</h3>

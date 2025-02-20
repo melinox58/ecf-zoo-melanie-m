@@ -18,5 +18,7 @@ import './styles/admin.css';
 import './styles/button.css';
 import './styles/veto.css';
 
+import ('https://fonts.googleapis.com/css2?family=Piedra&display=swap');
+
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
