@@ -42,7 +42,10 @@ class EmpController extends AbstractController
                 'required' => false,
                 'label' => 'Nouveau mot de passe'
             ])
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
+            ->add('save', SubmitType::class, [
+                'label' => 'Enregistrer',
+                'attr' => ['class' => 'btn btn-success']
+            ])
             ->getForm();
 
         $form->handleRequest($request);
