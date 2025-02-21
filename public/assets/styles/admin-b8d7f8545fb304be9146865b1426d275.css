@@ -18,7 +18,7 @@
   }
 
 .col-9 img{
-    width: 100%;
+    width: 50%;
     height: auto;
 }
   
@@ -149,9 +149,13 @@ td.image{
         margin: 0;
         background: none;
     }
+      
 
     main.col-9{
         width: 90vw;
+        display: flex;
+        align-content: center;
+        align-items: center;
     }
 
     main form label {
@@ -199,50 +203,6 @@ td.image{
     .hello {
         font-size: 1rem;
       }
-
-      .col-9 img {
-        width: 30.8vw;
-    }
-
-    .table-responsive {
-        font-size: 0.6rem;
-        overflow-x: scroll;
-        align-items: flex-start;
-    }
-
-    .table {
-        width:157.1%;
-      }
-
-      ol,ul {
-        margin-left: 0;
-        width: 33.9%;
-        text-align: center;
-    }
-
-    .table>thead {
-        text-align: center;
-      }
-      
-      li {
-        width: 67.4vw;
-      }
-
-      .h5, h5 {
-        font-size:0.9rem;
-        margin-bottom: 9.2%;
-        margin-top: 10%;
-      }
-
-      #sche > h4:nth-child(1) {
-        margin-bottom: -10%;
-      }
-      
-      #sche > form:nth-child(2) > div:nth-child(12) > input:nth-child(2) {
-        width: 30%;
-      }
-      
-      
 }
 
 @media screen and (max-height: 500px) and (orientation: landscape){
@@ -251,62 +211,4 @@ td.image{
         font-size: 1rem;
     }
 
-    .mb-3 {
-        margin-right: 21.7%;
-    }
-
-    .form-label {
-        width: 50%;
-        font-size: 0.7rem;
-    }
-
-    .form-control {
-        width:94.9%;
-        height: 5.9vh;
-      }
-      
-      main form label {
-        font-size: 0.7rem;
-    }
-
-    .col-form-label {
-        font-size: 0.9rem;
-    }
-
-    .form-check {
-        padding-left:4.7em;
-    }
-
-    .form-group {
-        width: 50%;
-        margin-left: 0;
-    }
-
-    .mt-3 {
-        margin-top:-30% !important;
-        margin-left: -3.9%;
-        font-size: 0.8rem;
-        width: 10.2vw;
-      }
-      
-      .col-9 h4 {
-        margin-top: 5.2%;
-    }
-
-    .col-9 {
-        height: 125.0vh;
-        margin-top: -2%;
-    }
-
-    #form_image {
-        height: 10vh;
-      }
-      
-      .h5, h5 {
-        font-size:0.9rem;
-      }
-
-      dl, ol, ul {
-        width: 74.7%;
-      }
 }

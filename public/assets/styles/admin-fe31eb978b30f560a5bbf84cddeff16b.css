@@ -294,7 +294,7 @@ td.image{
     }
 
     .col-9 {
-        height: 125.0vh;
+        height: 78vh;
         margin-top: -2%;
     }
 
@@ -304,9 +304,5 @@ td.image{
       
       .h5, h5 {
         font-size:0.9rem;
-      }
-
-      dl, ol, ul {
-        width: 74.7%;
       }
 }

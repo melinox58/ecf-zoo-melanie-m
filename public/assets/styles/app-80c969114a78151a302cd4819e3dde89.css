@@ -153,9 +153,9 @@ main form{
     form .btn {
         width: 19%;
         font-size: 0.8rem;
+        margin-left: 70%;
+        margin-top: -15%;
     }
-
-
 }
 
 

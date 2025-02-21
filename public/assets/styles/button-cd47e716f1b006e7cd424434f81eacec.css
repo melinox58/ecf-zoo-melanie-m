@@ -146,8 +146,9 @@ button.btn.btn-danger{
         font-size: 0.7rem;
         height: 4vh;
         width: 29vw;
+        position: relative;
         z-index: 6;
-        top: 9%;
+        top: 217%;
     }
 
     form .btn {
@@ -179,19 +180,4 @@ button.btn.btn-danger{
     #aside a.btn {
         font-size: .8rem;
     }
-
-    button.btn.btn-success {
-        margin-top: -12.6%;
-        margin-left: 66.1%;
-        font-family: 'Lemonada', serif;
-        text-align: center;
-    }
-
-    #form_save{
-            margin: 0;
-            width: 15vw;
-            margin-left: 50%;
-          }
-          
-    }
-
+}

@@ -162,6 +162,10 @@ button.btn.btn-danger{
         width: 14.8%;
     }
 
+    button.btn.btn-success{
+        font-size: 0.8rem;
+    }
+
     .badge {
         font-size: 0.8rem;
     }
@@ -180,18 +184,5 @@ button.btn.btn-danger{
         font-size: .8rem;
     }
 
-    button.btn.btn-success {
-        margin-top: -12.6%;
-        margin-left: 66.1%;
-        font-family: 'Lemonada', serif;
-        text-align: center;
-    }
 
-    #form_save{
-            margin: 0;
-            width: 15vw;
-            margin-left: 50%;
-          }
-          
-    }
-
+}

@@ -3,7 +3,7 @@ header{
     flex: 1;
 }
 .navbar{
-    background-image: url("../images/bg_header.png");
+    background-image: url("../images/bg_header-d269c2ffae1a15d221588dd007641ad7.png");
     background-size: cover;
     width: 100vw;
     height: 12vh;
@@ -132,7 +132,7 @@ font-size: 1rem;
     }
 }
 
-@media screen and (max-height: 500px) and (orientation: landscape){
+@media screen and (max-width: 767px) and (orientation: landscape){
 
     .navbar {
         height: 17.5vh;

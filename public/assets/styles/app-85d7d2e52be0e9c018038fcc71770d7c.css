@@ -155,7 +155,10 @@ main form{
         font-size: 0.8rem;
     }
 
-
+    button .btn .btn-success{
+        margin-left: 70%;
+        margin-top: -15%;
+    }
 }
 
 

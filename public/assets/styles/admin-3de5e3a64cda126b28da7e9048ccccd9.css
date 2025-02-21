@@ -233,15 +233,6 @@ td.image{
         margin-bottom: 9.2%;
         margin-top: 10%;
       }
-
-      #sche > h4:nth-child(1) {
-        margin-bottom: -10%;
-      }
-      
-      #sche > form:nth-child(2) > div:nth-child(12) > input:nth-child(2) {
-        width: 30%;
-      }
-      
       
 }
 
@@ -294,7 +285,7 @@ td.image{
     }
 
     .col-9 {
-        height: 125.0vh;
+        height: 78vh;
         margin-top: -2%;
     }
 
@@ -302,11 +293,5 @@ td.image{
         height: 10vh;
       }
       
-      .h5, h5 {
-        font-size:0.9rem;
-      }
 
-      dl, ol, ul {
-        width: 74.7%;
-      }
 }

@@ -180,18 +180,7 @@ button.btn.btn-danger{
         font-size: .8rem;
     }
 
-    button.btn.btn-success {
-        margin-top: -12.6%;
-        margin-left: 66.1%;
-        font-family: 'Lemonada', serif;
-        text-align: center;
-    }
+    a.btn.btn-secondary{
 
-    #form_save{
-            margin: 0;
-            width: 15vw;
-            margin-left: 50%;
-          }
-          
     }
-
+}

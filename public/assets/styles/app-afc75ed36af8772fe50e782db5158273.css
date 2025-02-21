@@ -149,14 +149,7 @@ main form{
     }
 }
 
-@media screen and (max-height: 500px) and (orientation: landscape){
-    form .btn {
-        width: 19%;
-        font-size: 0.8rem;
-    }
 
-
-}
 
 
     

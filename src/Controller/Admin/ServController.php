@@ -42,10 +42,12 @@ class ServController extends AbstractController
     
         // Création du formulaire
         $form = $this->createFormBuilder($serv)
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Nom'
+            ])
             ->add('description', TextareaType::class)
             ->add('image', FileType::class, [
-                'label' => 'Image du service',
+                'label' => 'Image',
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['accept' => 'image/png, image/jpg, image/jpeg, image/webp'],
@@ -60,7 +62,9 @@ class ServController extends AbstractController
                     )
                 ],
             ])
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
+            ->add('save', SubmitType::class, [
+                'label' => 'Ajouter',
+                'attr' => ['class' => 'btn btn-success']])
             ->getForm();
     
         $form->handleRequest($request);
