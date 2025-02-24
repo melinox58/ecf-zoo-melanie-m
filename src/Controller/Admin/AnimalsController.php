@@ -95,8 +95,9 @@ class AnimalsController extends AbstractController
                 ],
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer'
-            ])
+                'label' => 'Ajouter',
+                'attr' => ['class' => 'btn btn-success'
+                ]])
             ->getForm();
 
         $form->handleRequest($request);
@@ -192,7 +193,10 @@ class AnimalsController extends AbstractController
                     ) 
                 ]
             ])
-            ->add('save', SubmitType::class, ['label' => "Ajouter un animal"])
+            ->add('save', SubmitType::class, [
+                'label' => 'Ajouter',
+                'attr' => ['class' => 'btn btn-success'
+                ]])
             ->getForm();
 
         $form->handleRequest($request);

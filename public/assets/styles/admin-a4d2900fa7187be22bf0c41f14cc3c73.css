@@ -333,15 +333,6 @@ td.image{
       }
 
       #anim {
-        height: 150vh;
+        height: 140vh;
       }
-
-      .btnAnim{
-        margin-top: -123.6% !important;
-      }
-
-      .form-select {
-        font-size:0.8rem;
-      }
-      
 }

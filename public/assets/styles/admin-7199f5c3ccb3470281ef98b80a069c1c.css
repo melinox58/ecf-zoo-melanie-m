@@ -332,16 +332,7 @@ td.image{
         margin: auto;
       }
 
-      #anim {
-        height: 150vh;
+      #animal {
+        height: 120vh;
       }
-
-      .btnAnim{
-        margin-top: -123.6% !important;
-      }
-
-      .form-select {
-        font-size:0.8rem;
-      }
-      
 }

@@ -32,7 +32,7 @@ a.btnRegister{
 
 button.btn.btn-success {
     margin-top: 4%;
-    margin-left: 65.6%;
+    margin-left: 35%;
     font-family: 'Lemonada', serif;
     text-align: center;
 }
@@ -93,10 +93,6 @@ button.btn.btn-danger{
     display: flex;
 }
 
-form .btn {
-    width: 12.2%;
-}
-
 
 @media screen and (max-width: 767px){
     .btnAvis {
@@ -134,7 +130,6 @@ form .btn {
     a.btn.btn-success {
         font-size: 0.8rem;
         width: 31.8vw;
-        margin: auto;
     }
 
     button.btn.btn-success {
@@ -145,7 +140,6 @@ form .btn {
     .btn.btn-primary.filter {
         font-size: 0.7rem;
         width: 17.5vw;
-        margin: auto;
     }
 
     a.btn.btn-secondary{
@@ -197,23 +191,6 @@ form .btn {
             margin: 0;
             width: 15vw;
             margin-left: 50%;
-          }
-          
-          .btn.btn-primary.filter {
-            font-size: 0.8rem;
-            width: 12.4%;
-        }
-
-        .table>thead {
-            font-size: 0.9rem;
-          }
-          
-          .table>tbody {
-            font-size: 0.7rem;
-          }
-          
-          .table > tbody:nth-child(3) > tr:nth-child(1) > td:nth-child(3) {
-            width: 40vw;
           }
           
     }

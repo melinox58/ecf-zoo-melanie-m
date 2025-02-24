@@ -262,8 +262,7 @@ td.image{
 
     .form-control {
         width:94.9%;
-        height: 11.7vh;
-        font-size: 0.9rem;
+        height: 5.9vh;
       }
       
       main form label {
@@ -325,23 +324,6 @@ td.image{
 
       #sche {
         height: 120vh;
-      }
-      
-      #breed {
-        margin-left: 0;
-        margin: auto;
-      }
-
-      #anim {
-        height: 150vh;
-      }
-
-      .btnAnim{
-        margin-top: -123.6% !important;
-      }
-
-      .form-select {
-        font-size:0.8rem;
       }
       
 }
