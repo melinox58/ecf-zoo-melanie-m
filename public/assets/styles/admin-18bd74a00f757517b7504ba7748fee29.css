@@ -158,7 +158,7 @@ td.image{
     }
 
     .col-9 img {
-        width: 31vw;
+        width: 99%;
     }
 
     .col-form-label {
@@ -198,6 +198,10 @@ td.image{
     .hello {
         font-size: 1rem;
       }
+
+      .col-9 img {
+        width: 30.8vw;
+    }
 
     .table-responsive {
         font-size: 0.6rem;
@@ -278,7 +282,7 @@ td.image{
     }
 
     .mt-3 {
-        margin-top:-51% !important;
+        margin-top:-100% !important;
         margin-left: -3.9%;
         font-size: 0.8rem;
         width: 10.2vw;
@@ -291,10 +295,6 @@ td.image{
     .col-9 {
         height: 78vh;
         margin-top: -2%;
-    }
-
-    .col-9 img {
-        width: 15vw;
     }
 
     main h1 {
@@ -316,9 +316,4 @@ td.image{
       dl, ol, ul {
         width: 74.7%;
       }
-
-      #sche {
-        height: 120vh;
-      }
-      
 }

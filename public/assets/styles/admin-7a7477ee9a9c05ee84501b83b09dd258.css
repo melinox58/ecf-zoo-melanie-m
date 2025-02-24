@@ -278,7 +278,7 @@ td.image{
     }
 
     .mt-3 {
-        margin-top:-51% !important;
+        margin-top:-100% !important;
         margin-left: -3.9%;
         font-size: 0.8rem;
         width: 10.2vw;
@@ -316,9 +316,4 @@ td.image{
       dl, ol, ul {
         width: 74.7%;
       }
-
-      #sche {
-        height: 120vh;
-      }
-      
 }

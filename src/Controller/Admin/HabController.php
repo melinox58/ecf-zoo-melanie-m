@@ -31,7 +31,9 @@ class HabController extends AbstractController
     public function modify(Habitats $hab, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createFormBuilder($hab)
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Nom'
+            ])
             ->add('description', TextType::class)
             ->add('image', FileType::class, [
                 'label' => 'Image (JPG, PNG)',
@@ -39,12 +41,14 @@ class HabController extends AbstractController
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'mimeTypes' => ['image/jpeg', 'image/png'],
-                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPG, PNG).',
+                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/jpg'],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPG, PNG, JPG).',
                     ])
                 ]
             ])
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
+            ->add('save', SubmitType::class, [
+                'label' => 'Ajouter',
+                'attr' => ['class' => 'btn btn-success']])
             ->getForm();
 
         $form->handleRequest($request);

@@ -3,7 +3,7 @@ header{
     flex: 1;
 }
 .navbar{
-    background-image: url("../images/bg_header.png");
+    background-image: url("../images/bg_header-d269c2ffae1a15d221588dd007641ad7.png");
     background-size: cover;
     width: 100vw;
     height: 12vh;
@@ -72,12 +72,34 @@ a.nav-link:nth-child(6) {
 font-size: 1rem;
 }
 
+.navbar-collapse {
+    margin-left: 64%;
+    text-align: right;
+    z-index: 99;
+    background:white;
+    padding: 2%;
+}
 
 @media screen and (max-width: 767px) {
 
     .navbar {
         height: 8vh;
         background-size: cover;
+    }
+
+    #header .navbar-brand {
+        position: absolute;
+      }
+      
+    #header button.navbar-toggler:nth-child(2) {
+        position: absolute;
+        right: 10%;
+      }
+
+    #header .navbar-collapse {
+        background: white;
+        margin-top: 60.7%;
+        box-shadow: 0 4px 4px lightgray;
     }
       
     .banner img{
@@ -91,25 +113,6 @@ font-size: 1rem;
     .navbar-brand img {
         width: 2rem;
     }
-
-    .navbar-collapse {
-        margin-left: 64%;
-        text-align: right;
-        z-index: 99;
-        background:white;
-        padding: 2%;
-        margin-top: 60.7%;
-        box-shadow: 0 4px 4px lightgray;
-    }
-    
-    #header .navbar-brand {
-        position: absolute;
-      }
-      
-    #header button.navbar-toggler:nth-child(2) {
-        position: absolute;
-        right: 10%;
-      }
 
     a.nav-link:nth-child(5) {
         font-size: 0.8rem;
@@ -138,36 +141,4 @@ font-size: 1rem;
     .hheader {
         font-size: 1rem;
     }
-
-    .navbar-collapse {
-        margin-top: 37.9%;
-    }
-
-    #navbarAdmin {
-        background: none;
-        box-shadow: none;
-    }
-
-    #aside {
-        margin-left: -35.2%;
-    }
-
-    .navbar-collapse {
-        margin-left: 64%;
-        text-align: right;
-        z-index: 99;
-        background:white;
-        padding: 2%;
-        margin-top: 39.0%;
-        box-shadow: 0 4px 4px lightgray;
-    }
-    
-    #header .navbar-brand {
-        position: absolute;
-      }
-      
-    #header button.navbar-toggler:nth-child(2) {
-        position: absolute;
-        right: 10%;
-      }
 }
