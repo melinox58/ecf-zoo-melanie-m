@@ -219,6 +219,10 @@ td.image{
         width: 33.9%;
         text-align: center;
     }
+
+    .table>thead {
+        text-align: center;
+      }
       
       li {
         width: 67.4vw;
@@ -236,6 +240,11 @@ td.image{
       
       #sche > form:nth-child(2) > div:nth-child(12) > input:nth-child(2) {
         width: 30%;
+      }
+      
+      .table > tbody{
+        display: flex;
+        justify-content: center;
       }
       
       

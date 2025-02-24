@@ -52,7 +52,7 @@
                                 <td class="action">
                                     {% if not opinion.isValidated %}
                                             <form action="{{ path('emp_opinion_approve', {id: opinion._id}) }}" method="post" style="display:inline;">
-                                            <button type="submit" class="btn btn-primary btn-sm validate">Valider</button>
+                                            <a type="submit" class="btn btn-primary btn-sm validate">Valider</a>
                                         </form>
                                     {% endif %}
                                     

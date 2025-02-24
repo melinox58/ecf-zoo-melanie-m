@@ -12,6 +12,7 @@
     "\/assets\/styles\/admin.css",
     "\/assets\/styles\/button.css",
     "\/assets\/styles\/veto.css",
+    "\/assets\/styles\/emp.css",
     "@symfony\/stimulus-bundle",
     "@hotwired\/stimulus",
     "\/assets\/@symfony\/stimulus-bundle\/controllers.js",
